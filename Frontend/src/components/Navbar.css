@@ -44,10 +44,12 @@
   width:100%;
 }
 .navbar-logo {
-  width: 8rem;
-  height: 8rem;
+  width: 6.5rem;
+  height: 6.5rem;
   object-fit: cover;
+  border-radius: 50rem;
   transition: all var(--transition-speed) ease;
+  box-shadow: -1px 1px 69px rgb(255, 227, 0);
 }
 .disabled-dropdown > a,
 .disabled-link {
@@ -65,7 +67,7 @@
 
 .nav-text{
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 .brand-name {
   color: var(--text-light);

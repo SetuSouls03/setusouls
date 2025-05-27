@@ -1,5 +1,5 @@
 .prayerpage {
-  background: linear-gradient(to bottom, #fefcea, #f1e8ff);
+  background: linear-gradient(to bottom, #fefcea, #e8ebff);
   padding: 4rem 2rem;
   display: flex;
   flex-direction: column;
@@ -16,7 +16,7 @@
 }
 
 .translate-button {
-  background-color: #6a4caf;
+  background-color: #0702bc;
   color: white;
   font-weight: bold;
   border: none;
@@ -29,8 +29,8 @@
 }
 
 .translate-button:hover {
-  background-color: #7b51c4;
-  box-shadow: 0 6px 16px rgba(123, 81, 196, 0.5);
+  background-color: #5351c4;
+  box-shadow: 0 6px 16px rgba(87, 81, 196, 0.5);
 }
 
 .prayersection {

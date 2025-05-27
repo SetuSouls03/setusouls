@@ -7,8 +7,8 @@ const Footer = () => {
       <div className="footer-links">
         <a href="/">Home</a>
         <a href="/history">History</a>
+        <a href="/contact">Contact</a>
         <a href="/privacy-policy">Privacy Policy</a>
-        <a href="/terms-and-conditions">Terms & Conditions</a>
       </div>
       <div className="footer-copy">
         &copy; SetuSouls {new Date().getFullYear()}

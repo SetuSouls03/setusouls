@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import './Navbar.css';
-import Logo from '../assets/Logo.jpg';
-import { AuthContext } from '../Context/AuthContext';
+import React, { useState, useEffect, useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import "./Navbar.css";
+import Logo from "../assets/Logo.jpeg";
+import { AuthContext } from "../Context/AuthContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -10,47 +10,61 @@ const Navbar = () => {
 
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [importantDropdownOpen, setImportantDropdownOpen] = useState(false);
+  const [additionalDropdownOpen, setAdditionalDropdownOpen] = useState(false);
+
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
-    document.body.style.overflow = !mobileMenuOpen ? 'hidden' : '';
+    document.body.style.overflow = !mobileMenuOpen ? "hidden" : "";
   };
 
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
-    document.body.style.overflow = '';
+    document.body.style.overflow = "";
   };
 
-  const toggleDropdown = (e) => {
-    e.preventDefault();
-    setDropdownOpen(!dropdownOpen);
-  };
+  const toggleImportantDropdown = (e) => {
+  e.preventDefault();
+  setImportantDropdownOpen(!importantDropdownOpen);
+  setAdditionalDropdownOpen(false); // Close other dropdown if open
+};
+
+const toggleAdditionalDropdown = (e) => {
+  e.preventDefault();
+  setAdditionalDropdownOpen(!additionalDropdownOpen);
+  setImportantDropdownOpen(false); // Close other dropdown if open
+};
+
 
   const handleLogout = () => {
-    logout();       // Clear context auth state
-    navigate('/login');
+    logout(); // Clear context auth state
+    navigate("/login");
     closeMobileMenu();
   };
 
   return (
-    <nav className={`navbar navbar-expand-lg premium-navbar ${scrolled ? 'navbar-scrolled' : ''} ${mobileMenuOpen ? 'mobile-menu-open' : ''}`}>
-      <div className="container" style={{ maxWidth: '95%' }}>
+    <nav
+      className={`navbar navbar-expand-lg premium-navbar ${
+        scrolled ? "navbar-scrolled" : ""
+      } ${mobileMenuOpen ? "mobile-menu-open" : ""}`}
+    >
+      <div className="container" style={{ maxWidth: "95%" }}>
         <NavLink className="navbar-brand" to="/" onClick={closeMobileMenu}>
           <img src={Logo} alt="Logo" className="navbar-logo" />
           <span className="brand-name">Setu Souls</span>
         </NavLink>
 
         <button
-          className={`navbar-toggler ${mobileMenuOpen ? 'open' : ''}`}
+          className={`navbar-toggler ${mobileMenuOpen ? "open" : ""}`}
           type="button"
           onClick={toggleMobileMenu}
           aria-label="Toggle navigation"
@@ -60,8 +74,8 @@ const Navbar = () => {
           <span className="toggler-icon"></span>
         </button>
 
-        <div className={`navbar-collapse ${mobileMenuOpen ? 'show' : ''}`}>
-          <div style={{ paddingLeft: '10%' }}>
+        <div className={`navbar-collapse ${mobileMenuOpen ? "show" : ""}`}>
+          <div style={{ paddingLeft: "9%" }}>
             <ul className="navbar-nav">
               <li className="nav-item">
                 <NavLink
@@ -99,70 +113,115 @@ const Navbar = () => {
                   </span>
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink
-                  to="/contact"
-                  className="nav-link"
-                  onClick={closeMobileMenu}
-                  activeclassname="active"
-                >
-                  <span className="nav-link-content">
-                    <span className="nav-text">Contact</span>
-                  </span>
-                </NavLink>
-              </li>
-              <li className={`nav-item dropdown ${dropdownOpen ? 'show' : ''} ${!isAuthenticated ? 'disabled-dropdown' : ''}`}>
+
+              <li
+  className={`nav-item dropdown ${importantDropdownOpen ? "show" : ""} ${
+    !isAuthenticated ? "disabled-dropdown" : ""
+  }`}
+>
   <a
-    className={`nav-link dropdown-toggle ${!isAuthenticated ? 'disabled-link' : ''}`}
+    className={`nav-link dropdown-toggle ${!isAuthenticated ? "disabled-link" : ""}`}
     href="#important-section"
     onClick={(e) => {
       if (!isAuthenticated) {
-        e.preventDefault(); // Prevent dropdown opening
+        e.preventDefault();
       } else {
-        toggleDropdown(e);
+        toggleImportantDropdown(e);
       }
     }}
-    tabIndex={isAuthenticated ? 0 : -1}  // Prevent tab focus if disabled
+    tabIndex={isAuthenticated ? 0 : -1}
     aria-disabled={!isAuthenticated}
   >
     <span className="nav-link-content">
       <span className="nav-text">Important Section</span>
-      <i className={`dropdown-arrow fas ${dropdownOpen ? 'fa-chevron-up' : 'fa-chevron-down'}`}></i>
+      <i
+        className={`dropdown-arrow fas ${
+          importantDropdownOpen ? "fa-chevron-up" : "fa-chevron-down"
+        }`}
+      ></i>
     </span>
   </a>
-  <div className={`dropdown-menu ${dropdownOpen ? 'show' : ''}`}>
+  <div className={`dropdown-menu ${importantDropdownOpen ? "show" : ""}`}>
     {isAuthenticated ? (
       <>
-        <NavLink
-          to="/prayer"
-          className="dropdown-item"
-          onClick={() => { closeMobileMenu(); setDropdownOpen(false); }}
-          activeclassname="active"
-        >
+        <NavLink to="/prayer" className="dropdown-item" onClick={() => {
+          closeMobileMenu();
+          setImportantDropdownOpen(false);
+        }}>
           Prayer
         </NavLink>
-        <NavLink
-          to="/important-notes"
-          className="dropdown-item"
-          onClick={() => { closeMobileMenu(); setDropdownOpen(false); }}
-          activeclassname="active"
-        >
+        <NavLink to="/important-notes" className="dropdown-item" onClick={() => {
+          closeMobileMenu();
+          setImportantDropdownOpen(false);
+        }}>
           Important Notes
         </NavLink>
-        <NavLink
-          to="/other"
-          className="dropdown-item"
-          onClick={() => { closeMobileMenu(); setDropdownOpen(false); }}
-          activeclassname="active"
-        >
+        <NavLink to="/other" className="dropdown-item" onClick={() => {
+          closeMobileMenu();
+          setImportantDropdownOpen(false);
+        }}>
           Other Section
         </NavLink>
       </>
     ) : (
-      <span className="dropdown-item disabled-text" title="Login to access">Login to access</span>
+      <span className="dropdown-item disabled-text" title="Login to access">
+        Login to access
+      </span>
     )}
   </div>
 </li>
+
+              <li
+  className={`nav-item dropdown ${additionalDropdownOpen ? "show" : ""} ${
+    !isAuthenticated ? "disabled-dropdown" : ""
+  }`}
+>
+  <a
+    className={`nav-link dropdown-toggle ${!isAuthenticated ? "disabled-link" : ""}`}
+    href="#additional-section"
+    onClick={(e) => {
+      if (!isAuthenticated) {
+        e.preventDefault();
+      } else {
+        toggleAdditionalDropdown(e);
+      }
+    }}
+    tabIndex={isAuthenticated ? 0 : -1}
+    aria-disabled={!isAuthenticated}
+  >
+    <span className="nav-link-content">
+      <span className="nav-text">Additional Section</span>
+      <i
+        className={`dropdown-arrow fas ${
+          additionalDropdownOpen ? "fa-chevron-up" : "fa-chevron-down"
+        }`}
+      ></i>
+    </span>
+  </a>
+  <div className={`dropdown-menu ${additionalDropdownOpen ? "show" : ""}`}>
+    {isAuthenticated ? (
+      <>
+        <NavLink to="/qna" className="dropdown-item" onClick={() => {
+          closeMobileMenu();
+          setAdditionalDropdownOpen(false);
+        }}>
+          QNA
+        </NavLink>
+        <NavLink to="/sadhna" className="dropdown-item" onClick={() => {
+          closeMobileMenu();
+          setAdditionalDropdownOpen(false);
+        }}>
+          Sadhna
+        </NavLink>
+      </>
+    ) : (
+      <span className="dropdown-item disabled-text" title="Login to access">
+        Login to access
+      </span>
+    )}
+  </div>
+</li>
+
             </ul>
           </div>
 
@@ -171,23 +230,23 @@ const Navbar = () => {
               <button
                 className="btn login-btn"
                 onClick={handleLogout}
-                style={{ color: 'white', border: '1px solid white' }}
+                style={{ color: "white", border: "1px solid white" }}
                 title="Logout"
               >
                 <i className="fas fa-sign-out-alt"></i>
-                <span style={{ color: 'white' }}>Logout</span>
+                <span style={{ color: "white" }}>Logout</span>
               </button>
             ) : (
               <button
                 className="btn login-btn"
                 onClick={() => {
-                  navigate('/login');
+                  navigate("/login");
                   closeMobileMenu();
                 }}
-                style={{ color: 'white', border: '1px solid white' }}
+                style={{ color: "white", border: "1px solid white" }}
               >
                 <i className="fas fa-sign-in-alt"></i>
-                <span style={{ color: 'white' }}>Login</span>
+                <span style={{ color: "white" }}>Login</span>
               </button>
             )}
           </div>
