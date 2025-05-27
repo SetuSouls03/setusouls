@@ -1,0 +1,109 @@
+.prayerpage {
+  background: linear-gradient(to bottom, #fefcea, #f1e8ff);
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.translate-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.translate-button {
+  background-color: #6a4caf;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(106, 76, 175, 0.3);
+}
+
+.translate-button:hover {
+  background-color: #7b51c4;
+  box-shadow: 0 6px 16px rgba(123, 81, 196, 0.5);
+}
+
+.prayersection {
+  text-align: center;
+  max-width: 90%;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(160, 120, 255, 0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: fadeInUp 1s ease forwards;
+  opacity: 0;
+}
+
+.prayersection:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 16px 30px rgba(120, 80, 200, 0.3);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.prayer-section-heading {
+  font-size: 3rem;
+  color: #1900ff;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.prayer-section-subheading {
+  font-size: 1.5rem;
+  color: #000000;
+  transition: color 0.3s;
+}
+
+.prayersection:hover .section-subheading {
+  color: #7b51c4;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.prayersection:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.prayersection:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.prayersection:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.prayersection:nth-child(4) {
+  animation-delay: 0.8s;
+}
+@media(max-width: 993px){
+  .prayer-section-heading{
+    font-size: 2.5rem;
+  }
+}
+@media(max-width: 768px){
+  .prayersection{
+    max-width: 100%;
+  }
+  .prayer-section-heading{
+    font-size: 1.7rem;
+  }
+  .prayer-section-subheading{
+    font-size: 1rem;
+  }
+}

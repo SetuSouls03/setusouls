@@ -1,0 +1,32 @@
+.disclaimer-container {
+  width: 100%;
+  overflow: hidden;
+  background-color: #fff3cd;
+  padding: 10px 0;
+  border-top: 1px solid #ffeeba;
+  border-bottom: 1px solid #ffeeba;
+  position: relative;
+  height: 40px;
+}
+
+.disclaimer-text {
+  display: inline-block;
+  white-space: nowrap;
+  color: #856404;
+  font-weight: bold;
+  font-size: 16px;
+  animation: scrollText 15s linear;
+}
+
+@keyframes scrollText {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.paused {
+  animation-play-state: paused !important;
+}
