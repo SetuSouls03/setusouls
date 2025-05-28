@@ -23,7 +23,7 @@ import ForgotPassword from './Pages/ForgotPassword';
 import OTPPage from './Pages/OTPPage';
 import CreatePassword from './Pages/CreatePassword';
 import Sadhna from './Pages/Sadhna';
-import Qna from './Pages/Qna';
+import QnaSection from './Pages/QnaSection';
 function App() {
   return (
     <Router>
@@ -43,7 +43,7 @@ function App() {
         <Route path='/forgotpassword' element={<ForgotPassword />} />   
         <Route path='/otppage' element={<OTPPage />} /> 
         <Route path='/createpassword' element={<CreatePassword />} />
-        <Route path='/qna' element={<Qna />} />
+        <Route path='/qna-section' element={<QnaSection />} />
         <Route path='/sadhna' element={<Sadhna />} />
       </Routes>
 

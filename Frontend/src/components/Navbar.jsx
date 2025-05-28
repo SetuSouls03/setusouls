@@ -64,15 +64,24 @@ const toggleAdditionalDropdown = (e) => {
         </NavLink>
 
         <button
-          className={`navbar-toggler ${mobileMenuOpen ? "open" : ""}`}
-          type="button"
-          onClick={toggleMobileMenu}
-          aria-label="Toggle navigation"
-        >
-          <span className="toggler-icon"></span>
-          <span className="toggler-icon"></span>
-          <span className="toggler-icon"></span>
-        </button>
+  className={`navbar-toggler ${mobileMenuOpen ? "open" : ""}`}
+  type="button"
+  onClick={toggleMobileMenu}
+  aria-label="Toggle navigation"
+  style={{color:'white'}}
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="white"
+    viewBox="0 0 24 24"
+    width="30"
+    height="24"
+  >
+    <path d="M4 6h16M4 12h16M4 18h16" stroke="white" strokeWidth="2" strokeLinecap="round" />
+  </svg>
+</button>
+
+
 
         <div className={`navbar-collapse ${mobileMenuOpen ? "show" : ""}`}>
           <div style={{ paddingLeft: "9%" }}>
@@ -201,7 +210,7 @@ const toggleAdditionalDropdown = (e) => {
   <div className={`dropdown-menu ${additionalDropdownOpen ? "show" : ""}`}>
     {isAuthenticated ? (
       <>
-        <NavLink to="/qna" className="dropdown-item" onClick={() => {
+        <NavLink to="/qna-section" className="dropdown-item" onClick={() => {
           closeMobileMenu();
           setAdditionalDropdownOpen(false);
         }}>

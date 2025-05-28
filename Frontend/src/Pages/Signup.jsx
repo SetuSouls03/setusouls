@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './AuthForm.css';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 
 function Signup() {
   const [form, setForm] = useState({
@@ -9,7 +10,11 @@ function Signup() {
     email: '',
     password: '',
     confirmPassword: '',
+    contactNumber: '',
   });
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -35,6 +40,7 @@ function Signup() {
           name: form.name,
           email: form.email,
           password: form.password,
+          contactNumber: form.contactNumber,
         }),
         credentials: "include"
       });
@@ -58,10 +64,37 @@ function Signup() {
     <div className="auth-container">
       <form className="auth-form" onSubmit={handleSubmit}>
         <h2>Create an Account</h2>
+
         <input type="text" name="name" placeholder="Full Name" required onChange={handleChange} />
         <input type="email" name="email" placeholder="Email" required onChange={handleChange} />
-        <input type="password" name="password" placeholder="Password" required onChange={handleChange} />
-        <input type="password" name="confirmPassword" placeholder="Confirm Password" required onChange={handleChange} />
+        <input type="text" name="contactNumber" placeholder="Contact Number" required onChange={handleChange} />
+
+        <div className="input-wrapper">
+          <input
+            type={showPassword ? "text" : "password"}
+            name="password"
+            placeholder="Password"
+            required
+            onChange={handleChange}
+          />
+          <span onClick={() => setShowPassword(!showPassword)} className="toggle-password">
+            {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+          </span>
+        </div>
+
+        <div className="input-wrapper">
+          <input
+            type={showConfirmPassword ? "text" : "password"}
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            required
+            onChange={handleChange}
+          />
+          <span onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="toggle-password">
+            {showConfirmPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+          </span>
+        </div>
+
         <button type="submit">Register</button>
         <p>Already have an account? <span onClick={() => navigate("/login")}>Login</span></p>
       </form>

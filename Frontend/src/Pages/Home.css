@@ -41,7 +41,7 @@
 }
 
 .info-block strong {
-  color: #2e03c8; /* amber-700 for spiritual golden highlight */
+  color: #1100d7; /* amber-700 for spiritual golden highlight */
   font-weight: 700;
 }
 
@@ -73,14 +73,14 @@ position: relative;
 
 .title {
   font-size: 2.8rem;
-  color: #2e03c8;
+  color: #1100d7;
   font-weight: bold;
 }
 
 .subtitle {
   font-size: 2rem;
   margin-bottom: 2rem;
-  color: #2e03c8;
+  color: #1100d7;
   font-weight: bold;
 }
 
@@ -100,7 +100,7 @@ position: relative;
 }
 
 .hindi {
-  color: #2e03c8;
+  color: #1100d7;
   font-weight: bold;
   margin-top:1rem;
 }
@@ -126,7 +126,7 @@ position: relative;
 
 .mantra-title {
   font-size: 3rem;
-  color: #1a00d2;
+  color: #1100d7;
   margin-bottom: 2rem;
   font-weight: bold;
 }
@@ -142,7 +142,7 @@ position: relative;
 
 .sanskrit {
   font-size: 2rem;
-  color: #0f1bd4;
+  color: #1100d7;
   font-weight: bolder;
   line-height: 2;
   margin-bottom: 1rem;
@@ -196,7 +196,7 @@ font-size: 1.6rem;
     font-size: 1.7rem;
   }
   .sanskrit {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
   .meaning {
     font-size: 0.95rem;

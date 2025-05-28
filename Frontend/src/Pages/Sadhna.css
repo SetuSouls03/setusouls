@@ -1,0 +1,85 @@
+.Sadhna-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.8;
+  color: #333;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.05);
+  text-align: center; /* This centers inline and inline-block elements like <img> */
+}
+
+.Sadhna-container img {
+  display: block;
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 800px;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.Sadhna-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.8;
+  color: #333;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.05);
+  text-align: center; /* This centers inline and inline-block elements like <img> */
+}
+
+.Sadhna-container img {
+  display: block;
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 800px;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+.Sadhna-container h1 {
+  font-size: 2.5rem;
+  color: #1f2937;
+  margin-top: 2rem;
+}
+
+.Sadhna-container h4 {
+  font-size: 1.5rem;
+  color: #1f2937;
+  margin-top: 2rem;
+  font-weight: 600;
+}
+
+.Sadhna-container h5 {
+  font-size: 1rem;
+  padding: 0 2rem;
+  color: #444;
+  margin: 1.5rem 0;
+}
+
+.Sadhna-container p {
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 2rem;
+  color: #666;
+}
+
+.Sadhna-container span {
+  font-weight: bold;
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .Sadhna-container h5 {
+    padding: 0 1rem;
+  }
+}

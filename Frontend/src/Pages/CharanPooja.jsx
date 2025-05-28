@@ -113,8 +113,8 @@ This Brahma Gyaan holds many secrets of the universe that, in today’s age, are
 In this final phase of Kaliyug, under the command of Lord Shri Hari Vishnu and with the blessings of the eternal Shri Hanuman Ji, our generation has once again received that ancient divine knowledge. For this, we must express our utmost gratitude to them. || Ram ||`
     },
     quote: {
-      hi: "🌺🌸 जब आत्मा परमात्मा से जुड़ती है, तब कलियुग में भी सतयुग का अनुभव होता है। 🌸🌺",
-      en: "🌺🌸 When the soul connects with the Supreme, even in Kaliyuga, the experience of Satya Yuga is felt. 🌸🌺"
+      hi: ` "जब आत्मा परमात्मा से जुड़ती है, तब कलियुग में भी सतयुग का अनुभव होता है।" `,
+      en: ` "When the soul connects with the Supreme, even in Kaliyuga, the experience of Satya Yuga is felt." `
     },
   };
 
