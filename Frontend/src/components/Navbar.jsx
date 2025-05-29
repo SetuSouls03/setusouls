@@ -13,7 +13,6 @@ const Navbar = () => {
   const [importantDropdownOpen, setImportantDropdownOpen] = useState(false);
   const [additionalDropdownOpen, setAdditionalDropdownOpen] = useState(false);
 
-
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
@@ -33,17 +32,16 @@ const Navbar = () => {
   };
 
   const toggleImportantDropdown = (e) => {
-  e.preventDefault();
-  setImportantDropdownOpen(!importantDropdownOpen);
-  setAdditionalDropdownOpen(false); // Close other dropdown if open
-};
+    e.preventDefault();
+    setImportantDropdownOpen(!importantDropdownOpen);
+    setAdditionalDropdownOpen(false); // Close other dropdown if open
+  };
 
-const toggleAdditionalDropdown = (e) => {
-  e.preventDefault();
-  setAdditionalDropdownOpen(!additionalDropdownOpen);
-  setImportantDropdownOpen(false); // Close other dropdown if open
-};
-
+  const toggleAdditionalDropdown = (e) => {
+    e.preventDefault();
+    setAdditionalDropdownOpen(!additionalDropdownOpen);
+    setImportantDropdownOpen(false); // Close other dropdown if open
+  };
 
   const handleLogout = () => {
     logout(); // Clear context auth state
@@ -64,29 +62,33 @@ const toggleAdditionalDropdown = (e) => {
         </NavLink>
 
         <button
-  className={`navbar-toggler ${mobileMenuOpen ? "open" : ""}`}
-  type="button"
-  onClick={toggleMobileMenu}
-  aria-label="Toggle navigation"
-  style={{color:'white'}}
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="white"
-    viewBox="0 0 24 24"
-    width="30"
-    height="24"
-  >
-    <path d="M4 6h16M4 12h16M4 18h16" stroke="white" strokeWidth="2" strokeLinecap="round" />
-  </svg>
-</button>
-
-
+          className={`navbar-toggler ${mobileMenuOpen ? "open" : ""}`}
+          type="button"
+          onClick={toggleMobileMenu}
+          aria-label="Toggle navigation"
+          style={{ color: "white" }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="white"
+            viewBox="0 0 24 24"
+            width="30"
+            height="24"
+          >
+            <path
+              d="M4 6h16M4 12h16M4 18h16"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+          </svg>
+        </button>
 
         <div className={`navbar-collapse ${mobileMenuOpen ? "show" : ""}`}>
-          <div style={{ paddingLeft: "9%" }}>
+          <div className="ulunder">
             <ul className="navbar-nav">
-              <li className="nav-item">
+              <div className="FirstThree">
+                <li className="nav-item">
                 <NavLink
                   to="/"
                   className="nav-link"
@@ -122,115 +124,170 @@ const toggleAdditionalDropdown = (e) => {
                   </span>
                 </NavLink>
               </li>
+              </div>
+              
+              <div className="lasttow">
+                <li
+                className={`nav-item dropdown ${
+                  importantDropdownOpen ? "show" : ""
+                } ${!isAuthenticated ? "disabled-dropdown" : ""}`}
+              >
+                <a
+                  className={`nav-link dropdown-toggle ${
+                    !isAuthenticated ? "disabled-link" : ""
+                  }`}
+                  href="#important-section"
+                  onClick={(e) => {
+                    if (!isAuthenticated) {
+                      e.preventDefault();
+                    } else {
+                      toggleImportantDropdown(e);
+                    }
+                  }}
+                  tabIndex={isAuthenticated ? 0 : -1}
+                  aria-disabled={!isAuthenticated}
+                >
+                  <span className="nav-link-content">
+                    <span className="nav-text">Important Section</span>
+                    <i
+                      className={`dropdown-arrow fas ${
+                        importantDropdownOpen
+                          ? "fa-chevron-up"
+                          : "fa-chevron-down"
+                      }`}
+                    ></i>
+                  </span>
+                </a>
+                <div
+                  className={`dropdown-menu ${
+                    importantDropdownOpen ? "show" : ""
+                  }`}
+                >
+                  {isAuthenticated ? (
+                    <>
+                      <NavLink
+                        to="/prayer"
+                        className="dropdown-item"
+                        onClick={() => {
+                          closeMobileMenu();
+                          setImportantDropdownOpen(false);
+                        }}
+                      >
+                        Prayer
+                      </NavLink>
+                      <NavLink
+                        to="/important-notes"
+                        className="dropdown-item"
+                        onClick={() => {
+                          closeMobileMenu();
+                          setImportantDropdownOpen(false);
+                        }}
+                      >
+                        Important Notes
+                      </NavLink>
+                      <NavLink
+                        to="/other"
+                        className="dropdown-item"
+                        onClick={() => {
+                          closeMobileMenu();
+                          setImportantDropdownOpen(false);
+                        }}
+                      >
+                        Other Section
+                      </NavLink>
+                    </>
+                  ) : (
+                    <span
+                      className="dropdown-item disabled-text"
+                      title="Login to access"
+                    >
+                      Login to access
+                    </span>
+                  )}
+                </div>
+              </li>
 
               <li
-  className={`nav-item dropdown ${importantDropdownOpen ? "show" : ""} ${
-    !isAuthenticated ? "disabled-dropdown" : ""
-  }`}
->
-  <a
-    className={`nav-link dropdown-toggle ${!isAuthenticated ? "disabled-link" : ""}`}
-    href="#important-section"
-    onClick={(e) => {
-      if (!isAuthenticated) {
-        e.preventDefault();
-      } else {
-        toggleImportantDropdown(e);
-      }
-    }}
-    tabIndex={isAuthenticated ? 0 : -1}
-    aria-disabled={!isAuthenticated}
-  >
-    <span className="nav-link-content">
-      <span className="nav-text">Important Section</span>
-      <i
-        className={`dropdown-arrow fas ${
-          importantDropdownOpen ? "fa-chevron-up" : "fa-chevron-down"
-        }`}
-      ></i>
-    </span>
-  </a>
-  <div className={`dropdown-menu ${importantDropdownOpen ? "show" : ""}`}>
-    {isAuthenticated ? (
-      <>
-        <NavLink to="/prayer" className="dropdown-item" onClick={() => {
-          closeMobileMenu();
-          setImportantDropdownOpen(false);
-        }}>
-          Prayer
-        </NavLink>
-        <NavLink to="/important-notes" className="dropdown-item" onClick={() => {
-          closeMobileMenu();
-          setImportantDropdownOpen(false);
-        }}>
-          Important Notes
-        </NavLink>
-        <NavLink to="/other" className="dropdown-item" onClick={() => {
-          closeMobileMenu();
-          setImportantDropdownOpen(false);
-        }}>
-          Other Section
-        </NavLink>
-      </>
-    ) : (
-      <span className="dropdown-item disabled-text" title="Login to access">
-        Login to access
-      </span>
-    )}
-  </div>
-</li>
-
-              <li
-  className={`nav-item dropdown ${additionalDropdownOpen ? "show" : ""} ${
-    !isAuthenticated ? "disabled-dropdown" : ""
-  }`}
->
-  <a
-    className={`nav-link dropdown-toggle ${!isAuthenticated ? "disabled-link" : ""}`}
-    href="#additional-section"
-    onClick={(e) => {
-      if (!isAuthenticated) {
-        e.preventDefault();
-      } else {
-        toggleAdditionalDropdown(e);
-      }
-    }}
-    tabIndex={isAuthenticated ? 0 : -1}
-    aria-disabled={!isAuthenticated}
-  >
-    <span className="nav-link-content">
-      <span className="nav-text">Additional Section</span>
-      <i
-        className={`dropdown-arrow fas ${
-          additionalDropdownOpen ? "fa-chevron-up" : "fa-chevron-down"
-        }`}
-      ></i>
-    </span>
-  </a>
-  <div className={`dropdown-menu ${additionalDropdownOpen ? "show" : ""}`}>
-    {isAuthenticated ? (
-      <>
-        <NavLink to="/qna-section" className="dropdown-item" onClick={() => {
-          closeMobileMenu();
-          setAdditionalDropdownOpen(false);
-        }}>
-          QNA
-        </NavLink>
-        <NavLink to="/sadhna" className="dropdown-item" onClick={() => {
-          closeMobileMenu();
-          setAdditionalDropdownOpen(false);
-        }}>
-          Sadhna
-        </NavLink>
-      </>
-    ) : (
-      <span className="dropdown-item disabled-text" title="Login to access">
-        Login to access
-      </span>
-    )}
-  </div>
-</li>
-
+                className={`nav-item dropdown ${
+                  additionalDropdownOpen ? "show" : ""
+                } ${!isAuthenticated ? "disabled-dropdown" : ""}`}
+              >
+                <a
+                  className={`nav-link dropdown-toggle ${
+                    !isAuthenticated ? "disabled-link" : ""
+                  }`}
+                  href="#additional-section"
+                  onClick={(e) => {
+                    if (!isAuthenticated) {
+                      e.preventDefault();
+                    } else {
+                      toggleAdditionalDropdown(e);
+                    }
+                  }}
+                  tabIndex={isAuthenticated ? 0 : -1}
+                  aria-disabled={!isAuthenticated}
+                >
+                  <span className="nav-link-content">
+                    <span className="nav-text">Additional Section</span>
+                    <i
+                      className={`dropdown-arrow fas ${
+                        additionalDropdownOpen
+                          ? "fa-chevron-up"
+                          : "fa-chevron-down"
+                      }`}
+                    ></i>
+                  </span>
+                </a>
+                <div
+                  className={`dropdown-menu ${
+                    additionalDropdownOpen ? "show" : ""
+                  }`}
+                >
+                  {isAuthenticated ? (
+                    <>
+                      <NavLink
+                        to="/qna-section"
+                        className="dropdown-item"
+                        onClick={() => {
+                          closeMobileMenu();
+                          setAdditionalDropdownOpen(false);
+                        }}
+                      >
+                        Devotee Querie
+                      </NavLink>
+                      <NavLink
+                        to="/sadhna"
+                        className="dropdown-item"
+                        onClick={() => {
+                          closeMobileMenu();
+                          setAdditionalDropdownOpen(false);
+                        }}
+                      >
+                        Sadhna
+                      </NavLink>
+                      <NavLink
+                        to="/about"
+                        className="dropdown-item"
+                        onClick={() => {
+                          closeMobileMenu();
+                          setAdditionalDropdownOpen(false);
+                        }}
+                      >
+                        About Hanudas
+                      </NavLink>
+                    </>
+                  ) : (
+                    <span
+                      className="dropdown-item disabled-text"
+                      title="Login to access"
+                    >
+                      Login to access
+                    </span>
+                  )}
+                </div>
+              </li>
+              </div>
+              
             </ul>
           </div>
 

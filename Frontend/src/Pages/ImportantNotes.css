@@ -1,8 +1,8 @@
 .notes-container {
-  max-width: 900px;
+  max-width: 90%;
   margin: 50px auto;
   padding: 30px;
-  background-color: #fff8f0;
+  background-color: #ffffff;
   border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   font-family: 'Segoe UI', sans-serif;
@@ -11,7 +11,7 @@
 .notes-title {
   text-align: center;
   font-size: 2.5rem;
-  color: #ff0808;
+  color: rgb(30, 0, 255);
   margin-bottom: 40px;
   font-weight: bold;
 }
@@ -21,14 +21,14 @@
 }
 
 .notes-subheading {
-font-size: 1.8rem;
-  color: #f00;
+font-size: 2rem;
+  color: rgb(30, 0, 255);
   margin-bottom: 10px;
   font-weight:bold;
 }
 
 .notes-text {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: #333;
   margin-bottom: 20px;
   line-height: 1.6;
@@ -72,7 +72,7 @@ font-size: 1.8rem;
 }
 
 .impsubheading {
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: #000;
   font-weight: bold;  
 }

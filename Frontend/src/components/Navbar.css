@@ -48,15 +48,28 @@
   height: 6.5rem;
   object-fit: cover;
   transition: all var(--transition-speed) ease;
-  box-shadow: -1px 1px 69px rgb(255, 227, 0);
 }
+.navbar-collapse {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 .disabled-dropdown > a,
 .disabled-link {
   pointer-events: none;
   opacity: 0.5;
   cursor: not-allowed;
 }
-
+.FirstThree{
+  display: flex;
+  flex-direction: row;
+}
+.lasttow{
+  display: flex;
+  flex-direction: row;
+}
 .dropdown-item.disabled-text {
   color: #aaa;
   cursor: not-allowed;
@@ -80,12 +93,19 @@
 /* Nav Items */
 .navbar-nav {
   display: flex;
-  align-items: center;
-  margin-left: auto;
+  flex-direction: row;
+  justify-content: start;     /* Center horizontally */
+  align-items: center;         /* Optional: vertical alignment */
+  width: 100%;                 /* Ensure it spans full width */
+  padding: 0;                  /* Remove any default padding */
+  margin: 0 10%;              /* Center the block itself */
+  list-style: none;            /* Clean list bullets */
+
 }
+
 .navbar-actions{
   position: absolute;
-  right: 5rem;
+  right: 1rem;
 }
 .nav-item {
   position: relative;
@@ -109,7 +129,15 @@
   opacity: 1;
   color: var(--secondary-color) !important;
 }
-
+.ulunder {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Optional: aligns items vertically */
+  width: 100%;             /* Takes full width of container */
+  margin: 0 auto;          /* Optional fallback */
+  padding: 0;              /* Remove default padding */
+  list-style: none;        /* Optional: cleans list styling */
+}
 .nav-link-content {
   display: flex;
   align-items: center;
@@ -238,14 +266,14 @@
 
 
 /* Mobile Menu */
-@media (max-width: 992px) {
+@media (max-width: 1160px) {
   .premium-navbar {
     padding: 0 1.5rem;
   }
 
   .navbar-toggler {
     display: flex;
-  }
+}
   
   .navbar-collapse {
     position: fixed;
@@ -264,7 +292,10 @@
     overflow-y: auto;
     z-index: 999;
   }
-  
+  .FirstThree,
+.lasttow {
+  flex-direction: column !important;
+}
   .navbar-collapse.show {
     transform: translateX(0);
   }
@@ -353,7 +384,7 @@ html {
   }
   .navbar-logo{
     width: 7rem;
-    height: 6rem;
+    height: 7rem;
   }
   .brand-name{
 display: none;
@@ -379,3 +410,66 @@ display: none;
   }
   
 }
+
+/* Add these styles to your CSS file */
+
+@media (min-width: 1160px) and (max-width: 1550px) {
+  .nav-text{
+    font-size: 1.2rem;
+  }
+  .navbar-nav {
+    flex-direction: column !important; 
+    width: 100%;
+    align-items: center;
+  }
+
+.navbar-collapse {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+  .FirstThree {
+    display: flex;
+    flex-direction: row;
+    gap: 20%; /* Space between first three items */
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .lasttow {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem; /* Space between last two items */
+    width: 100%;
+    justify-content: flex-start;
+    padding-left:4rem;
+  }
+
+  /* Adjust dropdown positioning */
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+  .navbar-brand{
+    flex-direction: column;
+  }
+  .navbar-logo{
+    height:5.5rem;
+    width:5.5rem;
+  }
+  .ulunder {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Optional: aligns items vertically */
+  width: 100%;             /* Takes full width of container */
+  margin: 0 auto;          /* Optional fallback */
+  padding: 0;              /* Remove default padding */
+  list-style: none;        /* Optional: cleans list styling */
+}
+
+}
+
+
+

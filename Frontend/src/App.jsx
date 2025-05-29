@@ -5,7 +5,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import About from './Pages/About';
 import Home from './Pages/Home'
 import CharanPooja from './Pages/CharanPooja'
 import Contact from './Pages/Contact'
@@ -45,6 +45,7 @@ function App() {
         <Route path='/createpassword' element={<CreatePassword />} />
         <Route path='/qna-section' element={<QnaSection />} />
         <Route path='/sadhna' element={<Sadhna />} />
+        <Route path='/about' element={<About />} />
       </Routes>
 
       {/* Toast Container should be outside Routes */}

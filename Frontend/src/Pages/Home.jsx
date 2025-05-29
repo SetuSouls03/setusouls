@@ -112,7 +112,7 @@ const Home = () => {
             repeatType: "reverse",
           }}
         >
-          🕉️ Take a break of 10 minutes from what you are doing right now. Read all the pages on this website specially "History", "Charan Pooja" and "Important Notes"
+          🕉️ Take a break of 10 minutes from what you are doing right now. Do Login to Read all the pages on this website specially "History", "Charan Pooja" and "Important Notes"
         </motion.p>
       </motion.div>
     </div>
