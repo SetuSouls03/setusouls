@@ -18,11 +18,11 @@ const Sadhna = () => {
           ? "सेतू हनुमान बोधि में साधना कार्यक्रम में कौन शामिल हो सकता है"
           : "Who can join Sadhana program at Setuu Hanuman Bodhi"}
       </h1>
-      <p>
+      <h4>
         {isHindi
           ? "सेतू हनुमान बोधि में साधक - 29 नवंबर, 2015"
           : "Sadhaka at Setu Hanuman Bodhi - November 29, 2015"}
-      </p>
+      </h4>
 
       <h5>
         {isHindi
