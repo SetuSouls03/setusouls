@@ -1,37 +1,44 @@
-import React, { useState, useContext } from 'react';
-import './AuthForm.css';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { AuthContext } from '../Context/AuthContext'; // adjust path if needed
-import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6';
+import React, { useState, useContext } from "react";
+import "./AuthForm.css";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthContext } from "../Context/AuthContext"; // adjust path if needed
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 
 function Login() {
-  const [form, setForm] = useState({ email: '', password: '' });
+  const [form, setForm] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Start spinner
+
     try {
-      const res = await fetch("https://setusouls-1.onrender.com/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(form),
-        credentials: "include",
-      });
+      const res = await fetch(
+        "https://setusouls-1.onrender.com/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form),
+          credentials: "include",
+        }
+      );
 
       const data = await res.json();
 
       if (res.ok) {
         toast.success("Login successful!");
         localStorage.setItem("token", data.token);
-        login(data.token);  // Update context state
+        login(data.token); // Update context state
         navigate("/");
       } else {
         toast.error(data.message || "Login failed");
@@ -39,6 +46,8 @@ function Login() {
     } catch (error) {
       console.error(error);
       toast.error("Server error. Please try again later.");
+    } finally {
+      setLoading(false); // Stop spinner
     }
   };
 
@@ -68,19 +77,24 @@ function Login() {
             role="button"
             aria-label={showPassword ? "Hide password" : "Show password"}
             tabIndex={0}
-            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setShowPassword(!showPassword); }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ")
+                setShowPassword(!showPassword);
+            }}
           >
             {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
           </span>
         </div>
 
-        <button type="submit">Login</button>
+        <button type="submit" disabled={loading}>
+          {loading ? <div className="spinner"></div> : "Login"}
+        </button>
 
         <p>
           Don't have an account?{" "}
           <span
             onClick={() => navigate("/signup")}
-            style={{ cursor: 'pointer', color: 'blue' }}
+            style={{ cursor: "pointer", color: "blue" }}
           >
             Register
           </span>
@@ -90,7 +104,7 @@ function Login() {
           Don't remember your password?{" "}
           <span
             onClick={() => navigate("/forgotpassword")}
-            style={{ cursor: 'pointer', color: 'blue' }}
+            style={{ cursor: "pointer", color: "blue" }}
           >
             Forgot Password
           </span>

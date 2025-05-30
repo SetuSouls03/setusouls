@@ -1,21 +1,25 @@
-import React, { useState } from 'react';
-import './AuthForm.css';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-
+import React, { useState } from "react";
+import "./AuthForm.css";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 function ForgotPassword() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
-      const res = await fetch('https://setusouls-1.onrender.com/api/auth/forgotpassword', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
+      const res = await fetch(
+        "https://setusouls-1.onrender.com/api/auth/forgotpassword",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        }
+      );
 
       let data;
       try {
@@ -24,20 +28,22 @@ function ForgotPassword() {
         const raw = await res.text();
         console.error("Non-JSON response:", raw);
         toast.error("Server error: Invalid response");
+        setLoading(false);
         return;
       }
 
       if (res.ok) {
-        toast.success('OTP sent to your email!');
-        // Save email to localStorage or pass via navigation state
-        localStorage.setItem('resetEmail', email);
-        navigate('/otppage');
+        toast.success("OTP sent to your email!");
+        localStorage.setItem("resetEmail", email);
+        navigate("/otppage");
       } else {
-        toast.error(data.message || 'Failed to send OTP');
+        toast.error(data.message || "Failed to send OTP");
       }
     } catch (err) {
       console.error(err);
-      toast.error('Server error. Try again later.');
+      toast.error("Server error. Try again later.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -52,10 +58,18 @@ function ForgotPassword() {
           required
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button type="submit">Send OTP</button>
+        <button type="submit" disabled={loading}>
+          {loading ? <div className="spinner"></div> : "Send OTP"}
+        </button>
+
         <p>
-          Remember your password?{' '}
-          <span onClick={() => navigate('/login')} style={{ cursor: 'pointer' }}>Login</span>
+          Remember your password?{" "}
+          <span
+            onClick={() => navigate("/login")}
+            style={{ cursor: "pointer" }}
+          >
+            Login
+          </span>
         </p>
       </form>
     </div>

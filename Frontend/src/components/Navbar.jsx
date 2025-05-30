@@ -56,7 +56,7 @@ const Navbar = () => {
       } ${mobileMenuOpen ? "mobile-menu-open" : ""}`}
     >
       <div className="container" style={{ maxWidth: "95%" }}>
-        <NavLink className="navbar-brand" to="/" onClick={closeMobileMenu}>
+        <NavLink className="navbar-brand" to="/">
           <img src={Logo} alt="Logo" className="navbar-logo" />
           <span className="brand-name">Setu Souls</span>
         </NavLink>

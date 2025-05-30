@@ -11,7 +11,7 @@
 .notes-title {
   text-align: center;
   font-size: 2.5rem;
-  color: rgb(30, 0, 255);
+  color: #0904b8;
   margin-bottom: 40px;
   font-weight: bold;
 }
@@ -22,7 +22,7 @@
 
 .notes-subheading {
 font-size: 2rem;
-  color: rgb(30, 0, 255);
+  color: #0904b8;
   margin-bottom: 10px;
   font-weight:bold;
 }
@@ -66,13 +66,13 @@ font-size: 2rem;
 
 .impheading {
   font-size: 3rem;
-  color: #0101e0;
+  color: #0904b8;
   font-weight: bold;
   margin-bottom: 2rem;
 }
 
 .impsubheading {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #000;
   font-weight: bold;  
 }

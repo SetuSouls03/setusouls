@@ -8,6 +8,8 @@ function OtpPage() {
   const inputsRef = useRef([]);
   const navigate = useNavigate();
   const email = localStorage.getItem('resetEmail');
+  const purpose = localStorage.getItem('otpPurpose'); // 'signup' or 'reset'
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (element, index) => {
     if (isNaN(element.value)) return;
@@ -22,46 +24,61 @@ function OtpPage() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const enteredOtp = otp.join('');
-    if (enteredOtp.length !== 6) {
-      toast.error('Please enter a 6-digit OTP');
+  e.preventDefault();
+
+  const enteredOtp = otp.join('');
+  if (enteredOtp.length !== 6) {
+    toast.error('Please enter a 6-digit OTP');
+    return;
+  }
+
+  setLoading(true);  // Start spinner
+
+  try {
+    const res = await fetch('https://setusouls-1.onrender.com/api/auth/verifyotp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, otp: enteredOtp }),
+    });
+
+    let data;
+    try {
+      data = await res.json();
+    } catch (error) {
+      const raw = await res.text();
+      console.error("Non-JSON response:", raw);
+      toast.error("Server error: Invalid response");
+      setLoading(false);
       return;
     }
 
-    try {
-      const res = await fetch('https://setusouls-1.onrender.com/api/auth/verifyotp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, otp: enteredOtp }),
-      });
+    if (res.ok) {
+      toast.success(data.message || 'OTP Verified');
+      localStorage.removeItem('resetEmail');
+      localStorage.removeItem('otpPurpose');
 
-      let data;
-      try {
-        data = await res.json();
-      } catch (error) {
-        const raw = await res.text();
-        console.error("Non-JSON response:", raw);
-        toast.error("Server error: Invalid response");
-        return;
-      }
-
-      if (res.ok) {
-        toast.success(data.message || 'OTP Verified');
-        navigate('/createpassword', { state: { email } });
+      if (purpose === 'signup') {
+        navigate('/login');
       } else {
-        toast.error(data.message || 'Invalid OTP');
+        navigate('/createpassword', { state: { email } });
       }
-    } catch (error) {
-      console.error(error);
-      toast.error('Server error. Try again later.');
+    } else {
+      toast.error(data.message || 'Invalid OTP');
     }
-  };
+  } catch (error) {
+    console.error(error);
+    toast.error('Server error. Try again later.');
+  } finally {
+    setLoading(false);  // Stop spinner
+  }
+};
+
 
   return (
     <div className="auth-container">
       <form className="auth-form" onSubmit={handleSubmit}>
         <h2>Enter OTP</h2>
+        <p className="email-info">Sent to: {email}</p>
         <div className="otp-container">
           {otp.map((digit, index) => (
             <input
@@ -75,7 +92,10 @@ function OtpPage() {
             />
           ))}
         </div>
-        <button type="submit">Verify OTP</button>
+        <button type="submit" disabled={loading}>
+  {loading ? <div className="spinner"></div> : "Verify OTP"}
+</button>
+
       </form>
     </div>
   );

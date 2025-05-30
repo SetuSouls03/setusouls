@@ -104,6 +104,23 @@
 .auth-form span:hover {
   color: #d49a00;
 }
+/* Spinner style */
+.spinner {
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #4f46e5; /* Indigo or your brand color */
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 /* Animations */
 @keyframes slideUp {

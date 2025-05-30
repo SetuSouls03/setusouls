@@ -2,39 +2,99 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
-const otpStore = {}; // For demo only – use Redis or DB in production
-//const getSheetsClient = require("../utils/googleSheets");
 
+// In-memory store — switch to Redis or DB in production
+const otpStore = {};
+
+// Reusable transporter
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+  tls: {
+    rejectUnauthorized: false,
+  },
+});
+
+// Register (step 1)
 exports.register = async (req, res) => {
   const { name, email, password, contactNumber } = req.body;
 
   try {
-    // Check if the user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
-    // Create and save the new user
-    const user = new User({
-      name,
-      email,
-      password: hashedPassword,
-      contactNumber,
+    otpStore[email] = {
+      otp,
+      type: "register",  // <== Add this type
+      expiresAt: Date.now() + 10 * 60 * 1000, // 10 mins
+      userData: {
+        name,
+        email,
+        password: hashedPassword,
+        contactNumber,
+      },
+    };
+
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Verify your account - OTP",
+      text: `Your OTP is ${otp}. It is valid for 10 minutes.`,
     });
 
-    await user.save();
-
-    res.status(201).json({ message: "User registered successfully" });
+    res.status(200).json({ message: "OTP sent to email", email });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error("Registration error:", err);
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
+// OTP Verification (step 2)
+exports.verifyOtp = async (req, res) => {
+  const { email, otp } = req.body;
+  const record = otpStore[email];
 
+  if (!record) {
+    return res.status(400).json({ message: "OTP not found or expired" });
+  }
+
+  if (Date.now() > record.expiresAt) {
+    delete otpStore[email];
+    return res.status(400).json({ message: "OTP expired" });
+  }
+
+  if (record.otp !== otp) {
+    return res.status(400).json({ message: "Invalid OTP" });
+  }
+
+  try {
+    if (record.type === "register") {
+      const newUser = new User(record.userData);
+      await newUser.save();
+      delete otpStore[email];
+      return res.status(201).json({ message: "User verified and registered successfully" });
+    } else if (record.type === "forgotPassword") {
+      // just verify OTP, allow frontend to call /reset-password next
+      delete otpStore[email];
+      return res.status(200).json({ message: "OTP verified. Proceed to reset password." });
+    } else {
+      return res.status(400).json({ message: "Invalid OTP flow type" });
+    }
+  } catch (err) {
+    console.error("Error in OTP verification:", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+// Login
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -53,98 +113,40 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.writeToSheet = async (req, res) => {
-  try {
-    console.log("➡️ Incoming data:", req.body); // DEBUG
-
-    const sheets = await getSheetsClient();
-    const { name, email } = req.body;
-
-    if (!name || !email) {
-      return res.status(400).json({ message: "Name and Email are required" });
-    }
-
-    const response = await sheets.spreadsheets.values.append({
-      spreadsheetId: SHEET_ID,
-      range: `${SHEET_NAME}!A1`,
-      valueInputOption: "RAW",
-      insertDataOption: "INSERT_ROWS",
-      requestBody: {
-        values: [[name, email]],
-      },
-    });
-
-    console.log("✅ Sheet response:", response.data); // DEBUG
-
-    res.status(200).json({ message: "Data added to Google Sheet", data: response.data });
-  } catch (error) {
-    console.error("❌ Error writing to sheet:", error); // DEBUG
-    res.status(500).json({ message: "Failed to write to sheet", error: error.message });
-  }
-};
+// Forgot Password (OTP)
 exports.forgotPassword = async (req, res) => {
   const { email } = req.body;
 
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(200).json({ message: "If the email exists, an OTP has been sent" });
+      // Security: don't reveal if email exists or not
+      return res.status(200).json({ message: "If the email exists, OTP has been sent" });
     }
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    otpStore[email] = { otp, expiresAt: Date.now() + 10 * 60 * 1000 };
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-      tls: {
-        rejectUnauthorized: false,
-      },
-    });
-
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: "Your OTP for Password Reset",
-      text: `Your OTP is ${otp}. It is valid for 10 minutes.`,
+    otpStore[email] = {
+      otp,
+      type: "forgotPassword",  // <== This is the key fix
+      expiresAt: Date.now() + 10 * 60 * 1000,
     };
 
-    await transporter.sendMail(mailOptions);
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "OTP for Password Reset",
+      text: `Your OTP is ${otp}. It is valid for 10 minutes.`,
+    });
 
-    return res.status(200).json({ message: "OTP sent to email" });
+    res.status(200).json({ message: "OTP sent to email" });
   } catch (err) {
     console.error("Forgot password error:", err);
     res.status(500).json({ error: "Something went wrong" });
   }
 };
-exports.verifyOtp = (req, res) => {
-  const { email, otp } = req.body;
 
-  // Check if OTP exists for the email
-  const record = otpStore[email];
-  if (!record) {
-    return res.status(400).json({ message: "OTP not found or expired" });
-  }
-
-  // Check if OTP is expired
-  if (Date.now() > record.expiresAt) {
-    delete otpStore[email]; // Remove expired OTP
-    return res.status(400).json({ message: "OTP expired" });
-  }
-
-  // Check if OTP matches
-  if (record.otp !== otp) {
-    return res.status(400).json({ message: "Invalid OTP" });
-  }
-
-  // OTP verified successfully — you can now allow password reset, etc.
-  delete otpStore[email]; // Remove OTP after successful verification
-
-  res.status(200).json({ message: "OTP verified successfully" });
-};
+// Reset Password
 exports.resetPassword = async (req, res) => {
   try {
     const { email, newPassword } = req.body;
@@ -154,26 +156,17 @@ exports.resetPassword = async (req, res) => {
     }
 
     const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
+    if (!user) return res.status(404).json({ message: "User not found" });
 
-    if (!user.password) {
-      return res.status(500).json({ message: "Existing password not found for this user" });
-    }
+    const isSame = await bcrypt.compare(newPassword, user.password);
+    if (isSame) return res.status(400).json({ message: "New password must be different" });
 
-    const isSamePassword = await bcrypt.compare(newPassword, user.password);
-    if (isSamePassword) {
-      return res.status(400).json({ message: "New password must be different from the old one" });
-    }
-
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
-    user.password = hashedPassword;
+    user.password = await bcrypt.hash(newPassword, 10);
     await user.save();
 
     res.status(200).json({ message: "Password updated successfully" });
   } catch (err) {
-    console.error("Error resetting password:", err);
+    console.error("Reset password error:", err);
     res.status(500).json({ message: "Internal server error" });
   }
 };

@@ -9,7 +9,7 @@ const Other = () => {
       <ScrollFadeIn>
         <div className="section1">
           <img src={picture_1} alt="Picture 1" />
-          <div style={{ marginRight: "2rem" }}>
+          <div style={{ margin: '0rem 3rem' }}>
             <h1>Lord Hanuman comes in this jungle every 41 years</h1>
             <h3>
               We came to know about a tribe in Sri Lankan jungles of Nuwera

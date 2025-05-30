@@ -283,6 +283,7 @@
     bottom: 0;
     background: linear-gradient(115deg, var(--primary-dark), var(--primary-color));
     backdrop-filter: blur(10px);
+    display: block;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
@@ -297,7 +298,7 @@
   flex-direction: column !important;
 }
   .navbar-collapse.show {
-    transform: translateX(0);
+    transform: translateX(20%);
   }
   
   .navbar-nav {
@@ -349,9 +350,10 @@
   
   .navbar-actions {
     margin-top: 2rem;
-    width: 80%;
+    width: 50%;
     display: flex;
-    justify-content: center;
+    justify-content: unset;
+    left: 6%;
   }
   
   .login-btn {
@@ -383,11 +385,15 @@ html {
     position: initial;
   }
   .navbar-logo{
-    width: 7rem;
-    height: 7rem;
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+  .navbar-brand{
+    flex-direction: column;
   }
   .brand-name{
-display: none;
+    margin-left: 0.5rem;
+    font-size: 1.4rem;
   }
   .navbar-nav{
     align-items: flex-start;
@@ -406,7 +412,11 @@ display: none;
     padding:1rem
   }
   .navbar-actions{
-    justify-content: right;
+    justify-content: center;
+    width: 60%;
+  }
+  .navbar-collapse.show{
+    transform: translateX(10%);
   }
   
 }
