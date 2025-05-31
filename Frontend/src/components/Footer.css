@@ -29,3 +29,31 @@
   font-size: 30px;
   color: #888888;
 }
+
+/* Tablet responsiveness */
+@media (max-width: 768px) {
+  .footer {
+    padding: 20px 20px;
+  }
+
+  .footer-copy {
+    font-size: 24px;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+  .footer {
+    padding: 20px 10px;
+  }
+
+  .footer-links {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .footer-copy {
+    font-size: 12px;
+  }
+}

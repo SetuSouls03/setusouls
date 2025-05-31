@@ -362,10 +362,6 @@
     margin: 0;
   }
   
-  .premium-navbar.navbar-scrolled {
-    height: var(--nav-height);
-  }
-  
   .premium-navbar.mobile-menu-open {
     background: linear-gradient(115deg, var(--primary-dark), var(--primary-color));
   }

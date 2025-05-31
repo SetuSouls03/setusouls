@@ -6,7 +6,9 @@
   border-bottom: 1px solid #ddd;
   animation: fadeIn 1s ease-in;
 }
-
+.section-body{
+  margin:0rem 3rem;
+}
 .section1 {
   background: white;
   display: flex;
@@ -55,7 +57,7 @@ h3{
   max-width: 900px;
   margin: 0 auto;
   font-weight: bold;
-  color: #333;
+  color: #000000;
   font-size: 1.4rem;
   line-height: 1.8;
   text-align: justify;
@@ -90,7 +92,9 @@ h3{
     padding: 0 1rem;
     text-align: left;
   }
-
+  .section-body{
+    margin:0rem;
+  }
   .section1,
   .section2,
   .section3 {
@@ -105,7 +109,21 @@ h3{
     height: 18rem;
   }
 }
-
+.translate-button{
+  background-color: #0702bc;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(106, 76, 175, 0.3);
+  
+  display: block;      /* make it block */
+  margin: 2rem auto;
+}
 /* ✅ Responsive - Tablet (769px to 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
   h1 {
