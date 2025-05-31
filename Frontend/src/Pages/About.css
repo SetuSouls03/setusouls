@@ -46,15 +46,35 @@ strong{
   margin-top: 2rem;
   border-radius: 8px;
 }
-a{
+.about-content a {
   font-size: 1.5rem;
   text-decoration: none;
   font-weight: bold;
   color: #0702bc;
+  position: relative;
+  transition: color 0.3s ease;
 }
-a:hover{
-  text-decoration: underline;
+
+.about-content a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background-color: #0702bc;
+  transition: width 0.3s ease;
+  border-radius: 2px;
 }
+
+.about-content a:hover {
+  color: #04017a; /* Slightly darker blue */
+}
+
+.about-content a:hover::after {
+  width: 100%;
+}
+
 .video-container iframe {
   position: absolute;
   top: 0;
