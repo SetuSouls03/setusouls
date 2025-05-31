@@ -8,7 +8,7 @@
   box-sizing: border-box;
 }
 a{
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 .qna-title {
   text-align: center;
@@ -107,13 +107,18 @@ a{
     font-size: 1.2rem;
     font-weight: bold;
   }
+  a{
+    font-size: 1.1rem;
+  }
 }
 
 @media (max-width: 768px) {
   .qna-title {
     font-size: 1.5rem;
   }
-
+  a{
+    font-size: 1.1rem;
+  }
   .qna-list {
     padding: 0 1rem;
   }
@@ -136,7 +141,9 @@ a{
   .qna-item {
     padding: 1rem;
   }
-
+  a{
+    font-size: 1rem;
+  }
   .qna-question,
   .qna-answer {
     font-size: 0.9rem;
