@@ -1,3 +1,15 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Disable text selection */
+body {
+  -webkit-user-select: none;  /* Safari */
+  -moz-user-select: none;     /* Firefox */
+  -ms-user-select: none;      /* IE10+/Edge */
+  user-select: none;          /* Standard */
+}
+
+/* Optional: disable context menu (right-click) */
+body {
+  -webkit-touch-callout: none; /* iOS Safari */
+}
+
+/* Disable copying via keyboard shortcuts: You'll need JS for this */
+
