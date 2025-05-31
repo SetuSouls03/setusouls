@@ -30,7 +30,7 @@ const About = () => {
         </div>
       </div>
       <div className='about-content' style={{marginTop:'1rem'}}>
-        <a href='https://drive.google.com/file/d/1OpwCXkB_AuKP3wl9Xfl4MlmCMTgClJn3/view'>हनुमान जी द्वारा मातंगों को दिया गया प्राचीन शाबर मंत्र</a>
+        <a href='https://drive.google.com/file/d/1OpwCXkB_AuKP3wl9Xfl4MlmCMTgClJn3/view' target="_blank">हनुमान जी द्वारा मातंगों को दिया गया प्राचीन शाबर मंत्र</a>
       </div>
     </div>
   );
