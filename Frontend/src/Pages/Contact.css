@@ -52,7 +52,7 @@ body {
   font-weight: 700;
   color: var(--dark);
   margin-bottom: 1rem;
-  background: linear-gradient(90deg, #2563eb, #06b6d4);
+  background: #1100d7;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -60,7 +60,7 @@ body {
 
 .contact-intro {
   font-size: 1.125rem;
-  color: var(--gray);
+  color: black;
   max-width: 600px;
   margin: 0 auto;
 }
@@ -120,7 +120,7 @@ body {
 }
 
 .contact-text {
-  color: var(--gray);
+  color: #000000;
   margin-bottom: 2rem;
   font-size: 1rem;
 }
@@ -176,7 +176,9 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-
+.amazon-button{
+  background: linear-gradient(90deg, #FF9900 0%, #FF6600 100%);
+}
 .youtube {
   background-color: #FF0000;
 }
@@ -205,22 +207,6 @@ body {
   border-radius: 8px;
   transition: background-color 0.3s ease;
 }
-
-.amazon-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border-radius: 6px;
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-  background: linear-gradient(90deg, #FF9900 0%, #FF6600 100%);
-  box-shadow: 0 4px 8px rgba(255, 102, 0, 0.4);
-  transition: background 0.3s ease;
-  font-size: 1rem;
-}
-
 
 .social-button svg {
   height: 20px;

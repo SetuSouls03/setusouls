@@ -42,7 +42,7 @@ const Contact = () => {
             <div className="social-links">
               <a
   href="https://www.amazon.in/dp/B0BRHGNKXY"
-  className="amazon-button"
+  className="social-button amazon-button"
   target="_blank"
   rel="noopener noreferrer"
 >

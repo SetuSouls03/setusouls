@@ -226,4 +226,7 @@ font-size: 1.6rem;
   .info-block strong {
   font-size: 1rem;
 }
+.meaning strong{
+  font-size: 0.95rem;
+}
 }

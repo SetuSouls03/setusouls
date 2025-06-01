@@ -364,12 +364,12 @@ const notesPara2En=(<>These spiritual revelations guide your journey in Kaliyug 
         </div>
       </div>
       <div className="notes-container">
-        <h1 className="notes-title">{language === "hi" ? notesHeadingEn : notesHeadingHi}</h1>
+        <h1 className="notes-title">{language === "hi" ? notesHeadingHi : notesHeadingEn}</h1>
 
         <div className="notes-section">
-          <h2 className="notes-subheading">{language === "hi" ? notesSubHeadingEn : notesSubHeadingHi}</h2>
+          <h2 className="notes-subheading">{language === "hi" ? notesSubHeadingHi : notesSubHeadingEn}</h2>
           <p className="notes-text">
-            {language === "hi" ? notesParaEn : notesParaHi}
+            {language === "hi" ? notesParaHi : notesParaEn}
           </p>
           <div className="notes-links">
             <a
@@ -400,9 +400,9 @@ const notesPara2En=(<>These spiritual revelations guide your journey in Kaliyug 
         </div>
 
         <div className="notes-section">
-          <h2 className="notes-subheading">{language === "hi" ? notesSubHeading2En : notesSubHeading2Hi}</h2>
+          <h2 className="notes-subheading">{language === "hi" ? notesSubHeading2Hi : notesSubHeading2En}</h2>
           <p className="notes-text">
-            {language === "hi" ? notesPara2En : notesPara2Hi}
+            {language === "hi" ? notesPara2Hi : notesPara2En}
           </p>
           <div className="notes-links">
             <a
