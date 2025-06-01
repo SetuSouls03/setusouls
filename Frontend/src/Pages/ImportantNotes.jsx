@@ -327,6 +327,21 @@ const ImportantNotes = () => {
       one box to another. || Ram ||
     </>
   );
+  const notesHeadingEn=(<>📌 Important Notes</>);  
+  const notesHeadingHi=(<>📌 महत्वपूर्ण टिप्पणियां</>);
+  const notesSubHeadingEn=(<>📚 Setu Chapter PDF</>);
+  const notesSubHeadingHi=(<>📚 सेतु के अध्याय PDF</>);
+  const notesParaEn=(<>Access the complete Setu Chapters in both English and Hindi. These
+            PDFs contain valuable insights and teachings that connect you deeper
+            with the essence of Hanuman devotion.</>);
+  const notesParaHi=(<>सेतु अध्यायों को पूर्ण रूप से हिंदी और अंग्रेज़ी दोनों भाषाओं में प्राप्त करें।
+इन पीडीएफ़ में हनुमान भक्ति के सार से आपको गहराई से जोड़ने वाली अमूल्य शिक्षाएँ और ज्ञान संकलित हैं।</>);
+const notesSubHeading2En=(<>📖 Kalihanuvani & Immortal Talks</>);
+const notesSubHeading2Hi=(<>📖 कलिहनुवाणी एवं इमोर्टाल टक्स </>);
+const notesPara2Hi=(<>ये आध्यात्मिक रहस्यकलियाँ कलियुग में आपकी यात्रा का मार्गदर्शन करती हैं, हनुमान जी और मातंगों की दिव्य अंतर्दृष्टियों के साथ। यह उन साधकों के लिए उत्तम है जो आध्यात्मिक रूप से ऊँचाई तक पहुँचना चाहते हैं।</>);
+const notesPara2En=(<>These spiritual revelations guide your journey in Kaliyug with
+            divine insights from Hanuman Ji and the Matangs. Perfect for seekers
+            who wish to elevate spiritually.</>);   
   const toggleLanguage = () => {
     setLanguage((prevLang) => (prevLang === "hi" ? "en" : "hi"));
   };
@@ -349,14 +364,12 @@ const ImportantNotes = () => {
         </div>
       </div>
       <div className="notes-container">
-        <h1 className="notes-title">📌 Important Notes</h1>
+        <h1 className="notes-title">{language === "hi" ? notesHeadingEn : notesHeadingHi}</h1>
 
         <div className="notes-section">
-          <h2 className="notes-subheading">📚 Setu Chapters PDF</h2>
+          <h2 className="notes-subheading">{language === "hi" ? notesSubHeadingEn : notesSubHeadingHi}</h2>
           <p className="notes-text">
-            Access the complete Setu Chapters in both English and Hindi. These
-            PDFs contain valuable insights and teachings that connect you deeper
-            with the essence of Hanuman devotion.
+            {language === "hi" ? notesParaEn : notesParaHi}
           </p>
           <div className="notes-links">
             <a
@@ -387,11 +400,9 @@ const ImportantNotes = () => {
         </div>
 
         <div className="notes-section">
-          <h2 className="notes-subheading">📖 Kalihanuvani & Immortal Talks</h2>
+          <h2 className="notes-subheading">{language === "hi" ? notesSubHeading2En : notesSubHeading2Hi}</h2>
           <p className="notes-text">
-            These spiritual revelations guide your journey in Kaliyug with
-            divine insights from Hanuman Ji and the Matangs. Perfect for seekers
-            who wish to elevate spiritually.
+            {language === "hi" ? notesPara2En : notesPara2Hi}
           </p>
           <div className="notes-links">
             <a
