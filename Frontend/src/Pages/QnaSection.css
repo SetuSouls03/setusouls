@@ -49,6 +49,7 @@ a{
   font-size: 1rem;
   line-height: 1.8;
   padding: 1rem 3rem;
+  animation: fadeIn 1s ease-in-out;
 }
 
 /* Pagination */

@@ -43,6 +43,7 @@
 .info-block strong {
   color: #1100d7; /* amber-700 for spiritual golden highlight */
   font-weight: 700;
+  font-size: 1.8rem;
 }
 
 .hindi {
@@ -222,7 +223,7 @@ font-size: 1.6rem;
   .call-to-action{
     font-size: 1.5rem;
   }
-  strong{
-    font-size: 1rem;
-  }
+  .info-block strong {
+  font-size: 1rem;
+}
 }

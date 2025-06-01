@@ -39,7 +39,7 @@ const breakIntoSentences = (text, lang) => {
     {
       heading: {
         hi: `श्री हनुमान जी को गुरु बनाने से पहले बोलने वाली प्रार्थना.|| राम ||`,
-        en: "Prayer to be said before making Shri Hanuman Ji your Guru.|| Ram ||",
+        en: "Prayer to be said before making Shri Hanuman Ji your Guru.   || Ram ||",
       },
       subheading: {
         hi: `ॐ श्री गणेशाय नमः   
@@ -66,28 +66,17 @@ const breakIntoSentences = (text, lang) => {
 स्मरण रहे इस प्रक्रिया को दोहराते समय आपका मन और तन पूर्ण रूप से शांत होना चाहिए और प्रभु के चरणों में जो भी आप प्रेम से समर्पित करना चाहे प्रार्थना के दौरान कर सकते हैं जिसमें फल, पुष्प हो सकते है.
 
 स्मरण रहे इस प्रार्थना को केवल एक बार बोलना है जब आप श्री हनुमान जी को गुरु धारण करेंगे   || जय श्री राम ||`,
-        en: `Om Shri Ganeshaya Namah,   
-
-O Supreme Father,   
-
-O Creator of the Universe,   
-
-O Sustainer,   
-
-O Destroyer,   
-
-O Brahma, Vishnu, Mahesh,   
-
-O Supreme Divine Energy, the one who redeems the world – Jagadamba Mahakali Maa,   
-
-O 64 Yogini Mahamaya Maharani Maa,   
-
-O Eight-Armed Embodiment of Truth – Maa Durga,   
-
-O Maryada Purushottam Shri Ram, O Mata Janaki,   
-
-O Brother Lakshman, Shatrughan, Bharat – this soul, in the presence of all deities, accepts Shri Hanuman Ji as its Guru,   
-
+        en: `Om Shri Ganeshaya Namah,
+O Supreme Father,
+O Creator of the Universe,
+O Sustainer,
+O Destroyer,
+O Brahma, Vishnu, Mahesh,
+O Supreme Divine Energy, the one who redeems the world – Jagadamba Mahakali Maa,
+O 64 Yogini Mahamaya Maharani Maa,
+O Eight-Armed Embodiment of Truth – Maa Durga,
+O Maryada Purushottam Shri Ram, O Mata Janaki,
+O Brother Lakshman, Shatrughan, Bharat – this soul, in the presence of all deities, accepts Shri Hanuman Ji as its Guru,
 O Anjaneyar, please accept this soul as your disciple.   || Jai Shri Ram ||   
 
 This prayer must be recited in the “peer aasan” posture as Shri Hanuman Ji sits at the feet of Shri Ram.   

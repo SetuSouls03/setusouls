@@ -21,10 +21,10 @@ strong{
   font-size: 1.5rem;
 }
 .about-heading {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   font-weight: 700;
   color: #0702bc;
-  margin-bottom: 1.5rem;
+  margin-bottom: 4rem;
   font-family: 'Inter', sans-serif;
 }
 
@@ -74,7 +74,23 @@ strong{
 .about-content a:hover::after {
   width: 100%;
 }
+.translate-button {
+  background-color: #0702bc;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(106, 76, 175, 0.3);
+}
 
+.translate-button:hover {
+  background-color: #5351c4;
+  box-shadow: 0 6px 16px rgba(87, 81, 196, 0.5);
+}
 .video-container iframe {
   position: absolute;
   top: 0;
@@ -83,6 +99,33 @@ strong{
   height: 100%;
   border: none;
 }
+.arrow{
+  color: red;
+  font-weight: bold;
+}
+.attractive-button {
+  background-color: #007bff; /* Bootstrap-like blue */
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  user-select: none;
+  margin-top: 2rem;
+}
+
+.attractive-button:hover,
+.attractive-button:focus {
+  background-color: #0056b3; /* Darker blue on hover */
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+  outline: none;
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
