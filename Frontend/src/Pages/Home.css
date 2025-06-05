@@ -10,11 +10,45 @@
   align-items: center;
   justify-content: center;
 }
+
+/* Fade/Zoom Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 2s ease-out forwards;
+}
+
+.zoom-in {
+  opacity: 0;
+  animation: zoomIn 2s ease-in-out forwards;
+}
+
 .setu-info {
   max-width: 90%;
   margin: 2rem auto;
   padding: 1rem 1.5rem;
-  background: #ffffff; /* soft warm background */
+  background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.1);
   font-family: 'Georgia', serif;
@@ -41,14 +75,14 @@
 }
 
 .info-block strong {
-  color: #1100d7; /* amber-700 for spiritual golden highlight */
+  color: #1100d7;
   font-weight: 700;
   font-size: 1.8rem;
 }
 
 .hindi {
   margin-top: 1.5rem;
-  color: #6b705c; /* muted olive/grayish-green for calmness */
+  color: #6b705c;
   font-size: 1.05rem;
   line-height: 1.5;
   user-select: none;
@@ -56,7 +90,7 @@
 }
 
 .overlay {
-position: absolute;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -119,6 +153,7 @@ position: absolute;
   margin-top: 2rem;
   font-weight: bold;
 }
+
 .mantra-section {
   background: #fffbea;
   padding: 4rem 2rem;
@@ -152,17 +187,18 @@ position: absolute;
 }
 
 .meaning {
-font-size: 1.6rem;
+  font-size: 1.6rem;
   color: #000;
   line-height: 1.6;
 }
+
 .imp-notes {
   margin: 1.5rem 0 3rem;
   padding: 1rem 1.5rem;
   background: linear-gradient(135deg, #f9f7f1, #fff8dc);
-  border-left: 6px solid #f59e0b; /* amber-500 */
+  border-left: 6px solid #f59e0b;
   font-weight: 600;
-  color: #ff0000; /* amber-700 */
+  color: #ff0000;
   text-align: center;
   font-size: 2.0rem;
   box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
@@ -188,46 +224,58 @@ font-size: 1.6rem;
 
 /* Responsive */
 @media (max-width: 768px) {
-  .title{
+  .title {
     font-size: 2rem;
   }
-  .subtitle{
+
+  .subtitle {
     font-size: 1.2rem;
   }
+
   .mantra-title {
     font-size: 1.7rem;
   }
+
   .sanskrit {
     font-size: 1.2rem;
   }
+
   .meaning {
     font-size: 0.95rem;
   }
-  .home-container{
-    padding:0rem;
+
+  .home-container {
+    padding: 0rem;
   }
-  .info-block p{
+
+  .info-block p {
     font-size: 1rem;
   }
-  .mantra-section{
-    padding:3rem 1rem;
+
+  .mantra-section {
+    padding: 3rem 1rem;
   }
-  .mantra-block{
-    margin:0rem;
-    padding:0.8rem;
+
+  .mantra-block {
+    margin: 0rem;
+    padding: 0.8rem;
     border-left: 2px solid #d35400;
   }
-  .imp-notes{
+
+  .imp-notes {
     font-size: 1.2rem;
     border-left: 3px solid #f59e0b;
   }
-  .call-to-action{
+
+  .call-to-action {
     font-size: 1.5rem;
   }
+
   .info-block strong {
-  font-size: 1rem;
-}
-.meaning strong{
-  font-size: 0.95rem;
-}
+    font-size: 1rem;
+  }
+
+  .meaning strong {
+    font-size: 0.95rem;
+  }
 }

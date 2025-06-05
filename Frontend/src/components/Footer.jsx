@@ -1,15 +1,16 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './Footer.css';
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-links">
-        <a href="/">Home</a>
-        <a href="/history">History</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
-        <a href="/privacy-policy">Privacy Policy</a>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/history">History</NavLink>
+        <NavLink to="/about">About</NavLink>
+        <NavLink to="/contact">Contact</NavLink>
+        <NavLink to="/privacy-policy">Privacy Policy</NavLink>
       </div>
       <div className="footer-copy">
         &copy; SetuSouls {new Date().getFullYear()}
