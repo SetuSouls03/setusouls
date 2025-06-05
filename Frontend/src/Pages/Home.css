@@ -70,6 +70,10 @@ position: relative;
   z-index: 2;
   max-width: 90%;
   text-align: center;
+<<<<<<< HEAD
+=======
+  animation: fadeIn 1s ease-in-out;
+>>>>>>> ec1b3ef (Final Changes)
 }
 
 .title {

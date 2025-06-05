@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+=======
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* slide up slightly */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply animation to major containers and elements */
+>>>>>>> ec1b3ef (Final Changes)
 .notes-container {
   max-width: 90%;
   margin: 50px auto;
@@ -6,6 +22,10 @@
   border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   font-family: 'Segoe UI', sans-serif;
+<<<<<<< HEAD
+=======
+  animation: fadeIn 1s ease-in-out;
+>>>>>>> ec1b3ef (Final Changes)
 }
 
 .notes-title {
@@ -14,10 +34,15 @@
   color: #0904b8;
   margin-bottom: 40px;
   font-weight: bold;
+<<<<<<< HEAD
+=======
+  animation: fadeIn 1s ease-in-out;
+>>>>>>> ec1b3ef (Final Changes)
 }
 
 .notes-section {
   margin-bottom: 50px;
+<<<<<<< HEAD
 }
 
 .notes-subheading {
@@ -25,6 +50,17 @@ font-size: 2rem;
   color: #0904b8;
   margin-bottom: 10px;
   font-weight:bold;
+=======
+  animation: fadeIn 1s ease-in-out;
+}
+
+.notes-subheading {
+  font-size: 2rem;
+  color: #0904b8;
+  margin-bottom: 10px;
+  font-weight: bold;
+  animation: fadeIn 1s ease-in-out;
+>>>>>>> ec1b3ef (Final Changes)
 }
 
 .notes-text {
@@ -33,12 +69,20 @@ font-size: 2rem;
   margin-bottom: 20px;
   line-height: 1.6;
   font-weight: bold;
+<<<<<<< HEAD
+=======
+  animation: fadeIn 1s ease-in-out;
+>>>>>>> ec1b3ef (Final Changes)
 }
 
 .notes-links {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+<<<<<<< HEAD
+=======
+  animation: fadeIn 1s ease-in-out;
+>>>>>>> ec1b3ef (Final Changes)
 }
 
 .notes-button {
@@ -49,11 +93,19 @@ font-size: 2rem;
   border-radius: 10px;
   font-weight: bold;
   transition: background-color 0.3s ease;
+<<<<<<< HEAD
+=======
+  animation: fadeIn 1s ease-in-out;
+>>>>>>> ec1b3ef (Final Changes)
 }
 
 .notes-button:hover {
   background-color: #fb8c00;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> ec1b3ef (Final Changes)
 .impsection {
   text-align: center;
   max-width: 90%;
@@ -62,6 +114,10 @@ font-size: 2rem;
   border-radius: 1rem;
   box-shadow: 0 8px 20px rgba(160, 120, 255, 0.2);
   margin: 3rem 5%;
+<<<<<<< HEAD
+=======
+  animation: fadeIn 1s ease-in-out;
+>>>>>>> ec1b3ef (Final Changes)
 }
 
 .impheading {
@@ -69,11 +125,16 @@ font-size: 2rem;
   color: #0904b8;
   font-weight: bold;
   margin-bottom: 2rem;
+<<<<<<< HEAD
+=======
+  animation: fadeIn 1s ease-in-out;
+>>>>>>> ec1b3ef (Final Changes)
 }
 
 .impsubheading {
   font-size: 1.5rem;
   color: #000;
+<<<<<<< HEAD
   font-weight: bold;  
 }
 
@@ -85,6 +146,20 @@ font-size: 2rem;
     padding: 1rem;
   }
   .impsubheading{
+=======
+  font-weight: bold;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .impheading {
+    font-size: 2rem;
+  }
+  .impsection {
+    padding: 1rem;
+  }
+  .impsubheading {
+>>>>>>> ec1b3ef (Final Changes)
     font-size: 1.2rem;
   }
 }

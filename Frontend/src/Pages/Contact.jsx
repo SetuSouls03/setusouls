@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import React from 'react';
 import './Contact.css';
 import { FaAmazon } from "react-icons/fa";
+=======
+import { FaAmazon } from "react-icons/fa";
+import './Contact.css';
+>>>>>>> ec1b3ef (Final Changes)
 
 const Contact = () => {
   return (

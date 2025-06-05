@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 import React, { useState, useContext } from "react";
 import "./AuthForm.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Context/AuthContext"; // adjust path if needed
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
+=======
+import { useContext, useState } from "react";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthContext } from "../Context/AuthContext"; // adjust path if needed
+import "./AuthForm.css";
+>>>>>>> ec1b3ef (Final Changes)
 
 function Login() {
   const [form, setForm] = useState({ email: "", password: "" });

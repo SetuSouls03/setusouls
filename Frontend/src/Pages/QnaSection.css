@@ -6,6 +6,10 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+<<<<<<< HEAD
+=======
+  animation: fadeIn 1s ease-in-out;
+>>>>>>> ec1b3ef (Final Changes)
 }
 a{
   font-size: 1.4rem;
@@ -40,16 +44,27 @@ a{
   font-weight: 600;
   color: #000000;
   margin-bottom: 0.5rem;
+<<<<<<< HEAD
   font-size: 1rem;
+=======
+  font-size: 1.2rem;
+>>>>>>> ec1b3ef (Final Changes)
   line-height: 1.6;
 }
 
 .qna-answer {
+<<<<<<< HEAD
   color: #0702bc;
   font-size: 1rem;
   line-height: 1.8;
   padding: 1rem 3rem;
   animation: fadeIn 1s ease-in-out;
+=======
+  color: rgb(23, 0, 196);
+  font-size: 1.2rem;
+  line-height: 1.8;
+  padding: 1rem 3rem;
+>>>>>>> ec1b3ef (Final Changes)
 }
 
 /* Pagination */
