@@ -6,14 +6,15 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-<<<<<<< HEAD
-=======
   animation: fadeIn 1s ease-in-out;
->>>>>>> ec1b3ef (Final Changes)
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-a{
+
+a {
   font-size: 1.4rem;
+  cursor: pointer;
 }
+
 .qna-title {
   text-align: center;
   font-size: 3.5rem;
@@ -38,33 +39,27 @@ a{
   box-shadow: 0 1px 4px rgb(0 0 0 / 0.1);
   width: 100%;
   margin-top: 3rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.qna-item:hover {
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.15);
 }
 
 .qna-question {
   font-weight: 600;
   color: #000000;
   margin-bottom: 0.5rem;
-<<<<<<< HEAD
-  font-size: 1rem;
-=======
   font-size: 1.2rem;
->>>>>>> ec1b3ef (Final Changes)
   line-height: 1.6;
 }
 
 .qna-answer {
-<<<<<<< HEAD
-  color: #0702bc;
-  font-size: 1rem;
-  line-height: 1.8;
-  padding: 1rem 3rem;
-  animation: fadeIn 1s ease-in-out;
-=======
   color: rgb(23, 0, 196);
   font-size: 1.2rem;
   line-height: 1.8;
   padding: 1rem 3rem;
->>>>>>> ec1b3ef (Final Changes)
+  animation: fadeIn 1s ease-in-out;
 }
 
 /* Pagination */
@@ -105,6 +100,18 @@ a{
   cursor: default;
 }
 
+/* Accessibility focus */
+.pagination-btn:focus-visible {
+  outline: 2px solid #2980b9;
+  outline-offset: 2px;
+}
+
+/* FadeIn keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .qna-section-container {
@@ -114,16 +121,16 @@ a{
   .qna-list {
     padding: 0 1.5rem;
   }
-  .qna-answer{
+  .qna-answer {
     padding: 1rem;
     font-size: 1.2rem;
     font-weight: bold;
   }
-  .qna-question{
+  .qna-question {
     font-size: 1.2rem;
     font-weight: bold;
   }
-  a{
+  a {
     font-size: 1.1rem;
   }
 }
@@ -132,7 +139,7 @@ a{
   .qna-title {
     font-size: 1.5rem;
   }
-  a{
+  a {
     font-size: 1.1rem;
   }
   .qna-list {
@@ -144,7 +151,7 @@ a{
     font-size: 0.95rem;
     font-weight: bold;
   }
-  .qna-section-container{
+  .qna-section-container {
     padding: 1rem !important;
   }
 }
@@ -157,7 +164,7 @@ a{
   .qna-item {
     padding: 1rem;
   }
-  a{
+  a {
     font-size: 1rem;
   }
   .qna-question,
@@ -170,7 +177,7 @@ a{
     padding: 0.4rem 0.6rem;
     font-size: 0.9rem;
   }
-  .qna-section-container{
+  .qna-section-container {
     padding: 1rem !important;
   }
 }

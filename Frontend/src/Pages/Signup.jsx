@@ -150,9 +150,6 @@ function Signup() {
     </div>
   );
 }
+export default Signup;
 
-<<<<<<< HEAD
-export default Signup;
-=======
-export default Signup;
->>>>>>> ec1b3ef (Final Changes)
+
