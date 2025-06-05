@@ -1,15 +1,4 @@
 const express = require("express");
-<<<<<<< HEAD
-const router = express.Router();
-const authController = require("../controllers/authController");
-
-router.post("/register", authController.register);
-router.post("/login", authController.login);
-router.post("/forgotpassword", authController.forgotPassword);
-router.post("/verifyotp", authController.verifyOtp);
-router.post("/resetpassword", authController.resetPassword);
-//router.post("/write-sheet", authController.writeToSheet);
-=======
 const { body, validationResult } = require("express-validator");
 const router = express.Router();
 const authController = require("../controllers/authController");
@@ -86,15 +75,13 @@ router.post(
   authController.resetPassword
 );
 
-// Example protected route - get current user profile
+// Example protected route
 // @route   GET /api/auth/profile
 router.get("/profile", protect, (req, res) => {
-  // req.user is populated by protect middleware
   res.json({
     message: "User profile data",
     user: req.user,
   });
 });
->>>>>>> ec1b3ef (Final Changes)
 
 module.exports = router;
