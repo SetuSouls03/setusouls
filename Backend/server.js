@@ -16,6 +16,7 @@ const allowedOrigins = [
   "http://192.168.28.161:8081",           // Expo Dev Tools
   "http://192.168.28.161:19000",          // Expo Go Dev
   "exp://192.168.28.161:19000",           // Expo Go Protocol
+  "https://setuasia.info",
 ];
 
 // ✅ CORS config with preflight support
