@@ -24,9 +24,11 @@ import OTPPage from './Pages/OTPPage';
 import CreatePassword from './Pages/CreatePassword';
 import Sadhna from './Pages/Sadhna';
 import QnaSection from './Pages/QnaSection';
+import ScrollToTop from './components/ScrollToTop';
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
