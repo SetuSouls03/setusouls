@@ -9,28 +9,33 @@ connectDB();
 
 const app = express();
 
-// ✅ Define allowed origins (Netlify + Expo Dev IPs)
+// ✅ Define your allowed origins
 const allowedOrigins = [
-  "https://setusouls.netlify.app",         // Web frontend (Netlify)
-  "http://192.168.28.161:8081",            // Expo Dev Tools
-  "http://192.168.28.161:19000",           // Expo JS server (Android/iOS)
-  "exp://192.168.28.161:19000",            // Expo Go protocol
+  "https://setusouls.netlify.app",        // Netlify frontend
+  "https://setusouls-1.onrender.com",     // Your Render backend itself (for testing if needed)
+  "http://192.168.28.161:8081",           // Expo Dev Tools
+  "http://192.168.28.161:19000",          // Expo Go Dev
+  "exp://192.168.28.161:19000",           // Expo Go Protocol
 ];
 
-// ✅ Apply CORS middleware with dynamic origin check
+// ✅ CORS config with preflight support
 app.use(
   cors({
     origin: function (origin, callback) {
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
-        callback(new Error("Not allowed by CORS: " + origin));
+        console.log("❌ Blocked by CORS:", origin);
+        callback(new Error("Not allowed by CORS"));
       }
     },
-    credentials: true, // If you're sending cookies or auth headers
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allow OPTIONS!
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
+// ✅ Ensure express parses JSON
 app.use(express.json());
 
 // ✅ Simple test route
@@ -38,10 +43,20 @@ app.get("/", (req, res) => {
   res.send("✅ SetuSouls Backend is Live");
 });
 
-// ✅ Auth routes
+// ✅ Use your routes
 app.use("/api/auth", authRoutes);
 
-// ✅ Start the server
+// ✅ Global error handler (to prevent 500 on preflight failure)
+app.use((err, req, res, next) => {
+  console.error("🔥 Internal error:", err.message);
+  if (err.message === "Not allowed by CORS") {
+    res.status(403).send({ message: err.message });
+  } else {
+    res.status(500).send({ message: "Something went wrong." });
+  }
+});
+
+// ✅ Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
