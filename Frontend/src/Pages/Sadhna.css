@@ -98,7 +98,11 @@
 
 @media (max-width: 768px) {
   .Sadhna-container h5 {
-    padding: 0 1rem;
+    padding: 0rem 0rem;
+    line-height: 1.5rem;
+  }
+  .Sadhna-container h4{
+    font-size: 1.3rem;
   }
   .Sadhna-container h1{
     font-size: 1.5rem;

@@ -62,12 +62,18 @@ const About = () => {
           ></iframe>
         </div>
           <button
-    className="attractive-button"
-    onClick={() => window.open('https://drive.google.com/file/d/1OpwCXkB_AuKP3wl9Xfl4MlmCMTgClJn3/view', '_blank', 'noopener noreferrer')}
-    type="button"
-  >
-    {language === 'hi' ? linkTextHi : linkTextEn}
-  </button>
+  className="attractive-button"
+  onClick={() =>
+    window.open(
+      'https://drive.google.com/file/d/1OpwCXkB_AuKP3wl9Xfl4MlmCMTgClJn3/view',
+      '_blank',
+      'noopener noreferrer'
+    )
+  }
+  type="button"
+>
+  <span>{language === 'hi' ? linkTextHi : linkTextEn}</span>
+</button>
       </div>
 
 

@@ -10,7 +10,7 @@
   margin:0rem 3rem;
 }
 .section1 {
-  background: white;
+  background: #ffefe4;
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -18,15 +18,17 @@
 }
 
 .section2 {
-  background: white;
+  background: #ffffe6;
   display: flex;
   gap: 3rem;
   align-items: center;
   justify-content: center;
 }
-
+.section2-left{
+  margin-left: 2rem;
+}
 .section3 {
-  background: white;
+  background: #f4faff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,14 +85,14 @@ h3{
 /* ✅ Responsive - Mobile (Max 768px) */
 @media (max-width: 768px) {
   h1 {
-    font-size: 1.5rem;
-    padding: 0 1rem;
+    font-size: 1.8rem;
+    padding: 0 0.2rem;
   }
 
   h3 {
     font-size: 1rem;
     padding: 0 1rem;
-    text-align: left;
+    text-align: center;
   }
   .section-body{
     margin:0rem;
@@ -102,11 +104,14 @@ h3{
     gap: 2rem;
     align-items: center;
     text-align: center;
+    padding: 3rem 1rem;
   }
-
+  .section2-left{
+    margin-left: 0rem;
+  }
   img {
-    width:15rem;
-    height: 18rem;
+width: 19rem;
+    height: 20rem;
   }
 }
 .translate-button{

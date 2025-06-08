@@ -64,7 +64,7 @@ const Other = () => {
 
       <ScrollFadeIn>
         <div className="section2">
-          <div style={{ marginLeft: "2rem" }}>
+          <div className="section2-left">
             <h1>
               {isHindi
                 ? "भगवान हनुमान हाल ही में 2014 में उनसे मिले थे"

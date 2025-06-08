@@ -63,6 +63,7 @@
   color: #000000;
   transition: color 0.3s;
   font-weight: bold;
+  line-height: 1.8rem;
 }
 
 @keyframes fadeInUp {
@@ -110,7 +111,7 @@
   }
 
   .section-subheading {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 }
 

@@ -111,4 +111,19 @@
   .impsubheading {
     font-size: 1.2rem;
   }
+  .notes-title{
+    font-size: 2rem;
+  }
+  .notes-subheading{
+    font-size: 1.8rem;
+  }
+  .notes-container{
+    text-align: center;
+  }
+  .notes-links{
+    justify-content: center;
+  }
+  .notes-text{
+    font-size:1.2rem;
+  }
 }

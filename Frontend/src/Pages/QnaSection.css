@@ -45,9 +45,16 @@ a {
 .qna-item:hover {
   box-shadow: 0 4px 12px rgb(0 0 0 / 0.15);
 }
+.qna-item h2{
+  font-weight: bold;
+  color: rgb(23, 0, 196);
+  font-size: 2rem;
+  padding-left: 2.5rem;
+  text-align: center;
+}
 
 .qna-question {
-  font-weight: 600;
+  font-weight: bold;
   color: #000000;
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
@@ -137,7 +144,7 @@ a {
 
 @media (max-width: 768px) {
   .qna-title {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
   }
   a {
     font-size: 1.1rem;
@@ -145,11 +152,16 @@ a {
   .qna-list {
     padding: 0 1rem;
   }
-
+  .qna-item h2{
+    text-align: center;
+    padding-left: 0rem;
+    font-size: 1.8rem;
+  }
   .qna-question,
   .qna-answer {
     font-size: 0.95rem;
     font-weight: bold;
+    text-align: left;
   }
   .qna-section-container {
     padding: 1rem !important;

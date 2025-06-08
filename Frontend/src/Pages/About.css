@@ -126,18 +126,33 @@ strong{
   outline: none;
 }
 
-
+@keyframes pulseZoomText {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+}
+.attractive-button span {
+  display: inline-block;
+  animation: pulseZoomText 1.5s infinite ease-in-out;
+  transition: transform 0.3s ease;
+}
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .about-content {
     padding: 1.5rem;
   }
-  
+  strong{
+  font-size: 1rem;
+}
   .about-heading {
     font-size: 2rem;
+    margin-bottom: 3rem;
   }
   
   .about-subheading {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 }

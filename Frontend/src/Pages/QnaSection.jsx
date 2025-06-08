@@ -1183,14 +1183,7 @@ const QnaSection = () => {
         {getCurrentPageData().length > 0 ? (
           getCurrentPageData().map(({ id, header, question, answer }) => (
             <article key={id} className="qna-item">
-              <h2
-                style={{
-                  fontWeight: "bold",
-                  color: "rgb(23, 0, 196)",
-                  fontSize: "2rem",
-                  paddingLeft: "2.5rem",
-                }}
-              >
+              <h2>
                 <br />
                 {header}
                 <br />

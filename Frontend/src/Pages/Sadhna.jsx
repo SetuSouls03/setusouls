@@ -79,15 +79,41 @@ const Sadhna = () => {
           : " After 6 months of Sadhana, when your ‘sense of I’ is completely dissolved, you will be allowed to take part in Sakshat Hanuman Pooja. In this Pooja, Lord Hanuman gives His Divya Darshan inside the HanuMandal. HanuMandal is the sphere of purity created by drawing circle of special lamps in order to perform the Pooja inside it. Lord Hanuman comes in His body form in Charan Pooja which is performed every 41 years by Mathangs. Charan Pooja is different from Sakshat Hanuman Pooja. Lord Hanuman comes in His Divya form in Sakshat Hanuman Pooja which is being performed continuously in expectation of revelation of Lord Kalki’s birth."}
       </h5>
       <h5>
-        {isHindi
-          ? "एक वर्ष की साधना पूर्ण होने के पश्चात आपके सामने तीन विकल्प होंगे: (1) आप अपने दैनिक जीवन में लौट सकते हैं और भौतिक संसार में उत्कृष्टता प्राप्त कर सकते हैं। (2) आप संसार में लौटकर, भगवान हनुमान के संदेशवाहक के रूप में, इस परम ज्ञान का प्रचार कर सकते हैं। (3) आप सेतू के संगठन का हिस्सा बन सकते हैं और सेतू हनुमान बोधि में रहकर साधना को आगे बढ़ा सकते हैं। इन तीनों में से आप उस मार्ग का चयन कर सकते हैं, जो आपके आत्मिक विकास और आंतरिक आह्वान के अनुरूप हो।"
-          : "After 1 year of Sadhana is completed you will have three options: (1) You can go back to your day-to-day life and excel in materialistic world. (2) Go back to the world and spread the supreme knowledge as a messenger of Lord Hanuman. (3) Join Setuu as an organizational member and stay at Setuu Hanuman Bodhi thereby continuing your Sadhana further."}
-      </h5>
+  {isHindi ? (
+    <>
+      एक वर्ष की साधना पूर्ण होने के पश्चात आपके सामने तीन विकल्प होंगे: <br /><br />
+      (1) आप अपने दैनिक जीवन में लौट सकते हैं और भौतिक संसार में उत्कृष्टता प्राप्त कर सकते हैं। <br /><br />
+      (2) आप संसार में लौटकर, भगवान हनुमान के संदेशवाहक के रूप में, इस परम ज्ञान का प्रचार कर सकते हैं। <br /><br />
+      (3) आप सेतू के संगठन का हिस्सा बन सकते हैं और सेतू हनुमान बोधि में रहकर साधना को आगे बढ़ा सकते हैं। इन तीनों में से आप उस मार्ग का चयन कर सकते हैं, जो आपके आत्मिक विकास और आंतरिक आह्वान के अनुरूप हो।
+    </>
+  ) : (
+    <>
+      After 1 year of Sadhana is completed you will have three options: <br /><br />
+      (1) You can go back to your day-to-day life and excel in materialistic world. <br /><br />
+      (2) Go back to the world and spread the supreme knowledge as a messenger of Lord Hanuman. <br /><br />
+      (3) Join Setuu as an organizational member and stay at Setuu Hanuman Bodhi thereby continuing your Sadhana further.
+    </>
+  )}
+</h5>
+
       <h5>
-        {isHindi
-          ? "यदि आप इस 1 वर्षीय साधना कार्यक्रम से जुड़ना चाहते हैं, तो www.setuu.org पर जाएँ और लॉगिन करें। इसके बाद अपने प्रोफ़ाइल के “My Experiences” सेक्शन में जाकर साधना हेतु अपना अनुरोध लिखें। इसमें निम्नलिखित बातों को विस्तार से लिखना आवश्यक है: (1) आपका पारिवारिक और भौतिक (स्थूल) संसार का परिचय: आपका परिवार, शिक्षा, कार्य, सामाजिक जीवन, और अब तक का सांसारिक अनुभव क्या रहा है। (2) आपका आध्यात्मिक परिचय: आपकी आत्मा का भगवान हनुमान से कब और कैसे संबंध जुड़ा। अब तक भगवान हनुमान से आपको क्या अनुभव और संवाद प्राप्त हुए हैं। समय के साथ आपकी भक्ति में कैसे विकास हुआ है। (3) भगवान हनुमान की लीलाओं के अध्यायों का सार: setuu.org पर प्रकाशित भगवान हनुमान की लीलाओं के अध्याय आपने किस प्रकार से आत्मसात किए हैं। आपने उन अध्यायों से क्या सीखा और क्या असीखा (unlearn)। आप अपने स्वयं के शब्दों में इसका सार लेख रूप में प्रस्तुत करें। यह विवरण ईमानदारी और आत्मचिंतन के साथ लिखा जाना चाहिए ताकि सेतू मास्टर्स आपके साधना हेतु पात्रता का मूल्यांकन कर सकें।"
-          : "If you want to join this 1 year Sadhana program, go to www.setuu.org and login. Then go to “My Experiences” section of your profile and write your request for Sadhana. You should write the following in detail: (1) Your family background and your profile of the gross (physical) world. (2) Your spiritual background: like, when your soul got connected to Lord Hanuman and what interactions you have had with Lord Hanuman so far. How have you evolved in Bhakti of Lord Hanuman with time. (3) Write summary of the chapters of Lord Hanuman’s Leelas published at setuu.org . What have you learned/unlearned from these chapters so far. Write in your own words."}
-      </h5>
+  {isHindi ? (
+    <>
+      यदि आप इस 1 वर्षीय साधना कार्यक्रम से जुड़ना चाहते हैं, तो <a href="https://www.setuasia.info" style={{ textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">www.setuasia.info</a> पर जाएँ और लॉगिन करें। इसके बाद अपने प्रोफ़ाइल के “My Experiences” सेक्शन में जाकर साधना हेतु अपना अनुरोध लिखें। इसमें निम्नलिखित बातों को विस्तार से लिखना आवश्यक है: <br /><br />
+      (1) आपका पारिवारिक और भौतिक (स्थूल) संसार का परिचय: आपका परिवार, शिक्षा, कार्य, सामाजिक जीवन, और अब तक का सांसारिक अनुभव क्या रहा है। <br /><br />
+      (2) आपका आध्यात्मिक परिचय: आपकी आत्मा का भगवान हनुमान से कब और कैसे संबंध जुड़ा। अब तक भगवान हनुमान से आपको क्या अनुभव और संवाद प्राप्त हुए हैं। समय के साथ आपकी भक्ति में कैसे विकास हुआ है। <br /><br />
+      (3) भगवान हनुमान की लीलाओं के अध्यायों का सार: <a href="https://www.setuasia.info" style={{ textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">www.setuasia.info</a> पर प्रकाशित भगवान हनुमान की लीलाओं के अध्याय आपने किस प्रकार से आत्मसात किए हैं। आपने उन अध्यायों से क्या सीखा और क्या असीखा (unlearn)। आप अपने स्वयं के शब्दों में इसका सार लेख रूप में प्रस्तुत करें। यह विवरण ईमानदारी और आत्मचिंतन के साथ लिखा जाना चाहिए ताकि सेतू मास्टर्स आपके साधना हेतु पात्रता का मूल्यांकन कर सकें।
+    </>
+  ) : (
+    <>
+      If you want to join this 1 year Sadhana program, go to <a href="https://www.setuasia.info" style={{ textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">www.setuasia.info</a> and login. Then go to “My Experiences” section of your profile and write your request for Sadhana. You should write the following in detail: <br /><br />
+      (1) Your family background and your profile of the gross (physical) world. <br /><br />
+      (2) Your spiritual background: like, when your soul got connected to Lord Hanuman and what interactions you have had with Lord Hanuman so far. How have you evolved in Bhakti of Lord Hanuman with time. <br /><br />
+      (3) Write summary of the chapters of Lord Hanuman’s Leelas published at <a href="https://www.setuasia.info" style={{ textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">www.setuasia.info</a>. What have you learned/unlearned from these chapters so far. Write in your own words.
+    </>
+  )}
+</h5>
+
       <h5>
         {isHindi
           ? "जब आपकी साधना के लिए आवेदन सेतू मास्टर्स द्वारा स्वीकार कर लिया जाएगा, तो सेतू हनुमान बोधि के किसी साधक आपसे संपर्क करेंगे ताकि बाकी औपचारिकताएँ पूरी की जा सकें।"
