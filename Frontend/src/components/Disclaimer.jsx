@@ -8,7 +8,7 @@ const Disclaimer = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setKey(prevKey => prevKey + 1); // trigger re-render
-    }, 5000); // every 5 seconds
+    }, 30000); // every 5 seconds
 
     return () => clearInterval(interval);
   }, []);

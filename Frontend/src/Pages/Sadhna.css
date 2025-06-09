@@ -38,16 +38,16 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .Sadhna-container {
-  max-width: 1200px;
+max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.8;
   color: #333;
-  background-color: #f9f9f9;
+  background-color: #f6fbff;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0,0,0,0.05);
-  text-align: center; /* This centers inline and inline-block elements like <img> */
+  text-align: center;
 }
 
 .Sadhna-container img {
@@ -106,5 +106,8 @@
   }
   .Sadhna-container h1{
     font-size: 1.5rem;
+  }
+  .Sadhna-container a{
+    font-size: 1.2rem;
   }
 }

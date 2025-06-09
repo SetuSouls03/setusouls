@@ -12,7 +12,7 @@
 .disclaimer-track {
   display: flex;
   width: max-content;
-  animation: scrollLoop 40s linear infinite;
+  animation: scrollLoop 20s linear infinite;
 }
 
 .disclaimer-text {

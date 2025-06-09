@@ -37,7 +37,7 @@
   text-align: center;
   max-width: 90%;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgb(255, 255, 255);
   border-radius: 1rem;
   box-shadow: 0 8px 20px rgba(160, 120, 255, 0.2);
   transition: transform 0.4s ease, box-shadow 0.4s ease;

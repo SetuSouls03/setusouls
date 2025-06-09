@@ -104,7 +104,7 @@ strong{
   font-weight: bold;
 }
 .attractive-button {
-  background-color: #007bff; /* Bootstrap-like blue */
+  background-color: #0702bc; /* Bootstrap-like blue */
   color: white;
   border: none;
   padding: 0.6rem 1.5rem;
@@ -142,7 +142,7 @@ strong{
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .about-content {
-    padding: 1rem;
+    padding: 0.5rem;
     width: 109%;
   }
   strong{
