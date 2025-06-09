@@ -11,7 +11,7 @@ const PrivacyPolicy = () => {
         <p className="policy-meta">Latest Update Date: 10/05/2025</p>
 
         <h2 className="policy-subtitle">1. Information We Collect</h2>
-        <p className="policy-text">We collect personal information (name, email, etc.) and usage data (IP, browser type).</p>
+        <p className="policy-text">We collect personal information Name, Email, Phone Number.</p>
 
         <h2 className="policy-subtitle">2. How We Use Your Information</h2>
         <p className="policy-text">To provide and improve services, send updates, and comply with legal obligations.</p>
