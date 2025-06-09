@@ -1,5 +1,5 @@
 .charan-container {
-  width: 90%;
+  width: 75%;
   margin: 3rem auto;
   padding: 2rem;
   background: white;
@@ -62,7 +62,7 @@
 }
 
 .charan-quote {
-  margin-top: 2rem;
+  margin: 2rem auto;
   background-color: #ffffff;
   padding: 1rem;
   text-align: center;
@@ -71,7 +71,13 @@
   font-weight: bold;
   border-radius: 10px;
   box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.05);
+  width: 75%;
 }
+
+.glow-text {
+  display: inline-block;
+}
+
 .charan-subtitle {
   font-size: 3.5rem;
   margin-top: 2.5rem;
@@ -82,7 +88,8 @@
 }
 
 .charan-section {
-  margin-top: 1.2rem;
+  width: 87%;
+  margin: 1.2rem auto; /* ⬅️ centers the box */
   padding: 1.5rem;
   background-color: #ffffff;
   border-radius: 12px;
@@ -91,6 +98,7 @@
   color: #000;
   font-size: 1.5rem;
 }
+
 
 .charan-link {
   color: #d35400;

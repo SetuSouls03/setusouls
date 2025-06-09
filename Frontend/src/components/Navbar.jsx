@@ -273,7 +273,7 @@ const Navbar = () => {
                           setAdditionalDropdownOpen(false);
                         }}
                       >
-                        Quotes by HANUMAN JI
+                        Important Quotes
                       </NavLink>
                       <NavLink
                         to="/about"

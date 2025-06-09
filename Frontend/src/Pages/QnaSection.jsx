@@ -1153,13 +1153,13 @@ const QnaSection = () => {
   return (
     <div className="qna-section-container" style={{ padding: "3rem" }}>
       <h1 className="qna-title">Devotee Queries</h1>
-      <h3>
+      <h3 style={{textAlign:'center'}}>
         These are queries submitted by devotees on which Setuu has spoken.
         Queries can be answered at 4 levels : <br />
         (1) Sadhakas <br />
         (2) Setuu Masters <br />
         (3) Mathangs <br />
-        (4) Lord Hanuman. <br />
+        (4) Lord Hanuman <br />
         <br />
         You can submit your queries in "My Experiences" section of your profile.
         Only those queries are displayed publicly which we think can benefit
@@ -1191,7 +1191,7 @@ const QnaSection = () => {
               </h2>
               <h3 className="qna-question">
                 Question: {id}:<br />
-                Devotee Speaks:
+                Devotee Speaks:<br />
                 {question.split("   ").map((line, index) => (
                   <React.Fragment key={index}>
                     <br />
@@ -1202,7 +1202,7 @@ const QnaSection = () => {
               <p className="qna-answer">
                 <br />
                 Answer: <br />
-                Setu Speaks: <br />
+                Setu Speaks: <br /><br />
                 {answer}
               </p>
             </article>

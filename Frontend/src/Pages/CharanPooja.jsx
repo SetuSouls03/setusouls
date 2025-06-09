@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import './CharanPooja.css'; // Import the custom CSS
+import './CharanPooja.css';
 
 const CharanPooja = () => {
-  const [language, setLanguage] = useState('hi'); // default Hindi
+  const [language, setLanguage] = useState('hi');
 
   const toggleLanguage = () => {
-    setLanguage(prevLang => (prevLang === 'hi' ? 'en' : 'hi'));
+    setLanguage(prev => (prev === 'hi' ? 'en' : 'hi'));
   };
 
-  // Content structured with Hindi and English versions
-  const content = {
-    title: {
-      hi: " हनुमान चरण पूजा ",
-      en: " Hanuman Charan Pooja "
-    },
-    section1: {
-      hi: `एक सहज सवाल यह उठता है कि अगर हनुमान जी सीता एलिया के जंगलो में हैं तो क्या एक आम इंसान उनके शारीरिक रूप के दर्शन कर सकता है ?
+  // Organized sections grouped logically
+  const sectionsGrouped = [
+    {
+      key: 'group1',
+      title: {
+        hi: "हनुमान चरण पूजा",
+        en: "Hanuman Charan Pooja"
+      },
+      paragraph: {
+        hi: `एक सहज सवाल यह उठता है कि अगर हनुमान जी सीता एलिया के जंगलो में हैं तो क्या एक आम इंसान उनके शारीरिक रूप के दर्शन कर सकता है ?
  
 इस सवाल का जवाब उतना आसान नहीं है। नश्वर का अनश्वर से मिलन विज्ञानं,दर्शन और धर्म की हज़ारों किताबो का विषय बन सकता है। लेकिन हम एक साधारण उदाहरण से इस प्रश्न का उत्तर देने की कोशिश करते हैं।
  
@@ -41,8 +43,8 @@ const CharanPooja = () => {
 सेतु का काम है हमारी भाषा और मानको के आधार पर इंसान का ब्यौरा देने वाली सूचनाओ का अनुवाद मातंग लोगों के मानको में करना। जैसे पश्चिम के केलिन्डर के आधार पर जो जन्म तिथि है उसे मातंग के समय मानको में बदलना। एक इंसान यानी बिंदु की हनुमंडल में पहचान के लिए मातंग को जो सुचना चाहिए होती है वह आधुनिक सुचना के तीन चीजो से हमें प्राप्त होती है -
   
  
-(1) अर्पण : सबसे अच्छा अर्पण (भेट ) वानरो के लिए फलों की टोकरी है। यह भेंट आपके जीवन की एक सुचना ही होती है। प्राचीन काल में लोग बाग़ में खुद जाकर फल या फूल लाते थे। यानी अपने जीवन के कुछ मिनट सिर्फ भेट लाने के लिए समर्पित करते थे। लेकिन आजकल सब कुछ पैसो में मिलता है। जब आप किसी स्टोर से फलों की टोकरी खरीदते हैं तो जो पैसा आप उसके लिए देते हैं वो पैसा भी एक सुचना है। क्योंकि उस पैसे के अर्जन के लिए आपने अपने जीवन का कुछ समय व्यतीत किया होगा और उस समय में आपने कुछ कार्य किये होंगे। `,
-      en: `A natural question arises: If Lord Hanuman resides in the forests of Sita Eliya, can a common person behold his physical form?
+(1) अर्पण : सबसे अच्छा अर्पण (भेट ) वानरो के लिए फलों की टोकरी है। यह भेंट आपके जीवन की एक सुचना ही होती है। प्राचीन काल में लोग बाग़ में खुद जाकर फल या फूल लाते थे। यानी अपने जीवन के कुछ मिनट सिर्फ भेट लाने के लिए समर्पित करते थे। लेकिन आजकल सब कुछ पैसो में मिलता है। जब आप किसी स्टोर से फलों की टोकरी खरीदते हैं तो जो पैसा आप उसके लिए देते हैं वो पैसा भी एक सुचना है। क्योंकि उस पैसे के अर्जन के लिए आपने अपने जीवन का कुछ समय व्यतीत किया होगा और उस समय में आपने कुछ कार्य किये होंगे।`,
+        en: `A natural question arises: If Lord Hanuman resides in the forests of Sita Eliya, can a common person behold his physical form?
 
 The answer to this question is not simple. The meeting of the mortal with the immortal can be the subject of thousands of books on science, philosophy, and religion. But let’s try to answer it with a simple example.
 
@@ -70,125 +72,129 @@ The role of Setu (the bridge) is to translate human information — based on our
 
 (1) Offering (Arpan):
 The best offering for the Vanaras (Hanuman’s kin) is a basket of fruits. This offering itself contains information about your life. In ancient times, people personally went to orchards to collect fruits and flowers — dedicating minutes of their life solely to the offering. Nowadays, everything is purchased with money. When you buy a fruit basket from a store, the money you pay is also a form of information — because to earn that money, you spent some time of your life and performed certain actions during that time.`
+      },
+      summary: {
+        title: {
+          hi: "सारांश :",
+          en: "Summary:"
+        },
+        points: {
+          hi: [
+            "हनुमान जी सूर्य की तरह हैं - अर्थात सभी शक्तियों के केन्द्र।",
+            "साक्षात दर्शन के लिए हनुमान जी के प्रति पूर्ण समर्पण अनिवार्य हैं।",
+            "मातंगों की पूजा इच्छाओं की पूर्ति के लिए नहीं होती, वह आत्मा का परमात्मा से संबंध जोड़ने के लिए होती है.",
+            "हनु मंडल विद्या के माध्यम से मातंगों जानते हैं कि किस बिंदु को परम बिंदु से जोड़ना है।",
+            "सेतु का कार्य है मातंगों के द्वारा प्रदान की गई जानकारी को आपको प्रदान करना।"
+          ],
+          en: [
+            "Hanuman Ji is like the Sun – the center of all powers.",
+            "For divine vision, complete surrender to Hanuman Ji is essential.",
+            "The worship of Matangs is not for desires but to connect the soul with the Supreme.",
+            "Through Hanu Mandal Vidya, Matangs know which point to connect to the divine.",
+            "Setu’s role is to convey this divine knowledge."
+          ]
+        }
+      }
     },
-    summaryTitle: {
-      hi: " सारांश :",
-      en: " Summary:"
-    },
-    summaryPoints: {
-      hi: [
-        "हनुमान जी सूर्य की तरह हैं - अर्थात सभी शक्तियों के केन्द्र।",
-        "साक्षात दर्शन के लिए हनुमान जी के प्रति पूर्ण समर्पण अनिवार्य हैं।",
-        "मातंगों की पूजा इच्छाओं की पूर्ति के लिए नहीं होती, वह आत्मा का परमात्मा से संबंध जोड़ने के लिए होती है.",
-        "हनु मंडल विद्या के माध्यम से मातंगों जानते हैं कि किस बिंदु को परम बिंदु से जोड़ना है।",
-        "सेतु का कार्य है मातंगों के द्वारा प्रदान की गई जानकारी को आपको प्रदान करना।"
-      ],
-      en: [
-        "Hanuman Ji is like the Sun – That is, the center of all powers.",
-        "For direct (divine) vision, complete surrender to Hanuman Ji is essential.",
-        "The worship of the Matangs is not for the fulfillment of desires, but for the connection between the soul and the Supreme.",
-        "Through the knowledge of Hanu Mandal Vidya, the Matangs understand which point needs to be connected to the Supreme Point through worship.",
-        "The role of the Setu (bridge) is to translate information into the language of the Matangs."
-      ]
-    },
-    section2Title: {
-      hi: " चरण पूजा कैसे करें ",
-      en: " How To Do Charan Pooja "
-    },
-    section2Content: {
-      hi: `चिरंजीव गुरु श्री हनुमान जी के चरणों में अर्पण करने के लिए एक आत्मा के ऊपर से भ्रम की परत का उतरना जरूरी है इसके लिए उन्होंने मार्ग दिखाया है, की कैसे कोई आत्मा अपनी इच्छाओं और कर्मों को पवित्र करके उनके साक्षात दर्शन प्राप्त कर सकती है. सबसे पहले आपको श्री हनुमान जी को अपना गुरु धारण करना है एक विशेष प्रार्थना के माध्यम से उसके लिए यहां क्लिक करे (प्राथना).
+    {
+      key: 'group2',
+      subheading: {
+        hi: "हनुमान पूजा",
+        en: "Hanuman Charan Pooja"
+      },
+      detailedParagraph: {
+        hi: `चिरंजीव गुरु श्री हनुमान जी के चरणों में अर्पण करने के लिए एक आत्मा के ऊपर से भ्रम की परत का उतरना जरूरी है इसके लिए उन्होंने मार्ग दिखाया है, की कैसे कोई आत्मा अपनी इच्छाओं और कर्मों को पवित्र करके उनके साक्षात दर्शन प्राप्त कर सकती है. सबसे पहले आपको श्री हनुमान जी को अपना गुरु धारण करना है एक विशेष प्रार्थना के माध्यम से उसके लिए यहां क्लिक करे (प्राथना).
 
 सेतु द्वारा दिए गए ब्रह्म ज्ञान जिसमें श्री हनुमान जी की 2014 की यात्रा में की गई दिव्य लीलाएं सम्मिलित है जो श्रीलंका के घने जंगलों से कुछ विशेष आदिवासियों के माध्यम से मुख्य समाज तक पहुंचाई गई थी जिसे बाद में हिंदी और इंग्लिश में ट्रांसलेट करके Amazon के माध्यम से (Immortal Talks) ओर (कलिहनुवाणी) के रूप में भेजा गया था आपको इनका अध्ययन करना है.
 
 इस ब्रह्म ज्ञान में ब्रह्मांड के अनेकों रहस्य छुपे हुए हैं जो आज के समय में वेद, पुराण, शास्त्र, उपनिषद यहां तक किसी भी ग्रंथ में मौजूद नहीं है मनुष्य द्वारा बार-बार इन पवित्र ग्रंथों को छेड़ा गया है और इन्हें हमारे सामने तोड़ मरोड़ कर पेश किया गया है जिसके कारण इसमें संपूर्ण ब्रह्म ज्ञान लुप्त हो चुका है.
 
-कलयुग के इस अंतिम चरण पर भगवान श्री हरि विष्णु जी के आदेश और चिरंजीवी श्री हनुमान जी के आशीर्वाद से हमारी पीढ़ी को पुनः वह प्राचीन ब्रह्म ज्ञान प्राप्त हुआ है जिसके लिए हमें उनके प्रति पूर्ण कृतज्ञता प्रकट करनी चाहिए.|| राम ||
-`,
-      en: `To offer oneself at the feet of the eternal Guru, Shri Hanuman Ji, it is essential for a soul to shed the layers of illusion surrounding it. For this purpose, he has shown the path — how a soul can purify its desires and actions to attain his direct divine vision. The first step is to accept Shri Hanuman Ji as your Guru through a special prayer. To do that, click here (Prayer).
+कलयुग के इस अंतिम चरण पर भगवान श्री हरि विष्णु जी के आदेश और चिरंजीवी श्री हनुमान जी के आशीर्वाद से हमारी पीढ़ी को पुनः वह प्राचीन ब्रह्म ज्ञान प्राप्त हुआ है जिसके लिए हमें उनके प्रति पूर्ण कृतज्ञता प्रकट करनी चाहिए.`,
+        en: `To offer oneself at the feet of the eternal Guru, Shri Hanuman Ji, it is essential for a soul to shed the layers of illusion surrounding it. For this purpose, he has shown the path — how a soul can purify its desires and actions to attain his direct divine vision. The first step is to accept Shri Hanuman Ji as your Guru through a special prayer. To do that, click here (Prayer).
 
 You must also study the divine wisdom (Brahma Gyaan) provided through Setu, which includes the sacred events from Shri Hanuman Ji's journey in 2014. These divine acts, which occurred in the dense forests of Sri Lanka, were conveyed to the mainstream society through certain special tribal groups. Later, they were translated into Hindi and English and shared through Amazon under the titles ‘Immortal Talks’ and ‘Kali Hanumaan Vaani’.
 
 This Brahma Gyaan holds many secrets of the universe that, in today’s age, are not found in the Vedas, Puranas, Shastras, or Upanishads — nor in any other scripture. Over time, these sacred texts have been repeatedly altered and manipulated by humans, causing the complete Brahma Gyaan to be lost.
 
 In this final phase of Kaliyug, under the command of Lord Shri Hari Vishnu and with the blessings of the eternal Shri Hanuman Ji, our generation has once again received that ancient divine knowledge. For this, we must express our utmost gratitude to them. || Ram ||`
+      }
     },
-    quote: {
-      hi: ` "जब आत्मा परमात्मा से जुड़ती है, तब कलियुग में भी सतयुग जैसा अनुभव होता है।" `,
-      en: ` "When the soul connects with the Supreme, even in Kaliyuga, the experience of Satya Yuga is felt." `
-    },
-  };
+    {
+      key: 'quote',
+      quote: {
+        hi: `" जब आत्मा परमात्मा से जुड़ती है, तब कलियुग में भी सतयुग जैसा अनुभव होता है। "`,
+        en: `" When the soul connects with the Supreme, even in Kaliyuga, the experience of Satya Yuga is felt. "`
+      }
+    }
+  ];
 
   return (
-    <>
-      <div className="charan-container">
-
-        <motion.h1
-          className="charan-title"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          {content.title[language]}
-        </motion.h1>
-
-        <motion.div
-          className="charan-section"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-        >
-          <p>{content.section1[language]}</p>
-        </motion.div>
-
-        <motion.div
-          className="charan-summary"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h2>{content.summaryTitle[language]}</h2>
+    <div className="charan-page">
+      {/* Group 1: title + paragraph + summary */}
+      <motion.div
+        className="charan-section charan-white-box"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        key={sectionsGrouped[0].key}
+      >
+        <h1 className="charan-title">{sectionsGrouped[0].title[language]}</h1>
+        <p style={{textAlign:'center'}}>{sectionsGrouped[0].paragraph[language]}</p>
+        <div className="charan-summary">
+          <h2>{sectionsGrouped[0].summary.title[language]}</h2>
           <ul>
-            {content.summaryPoints[language].map((point, i) => (
-              <li key={i}>{point}</li>
+            {sectionsGrouped[0].summary.points[language].map((point, idx) => (
+              <li key={idx}>{point}</li>
             ))}
           </ul>
-        </motion.div>
-      </div>
-
-      <div className="charan-container">
-        <motion.h2
-          className="charan-subtitle"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          {content.section2Title[language]}
-        </motion.h2>
-
-        <motion.div
-          className="charan-section"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-        >
-          <p>{content.section2Content[language]}</p>
-        </motion.div>
-
-        <motion.div
-          className="charan-quote"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-          {content.quote[language]}
-        </motion.div>
-      </div>
-      <div className="translate-button-container" style={{ textAlign: 'right', margin: '2rem 0rem' }}>
-          <button className="translate-button" onClick={toggleLanguage}>
-            {language === 'hi' ? 'Translate to English' : 'हिंदी में अनुवाद करें'}
-          </button>
         </div>
-    </>
+      </motion.div>
+
+      {/* Group 2: subheading + detailed paragraph */}
+      <motion.div
+        className="charan-section charan-white-box-alt"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        key={sectionsGrouped[1].key}
+      >
+        <h2 className="charan-subtitle">{sectionsGrouped[1].subheading[language]}</h2>
+        <p style={{textAlign:'center'}}>{sectionsGrouped[1].detailedParagraph[language]}</p>
+      </motion.div>
+
+      {/* Quote */}
+{/* Quote */}
+<blockquote className="charan-quote" key={sectionsGrouped[2].key}>
+  <motion.span
+    className="glow-text"
+    initial={{ opacity: 0 }}
+    animate={{ 
+      opacity: [0.8, 1, 0.8], 
+      textShadow: [
+        "0 0 3px rgba(137, 119, 255, 0.79)",
+        "0 0 6px rgba(93, 68, 252, 0.69)",
+        "0 0 3px rgba(137, 119, 255, 0.79)"
+      ] 
+    }}
+    transition={{
+      duration: 2,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+  >
+    {sectionsGrouped[2].quote[language]}
+  </motion.span>
+</blockquote>
+
+
+
+      {/* Language toggle button */}
+      <div className="translate-button-container" style={{ textAlign: 'right', margin: '2rem 0' }}>
+        <button className="translate-button" onClick={toggleLanguage}>
+          {language === 'hi' ? 'Translate to English' : 'हिंदी में अनुवाद करें'}
+        </button>
+      </div>
+    </div>
   );
 };
 

@@ -11,11 +11,11 @@ const Quotes = () => {
 
   return (
     <div className="gallery-container">
+      <h1>Spoken By Lord Hanuman In Sakshat Hanuman Pooja</h1>
       {selectedImage && (
         <div className="preview-section">
           <span className="close-btn" onClick={() => setSelectedImage(null)}>&times;</span>
           <img src={selectedImage} alt="Preview" className="preview-img" />
-          <p className="image-text">This is a detailed view of the selected image.</p>
         </div>
       )}
 
