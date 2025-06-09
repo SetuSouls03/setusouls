@@ -9,21 +9,26 @@
   height: 40px;
 }
 
-.disclaimer-text {
-  display: inline-block;
-  white-space: nowrap;
-  color: #000000;
-  font-weight: bold;
-  font-size: 16px;
-  animation: scrollText 15s linear;
+.disclaimer-track {
+  display: flex;
+  width: max-content;
+  animation: scrollLoop 40s linear infinite;
 }
 
-@keyframes scrollText {
+.disclaimer-text {
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000000;
+  padding-right: 100px; /* space between repeated texts */
+}
+
+@keyframes scrollLoop {
   0% {
-    transform: translateX(100%);
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-50%);
   }
 }
 
