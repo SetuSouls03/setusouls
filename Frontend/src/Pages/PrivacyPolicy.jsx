@@ -33,7 +33,7 @@ const PrivacyPolicy = () => {
 
         <h2 className="policy-subtitle contact-subtitle">8. Contact Us</h2>
         <p className="policy-text">
-          We are always around to help devotees and knowledge seekers.<br />
+          We are always around to help devotees and knowledge seekers.<br /><br />
           Email us directly at: <a className="policy-link" href="mailto:setusouls@gmail.com">setusouls@gmail.com</a>
         </p>
       </div>
