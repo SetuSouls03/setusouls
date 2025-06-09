@@ -253,7 +253,7 @@ const Navbar = () => {
                           setAdditionalDropdownOpen(false);
                         }}
                       >
-                        Devotee Querie
+                        Devotee Queries
                       </NavLink>
                       <NavLink
                         to="/sadhna"
@@ -264,6 +264,16 @@ const Navbar = () => {
                         }}
                       >
                         Sadhna
+                      </NavLink>
+                      <NavLink
+                        to="/quotes"
+                        className="dropdown-item"
+                        onClick={() => {
+                          closeMobileMenu();
+                          setAdditionalDropdownOpen(false);
+                        }}
+                      >
+                        Quotes by HANUMAN JI
                       </NavLink>
                       <NavLink
                         to="/about"

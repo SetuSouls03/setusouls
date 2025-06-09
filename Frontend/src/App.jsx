@@ -25,6 +25,7 @@ import CreatePassword from './Pages/CreatePassword';
 import Sadhna from './Pages/Sadhna';
 import QnaSection from './Pages/QnaSection';
 import ScrollToTop from './components/ScrollToTop';
+import Quotes from './Pages/Quotes';
 function App() {
   return (
     <Router>
@@ -48,6 +49,7 @@ function App() {
         <Route path='/qna-section' element={<QnaSection />} />
         <Route path='/sadhna' element={<Sadhna />} />
         <Route path='/about' element={<About />} />
+        <Route path='/quotes' element={<Quotes />} />
       </Routes>
 
       {/* Toast Container should be outside Routes */}
