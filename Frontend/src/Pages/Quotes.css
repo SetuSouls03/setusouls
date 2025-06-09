@@ -80,5 +80,10 @@
 
   .preview-img {
     max-height: 50vh;
+    max-width: 90%;
+  }
+
+  .gallery-container h1{
+    font-size: 1.5rem;
   }
 }

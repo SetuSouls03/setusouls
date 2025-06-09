@@ -139,7 +139,7 @@ In this final phase of Kaliyug, under the command of Lord Shri Hari Vishnu and w
         key={sectionsGrouped[0].key}
       >
         <h1 className="charan-title">{sectionsGrouped[0].title[language]}</h1>
-        <p style={{textAlign:'center'}}>{sectionsGrouped[0].paragraph[language]}</p>
+        <p className='paragraph'>{sectionsGrouped[0].paragraph[language]}</p>
         <div className="charan-summary">
           <h2>{sectionsGrouped[0].summary.title[language]}</h2>
           <ul>
@@ -159,7 +159,7 @@ In this final phase of Kaliyug, under the command of Lord Shri Hari Vishnu and w
         key={sectionsGrouped[1].key}
       >
         <h2 className="charan-subtitle">{sectionsGrouped[1].subheading[language]}</h2>
-        <p style={{textAlign:'center'}}>{sectionsGrouped[1].detailedParagraph[language]}</p>
+        <p className='paragraph'>{sectionsGrouped[1].detailedParagraph[language]}</p>
       </motion.div>
 
       {/* Quote */}

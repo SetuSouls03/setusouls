@@ -143,6 +143,7 @@ strong{
 @media (max-width: 768px) {
   .about-content {
     padding: 1rem;
+    width: 109%;
   }
   strong{
   font-size: 1rem;

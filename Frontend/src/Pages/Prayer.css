@@ -101,8 +101,12 @@
     max-width: 100%;
     padding: 1.4rem;
   }
+  .prayerpage{
+    padding: 3rem 1.2rem;
+  }
   .prayer-section-heading{
-    font-size: 1.7rem;
+    font-size: 1.9rem;
+
   }
   .prayer-section-subheading{
     font-size: 1.2rem;

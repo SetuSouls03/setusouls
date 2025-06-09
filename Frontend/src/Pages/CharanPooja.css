@@ -7,7 +7,9 @@
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
   font-family: 'Noto Sans Devanagari', sans-serif;
 }
-
+.paragraph{
+  text-align: center;
+}
 .charan-title {
   text-align: center;
   font-size: 3.5rem;
@@ -41,6 +43,7 @@
   transform: scale(1);
   transition: transform 0.3s ease;
   font-weight: bold;
+  text-align: left;
 }
 
 .charan-summary:hover {
@@ -119,6 +122,11 @@ p{
   .charan-title{
     font-size: 2.2rem;
     margin-bottom: 0rem;
+    padding: 2rem;
+  }
+  .paragraph{
+    line-height: 2.2rem;
+    padding: 0rem 1rem;
   }
   .charan-section{
     font-size: 1.3rem;
@@ -131,12 +139,14 @@ p{
   }
   .charan-subtitle{
     font-size: 2rem;
+    padding: 2rem;
   }
   .charan-quote{
     font-size: 1.2rem;
   }
   .charan-summary{
     padding: 1rem;
+    text-align: left;
   }
   .charan-summary ul{
     font-size: 1.2rem;
