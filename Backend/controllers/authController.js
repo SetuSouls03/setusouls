@@ -46,8 +46,8 @@ exports.register = async (req, res) => {
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: email,
-      subject: "Verify your account - OTP",
-      text: `Your OTP is ${otp}. It is valid for 10 minutes.`,
+      subject: "Verify your account",
+      text: `${otp}. It is valid for 10 minutes.`,
     });
 
     res.status(200).json({ message: "OTP sent to email", email });
