@@ -158,7 +158,7 @@ In this final phase of Kaliyug, under the command of Lord Shri Hari Vishnu and w
         transition={{ duration: 0.7 }}
         key={sectionsGrouped[1].key}
       >
-        <h2 className="charan-subtitle">{sectionsGrouped[1].subheading[language]}</h2>
+        <h2 className="charan-subtitle" style={{marginBottom: '2rem'}}>{sectionsGrouped[1].subheading[language]}</h2>
         <p className='paragraph'>{sectionsGrouped[1].detailedParagraph[language]}</p>
       </motion.div>
 
@@ -172,7 +172,7 @@ In this final phase of Kaliyug, under the command of Lord Shri Hari Vishnu and w
       opacity: [0.8, 1, 0.8], 
       textShadow: [
         "0 0 3px rgba(137, 119, 255, 0.79)",
-        "0 0 6px rgba(93, 68, 252, 0.69)",
+        "0 0 15px rgba(93, 68, 252, 0.69)",
         "0 0 3px rgba(137, 119, 255, 0.79)"
       ] 
     }}
