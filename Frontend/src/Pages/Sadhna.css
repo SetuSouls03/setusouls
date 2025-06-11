@@ -97,6 +97,9 @@ max-width: 1200px;
 }
 
 @media (max-width: 768px) {
+  .Sadhna-container{
+    padding: 1rem;
+  }
   .Sadhna-container h5 {
     padding: 0rem 0rem;
     line-height: 1.5rem;
@@ -109,5 +112,8 @@ max-width: 1200px;
   }
   .Sadhna-container a{
     font-size: 1.2rem;
+  }
+  .Sadhna-container strong{
+    font-size: 1.5rem;
   }
 }

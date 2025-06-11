@@ -74,12 +74,12 @@ O Destroyer,
 O Brahma, Vishnu, Mahesh,
 O Supreme Divine Energy, the one who redeems the world – Jagadamba Mahakali Maa,
 O 64 Yogini Mahamaya Maharani Maa,
-O Eight-Armed Embodiment of Truth – Maa Durga,
+O Asta Bhuja Dharini Sachitanand Swarupinin Maa Durga,
 O Maryada Purushottam Shri Ram, O Mata Janaki,
 O Brother Lakshman, Shatrughan, Bharat – this soul, in the presence of all deities, accepts Shri Hanuman Ji as its Guru,
 O Anjaneyar, please accept this soul as your disciple.   || Jai Shri Ram ||   
 
-This prayer must be recited in the “peer aasan” posture as Shri Hanuman Ji sits at the feet of Shri Ram.   
+This prayer must be recited in the “PEER ASANA” posture as Shri Hanuman Ji sits at the feet of Shri Ram.   
 Remember to keep your mind and body peaceful during this process and offer whatever you wish with love – fruits, flowers, etc. This prayer is to be recited only once, when you accept Shri Hanuman Ji as your Guru.   || Jay Shri Ram ||`,
       },
     },
