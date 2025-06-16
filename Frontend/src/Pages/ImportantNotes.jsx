@@ -375,7 +375,6 @@ const notesPara2En=(<>These spiritual revelations guide your journey in Kaliyug 
             <a
               href="/setu-chapters"
               className="notes-button"
-              target="_blank"
               rel="noopener noreferrer"
             >
               Setu Chapters
@@ -383,7 +382,6 @@ const notesPara2En=(<>These spiritual revelations guide your journey in Kaliyug 
             <a
               href="https://drive.google.com/drive/folders/13ixlzGWq39FB1hRhSq472vl1G8btFHyq"
               className="notes-button"
-              target="_blank"
               rel="noopener noreferrer"
             >
               Setu Notes

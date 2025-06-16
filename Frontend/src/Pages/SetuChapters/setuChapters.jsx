@@ -85,7 +85,7 @@ const SetuChapters = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.05 }}
           >
-            <a href={chapter.link} className="chapter-title" target="_blank" rel="noopener noreferrer">
+            <a href={chapter.link} className="chapter-title" rel="noopener noreferrer">
               {chapter.title}
             </a>
           </motion.div>
