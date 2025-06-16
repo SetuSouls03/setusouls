@@ -29,7 +29,7 @@ const chaptersEnglish = [
   { title: "Chapter 24: Battle against Maya – Knowledge of Karma, Destiny, and Freewill", link: "https://drive.google.com/file/d/1kRc1MyDUSo2o3CoC5acRZ8uPSPzagHju/view?usp=drive_link" },
   { title: "Chapter 25: Story of Ahalya told by the immortal Lord Hanuman", link: "https://drive.google.com/file/d/1c3rb8BO9mbM50jaN3W0kVCzYoKAPE4LA/view?usp=drive_link" },
   { title: "Chapter 26: The immortal Lord Hanuman talks about the marriage of Lord Ram and Devi Sita", link: "https://drive.google.com/file/d/1_L37ToFBEzEQSKkuesoGfOUwUiAo6gZS/view?usp=drive_link" },
-  { title: "Chapter 27: Battle against Maya – Knowledge of Karma, Destiny, and Freewill", link: "https://drive.google.com/file/d/11bP7qvhbeg47tepVGKp0DZu_Gxoz5G3C/view?usp=drive_link" },
+  { title: "Chapter 27: Battle against Maya – Knowledge of Karma, Destiny, and Freewill", link: "https://drive.google.com/file/d/1_L37ToFBEzEQSKkuesoGfOUwUiAo6gZS/view?usp=drive_link" },
 ];
 const chaptersHindi = [
   { title: "अध्याय १: चिरंजीवी हनुमान जी का आगमन", link: "https://drive.google.com/file/d/11twWKMRyOW0TrMkHFu-lmLAxd8UfXjdf/view?usp=drive_link" },
