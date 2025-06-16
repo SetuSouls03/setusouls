@@ -373,20 +373,12 @@ const notesPara2En=(<>These spiritual revelations guide your journey in Kaliyug 
           </p>
           <div className="notes-links">
             <a
-              href="https://drive.google.com/drive/folders/11Tf6EWZrTBhYxcmbwlpXnuYfJhuDjcxk"
+              href="/setu-chapters"
               className="notes-button"
               target="_blank"
               rel="noopener noreferrer"
             >
-              View in English
-            </a>
-            <a
-              href="https://drive.google.com/drive/folders/11Z_xHyVIXhISdcqtnioFu46jQbgGJKOQ"
-              className="notes-button"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              हिंदी में देखें
+              Setu Chapters
             </a>
             <a
               href="https://drive.google.com/drive/folders/13ixlzGWq39FB1hRhSq472vl1G8btFHyq"
