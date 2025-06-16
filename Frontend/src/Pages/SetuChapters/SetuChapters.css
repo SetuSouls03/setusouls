@@ -1,0 +1,152 @@
+.novel-index-wrapper {
+  background: linear-gradient(to right, #e3f2fd, #f0f9ff);
+  padding: 4rem 1.5rem;
+  max-width: 800px;
+  margin: auto;
+  font-family: 'Playfair Display', serif;
+  color: #0d3b66;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.07);
+  border-radius: 20px;
+}
+
+.novel-index-title {
+  text-align: center;
+  font-size: 2.8rem;
+  color: #1500d2;
+  border-bottom: 2px solid #64b5f6;
+  padding-bottom: 1rem;
+  margin-bottom: 3rem;
+  letter-spacing: 2px;
+}
+
+.chapter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.chapter-item {
+  padding: 0.8rem 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.07);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.chapter-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #000000;
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.chapter-item:hover {
+  background: #e3f2fd;
+  transform: translateX(5px);
+  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.15);
+}
+
+.chapter-item:hover .chapter-title::after {
+  width: 100%;
+  opacity: 1;
+}
+
+.chapter-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 2px;
+  width: 0;
+  background-color: #2196f3;
+  transition: width 0.4s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+/* Splash Screen Styles */
+.intro-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to right, #2196f3, #64b5f6);
+  color: white;
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  animation: fadeOut 0.5s ease-in-out forwards;
+}
+
+.intro-title-en {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.intro-title-hi {
+  font-size: 2rem;
+  font-weight: 400;
+  font-family: 'Noto Sans Devanagari', serif;
+  text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Add this to hide scrollbar during intro */
+body::-webkit-scrollbar {
+  display: none;
+}
+.language-toggle{
+  text-align: center;
+  margin: 3rem;
+}
+.language-toggle button{
+  background-color: #0702bc;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(106, 76, 175, 0.3);
+}
+
+.language-toggle button:hover {
+  background-color: #5351c4;
+  box-shadow: 0 6px 16px rgba(87, 81, 196, 0.5);
+}
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .intro-title-en {
+    font-size: 2.2rem;
+  }
+
+  .intro-title-hi {
+    font-size: 1.4rem;
+  }
+}
+
+/* --- Responsive --- */
+@media screen and (max-width: 768px) {
+  .novel-index-title {
+    font-size: 2rem;
+  }
+
+  .chapter-title {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .novel-index-title {
+    font-size: 1.5rem;
+  }
+
+  .chapter-title {
+    font-size: 0.95rem;
+  }
+}
