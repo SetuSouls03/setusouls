@@ -8,19 +8,19 @@ const otpStore = {};
 
 // Reusable transporter
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true, // true for 465, false for 587
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-  tls: {
-    rejectUnauthorized: false,
-  },
 });
+
 
 // Register (step 1)
 exports.register = async (req, res) => {
-  const { name, email, password, contactNumber } = req.body;
+  const { name, email, password, contactNumber, countryCode, address } = req.body;
 
   try {
     const existingUser = await User.findOne({ email });
@@ -33,13 +33,15 @@ exports.register = async (req, res) => {
 
     otpStore[email] = {
       otp,
-      type: "register",  // <== Add this type
-      expiresAt: Date.now() + 10 * 60 * 1000, // 10 mins
+      type: "register",
+      expiresAt: Date.now() + 10 * 60 * 1000, // 10 minutes
       userData: {
         name,
         email,
         password: hashedPassword,
         contactNumber,
+        countryCode,
+        address,
       },
     };
 
@@ -82,7 +84,6 @@ exports.verifyOtp = async (req, res) => {
       delete otpStore[email];
       return res.status(201).json({ message: "User verified and registered successfully" });
     } else if (record.type === "forgotPassword") {
-      // just verify OTP, allow frontend to call /reset-password next
       delete otpStore[email];
       return res.status(200).json({ message: "OTP verified. Proceed to reset password." });
     } else {
@@ -120,7 +121,6 @@ exports.forgotPassword = async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      // Security: don't reveal if email exists or not
       return res.status(200).json({ message: "If the email exists, OTP has been sent" });
     }
 
@@ -128,7 +128,7 @@ exports.forgotPassword = async (req, res) => {
 
     otpStore[email] = {
       otp,
-      type: "forgotPassword",  // <== This is the key fix
+      type: "forgotPassword",
       expiresAt: Date.now() + 10 * 60 * 1000,
     };
 

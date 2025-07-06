@@ -25,6 +25,14 @@ router.post(
     body("contactNumber")
       .matches(/^\d{10}$/)
       .withMessage("Contact number must be 10 digits"),
+    body("countryCode")
+      .matches(/^\+\d{1,4}$/)
+      .withMessage("Valid country code is required (e.g., +91, +1)"),
+    body("address")
+      .notEmpty()
+      .withMessage("Address is required")
+      .isLength({ min: 5 })
+      .withMessage("Address should be at least 5 characters long"),
   ],
   validate,
   authController.register

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import "react-phone-input-2/lib/style.css";
+import PhoneInput from "react-phone-input-2";
 import "./AuthForm.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
+import AddressInput from "../components/AddressInput";
 
 function Signup() {
   const [form, setForm] = useState({
@@ -10,17 +13,26 @@ function Signup() {
     email: "",
     password: "",
     confirmPassword: "",
-    contactNumber: "",
+    contactNumber: "",       // Just the 10-digit part
+    countryCode: "",         // e.g., +91
+    address: "",
   });
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [phoneFocus, setPhoneFocus] = useState(false);
 
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handlePhoneChange = (value, country) => {
+    const countryCode = "+" + country.dialCode;
+    const contactNumber = value.replace(country.dialCode, "").replace(/^\+/, "");
+    setForm({ ...form, countryCode, contactNumber });
   };
 
   const handleSubmit = async (e) => {
@@ -31,33 +43,24 @@ function Signup() {
       return;
     }
 
-    setLoading(true); // Start spinner
+    setLoading(true);
 
     try {
-      const res = await fetch("https://setusouls-1.onrender.com/api/auth/register", {
+      const res = await fetch("http://localhost:5000/api/auth/register", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify({
           name: form.name,
           email: form.email,
           password: form.password,
           contactNumber: form.contactNumber,
+          countryCode: form.countryCode,
+          address: form.address,
         }),
-        credentials: "include",
       });
 
-      let data;
-      try {
-        data = await res.json();
-      } catch (error) {
-        const raw = await res.text();
-        console.error("Non-JSON response from register API:", raw);
-        toast.error("Server error: Invalid response from registration.");
-        setLoading(false); // Stop spinner
-        return;
-      }
+      const data = await res.json();
 
       if (res.ok) {
         toast.success("Please verify OTP.");
@@ -67,11 +70,11 @@ function Signup() {
       } else {
         toast.error(data.message || "Registration failed");
       }
-    } catch (error) {
-      console.error("Error during registration:", error);
+    } catch (err) {
+      console.error("Registration error:", err);
       toast.error("Server error. Please try again.");
     } finally {
-      setLoading(false); // Stop spinner
+      setLoading(false);
     }
   };
 
@@ -87,6 +90,7 @@ function Signup() {
           required
           onChange={handleChange}
         />
+
         <input
           type="email"
           name="email"
@@ -94,13 +98,34 @@ function Signup() {
           required
           onChange={handleChange}
         />
-        <input
-          type="text"
-          name="contactNumber"
-          placeholder="Contact Number"
-          required
-          onChange={handleChange}
-        />
+
+        {/* Phone input with country code */}
+        <PhoneInput
+  country={"in"}
+  value={`${form.countryCode}${form.contactNumber}`}
+  onChange={handlePhoneChange}
+  onFocus={() => setPhoneFocus(true)}
+  onBlur={() => setPhoneFocus(false)}
+  inputProps={{
+    required: true,
+    name: "contactNumber",
+  }}
+  containerClass={`react-tel-input ${phoneFocus ? "focused" : ""}`}
+  inputStyle={{ width: "100%" }}
+  placeholder="Enter your valid contact number"
+/>
+
+
+<AddressInput
+  onSelect={(val) => {
+    console.log("Selected Address:", val.label);
+    console.log("Latitude:", val.latitude);
+    console.log("Longitude:", val.longitude);
+
+    setForm({ ...form, address: val.label });
+  }}
+/>
+
 
         <div className="input-wrapper">
           <input
@@ -135,11 +160,7 @@ function Signup() {
         </div>
 
         <button type="submit" disabled={loading}>
-          {loading ? (
-            <div className="spinner"></div> // Show spinner while loading
-          ) : (
-            "Register"
-          )}
+          {loading ? <div className="spinner"></div> : "Register"}
         </button>
 
         <p>
@@ -150,6 +171,5 @@ function Signup() {
     </div>
   );
 }
+
 export default Signup;
-
-

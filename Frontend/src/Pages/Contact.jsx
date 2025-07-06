@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaAmazon } from 'react-icons/fa';
 import './Contact.css';
-
+import SeerBooks from "../assets/Seer Books.png"
 const Contact = () => {
   return (
     <div className="contact-wrapper">
@@ -51,13 +51,20 @@ const Contact = () => {
 
             <div className="social-links">
               <a
-                href="https://www.amazon.in/dp/B0BRHGNKXY"
-                className="social-button amazon-button"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaAmazon size={20} style={{ marginRight: '0.5rem' }} /> Amazon
-              </a>
+  href="https://www.seerbooks.com"
+  className="social-button amazon-button"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <img
+    src={SeerBooks}
+    alt="SeerBooks"
+    style={{ height: '20px', marginRight: '0px', verticalAlign: 'middle', marginLeft:'0px', width: '33px', boxShadow:'none' }}
+  />
+  SeerBooks
+</a>
+
+
 
               <a
                 href="https://www.youtube.com/@THEMYSTERYOFIMMORTALTALKS"
@@ -73,7 +80,7 @@ const Contact = () => {
               </a>
 
               <a
-                href="https://www.instagram.com/hanudass/"
+                href="https://www.instagram.com/setusouls/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-button instagram"
