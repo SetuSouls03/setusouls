@@ -13,7 +13,7 @@ function ForgotPassword() {
 
     try {
       const res = await fetch(
-        "http://localhost:5000/api/auth/forgotpassword",
+        "https://setusouls-1.onrender.com/api/auth/forgotpassword",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

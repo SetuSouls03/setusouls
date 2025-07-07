@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
+    maxlength: 2000, // ⬅️ Increase limit here
   },
 });
 

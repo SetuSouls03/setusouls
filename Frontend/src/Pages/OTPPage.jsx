@@ -44,7 +44,7 @@ function OtpPage() {
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/verifyotp', {
+      const res = await fetch('https://setusouls-1.onrender.com/api/auth/verifyotp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, otp: enteredOtp }),
