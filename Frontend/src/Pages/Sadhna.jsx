@@ -113,12 +113,6 @@ const Sadhna = () => {
     </>
   )}
 </h5>
-
-      <h5>
-        {isHindi
-          ? "जब आपकी साधना के लिए आवेदन सेतू मास्टर्स द्वारा स्वीकार कर लिया जाएगा, तो सेतू हनुमान बोधि के किसी साधक आपसे संपर्क करेंगे ताकि बाकी औपचारिकताएँ पूरी की जा सकें।"
-          : "Once your application of Sadhana is accepted by Setuu Masters, one of the Sadhakas from Setuu Hanuman Bodhi shall get in touch with you to complete other formalities."}
-      </h5>
       <h5><strong>
         {isHindi
           ? "|| राम ||"
