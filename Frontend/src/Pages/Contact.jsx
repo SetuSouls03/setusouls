@@ -80,7 +80,7 @@ const Contact = () => {
               </a>
 
               <a
-                href="https://www.instagram.com/setusouls/"
+                href="https://www.instagram.com/setusouls/?hl=en"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-button instagram"
