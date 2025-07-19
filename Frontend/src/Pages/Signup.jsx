@@ -36,47 +36,54 @@ function Signup() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (form.password !== form.confirmPassword) {
-      toast.warn("Passwords do not match");
-      return;
+  if (form.password !== form.confirmPassword) {
+    toast.warn("Passwords do not match");
+    return;
+  }
+
+  // ✅ Validate contact number length (must be exactly 10 digits)
+  if (!/^\d{10}$/.test(form.contactNumber)) {
+    toast.warn("Please enter a valid 10-digit mobile number");
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const res = await fetch("https://setusouls-1.onrender.com/api/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({
+        name: form.name,
+        email: form.email,
+        password: form.password,
+        contactNumber: form.contactNumber,
+        countryCode: form.countryCode,
+        address: form.address,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      toast.success("Please verify OTP.");
+      localStorage.setItem("resetEmail", form.email);
+      localStorage.setItem("otpPurpose", "signup");
+      navigate("/otppage");
+    } else {
+      toast.error(data.message || "Registration failed");
     }
+  } catch (err) {
+    console.error("Registration error:", err);
+    toast.error("Server error. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
 
-    setLoading(true);
-
-    try {
-      const res = await fetch("https://setusouls-1.onrender.com/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          password: form.password,
-          contactNumber: form.contactNumber,
-          countryCode: form.countryCode,
-          address: form.address,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        toast.success("Please verify OTP.");
-        localStorage.setItem("resetEmail", form.email);
-        localStorage.setItem("otpPurpose", "signup");
-        navigate("/otppage");
-      } else {
-        toast.error(data.message || "Registration failed");
-      }
-    } catch (err) {
-      console.error("Registration error:", err);
-      toast.error("Server error. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <div className="auth-container">
@@ -117,14 +124,11 @@ function Signup() {
 
 
 <AddressInput
-  onSelect={(val) => {
-    console.log("Selected Address:", val.label);
-    console.log("Latitude:", val.latitude);
-    console.log("Longitude:", val.longitude);
-
-    setForm({ ...form, address: val.label });
-  }}
+  value={form.address}
+  onChange={(val) => setForm({ ...form, address: val })}
+  onSelect={(val) => setForm({ ...form, address: val.label })}
 />
+
 
 
         <div className="input-wrapper">

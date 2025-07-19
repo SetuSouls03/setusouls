@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaAmazon } from 'react-icons/fa';
+import { FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import './Contact.css';
 import SeerBooks from "../assets/Seer Books.png"
 const Contact = () => {
@@ -105,17 +105,26 @@ const Contact = () => {
                 Facebook
               </a>
 
+                            {/* LinkedIn */}
               <a
-                href="https://theimmortaltalks.quora.com/?ch=10&oid=2188707&share=396067ef&srid=iGMyh&target_type=tribe"
+                href="https://www.linkedin.com/in/yourprofile"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="social-button quora"
-                aria-label="Quora"
+                className="social-button linkedin"
               >
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12.738 18.701c-.831-1.635-1.805-3.102-3.708-3.102-1.677 0-2.895 1.342-2.895 2.841 0 1.501 1.181 2.56 3.001 2.56 1.492 0 2.651-.776 3.602-2.299m5.222-1.053c0-4.107-2.148-6.441-6.257-6.441-1.885 0-3.636.716-4.95 1.971l1.203 1.602c.96-.936 2.139-1.538 3.684-1.538 2.463 0 3.72 1.357 3.72 3.565 0 2.727-1.659 3.721-3.72 3.721-.906 0-1.736-.27-2.379-.771l-.151-.12-1.203 1.602.113.09c1.473 1.172 3.113 1.682 5.204 1.682 3.957 0 6.6-2.043 6.6-6.362M12 .001C5.373 0 0 5.374 0 12.001c0 6.628 5.373 12 12 12s12-5.372 12-12C24 5.374 18.627 0 12 0" />
-                </svg>
-                Quora
+                <FaLinkedin />
+                LinkedIn
+              </a>
+
+              {/* WhatsApp Channel */}
+              <a
+                href="https://whatsapp.com/channel/yourchannelid"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-button whatsapp"
+              >
+                <FaWhatsapp />
+                WhatsApp Channel
               </a>
             </div>
           </div>

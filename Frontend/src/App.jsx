@@ -27,7 +27,7 @@ import QnaSection from './Pages/QnaSection';
 import ScrollToTop from './components/ScrollToTop';
 import Quotes from './Pages/Quotes';
 import SetuChapters from './Pages/SetuChapters/setuChapters';
-
+import ChapterDetail from './components/ChapterDetail';
 function App() {
   return (
     <Router>
@@ -53,7 +53,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/quotes' element={<Quotes />} />
         <Route path='/setu-chapters' element={<SetuChapters />} />
-
+        <Route path='/chapters/:slug' element={<ChapterDetail />} />
       </Routes>
 
       {/* Toast Container should be outside Routes */}

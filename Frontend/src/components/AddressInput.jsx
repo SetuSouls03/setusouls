@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useCallback } from "react";
 import debounce from "lodash.debounce";
 
-const AddressInput = ({ onSelect }) => {
-  const [query, setQuery] = useState("");
+const AddressInput = ({ value = "", onSelect, onChange }) => {
+  const [query, setQuery] = useState(value);
   const [suggestions, setSuggestions] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
 
-  // Photon API fetch
+  useEffect(() => {
+    setQuery(value); // update local input if form state changes externally
+  }, [value]);
+
   const fetchSuggestions = async (searchText) => {
     if (!searchText) {
       setSuggestions([]);
@@ -53,12 +56,16 @@ const AddressInput = ({ onSelect }) => {
 
   useEffect(() => {
     debouncedFetch(query);
-  }, [query, debouncedFetch]);
+    if (onChange) {
+      onChange(query); // let parent track manual input too
+    }
+  }, [query]);
 
   const handleSelect = (item) => {
     setQuery(item.label);
     setShowDropdown(false);
-    if (onSelect) onSelect(item); // optional callback
+    if (onSelect) onSelect(item);
+    if (onChange) onChange(item.label); // update parent value too
   };
 
   return (
@@ -71,14 +78,14 @@ const AddressInput = ({ onSelect }) => {
           }
 
           .photon-container input {
-width: 100%;
-  padding: 16px;
-  font-size: 16px;
-  border-radius: 15px;
-  border: none;
-  outline: none;
-  height: 3.5rem;
-  transition: border-color 0.3s ease;
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+            border-radius: 15px;
+            border: none;
+            outline: none;
+            height: 3.5rem;
+            transition: border-color 0.3s ease;
           }
 
           .photon-container input:focus {

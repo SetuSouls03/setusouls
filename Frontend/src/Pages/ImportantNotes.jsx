@@ -396,20 +396,12 @@ const notesPara2En=(<>These spiritual revelations guide your journey in Kaliyug 
           </p>
           <div className="notes-links">
             <a
-              href="https://www.amazon.in/dp/B0BRHGNKXY?ref_=cm_sw_r_apann_ts_DFC36QZJ0NN7Z1W1SEAF"
+              href="https://www.seerbooks.com"
               className="notes-button"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Kalihanuvani (Link)
-            </a>
-            <a
-              href="https://www.amazon.in/Immortal-Talks-1-2-Shunya-ebook/dp/B0F1YV32Y7/ref=pd_sbs_d_sccl_1_2/259-2454093-9592069?pd_rd_w=UN5Ts&content-id=amzn1.sym.1c49e0bd-a596-4300-898f-6bfe8f62ed47&pf_rd_p=1c49e0bd-a596-4300-898f-6bfe8f62ed47&pf_rd_r=FN00YDDBYNV5CYT9NS64&pd_rd_wg=VNyvl&pd_rd_r=12019a07-dfa0-4055-ad14-632474d71bc6&pd_rd_i=B0F1YV32Y7&psc=1"
-              className="notes-button"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Immortal Talks (Link)
+              Kalihanuvani & Immortal Talks
             </a>
           </div>
         </div>

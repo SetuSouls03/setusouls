@@ -3,6 +3,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./db");
 const authRoutes = require("./routes/auth");
+const chapterRoutes = require("./routes/chapterRoutes");
 
 dotenv.config();
 connectDB();
@@ -47,7 +48,8 @@ app.get("/", (req, res) => {
 
 // ✅ Auth routes
 app.use("/api/auth", authRoutes);
-
+// Use Chapter Routes only
+app.use("/api/chapters", chapterRoutes);
 // ✅ Global error handler
 app.use((err, req, res, next) => {
   console.error("🔥 Global Error Handler:", err.message);

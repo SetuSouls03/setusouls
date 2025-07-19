@@ -228,3 +228,13 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+.social-button.linkedin {
+  background-color: #0a66c2;
+  color: white;
+}
+
+.social-button.whatsapp {
+  background-color: #25D366;
+  color: white;
+}
