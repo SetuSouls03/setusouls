@@ -80,7 +80,7 @@ clear when we decipher more chapters of Lord Hanuman's Leelas.`
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/chapters/${slug}`)
+      .get(`https://setusouls-1.onrender.com//api/chapters/${slug}`)
       .then((res) => {
         console.log("✅ Chapter loaded:", res.data);
         setChapter(res.data);
