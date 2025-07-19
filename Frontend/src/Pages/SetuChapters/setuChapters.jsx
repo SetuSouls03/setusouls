@@ -15,7 +15,7 @@ const SetuChapters = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/chapters")
+      .get("https://setusouls-1.onrender.com/api/chapters")
       .then((res) => {
         console.log("✅ Raw API response:", res.data);
         const data = res.data;
