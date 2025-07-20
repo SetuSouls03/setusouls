@@ -53,6 +53,7 @@ const SetuChapters = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
+              style={{color:'black', fontWeight:'bold'}}
             >
               <Link
                 to={`/chapters/${chapter.slug}`}
