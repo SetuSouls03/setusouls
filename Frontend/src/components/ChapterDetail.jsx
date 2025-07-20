@@ -33,7 +33,7 @@ const ChapterDetail = () => {
 
 \nतब तक श्री हनुमान जी के निर्देशानुसार साक्षात्‌ हनुमान पूजा अनवरत जारी है | अगर आप अपना कोई प्रश्न , संदेह अथवा प्रार्थना साक्षात्‌ हनुमान पूजा में सम्मिलित करवाना चाहते हैं तो सेतु के माध्यम से कर सकते हैं | 
 
-\nदिव्य आत्मा,आप साक्षात्‌ हनुमान पूजा में अर्पण भेजकर यजमान के रूप में भी हिस्सा ले सकते हैं | अर्पण हनुमान जी की लीलाओं का अध्याय पढने के 08 घंटे के अन्दर होता हैं |`
+\nदिव्य आत्मा,आप साक्षात्‌ हनुमान पूजा में अर्पण भेजकर यजमान के रूप में भी हिस्सा ले सकते हैं | अर्पण हनुमान जी की लीलाओं का अध्याय पढने के 108 घंटे के अन्दर होता हैं |`
     },
     en: {
       title1: "The layers of illusion on the soul",
@@ -69,7 +69,9 @@ Him every 41 years in the jungles.
 Now Lord Hanuman has again showed His visible form by revealing His Leelas. He shows His visible form to entire
 world only when Lord Vishnu is present on Earth as an avatar. The question is, Has Lord Vishnu's last avatar Kalki
 taken birth somewhere already? Or about to take birth? We do not know. There are hints and perhaps it will get
-clear when we decipher more chapters of Lord Hanuman's Leelas.`
+clear when we decipher more chapters of Lord Hanuman's Leelas. Divine Soul, You can also take part in Sakshat Hanuman Pooja as a host (Yajman) by sending Arpan of fruits. Arpan
+should be made within 108 hours of reading a chapter of Lord Hanuman's Leelas.
+`
     }
   };
 
