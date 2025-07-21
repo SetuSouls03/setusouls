@@ -107,7 +107,7 @@ const Contact = () => {
 
                             {/* LinkedIn */}
               <a
-                href="https://www.linkedin.com/in/yourprofile"
+                href="https://www.linkedin.com/in/setu-souls-b93579371/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-button linkedin"
@@ -118,7 +118,7 @@ const Contact = () => {
 
               {/* WhatsApp Channel */}
               <a
-                href="https://whatsapp.com/channel/yourchannelid"
+                href="https://whatsapp.com/channel/0029Vb6TwNR7j6g0CqUxxI08"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-button whatsapp"

@@ -53,16 +53,17 @@ const SetuChapters = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
-              style={{color:'black', fontWeight:'bold'}}
             >
-              <Link
-                to={`/chapters/${chapter.slug}`}
-                state={{ language }} // ✅ Pass current language
-              >
-                {language === "english"
-                  ? chapter.title?.en || "Untitled"
-                  : chapter.title?.hi || "शीर्षक नहीं"}
-              </Link>
+<Link
+  to={`/chapters/${chapter.slug}`}
+  state={{ language }}
+  className="chapter-titles"
+>
+  {language === "english"
+    ? chapter.title?.en || "Untitled"
+    : chapter.title?.hi || "शीर्षक नहीं"}
+</Link>
+
             </motion.div>
           ))}
         </div>

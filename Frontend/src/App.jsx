@@ -1,4 +1,5 @@
 import './App.css'
+import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -38,22 +39,22 @@ function App() {
         <Route path='/charanpooja' element={<CharanPooja />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/history' element={<History />} />
-        <Route path='/important-notes' element={<ImportantNotes />} />  
-        <Route path='/other' element={<Other />} />  
+        <Route path='/important-notes' element={<ProtectedRoute><ImportantNotes /></ProtectedRoute>} />
+        <Route path='/other' element={<ProtectedRoute><Other /></ProtectedRoute>} />  
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />   
-        <Route path='/prayer' element={<Prayer />} /> 
+        <Route path='/prayer' element={<ProtectedRoute><Prayer /></ProtectedRoute>} /> 
         <Route path='/privacy-policy' element={<PrivacyPolicy />} />   
         <Route path='/terms-and-conditions' element={<TermsCondition />} /> 
         <Route path='/forgotpassword' element={<ForgotPassword />} />   
         <Route path='/otppage' element={<OTPPage />} /> 
         <Route path='/createpassword' element={<CreatePassword />} />
-        <Route path='/qna-section' element={<QnaSection />} />
-        <Route path='/sadhna' element={<Sadhna />} />
+        <Route path='/qna-section' element={<ProtectedRoute><QnaSection /></ProtectedRoute>} />
+        <Route path='/sadhna' element={<ProtectedRoute><Sadhna /></ProtectedRoute>} />
         <Route path='/about' element={<About />} />
-        <Route path='/quotes' element={<Quotes />} />
-        <Route path='/setu-chapters' element={<SetuChapters />} />
-        <Route path='/chapters/:slug' element={<ChapterDetail />} />
+        <Route path='/quotes' element={<ProtectedRoute><Quotes /></ProtectedRoute>} />
+        <Route path='/setu-chapters' element={<ProtectedRoute><SetuChapters /></ProtectedRoute>} />
+        <Route path='/chapters/:slug' element={<ProtectedRoute><ChapterDetail /></ProtectedRoute>} />
       </Routes>
 
       {/* Toast Container should be outside Routes */}

@@ -35,16 +35,7 @@
   position: relative;
   text-decoration: none;
   color: black;
-}
-
-.chapter-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #000000;
-  position: relative;
-  display: inline-block;
-  transition: all 0.3s ease;
-  text-decoration: none;
+  font-weight:bold;
 }
 
 .chapter-item:hover {
@@ -53,22 +44,6 @@
   box-shadow: 0 6px 20px rgba(33, 150, 243, 0.15);
 }
 
-.chapter-item:hover .chapter-title::after {
-  width: 100%;
-  opacity: 1;
-}
-
-.chapter-title::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  height: 2px;
-  width: 0;
-  background-color: #2196f3;
-  transition: width 0.4s ease, opacity 0.3s ease;
-  opacity: 0;
-}
 /* Splash Screen Styles */
 .intro-screen {
   display: flex;
@@ -137,10 +112,6 @@ body::-webkit-scrollbar {
   .novel-index-title {
     font-size: 2rem;
   }
-
-  .chapter-title {
-    font-size: 1rem;
-  }
 }
 
 @media screen and (max-width: 480px) {
@@ -148,7 +119,36 @@ body::-webkit-scrollbar {
     font-size: 1.5rem;
   }
 
-  .chapter-title {
-    font-size: 0.95rem;
-  }
+
+}
+.chapter-titles {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000000;
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.chapter-titles::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 2px;
+  width: 0;
+  background-color: #0702bc;
+  transition: width 0.3s ease-in-out;
+  border-radius: 1px;
+}
+
+/* Add this for text color change */
+.chapter-item:hover .chapter-titles {
+  color: #0702bc;
+}
+
+.chapter-item:hover .chapter-titles::after {
+  width: 100%;
+  background-color: #0702bc;
 }

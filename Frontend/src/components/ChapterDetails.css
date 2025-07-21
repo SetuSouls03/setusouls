@@ -31,6 +31,7 @@
   color: #000000;
   line-height: 2.4rem;
   white-space: pre-line;
+  margin-top:4rem;
 }
 
 .chapter-links {
@@ -92,12 +93,13 @@
   }
 
   .chapter-title {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
   }
 
   .chapter-content {
     font-size: 1.2rem;
     line-height: 2rem;
+    margin-top:2rem;
   }
 
   .chapter-toggle-btn {
@@ -121,9 +123,9 @@
 }
 
 .charan-summary h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: #b9770e;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   font-weight: bold;
 }
 
@@ -133,11 +135,25 @@
   line-height: 1.6;
   font-size: 1.4rem;
 }
-
+.charan-summary p{
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 2rem; 
+}
 @media (max-width: 768px) {
   .charan-summary ul {
     font-size: 1.2rem;
     line-height: 1.8rem;
+  }
+  .charan-summary h2{
+    font-size:1.6rem;
+    margin-bottom:1rem;
+  }
+  .charan-summary ul{
+    font-size: 1.2rem;
+  }
+  .charan-summary p{
+    font-size: 1.2rem;
   }
 }
 
@@ -200,7 +216,7 @@
 
   .chapter-additional-section li {
     font-size: 1.2rem;
-        color: #0702bc;
+        color: #000000;
 
   }
 }
@@ -211,15 +227,63 @@
   }
 
   .chapter-additional-section h3 {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
         color: #0702bc;
 
   }
 
   .chapter-additional-section li {
     font-size: 1.1rem;
-        color: #0702bc;
+        color: #000000;
 
   }
 }
 
+.chapter-last-line {
+margin-top: 5rem;
+  font-size: 2.5rem;
+  color: #0702bc;
+  margin-bottom: 3rem;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .chapter-last-line {
+    font-size: 1.4rem;
+  }
+}
+.chapter-links {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.chapter-download-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #0702bc;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.chapter-download-btn:hover {
+  background-color: #020a94;
+  transform: translateY(-2px);
+}
+
+.chapter-download-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+@media (max-width: 768px) {
+  .chapter-download-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+  }
+}

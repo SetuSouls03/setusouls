@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
 // Create context
-export const AuthContext = createContext();  // <-- add export here
+export const AuthContext = createContext();
 
 // Custom hook for easier usage
 export const useAuth = () => useContext(AuthContext);
@@ -10,12 +10,14 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);  // <-- New
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       setIsAuthenticated(true);
     }
+    setLoading(false); // <-- Important
   }, []);
 
   const login = (token) => {
@@ -30,7 +32,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, setUser, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, setUser, login, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
