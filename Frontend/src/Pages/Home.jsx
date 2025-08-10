@@ -18,6 +18,7 @@ const Home = () => {
           initial={{ y: -50 }}
           animate={{ y: 0 }}
           transition={{ duration: 1 }}
+          style={{textAlign:'center'}}
         >
           ॐ चिरंजीवी हनुमते नमः
         </motion.h1>

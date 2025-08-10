@@ -48,7 +48,7 @@ const About = () => {
   return (
     <div className="about-container">
       <div className="about-content">
-        <h1 className="about-heading">About Page</h1>
+        <h1 className="about-heading" style={{textAlign:'center'}}>About Page</h1>
         {language === 'hi' ? contentHi : contentEn}
         <div className="video-container">
           <iframe

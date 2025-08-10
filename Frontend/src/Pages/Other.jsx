@@ -122,7 +122,7 @@ const Other = () => {
       </ScrollFadeIn>
 
       <ScrollFadeIn>
-        <div className="section3">
+        <div className="sectiona3">
           <h1>
             {isHindi
               ? "इस बार भगवान हनुमान ने क्या किया?"

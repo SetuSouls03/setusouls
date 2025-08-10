@@ -11,7 +11,7 @@ const Quotes = () => {
 
   return (
     <div className="gallery-container">
-      <h1>Spoken By Lord Hanuman In Sakshat Hanuman Pooja</h1>
+      <h1 style={{textAlign:'center'}}>Spoken By Lord Hanuman In Sakshat Hanuman Pooja</h1>
       {selectedImage && (
         <div className="preview-section">
           <span className="close-btn" onClick={() => setSelectedImage(null)}>&times;</span>

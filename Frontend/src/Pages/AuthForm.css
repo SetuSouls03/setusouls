@@ -192,8 +192,9 @@
 .auth-form .react-tel-input .flag-dropdown {
   border: none;
   border-radius: 98px 0px 0px 100px;
-  background-color: rgba(255, 255, 255, 0.7);
-  border-right: 1px solid #e1e1e1;
+  background-color: rgba(255, 255, 255, 0);
+  display: inline-table;
+  margin-top:1.8rem;
 }
 
 /* Prevent spacing issues with inputs */
@@ -208,4 +209,42 @@
   box-shadow: 0 0 10px rgba(248, 181, 0, 0.6);
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.7);
+}
+.signup-container {
+  max-width: 400px;
+  margin: auto;
+  font-family: sans-serif;
+}
+
+.phone-input-wrapper {
+  position: relative;
+}
+
+.phone-input {
+  width: 100%;
+  padding: 10px 35px 10px 10px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+.phone-input.valid {
+  border-color: green;
+}
+
+.phone-input.invalid {
+  border-color: red;
+}
+
+.valid-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
 }

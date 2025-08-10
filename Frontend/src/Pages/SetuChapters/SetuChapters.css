@@ -96,31 +96,7 @@ body::-webkit-scrollbar {
   background-color: #5351c4;
   box-shadow: 0 6px 16px rgba(87, 81, 196, 0.5);
 }
-/* Responsive */
-@media screen and (max-width: 768px) {
-  .intro-title-en {
-    font-size: 2.2rem;
-  }
 
-  .intro-title-hi {
-    font-size: 1.4rem;
-  }
-}
-
-/* --- Responsive --- */
-@media screen and (max-width: 768px) {
-  .novel-index-title {
-    font-size: 2rem;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .novel-index-title {
-    font-size: 1.5rem;
-  }
-
-
-}
 .chapter-titles {
   font-size: 1.5rem;
   font-weight: 600;
@@ -151,4 +127,29 @@ body::-webkit-scrollbar {
 .chapter-item:hover .chapter-titles::after {
   width: 100%;
   background-color: #0702bc;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .novel-index-title {
+    font-size: 2rem;
+  }
+  .intro-title-en {
+    font-size: 2.2rem;
+  }
+
+  .intro-title-hi {
+    font-size: 1.4rem;
+  }
+    .chapter-titles{
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .novel-index-title {
+    font-size: 1.5rem;
+  }
+
+
 }
