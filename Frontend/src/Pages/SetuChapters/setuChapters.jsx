@@ -1,45 +1,84 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
 import "./SetuChapters.css";
 
+const LIMIT = 20;
+
 const SetuChapters = () => {
-  const [language, setLanguage] = useState("english"); // 'english' or 'hindi'
+  const [language, setLanguage] = useState("english");
   const [chapters, setChapters] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const loaderRef = useRef(null);
 
   const toggleLanguage = () => {
-    setLanguage((prev) => (prev === "english" ? "hindi" : "english"));
+    setLanguage(prev => (prev === "english" ? "hindi" : "english"));
+    setPage(1);
+    setChapters([]);
+    setHasMore(true);
   };
 
-  useEffect(() => {
-    axios
-      .get("https://setusouls-1.onrender.com/api/chapters")
-      .then((res) => {
-        console.log("✅ Raw API response:", res.data);
-        const data = res.data;
-        if (Array.isArray(data)) {
-          setChapters(data);
-        } else if (Array.isArray(data.chapters)) {
-          setChapters(data.chapters);
-        } else {
-          console.warn("⚠️ Unexpected data format:", data);
-          setChapters([]);
-        }
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("❌ Error fetching chapters:", err);
-        setChapters([]);
-        setLoading(false);
+  const fetchChapters = useCallback(async () => {
+    setLoading(true);
+    const langParam = language === "english" ? "en" : "hi";
+
+    try {
+      const res = await axios.get(
+        `https://setusouls-1.onrender.com/api/chapters?lang=${langParam}&page=${page}&limit=${LIMIT}`
+      );
+
+      const newChapters = Array.isArray(res.data)
+        ? res.data
+        : Array.isArray(res.data.chapters)
+        ? res.data.chapters
+        : [];
+
+      // ✅ Prevent duplicates
+      setChapters(prev => {
+        const filtered = newChapters.filter(
+          ch => !prev.some(p => p._id === ch._id)
+        );
+        return [...prev, ...filtered];
       });
-  }, []);
+
+      setHasMore(newChapters.length === LIMIT);
+    } catch (err) {
+      console.error("❌ Error fetching chapters:", err);
+    } finally {
+      setLoading(false);
+    }
+  }, [language, page]);
+
+  useEffect(() => {
+    fetchChapters();
+  }, [fetchChapters]);
+
+  // Infinite scroll observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting && hasMore && !loading) {
+          setPage(prev => prev + 1);
+        }
+      },
+      { threshold: 1.0 }
+    );
+
+    if (loaderRef.current) {
+      observer.observe(loaderRef.current);
+    }
+
+    return () => {
+      if (loaderRef.current) {
+        observer.unobserve(loaderRef.current);
+      }
+    };
+  }, [hasMore, loading]);
 
   const heading = language === "english" ? "Setu Chapters" : "सेतु के अध्याय";
-
-  if (loading) return <p>Loading chapters...</p>;
-  if (!Array.isArray(chapters)) return <p>Invalid chapters data</p>;
 
   return (
     <>
@@ -52,20 +91,27 @@ const SetuChapters = () => {
               key={chapter._id || index}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05 }}
+              transition={{ delay: index * 0.02 }}
             >
-<Link
-  to={`/chapters/${chapter.slug}`}
-  state={{ language }}
-  className="chapter-titles"
->
-  {language === "english"
-    ? chapter.title?.en || "Untitled"
-    : chapter.title?.hi || "शीर्षक नहीं"}
-</Link>
-
+              <Link
+                to={`/chapters/${chapter.slug}`}
+                state={{ language }}
+                className="chapter-titles"
+              >
+                {chapter.title?.[language === "english" ? "en" : "hi"] ||
+                  (language === "english" ? "Untitled" : "शीर्षक नहीं")}
+              </Link>
             </motion.div>
           ))}
+        </div>
+
+        {/* Infinite scroll trigger */}
+        <div ref={loaderRef} style={{ height: "50px" }}>
+          {loading && (
+            <div className="spinner-container">
+              <div className="spinner"></div>
+            </div>
+          )}
         </div>
       </div>
 

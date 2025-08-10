@@ -35,10 +35,20 @@ exports.getChapterBySlug = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
 // GET /api/chapters
 exports.getAllChapters = async (req, res) => {
   try {
-    const chapters = await Chapter.find().select("title slug"); // select only needed fields
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 20;
+    const skip = (page - 1) * limit;
+
+    const chapters = await Chapter.find()
+      .select("title slug _id")
+      .skip(skip)
+      .limit(limit)
+      .sort({ date: 1, _id: 1 }); // keep order consistent
+
     res.json(chapters);
   } catch (err) {
     res.status(500).json({ message: err.message });

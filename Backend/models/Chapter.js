@@ -16,7 +16,6 @@ const chapterSchema = new mongoose.Schema({
   linkEnglish: { type: String },
   linkHindi: { type: String },
 
-  // ✅ New additional section field
   additionalSection: {
     en: { type: String },
     hi: { type: String }
@@ -26,5 +25,10 @@ const chapterSchema = new mongoose.Schema({
 }, {
   timestamps: true,
 });
+
+// ✅ Add indexes for faster lookups
+chapterSchema.index({ slug: 1 });
+chapterSchema.index({ "title.en": 1 });
+chapterSchema.index({ "title.hi": 1 });
 
 module.exports = mongoose.model("Chapter", chapterSchema);
