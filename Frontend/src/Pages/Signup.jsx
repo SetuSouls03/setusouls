@@ -33,14 +33,16 @@ function Signup() {
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-  const validateEmail = (value) => {
-    if (!value) return "";
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(value)) {
-      return "Please enter a valid email address";
-    }
-    return "";
-  };
+  const validatePhone = (value) => {
+  const digitsOnly = value.replace(/\D/g, "");
+  if (!digitsOnly) return "";
+  if (!/^[6-9]\d{9}$/.test(digitsOnly)) {
+    return "Invalid phone number. Must start with 6-9 and be 10 digits";
+  }
+  return "";
+};
+
+
   const handleEmailChange = (e) => {
   const value = e.target.value;
   setForm((prev) => ({ ...prev, email: value }));
@@ -56,19 +58,32 @@ function Signup() {
 
 
   const handlePhoneChange = (value, country) => {
-    setFullPhoneValue(value);
+  setFullPhoneValue(value);
 
-    const fullNumber = "+" + value;
-    const phoneNumber = parsePhoneNumberFromString(fullNumber);
+  const fullNumber = "+" + value;
+  const phoneNumber = parsePhoneNumberFromString(fullNumber);
+  const isLibPhoneValid = phoneNumber?.isValid() || false;
 
-    const isValid = phoneNumber?.isValid() || false;
-    setIsValidPhone(isValid);
+  const countryCode = "+" + country.dialCode;
+  const contactNumber = value.replace(country.dialCode, "").replace(/^\+/, "");
 
-    const countryCode = "+" + country.dialCode;
-    const contactNumber = value.replace(country.dialCode, "").replace(/^\+/, "");
+  // Custom validation only if country is India
+  let customError = "";
+  if (countryCode === "+91") {
+    customError = validatePhone(contactNumber);
+  }
 
-    setForm({ ...form, countryCode, contactNumber });
-  };
+  setForm({ ...form, countryCode, contactNumber });
+
+  // Set phone validity: must pass libphonenumber validation AND no custom error
+  if (customError) {
+    setIsValidPhone(false);
+    // Optionally you can store this customError in state to show it in UI
+  } else {
+    setIsValidPhone(isLibPhoneValid);
+  }
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
