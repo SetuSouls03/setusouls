@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import "./SetuChapters.css";
 
-const LIMIT = 20;
+const LIMIT = 30;
 
 const SetuChapters = () => {
   const [language, setLanguage] = useState("english");
@@ -38,11 +38,35 @@ const SetuChapters = () => {
 
       // ✅ Prevent duplicates
       setChapters(prev => {
-        const filtered = newChapters.filter(
-          ch => !prev.some(p => p._id === ch._id)
-        );
-        return [...prev, ...filtered];
-      });
+  const filtered = newChapters.filter(
+    ch => !prev.some(p => p._id === ch._id)
+  );
+
+  const langKey = language === "english" ? "en" : "hi";
+
+  const sorted = [...prev, ...filtered].sort((a, b) => {
+    const getNum = (title) => {
+      const match = title?.match(/\d+/);
+      return match ? parseInt(match[0], 10) : null;
+    };
+
+    const aNum = getNum(a.title?.[langKey] || "");
+    const bNum = getNum(b.title?.[langKey] || "");
+
+    // Rule 1: Chapters with numbers come first
+    if (aNum !== null && bNum === null) return -1;
+    if (aNum === null && bNum !== null) return 1;
+
+    // Rule 2: If both have numbers, sort by number
+    if (aNum !== null && bNum !== null) return aNum - bNum;
+
+    // Rule 3: If neither has numbers, sort alphabetically
+    return (a.title?.[langKey] || "").localeCompare(b.title?.[langKey] || "");
+  });
+
+  return sorted;
+});
+
 
       setHasMore(newChapters.length === LIMIT);
     } catch (err) {
