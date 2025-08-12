@@ -3,7 +3,11 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const axios = require("axios");
-const { format, utcToZonedTime } = require("date-fns-tz");
+
+// Proper import for date-fns-tz to avoid "not a function" errors
+const dateFnsTz = require("date-fns-tz");
+const format = dateFnsTz.format;
+const utcToZonedTime = dateFnsTz.utcToZonedTime;
 
 // In-memory OTP store (replace with DB or Redis in production)
 const otpStore = {};
@@ -12,7 +16,7 @@ const otpStore = {};
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
-  secure: true, 
+  secure: true, // true for 465, false for 587
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
@@ -57,14 +61,15 @@ async function resolveGeoForIp(ip) {
   }
 }
 
-// Format date to IST with "YYYY-MM-DD at HH.mm"
-const formatToIST = (date) => {
+// Format Date object to IST timezone string for responses (e.g., "2025-08-12 at 23.31")
+function formatToIST(date) {
+  if (!date) return null;
   const timeZone = "Asia/Kolkata";
   const zonedDate = utcToZonedTime(date, timeZone);
   return format(zonedDate, "yyyy-MM-dd 'at' HH.mm", { timeZone });
-};
+}
 
-// Register user - Step 1: register and send OTP
+// --- REGISTER (step 1): create OTP and store user data temporarily ---
 exports.register = async (req, res) => {
   const { name, email, password, contactNumber, countryCode, address } = req.body;
 
@@ -84,7 +89,8 @@ exports.register = async (req, res) => {
     }
     const geo = await resolveGeoForIp(clientIp);
 
-    // Prepare user data to store with OTP
+    // Prepare user data to store with OTP (store Date objects, not formatted strings)
+    const now = new Date();
     const userData = {
       name,
       email,
@@ -100,15 +106,15 @@ exports.register = async (req, res) => {
       city: geo.city || null,
       state: geo.state || null,
       ipCountry: geo.ipCountry || null,
-      lastSeen: formatToIST(new Date()),
-      createdAt: formatToIST(new Date()),
-      updatedAt: formatToIST(new Date()),
+      lastSeen: now,
+      createdAt: now,
+      updatedAt: now,
     };
 
     otpStore[email] = {
       otp,
       type: "register",
-      expiresAt: Date.now() + 10 * 60 * 1000, // 10 mins
+      expiresAt: Date.now() + 10 * 60 * 1000, // 10 minutes
       userData,
     };
 
@@ -126,7 +132,7 @@ exports.register = async (req, res) => {
   }
 };
 
-// OTP Verification - Step 2: verify OTP and create user
+// --- OTP verification and user creation ---
 exports.verifyOtp = async (req, res) => {
   const { email, otp } = req.body;
   const record = otpStore[email];
@@ -162,7 +168,7 @@ exports.verifyOtp = async (req, res) => {
   }
 };
 
-// Login user
+// --- LOGIN ---
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -179,14 +185,17 @@ exports.login = async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-    res.json({ message: "Login successful", token, lastSeen: user.lastSeen });
+    // Format lastSeen date to IST string before sending
+    const formattedLastSeen = formatToIST(user.lastSeen);
+
+    res.json({ message: "Login successful", token, lastSeen: formattedLastSeen });
   } catch (err) {
     console.error("Login error:", err);
     res.status(500).json({ error: err.message });
   }
 };
 
-// Forgot Password - send OTP
+// --- Forgot Password (send OTP) ---
 exports.forgotPassword = async (req, res) => {
   const { email } = req.body;
 
@@ -218,7 +227,7 @@ exports.forgotPassword = async (req, res) => {
   }
 };
 
-// Reset Password
+// --- Reset Password ---
 exports.resetPassword = async (req, res) => {
   try {
     const { email, newPassword } = req.body;
