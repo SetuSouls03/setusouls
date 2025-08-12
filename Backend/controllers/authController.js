@@ -2,23 +2,24 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
-const axios = require("axios"); // new
+const axios = require("axios");
+const { format, utcToZonedTime } = require("date-fns-tz");
 
-// In-memory store — switch to Redis or DB in production
+// In-memory OTP store (replace with DB or Redis in production)
 const otpStore = {};
 
-// Reusable transporter
+// Nodemailer transporter config
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
-  secure: true, // true for 465, false for 587
+  secure: true, 
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
 });
 
-// Helper: extract client IP in a proxy-safe way
+// Helper: extract client IP from request (proxy-safe)
 function getClientIp(req) {
   const xff = req.headers["x-forwarded-for"] || req.headers["X-Forwarded-For"];
   let ip = null;
@@ -29,28 +30,26 @@ function getClientIp(req) {
   } else if (req.connection && req.connection.remoteAddress) {
     ip = req.connection.remoteAddress;
   }
-  // remove IPv6 prefix if present (e.g., ::ffff:127.0.0.1)
   if (ip && ip.startsWith("::ffff:")) ip = ip.replace("::ffff:", "");
   return ip;
 }
 
-// Helper: call geolocation provider (server-side) and return normalized object
+// Helper: get geo info from IP via ipapi.co and normalize fields
 async function resolveGeoForIp(ip) {
   try {
     if (!ip) return {};
-    // Example: ipapi.co (no key required for basic info). Swap for your provider if you have an API key.
     const url = `https://ipapi.co/${ip}/json/`;
     const { data } = await axios.get(url, { timeout: 5000 });
 
-    // Normalized fields
     return {
-      ipId: data.organization || data.org || data.asn || null, // provider dependent
+      ipId: data.organization || data.org || data.asn || null,
       ipAddress: data.ip || ip || null,
       latitude: data.latitude ? parseFloat(data.latitude) : (data.lat ? parseFloat(data.lat) : null),
       longitude: data.longitude ? parseFloat(data.longitude) : (data.lon ? parseFloat(data.lon) : null),
       pincode: data.postal || data.postal_code || data.postalCode || null,
       city: data.city || null,
       state: data.region || data.region_name || data.region_code || null,
+      ipCountry: data.country_name || null,   // Added IP country
     };
   } catch (err) {
     console.warn("Geo lookup failed for IP", ip, err.message);
@@ -58,7 +57,14 @@ async function resolveGeoForIp(ip) {
   }
 }
 
-// Register (step 1)
+// Format date to IST with "YYYY-MM-DD at HH.mm"
+const formatToIST = (date) => {
+  const timeZone = "Asia/Kolkata";
+  const zonedDate = utcToZonedTime(date, timeZone);
+  return format(zonedDate, "yyyy-MM-dd 'at' HH.mm", { timeZone });
+};
+
+// Register user - Step 1: register and send OTP
 exports.register = async (req, res) => {
   const { name, email, password, contactNumber, countryCode, address } = req.body;
 
@@ -71,11 +77,14 @@ exports.register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
-    // Capture client IP and resolve geo server-side
-    const clientIp = getClientIp(req);
+    // Get client IP and geo info
+    let clientIp = getClientIp(req);
+    if (clientIp === "127.0.0.1" || clientIp === "::1") {
+      clientIp = "8.8.8.8"; // fallback for local dev/testing
+    }
     const geo = await resolveGeoForIp(clientIp);
 
-    // Build userData to store in otpStore (so when OTP verified we create user with geo)
+    // Prepare user data to store with OTP
     const userData = {
       name,
       email,
@@ -83,7 +92,6 @@ exports.register = async (req, res) => {
       contactNumber,
       countryCode,
       address,
-      // attach geo fields (may be empty)
       ipId: geo.ipId || null,
       ipAddress: geo.ipAddress || clientIp || null,
       latitude: geo.latitude || null,
@@ -91,13 +99,16 @@ exports.register = async (req, res) => {
       pincode: geo.pincode || null,
       city: geo.city || null,
       state: geo.state || null,
-      lastSeen: new Date(), // registration time
+      ipCountry: geo.ipCountry || null,
+      lastSeen: formatToIST(new Date()),
+      createdAt: formatToIST(new Date()),
+      updatedAt: formatToIST(new Date()),
     };
 
     otpStore[email] = {
       otp,
       type: "register",
-      expiresAt: Date.now() + 10 * 60 * 1000, // 10 minutes
+      expiresAt: Date.now() + 10 * 60 * 1000, // 10 mins
       userData,
     };
 
@@ -115,7 +126,7 @@ exports.register = async (req, res) => {
   }
 };
 
-// OTP Verification (step 2)
+// OTP Verification - Step 2: verify OTP and create user
 exports.verifyOtp = async (req, res) => {
   const { email, otp } = req.body;
   const record = otpStore[email];
@@ -135,7 +146,6 @@ exports.verifyOtp = async (req, res) => {
 
   try {
     if (record.type === "register") {
-      // Create user with stored userData (which includes geo info)
       const newUser = new User(record.userData);
       await newUser.save();
       delete otpStore[email];
@@ -152,7 +162,7 @@ exports.verifyOtp = async (req, res) => {
   }
 };
 
-// Login
+// Login user
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -163,36 +173,20 @@ exports.login = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(401).json({ message: "Invalid credentials" });
 
-    // Update lastSeen and (optionally) refresh geo based on current IP
-    try {
-      const clientIp = getClientIp(req);
-      user.lastSeen = new Date();
-
-      // Optionally update IP + geo on login — uncomment if you want to refresh on login:
-      // const geo = await resolveGeoForIp(clientIp);
-      // user.ipAddress = geo.ipAddress || clientIp || user.ipAddress;
-      // if (geo.ipId) user.ipId = geo.ipId;
-      // if (geo.latitude) user.latitude = geo.latitude;
-      // if (geo.longitude) user.longitude = geo.longitude;
-      // if (geo.city) user.city = geo.city;
-      // if (geo.state) user.state = geo.state;
-      // if (geo.pincode) user.pincode = geo.pincode;
-
-      await user.save();
-    } catch (err) {
-      console.warn("Unable to update lastSeen/geo on login:", err.message);
-    }
+    // Update lastSeen on login
+    user.lastSeen = new Date();
+    await user.save();
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-    res.json({ message: "Login successful", token });
+    res.json({ message: "Login successful", token, lastSeen: user.lastSeen });
   } catch (err) {
     console.error("Login error:", err);
     res.status(500).json({ error: err.message });
   }
 };
 
-// Forgot Password (OTP)
+// Forgot Password - send OTP
 exports.forgotPassword = async (req, res) => {
   const { email } = req.body;
 

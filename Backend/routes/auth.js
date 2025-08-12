@@ -3,6 +3,7 @@ const { body, validationResult } = require("express-validator");
 const router = express.Router();
 const authController = require("../controllers/authController");
 const protect = require("../middleware/authMiddleware");
+const updateLastSeen = require("../middleware/updateLastSeenMiddleware");
 
 // Helper middleware to handle validation errors
 const validate = (req, res, next) => {
@@ -84,11 +85,8 @@ router.post(
 );
 
 // Example protected route
-router.get("/profile", protect, (req, res) => {
-  res.json({
-    message: "User profile data",
-    user: req.user,
-  });
+router.get("/profile", protect, updateLastSeen, (req, res) => {
+  res.json({ user: req.user });
 });
 
 module.exports = router;

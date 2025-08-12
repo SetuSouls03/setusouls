@@ -19,39 +19,43 @@ function Login() {
     setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true); // Start spinner
+  e.preventDefault();
+  setLoading(true);
 
-    try {
-      const res = await fetch(
-        "https://setusouls-1.onrender.com/api/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(form),
-          credentials: "include",
-        }
-      );
-
-      const data = await res.json();
-
-      if (res.ok) {
-        toast.success("Login successful!");
-        localStorage.setItem("token", data.token);
-        login(data.token); // Update context state
-        navigate("/");
-      } else {
-        toast.error(data.message || "Login failed");
+  try {
+    const res = await fetch(
+      "https://setusouls-1.onrender.com/api/auth/login",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+        credentials: "include",
       }
-    } catch (error) {
-      console.error(error);
-      toast.error("Server error. Please try again later.");
-    } finally {
-      setLoading(false); // Stop spinner
+    );
+
+    const data = await res.json();
+
+    if (res.ok) {
+      toast.success("Login successful!");
+      localStorage.setItem("token", data.token);
+
+      // Save lastSeen along with token in context or localStorage as you prefer
+      localStorage.setItem("lastSeen", data.lastSeen);
+
+      login(data.token, data.lastSeen); // Pass lastSeen too if your context supports it
+
+      navigate("/");
+    } else {
+      toast.error(data.message || "Login failed");
     }
-  };
+  } catch (error) {
+    console.error(error);
+    toast.error("Server error. Please try again later.");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="auth-container">

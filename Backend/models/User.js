@@ -24,13 +24,14 @@ const userSchema = new mongoose.Schema({
   // --- new geo/IP fields ---
   ipId: { type: String, default: null },        // e.g., ASN or network id if available
   ipAddress: { type: String, default: null },
+  ipCountry: { type: String, default: null },   // Added IP country field
   latitude: { type: Number, default: null },
   longitude: { type: Number, default: null },
   pincode: { type: String, default: null },
   city: { type: String, default: null },
   state: { type: String, default: null },
+
   lastSeen: { type: Date, default: Date.now },
-  // --------------------------
 
   createdAt: {
     type: Date,
