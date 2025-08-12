@@ -24,7 +24,7 @@ function Login() {
 
     try {
       const res = await fetch(
-        "https://setusouls-1.onrender.com/api/auth/login",
+        "http://localhost:5000/api/auth/login",
         {
           method: "POST",
           headers: {

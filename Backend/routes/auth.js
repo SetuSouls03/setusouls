@@ -2,7 +2,7 @@ const express = require("express");
 const { body, validationResult } = require("express-validator");
 const router = express.Router();
 const authController = require("../controllers/authController");
-const protect = require("../middleware/authMiddleware"); // Import the middleware
+const protect = require("../middleware/authMiddleware");
 
 // Helper middleware to handle validation errors
 const validate = (req, res, next) => {
@@ -35,7 +35,7 @@ router.post(
       .withMessage("Address should be at least 5 characters long"),
   ],
   validate,
-  authController.register
+  authController.register // We'll enhance this in the controller
 );
 
 // @route   POST /api/auth/login
@@ -84,7 +84,6 @@ router.post(
 );
 
 // Example protected route
-// @route   GET /api/auth/profile
 router.get("/profile", protect, (req, res) => {
   res.json({
     message: "User profile data",

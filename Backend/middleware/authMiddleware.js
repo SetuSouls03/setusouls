@@ -17,7 +17,7 @@ const protect = async (req, res, next) => {
       return res.status(401).json({ message: "Not authorized, user not found" });
     }
 
-    req.user = user;z
+    req.user = user; // fixed stray 'z'
     next();
   } catch (err) {
     console.error("JWT Auth Error:", err.message);
