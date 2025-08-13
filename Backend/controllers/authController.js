@@ -30,22 +30,32 @@ function getClientIp(req) {
 async function resolveGeoForIp(ip) {
   try {
     if (!ip) return {};
-    const { data } = await axios.get(`https://ipapi.co/${ip}/json/`, { timeout: 5000 });
+
+    // ip-api.com JSON endpoint
+    const { data } = await axios.get(`http://ip-api.com/json/${ip}`, { timeout: 5000 });
+
+    // Check if query was successful
+    if (data.status !== "success") {
+      console.warn(`Geo lookup failed for IP ${ip}: ${data.message || "unknown error"}`);
+      return {};
+    }
+
     return {
-      ipId: data.organization || data.org || data.asn || null,
-      ipAddress: data.ip || ip || null,
-      latitude: data.latitude ? parseFloat(data.latitude) : null,
-      longitude: data.longitude ? parseFloat(data.longitude) : null,
-      pincode: data.postal || null,
+      ipId: data.as || null,           // ASN info
+      ipAddress: data.query || ip,     // IP address
+      latitude: data.lat || null,
+      longitude: data.lon || null,
+      pincode: null,                   // ip-api does not provide postal code
       city: data.city || null,
-      state: data.region || null,
-      ipCountry: data.country_name || null,
+      state: data.regionName || null,
+      ipCountry: data.country || null,
     };
   } catch (err) {
     console.warn("Geo lookup failed:", err.message);
     return {};
   }
 }
+
 
 // --- REGISTER ---
 exports.register = async (req, res) => {
