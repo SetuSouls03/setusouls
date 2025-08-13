@@ -132,8 +132,8 @@ const SetuChapters = () => {
         {/* Infinite scroll trigger */}
         <div ref={loaderRef} style={{ height: "50px" }}>
           {loading && (
-            <div className="spinner-container">
-              <div className="spinner"></div>
+            <div className="spinner-container-chap">
+              <div className="spinner-chap"></div>
             </div>
           )}
         </div>

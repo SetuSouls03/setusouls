@@ -4,21 +4,21 @@ const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const axios = require("axios");
 const { formatUserDates } = require('../utils/dateFormatter');
-// In-memory OTP store
-const otpStore = {};
 
-// Nodemailer transporter config
+const otpStore = {}; // in-memory OTP store
+
+// Nodemailer config
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
-  secure: true, // true for 465, false for 587
+  secure: true,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
 });
 
-// Helper: extract client IP
+// Helper: get client IP
 function getClientIp(req) {
   const xff = req.headers["x-forwarded-for"] || req.headers["X-Forwarded-For"];
   let ip = xff ? xff.split(",")[0].trim() : req.socket?.remoteAddress || req.connection?.remoteAddress;
@@ -26,28 +26,19 @@ function getClientIp(req) {
   return ip;
 }
 
-// Helper: get geo info from IP
+// Helper: resolve geo info
 async function resolveGeoForIp(ip) {
   try {
     if (!ip) return {};
-
-    // ip-api.com JSON endpoint
     const { data } = await axios.get(`http://ip-api.com/json/${ip}`, { timeout: 5000 });
-
-    // Check if query was successful
-    if (data.status !== "success") {
-      console.warn(`Geo lookup failed for IP ${ip}: ${data.message || "unknown error"}`);
-      return {};
-    }
-
+    if (data.status !== "success") return {};
     return {
-      ipId: data.as || null,           // ASN info
-      ipAddress: data.query || ip,     // IP address
-      latitude: data.lat || null,
-      longitude: data.lon || null,
-      pincode: null,                   // ip-api does not provide postal code
-      city: data.city || null,
-      state: data.regionName || null,
+      ipId: data.as || null,
+      ipAddress: data.query || ip,
+      iplatitude: data.lat || null,
+      iplongitude: data.lon || null,
+      ipcity: data.city || null,
+      ipstate: data.regionName || null,
       ipCountry: data.country || null,
     };
   } catch (err) {
@@ -56,11 +47,9 @@ async function resolveGeoForIp(ip) {
   }
 }
 
-
 // --- REGISTER ---
 exports.register = async (req, res) => {
   const { name, email, password, contactNumber, countryCode, address } = req.body;
-
   try {
     if (await User.findOne({ email })) {
       return res.status(400).json({ message: "User already exists" });
@@ -74,7 +63,7 @@ exports.register = async (req, res) => {
     otpStore[email] = {
       otp,
       type: "register",
-      expiresAt: Date.now() + 600000, // 10 minutes
+      expiresAt: Date.now() + 600000, // 10 min
       userData: {
         name,
         email,
@@ -86,6 +75,7 @@ exports.register = async (req, res) => {
         lastSeen: now,
         createdAt: now,
         updatedAt: now,
+        isActive: true,
       },
     };
 
@@ -112,10 +102,7 @@ exports.verifyOtp = async (req, res) => {
     delete otpStore[email];
     return res.status(400).json({ message: "OTP expired or invalid" });
   }
-
-  if (record.otp !== otp) {
-    return res.status(400).json({ message: "Invalid OTP" });
-  }
+  if (record.otp !== otp) return res.status(400).json({ message: "Invalid OTP" });
 
   try {
     if (record.type === "register") {
@@ -139,11 +126,11 @@ exports.verifyOtp = async (req, res) => {
 // --- LOGIN ---
 exports.login = async (req, res) => {
   const { email, password } = req.body;
-
   try {
     const user = await User.findOne({ email });
-    if (!user) return res.status(404).json({ message: "User not found" });
-
+    if (!user || !user.isActive) {
+      return res.status(404).json({ message: "User not found or account inactive" });
+    }
     if (!(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
@@ -167,15 +154,10 @@ exports.login = async (req, res) => {
 // --- FORGOT PASSWORD ---
 exports.forgotPassword = async (req, res) => {
   const { email } = req.body;
-
   try {
     if (await User.findOne({ email })) {
       const otp = Math.floor(100000 + Math.random() * 900000).toString();
-      otpStore[email] = {
-        otp,
-        type: "forgotPassword",
-        expiresAt: Date.now() + 600000,
-      };
+      otpStore[email] = { otp, type: "forgotPassword", expiresAt: Date.now() + 600000 };
 
       await transporter.sendMail({
         from: process.env.EMAIL_USER,
@@ -184,7 +166,6 @@ exports.forgotPassword = async (req, res) => {
         text: `Your OTP is ${otp}. Valid for 10 minutes.`,
       });
     }
-
     res.status(200).json({ message: "If email exists, OTP was sent" });
   } catch (err) {
     console.error("Forgot password error:", err);
@@ -197,8 +178,7 @@ exports.resetPassword = async (req, res) => {
   try {
     const { email, newPassword } = req.body;
     const user = await User.findOne({ email });
-    
-    if (!user) return res.status(404).json({ message: "User not found" });
+    if (!user || !user.isActive) return res.status(404).json({ message: "User not found or inactive" });
     if (await bcrypt.compare(newPassword, user.password)) {
       return res.status(400).json({ message: "New password must be different" });
     }

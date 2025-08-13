@@ -14,36 +14,26 @@ const userSchema = new mongoose.Schema({
     required: true,
     match: [/^\+\d{1,4}$/, "Please enter a valid country code (e.g., +91, +1)"],
   },
-  address: {
-    type: String,
-    required: true,
-    trim: true,
-    maxlength: 2000,
-  },
+  address: { type: String, required: true, trim: true, maxlength: 2000 },
 
-  // --- new geo/IP fields ---
-  ipId: { type: String, default: null },        // e.g., ASN or network id if available
+  // Geo/IP info
+  ipId: { type: String, default: null },
   ipAddress: { type: String, default: null },
-  ipCountry: { type: String, default: null },   // Added IP country field
+  ipCountry: { type: String, default: null },
   latitude: { type: Number, default: null },
   longitude: { type: Number, default: null },
-  pincode: { type: String, default: null },
   city: { type: String, default: null },
   state: { type: String, default: null },
 
   lastSeen: { type: Date, default: Date.now },
 
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now,
-  },
+  isActive: { type: Boolean, default: true }, // account status
+
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
 });
 
-// Middleware to auto-update `updatedAt` on save
+// Middleware to auto-update `updatedAt`
 userSchema.pre("save", function (next) {
   this.updatedAt = Date.now();
   next();

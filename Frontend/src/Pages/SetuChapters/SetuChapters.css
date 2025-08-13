@@ -145,14 +145,14 @@ body::-webkit-scrollbar {
     font-size: 1rem;
   }
 }
-.spinner-container {
+.spinner-container-chap {
   display: flex;
   justify-content: center; /* center horizontally */
   align-items: center;     /* center vertically */
   height: 60px;            /* match loader space height */
 }
 
-.spinner {
+.spinner-chap {
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-left-color: #4cafef;
   border-radius: 50%;
