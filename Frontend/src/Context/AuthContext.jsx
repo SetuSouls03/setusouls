@@ -4,9 +4,10 @@ import axios from "axios";
 // Create context
 export const AuthContext = createContext();
 
-// Custom hook
+// Custom hook for easier usage
 export const useAuth = () => useContext(AuthContext);
 
+// Provider component
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -67,8 +68,22 @@ export const AuthProvider = ({ children }) => {
     return () => axios.interceptors.response.eject(interceptor);
   }, []);
 
+  // Poll backend every 15 seconds to check if account is still valid
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      const token = localStorage.getItem("token");
+      if (token && isAuthenticated) {
+        await fetchUser(token);
+      }
+    }, 15000); // 15 seconds
+
+    return () => clearInterval(interval);
+  }, [isAuthenticated]);
+
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, setUser, login, logout, loading }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, user, setUser, login, logout, loading }}
+    >
       {children}
     </AuthContext.Provider>
   );
