@@ -3,9 +3,8 @@ const { body, validationResult } = require("express-validator");
 const router = express.Router();
 const authController = require("../controllers/authController");
 const protect = require("../middleware/authMiddleware");
-const updateLastSeen = require("../middleware/updateLastSeenMiddleware");
+const { formatUserDates } = require("../utils/dateFormatter");
 
-// Helper middleware to handle validation errors
 const validate = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -19,32 +18,22 @@ router.post(
   "/register",
   [
     body("name").notEmpty().withMessage("Name is required"),
-    body("email").isEmail().withMessage("Valid email is required"),
-    body("password")
-      .isLength({ min: 6 })
-      .withMessage("Password must be at least 6 characters"),
-    body("contactNumber")
-      .matches(/^\d{10}$/)
-      .withMessage("Contact number must be 10 digits"),
-    body("countryCode")
-      .matches(/^\+\d{1,4}$/)
-      .withMessage("Valid country code is required (e.g., +91, +1)"),
-    body("address")
-      .notEmpty()
-      .withMessage("Address is required")
-      .isLength({ min: 5 })
-      .withMessage("Address should be at least 5 characters long"),
+    body("email").isEmail().withMessage("Valid email required"),
+    body("password").isLength({ min: 6 }).withMessage("6+ characters required"),
+    body("contactNumber").matches(/^\d{10}$/).withMessage("10 digits required"),
+    body("countryCode").matches(/^\+\d{1,4}$/).withMessage("Valid country code required"),
+    body("address").isLength({ min: 5 }).withMessage("5+ characters required"),
   ],
   validate,
-  authController.register // We'll enhance this in the controller
+  authController.register
 );
 
 // @route   POST /api/auth/login
 router.post(
   "/login",
   [
-    body("email").isEmail().withMessage("Valid email is required"),
-    body("password").notEmpty().withMessage("Password is required"),
+    body("email").isEmail().withMessage("Valid email required"),
+    body("password").notEmpty().withMessage("Password required"),
   ],
   validate,
   authController.login
@@ -53,7 +42,7 @@ router.post(
 // @route   POST /api/auth/forgotpassword
 router.post(
   "/forgotpassword",
-  [body("email").isEmail().withMessage("Valid email is required")],
+  [body("email").isEmail().withMessage("Valid email required")],
   validate,
   authController.forgotPassword
 );
@@ -62,10 +51,8 @@ router.post(
 router.post(
   "/verifyotp",
   [
-    body("email").isEmail().withMessage("Valid email is required"),
-    body("otp")
-      .isLength({ min: 6, max: 6 })
-      .withMessage("OTP must be 6 digits"),
+    body("email").isEmail().withMessage("Valid email required"),
+    body("otp").isLength({ min: 6, max: 6 }).withMessage("6-digit OTP required"),
   ],
   validate,
   authController.verifyOtp
@@ -75,18 +62,21 @@ router.post(
 router.post(
   "/resetpassword",
   [
-    body("email").isEmail().withMessage("Valid email is required"),
-    body("newPassword")
-      .isLength({ min: 6 })
-      .withMessage("New password must be at least 6 characters"),
+    body("email").isEmail().withMessage("Valid email required"),
+    body("newPassword").isLength({ min: 6 }).withMessage("6+ characters required"),
   ],
   validate,
   authController.resetPassword
 );
 
-// Example protected route
-router.get("/profile", protect, updateLastSeen, (req, res) => {
-  res.json({ user: req.user });
+// @route   GET /api/auth/profile
+router.get("/profile", protect, (req, res) => {
+  try {
+    res.json({ user: formatUserDates(req.user) });
+  } catch (err) {
+    console.error("Profile formatting error:", err);
+    res.status(500).json({ error: "Failed to format profile data" });
+  }
 });
 
 module.exports = router;
