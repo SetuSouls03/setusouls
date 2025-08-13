@@ -4,29 +4,29 @@ import axios from "axios";
 // Create context
 export const AuthContext = createContext();
 
-// Custom hook for easier usage
+// Custom hook
 export const useAuth = () => useContext(AuthContext);
 
-// Provider component
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // Check token on initial load
+  // Fetch user on app load if token exists
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       setIsAuthenticated(true);
-      fetchUser(token); // fetch user data from backend
+      fetchUser(token);
+    } else {
+      setLoading(false);
     }
-    setLoading(false);
   }, []);
 
   // Function to fetch current user
   const fetchUser = async (token) => {
     try {
-      const res = await axios.get("/api/auth/me", {
+      const res = await axios.get("/api/auth/profile", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUser(res.data.user);
@@ -34,22 +34,26 @@ export const AuthProvider = ({ children }) => {
       if (err.response && err.response.status === 401) {
         logout(); // auto logout if token invalid or user deleted
       }
+    } finally {
+      setLoading(false);
     }
   };
 
+  // Login function
   const login = async (token) => {
     localStorage.setItem("token", token);
     setIsAuthenticated(true);
-    await fetchUser(token); // fetch and set user data
+    await fetchUser(token);
   };
 
+  // Logout function
   const logout = () => {
     localStorage.removeItem("token");
     setIsAuthenticated(false);
     setUser(null);
   };
 
-  // Axios interceptor to handle 401 globally
+  // Axios interceptor: auto logout on 401
   useEffect(() => {
     const interceptor = axios.interceptors.response.use(
       (response) => response,
@@ -60,7 +64,6 @@ export const AuthProvider = ({ children }) => {
         return Promise.reject(error);
       }
     );
-
     return () => axios.interceptors.response.eject(interceptor);
   }, []);
 

@@ -20,10 +20,10 @@ const userSchema = new mongoose.Schema({
   ipId: { type: String, default: null },
   ipAddress: { type: String, default: null },
   ipCountry: { type: String, default: null },
-  latitude: { type: Number, default: null },
-  longitude: { type: Number, default: null },
-  city: { type: String, default: null },
-  state: { type: String, default: null },
+  iplatitude: { type: Number, default: null },
+  iplongitude: { type: Number, default: null },
+  ipcity: { type: String, default: null },
+  ipstate: { type: String, default: null },
 
   lastSeen: { type: Date, default: Date.now },
 
