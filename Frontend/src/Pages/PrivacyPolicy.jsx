@@ -8,7 +8,7 @@ const PrivacyPolicy = () => {
       <div className="policy-container">
         <h1 className="policy-title">Privacy Policy</h1>
         <p className="policy-meta">Published Date: 10/05/2025</p>
-        <p className="policy-meta">Latest Update Date: 10/05/2025</p>
+        <p className="policy-meta">Latest Update Date: 06/09/2025</p>
 
         <h2 className="policy-subtitle">1. Information We Collect</h2>
         <p className="policy-text">We collect personal information Name, Email, Phone Number.</p>

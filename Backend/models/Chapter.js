@@ -1,33 +1,35 @@
 const mongoose = require("mongoose");
 
-const chapterSchema = new mongoose.Schema({
-  slug: { type: String, required: true, unique: true },
+const chapterSchema = new mongoose.Schema(
+  {
+    slug: { type: String, required: true, unique: true }, // ✅ keep only this, no extra index
 
-  title: {
-    en: { type: String, required: true },
-    hi: { type: String, required: true },
+    title: {
+      en: { type: String, required: true },
+      hi: { type: String, required: true },
+    },
+
+    content: {
+      en: { type: String, required: true },
+      hi: { type: String, required: true },
+    },
+
+    linkEnglish: { type: String },
+    linkHindi: { type: String },
+
+    additionalSection: {
+      en: { type: String },
+      hi: { type: String },
+    },
+
+    date: { type: Date },
   },
+  {
+    timestamps: true,
+  }
+);
 
-  content: {
-    en: { type: String, required: true },
-    hi: { type: String, required: true },
-  },
-
-  linkEnglish: { type: String },
-  linkHindi: { type: String },
-
-  additionalSection: {
-    en: { type: String },
-    hi: { type: String }
-  },
-
-  date: { type: Date },
-}, {
-  timestamps: true,
-});
-
-// ✅ Add indexes for faster lookups
-chapterSchema.index({ slug: 1 });
+// ✅ Only keep extra indexes that are not duplicates
 chapterSchema.index({ "title.en": 1 });
 chapterSchema.index({ "title.hi": 1 });
 
