@@ -11,16 +11,19 @@ const ChapterDetail = () => {
   const [language, setLanguage] = useState(initialLanguage);
   const [chapter, setChapter] = useState(null);
   const [loading, setLoading] = useState(true);
-const underlinedLines = {
-  hi: [
-    "देवताओं ने शीतल का भविष्य कैसे बदला :",
-    "कर्म प्रतिसंतुलन कया है :"
-  ],
-  en: [
-    "How the Gods Changed Sheetal’s Future:",
-    "What is karmic balancing:"
-  ]
-};
+  const [showScrollBtn, setShowScrollBtn] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState("down"); // "down" or "up"
+
+  const underlinedLines = {
+    hi: [
+      "देवताओं ने शीतल का भविष्य कैसे बदला :",
+      "कर्म प्रतिसंतुलन कया है :"
+    ],
+    en: [
+      "How the Gods Changed Sheetal’s Future:",
+      "What is karmic balancing:"
+    ]
+  };
 
   const sectionSummary = {
     hi: {
@@ -67,6 +70,7 @@ const underlinedLines = {
     }
   };
 
+
   const sectionLastLine = {
     hilastline: `इस अध्याय की हनुमान लीला यहीं समाप्त होती है. ।। राम ।।`,
     enlastline: `This chapter of Hanuman's Leela ends here. ।। RAM ।।`
@@ -90,18 +94,50 @@ const underlinedLines = {
     setLanguage((prev) => (prev === "en" ? "hi" : "en"));
   };
 
-  if (loading) return <div
-  className="spinner-container-chap"
-  style={{
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '60vh', // Give it some height so vertical centering works
-  }}
->
-  <div className="spinner-chap"></div>
-</div>
+  // Scroll Button Logic
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
 
+      // Show button after 300px scroll
+      setShowScrollBtn(scrollY > 300);
+
+      // Determine arrow direction
+      if (scrollY + windowHeight >= documentHeight - 50) {
+        setScrollDirection("up"); // Near bottom → show UP arrow
+      } else {
+        setScrollDirection("down"); // Else → show DOWN arrow
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollPage = () => {
+    if (scrollDirection === "down") {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  if (loading)
+    return (
+      <div
+        className="spinner-container-chap"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "60vh"
+        }}
+      >
+        <div className="spinner-chap"></div>
+      </div>
+    );
 
   if (!chapter || !chapter.title || !chapter.content) {
     return <p className="chapter-error">Chapter not found or invalid data</p>;
@@ -112,132 +148,113 @@ const underlinedLines = {
       <div className="chapter-section">
         <div className="chapter-header">
           {chapter.date && (
-            <div className="chapter-static-date" style={{color:'black', fontWeight:'bold'}}>
+            <div
+              className="chapter-static-date"
+              style={{ color: "black", fontWeight: "bold" }}
+            >
               Date of publish:{" "}
               {new Date(chapter.date).toLocaleDateString("en-IN", {
                 day: "numeric",
                 month: "long",
-                year: "numeric",
+                year: "numeric"
               })}
             </div>
           )}
-
           <h1 className="chapter-title">{chapter.title[language]}</h1>
         </div>
 
-        {/* ✅ Additional Section (shown only if exists) */}
-{chapter.additionalSection && (
-  <div className="chapter-additional-section">
-    <h3>
-      {language === "hi" ? "महत्त्वपूर्ण सन्देश:" : "Important Information:"}
-    </h3>
+        {/* Additional Section */}
+        {chapter.additionalSection && (
+          <div className="chapter-additional-section">
+            <h3>
+              {language === "hi" ? "महत्त्वपूर्ण सन्देश:" : "Important Information:"}
+            </h3>
+            <ul>
+              {Object.entries(chapter.additionalSection)
+                .filter(([key]) => key.startsWith(language))
+                .map(([key, value], idx) => (
+                  <li key={idx}>{value}</li>
+                ))}
+            </ul>
+          </div>
+        )}
 
-    <ul>
-      {Object.entries(chapter.additionalSection)
-        .filter(([key]) => key.startsWith(language))
-        .map(([key, value], idx) => (
-          <li key={idx}>{value}</li>
-        ))}
-    </ul>
-  </div>
-)}
+        <div className="chapter-content" style={{ textAlign: "left" }}>
+          {(chapter?.content?.[language]?.split("\n") || []).map((line, index) => {
+            const underlines = underlinedLines[language] || [];
+            let updatedLine = line;
+            underlines.forEach((phrase) => {
+              if (line.includes(phrase)) {
+                updatedLine = updatedLine.replace(`<u>${phrase}</u>`, phrase);
+                updatedLine = updatedLine.replace(phrase, `<u>${phrase}</u>`);
+              }
+            });
+            return (
+              <p
+                key={index}
+                dangerouslySetInnerHTML={{ __html: updatedLine }}
+                style={{ marginBottom: "1rem" }}
+              />
+            );
+          })}
+        </div>
 
-
-
-<div className="chapter-content" style={{ textAlign: "left" }}>
-  {(chapter?.content?.[language]?.split("\n") || []).map((line, index) => {
-    const underlines = underlinedLines[language] || [];
-
-    let updatedLine = line;
-
-    underlines.forEach(phrase => {
-      if (line.includes(phrase)) {
-        const underlineHTML = `<u>${phrase}</u>`;
-        updatedLine = updatedLine.replace(phrase, underlineHTML);
-      }
-    });
-
-    return (
-      <p
-        key={index}
-        dangerouslySetInnerHTML={{ __html: updatedLine }}
-        style={{ marginBottom: "1rem" }}
-      />
-    );
-  })}
-</div>
-
-
-
-        {/* ✅ Last Line before Summary */}
         <p className="chapter-last-line">
-          {language === "hi"
-            ? sectionLastLine.hilastline
-            : sectionLastLine.enlastline}
+          {language === "hi" ? sectionLastLine.hilastline : sectionLastLine.enlastline}
         </p>
 
-        {/* ✅ Summary Section */}
-<div className="charan-summary" style={{ marginTop: "2rem" }}>
-  <h2>{sectionSummary[language].title1}</h2>
-  <div>
-{sectionSummary[language].points1.split("\n").map((line, index) => (
-  <p
-    key={index}
-  >
-    {line}
-  </p>
-))}
+        {/* Summary Sections */}
+        <div className="charan-summary">
+          <h2>{sectionSummary[language].title1}</h2>
+          {sectionSummary[language].points1.split("\n").map((line, idx) => (
+            <p key={idx}>{line}</p>
+          ))}
+        </div>
 
-  </div>
-</div>
+        <div className="charan-summary">
+          <h2>{sectionSummary[language].title2}</h2>
+          {sectionSummary[language].points2.split("\n").map((line, idx) => (
+            <p key={idx}>{line}</p>
+          ))}
+        </div>
 
-<div className="charan-summary" style={{ marginTop: "2rem" }}>
-  <h2>{sectionSummary[language].title2}</h2>
-  <div>
-{sectionSummary[language].points2.split("\n").map((line, index) => (
-  <p
-    key={index}
-  >
-    {line}
-  </p>
-))}
-
-  </div>
-</div>
-
-
-<div className="chapter-links">
-  {language === "en" && chapter.linkEnglish && (
-    <a
-      href={chapter.linkEnglish}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="chapter-download-btn"
-    >
-      📘 English PDF
-    </a>
-  )}
-  {language === "hi" && chapter.linkHindi && (
-    <a
-      href={chapter.linkHindi}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="chapter-download-btn"
-    >
-      📗 हिंदी PDF
-    </a>
-  )}
-</div>
-
+        {/* PDF Links */}
+        <div className="chapter-links">
+          {language === "en" && chapter.linkEnglish && (
+            <a
+              href={chapter.linkEnglish}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="chapter-download-btn"
+            >
+              📘 English PDF
+            </a>
+          )}
+          {language === "hi" && chapter.linkHindi && (
+            <a
+              href={chapter.linkHindi}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="chapter-download-btn"
+            >
+              📗 हिंदी PDF
+            </a>
+          )}
+        </div>
       </div>
 
       <div className="chapter-toggle-btn-container">
         <button className="chapter-toggle-btn" onClick={toggleLanguage}>
-          {language === "en"
-            ? "हिंदी में अनुवाद करें"
-            : "Translate to English"}
+          {language === "en" ? "हिंदी में अनुवाद करें" : "Translate to English"}
         </button>
       </div>
+
+      {/* Scroll Button */}
+      {showScrollBtn && (
+        <button className="scroll-bottom-btn" onClick={scrollPage}>
+          {scrollDirection === "down" ? "⬇" : "⬆"}
+        </button>
+      )}
     </div>
   );
 };
