@@ -1,4 +1,25 @@
-*{
-  margin:0px;
-  padding:0px;
+/* Make html, body, root full height */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* App container flex layout */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* full viewport height */
+}
+
+/* Main content grows */
+.main-content {
+  flex: 1;
+}
+
+/* Optional: global reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }

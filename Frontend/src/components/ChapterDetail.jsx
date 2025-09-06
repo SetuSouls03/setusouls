@@ -90,9 +90,18 @@ const underlinedLines = {
     setLanguage((prev) => (prev === "en" ? "hi" : "en"));
   };
 
-  if (loading) return <div className="spinner-container-chap">
-              <div className="spinner-chap"></div>
-            </div>;
+  if (loading) return <div
+  className="spinner-container-chap"
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '60vh', // Give it some height so vertical centering works
+  }}
+>
+  <div className="spinner-chap"></div>
+</div>
+
 
   if (!chapter || !chapter.title || !chapter.content) {
     return <p className="chapter-error">Chapter not found or invalid data</p>;

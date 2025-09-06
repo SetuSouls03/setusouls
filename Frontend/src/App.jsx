@@ -32,36 +32,41 @@ import ChapterDetail from './components/ChapterDetail';
 function App() {
   return (
     <Router>
-      <ScrollToTop />
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/charanpooja' element={<CharanPooja />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path='/history' element={<History />} />
-        <Route path='/important-notes' element={<ProtectedRoute><ImportantNotes /></ProtectedRoute>} />
-        <Route path='/other' element={<ProtectedRoute><Other /></ProtectedRoute>} />  
-        <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<Signup />} />   
-        <Route path='/prayer' element={<ProtectedRoute><Prayer /></ProtectedRoute>} /> 
-        <Route path='/privacy-policy' element={<PrivacyPolicy />} />   
-        <Route path='/terms-and-conditions' element={<TermsCondition />} /> 
-        <Route path='/forgotpassword' element={<ForgotPassword />} />   
-        <Route path='/otppage' element={<OTPPage />} /> 
-        <Route path='/createpassword' element={<CreatePassword />} />
-        <Route path='/qna-section' element={<ProtectedRoute><QnaSection /></ProtectedRoute>} />
-        <Route path='/sadhna' element={<ProtectedRoute><Sadhna /></ProtectedRoute>} />
-        <Route path='/about' element={<About />} />
-        <Route path='/quotes' element={<ProtectedRoute><Quotes /></ProtectedRoute>} />
-        <Route path='/setu-chapters' element={<ProtectedRoute><SetuChapters /></ProtectedRoute>} />
-        <Route path='/chapters/:slug' element={<ProtectedRoute><ChapterDetail /></ProtectedRoute>} />
-      </Routes>
+      <div className="app-container"> {/* ✅ Flex container */}
+        <ScrollToTop />
+        <Navbar />
 
-      {/* Toast Container should be outside Routes */}
-      <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
+        <div className="main-content"> {/* ✅ Grows to push footer */}
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/charanpooja' element={<CharanPooja />} />
+            <Route path='/contact' element={<Contact />} />
+            <Route path='/history' element={<History />} />
+            <Route path='/important-notes' element={<ProtectedRoute><ImportantNotes /></ProtectedRoute>} />
+            <Route path='/other' element={<ProtectedRoute><Other /></ProtectedRoute>} />  
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<Signup />} />   
+            <Route path='/prayer' element={<ProtectedRoute><Prayer /></ProtectedRoute>} /> 
+            <Route path='/privacy-policy' element={<PrivacyPolicy />} />   
+            <Route path='/terms-and-conditions' element={<TermsCondition />} /> 
+            <Route path='/forgotpassword' element={<ForgotPassword />} />   
+            <Route path='/otppage' element={<OTPPage />} /> 
+            <Route path='/createpassword' element={<CreatePassword />} />
+            <Route path='/qna-section' element={<ProtectedRoute><QnaSection /></ProtectedRoute>} />
+            <Route path='/sadhna' element={<ProtectedRoute><Sadhna /></ProtectedRoute>} />
+            <Route path='/about' element={<About />} />
+            <Route path='/quotes' element={<ProtectedRoute><Quotes /></ProtectedRoute>} />
+            <Route path='/setu-chapters' element={<ProtectedRoute><SetuChapters /></ProtectedRoute>} />
+            <Route path='/chapters/:slug' element={<ProtectedRoute><ChapterDetail /></ProtectedRoute>} />
+          </Routes>
+        </div>
 
-      <Disclaimer />
-      <Footer />
+        {/* Toast Container outside Routes */}
+        <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
+
+        <Disclaimer />
+        <Footer /> {/* ✅ Footer sticks at bottom */}
+      </div>
     </Router>
   )
 }
