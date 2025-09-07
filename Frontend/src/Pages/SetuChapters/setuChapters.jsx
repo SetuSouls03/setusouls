@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import axios from "axios";
 import "./SetuChapters.css";
 
 // Static backup chapters
@@ -232,108 +231,30 @@ const staticChapters = [
   }
 ]
 
-
-const LIMIT = 30;
-
 const SetuChapters = () => {
   const [language, setLanguage] = useState("english");
-  const [chapters, setChapters] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-  const [error, setError] = useState(null);
-  const loaderRef = useRef(null);
-
   const langKey = language === "english" ? "en" : "hi";
 
   const toggleLanguage = () => {
     setLanguage(prev => (prev === "english" ? "hindi" : "english"));
-    setPage(1);
-    setChapters([]);
-    setHasMore(true);
   };
 
-  const fetchChapters = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const res = await axios.get(
-        `https://setusouls-1.onrender.com/api/chapters?lang=${langKey}&page=${page}&limit=${LIMIT}`
-      );
-
-      let newChapters = Array.isArray(res.data)
-        ? res.data
-        : Array.isArray(res.data.chapters)
-        ? res.data.chapters
-        : [];
-
-      // If API fails or returns empty for first page, fallback to static
-      if (newChapters.length === 0 && page === 1) {
-        newChapters = staticChapters;
-      }
-
-      // Merge without duplicates
-      setChapters(prev => {
-        const filtered = newChapters.filter(
-          ch => !prev.some(p => p._id === ch._id)
-        );
-
-        const sorted = [...prev, ...filtered].sort((a, b) => {
-          const getNum = (title) => {
-            const match = title?.match(/\d+/);
-            return match ? parseInt(match[0], 10) : null;
-          };
-
-          const aNum = getNum(a.title?.[langKey] || "");
-          const bNum = getNum(b.title?.[langKey] || "");
-
-          if (aNum !== null && bNum === null) return -1;
-          if (aNum === null && bNum !== null) return 1;
-          if (aNum !== null && bNum !== null) return aNum - bNum;
-
-          return (a.title?.[langKey] || "").localeCompare(b.title?.[langKey] || "");
-        });
-
-        return sorted;
-      });
-
-      setHasMore(newChapters.length === LIMIT);
-    } catch (err) {
-      console.error("❌ Error fetching chapters:", err);
-
-      // Fallback to static chapters if first page
-      if (page === 1) {
-        setChapters(staticChapters);
-        setHasMore(false);
-      } else {
-        setError("Failed to load more chapters.");
-      }
-    } finally {
-      setLoading(false);
-    }
-  }, [langKey, page]);
-
-  useEffect(() => {
-    fetchChapters();
-  }, [fetchChapters]);
-
-  // Infinite scroll observer
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => {
-        if (entries[0].isIntersecting && hasMore && !loading) {
-          setPage(prev => prev + 1);
-        }
-      },
-      { threshold: 1.0 }
-    );
-
-    if (loaderRef.current) observer.observe(loaderRef.current);
-    return () => {
-      if (loaderRef.current) observer.unobserve(loaderRef.current);
+  // Sort chapters by chapter number extracted from title
+  const sortedChapters = [...staticChapters].sort((a, b) => {
+    const getNum = (title) => {
+      const match = title?.match(/\d+/);
+      return match ? parseInt(match[0], 10) : null;
     };
-  }, [hasMore, loading]);
+
+    const aNum = getNum(a.title?.[langKey] || "");
+    const bNum = getNum(b.title?.[langKey] || "");
+
+    if (aNum !== null && bNum === null) return -1;
+    if (aNum === null && bNum !== null) return 1;
+    if (aNum !== null && bNum !== null) return aNum - bNum;
+
+    return (a.title?.[langKey] || "").localeCompare(b.title?.[langKey] || "");
+  });
 
   const heading = language === "english" ? "Setu Chapters" : "सेतु के अध्याय";
 
@@ -342,7 +263,7 @@ const SetuChapters = () => {
       <div className="novel-index-wrapper">
         <h1 className="novel-index-title">{heading}</h1>
         <div className="chapter-list">
-          {chapters.map((chapter, index) => (
+          {sortedChapters.map((chapter, index) => (
             <motion.div
               className="chapter-item"
               key={chapter._id || index}
@@ -360,15 +281,6 @@ const SetuChapters = () => {
             </motion.div>
           ))}
         </div>
-
-        <div ref={loaderRef} style={{ height: "50px" }}>
-          {loading && (
-            <div className="spinner-container-chap" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <div className="spinner-chap"></div>
-            </div>
-          )}
-        </div>
-        {error && <div style={{ color: "red", textAlign: "center", marginTop: "10px" }}>{error}</div>}
       </div>
 
       <div className="language-toggle" style={{ textAlign: "center", marginTop: "20px" }}>
