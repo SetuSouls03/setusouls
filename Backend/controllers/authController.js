@@ -1,4 +1,3 @@
-// controllers/authController.js
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -6,36 +5,37 @@ const nodemailer = require("nodemailer");
 const axios = require("axios");
 const { formatUserDates } = require("../utils/dateFormatter");
 
-const otpStore = {}; // in-memory OTP store (temporary)
+const otpStore = {}; // in-memory OTP store (consider Redis for prod)
+const OTP_EXPIRY = 10 * 60 * 1000; // 10 minutes
+const OTP_RESEND_DELAY = 2 * 60 * 1000; // 2 minutes between OTP requests
 
-// --- EMAIL TRANSPORTER CONFIG ---
+// Nodemailer config
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
-  secure: true, // SSL
+  secure: true,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
   tls: {
-    rejectUnauthorized: false, // allows production servers with shared SSL
+    rejectUnauthorized: false, // safer for production
   },
 });
 
-// --- GET CLIENT IP ---
+// Helper: get client IP
 function getClientIp(req) {
-  const forwarded = req.headers["x-forwarded-for"] || req.headers["X-Forwarded-For"];
-  let ip = forwarded ? forwarded.split(",")[0].trim() : req.socket?.remoteAddress || req.connection?.remoteAddress;
+  const xff = req.headers["x-forwarded-for"] || req.headers["X-Forwarded-For"];
+  let ip = xff ? xff.split(",")[0].trim() : req.socket?.remoteAddress || req.connection?.remoteAddress;
   if (ip && ip.startsWith("::ffff:")) ip = ip.replace("::ffff:", "");
-  if (ip === "::1" || ip === "127.0.0.1") return "8.8.8.8"; // fallback for localhost
-  return ip || null;
+  return ip;
 }
 
-// --- GEO LOCATION LOOKUP ---
+// Helper: resolve geo info
 async function resolveGeoForIp(ip) {
   try {
     if (!ip) return {};
-    const { data } = await axios.get(`http://ip-api.com/json/${ip}`, { timeout: 4000 });
+    const { data } = await axios.get(`http://ip-api.com/json/${ip}`, { timeout: 5000 });
     if (data.status !== "success") return {};
     return {
       ipId: data.as || null,
@@ -47,28 +47,39 @@ async function resolveGeoForIp(ip) {
       ipCountry: data.country || null,
     };
   } catch (err) {
-    console.warn("⚠️ Geo lookup failed:", err.message);
+    console.warn("Geo lookup failed:", err.message);
     return {};
   }
+}
+
+// Helper: generate OTP
+function generateOtp() {
+  return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
 // --- REGISTER ---
 exports.register = async (req, res) => {
   const { name, email, password, contactNumber, countryCode, address } = req.body;
   try {
-    const existing = await User.findOne({ email });
-    if (existing) return res.status(400).json({ message: "User already exists" });
+    if (await User.findOne({ email })) {
+      return res.status(400).json({ message: "User already exists" });
+    }
 
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const now = new Date();
-
-    const clientIp = getClientIp(req);
+    const clientIp = getClientIp(req) || "8.8.8.8";
     const geo = await resolveGeoForIp(clientIp);
 
+    // Rate-limit OTP resend
+    if (otpStore[email] && Date.now() < otpStore[email].nextAllowedResend) {
+      return res.status(429).json({ message: "OTP already sent. Please wait before requesting again." });
+    }
+
+    const otp = generateOtp();
     otpStore[email] = {
       otp,
       type: "register",
-      expiresAt: Date.now() + 10 * 60 * 1000, // 10 minutes
+      expiresAt: Date.now() + OTP_EXPIRY,
+      nextAllowedResend: Date.now() + OTP_RESEND_DELAY,
       userData: {
         name,
         email,
@@ -84,18 +95,16 @@ exports.register = async (req, res) => {
       },
     };
 
-    // Send OTP email
     await transporter.sendMail({
-      from: `"Setu Souls" <${process.env.EMAIL_USER}>`,
+      from: process.env.EMAIL_USER,
       to: email,
       subject: "Verify your account",
-      html: `<p>Your OTP is <b>${otp}</b>. It’s valid for 10 minutes.</p>`,
+      text: `Your OTP is ${otp}. Valid for 10 minutes.`,
     });
 
-    console.log(`✅ OTP sent successfully to ${email}`);
     res.status(200).json({ message: "OTP sent to email", email });
   } catch (err) {
-    console.error("❌ Registration error:", err.message);
+    console.error("Registration error:", err);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -109,26 +118,26 @@ exports.verifyOtp = async (req, res) => {
     delete otpStore[email];
     return res.status(400).json({ message: "OTP expired or invalid" });
   }
-
-  if (record.otp !== otp) {
-    return res.status(400).json({ message: "Invalid OTP" });
-  }
+  if (record.otp !== otp) return res.status(400).json({ message: "Invalid OTP" });
 
   try {
     if (record.type === "register") {
       const newUser = await User.create(record.userData);
       delete otpStore[email];
+      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
       return res.status(201).json({
         message: "User registered successfully",
+        token,
         user: formatUserDates(newUser),
       });
     } else if (record.type === "forgotPassword") {
       delete otpStore[email];
       return res.status(200).json({ message: "OTP verified. Reset password now." });
     }
+
     return res.status(400).json({ message: "Invalid OTP type" });
   } catch (err) {
-    console.error("❌ OTP verification error:", err.message);
+    console.error("OTP verification error:", err);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -139,8 +148,9 @@ exports.login = async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (!user || !user.isActive) {
-      return res.status(404).json({ message: "User not found or inactive" });
+      return res.status(404).json({ message: "User not found or account inactive" });
     }
+
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(401).json({ message: "Invalid credentials" });
 
@@ -148,13 +158,14 @@ exports.login = async (req, res) => {
     await user.save();
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+
     res.json({
       message: "Login successful",
       token,
-      ...formatUserDates(user),
+      user: formatUserDates(user),
     });
   } catch (err) {
-    console.error("❌ Login error:", err.message);
+    console.error("Login error:", err);
     res.status(500).json({ error: "Internal server error" });
   }
 };
@@ -165,38 +176,33 @@ exports.forgotPassword = async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (user) {
-      const otp = Math.floor(100000 + Math.random() * 900000).toString();
-      otpStore[email] = {
-        otp,
-        type: "forgotPassword",
-        expiresAt: Date.now() + 10 * 60 * 1000,
-      };
+      const otp = generateOtp();
+      otpStore[email] = { otp, type: "forgotPassword", expiresAt: Date.now() + OTP_EXPIRY };
 
       await transporter.sendMail({
-        from: `"Setu Souls" <${process.env.EMAIL_USER}>`,
+        from: process.env.EMAIL_USER,
         to: email,
         subject: "Password Reset OTP",
-        html: `<p>Your OTP for password reset is <b>${otp}</b>. Valid for 10 minutes.</p>`,
+        text: `Your OTP is ${otp}. Valid for 10 minutes.`,
       });
     }
+
     res.status(200).json({ message: "If email exists, OTP was sent" });
   } catch (err) {
-    console.error("❌ Forgot password error:", err.message);
-    res.status(500).json({ error: "Something went wrong" });
+    console.error("Forgot password error:", err);
+    res.status(500).json({ error: "Internal server error" });
   }
 };
 
 // --- RESET PASSWORD ---
 exports.resetPassword = async (req, res) => {
+  const { email, newPassword } = req.body;
   try {
-    const { email, newPassword } = req.body;
     const user = await User.findOne({ email });
-    if (!user || !user.isActive)
-      return res.status(404).json({ message: "User not found or inactive" });
+    if (!user || !user.isActive) return res.status(404).json({ message: "User not found or inactive" });
 
-    if (await bcrypt.compare(newPassword, user.password)) {
-      return res.status(400).json({ message: "New password must be different" });
-    }
+    const isSamePassword = await bcrypt.compare(newPassword, user.password);
+    if (isSamePassword) return res.status(400).json({ message: "New password must be different" });
 
     user.password = await bcrypt.hash(newPassword, 10);
     user.updatedAt = new Date();
@@ -207,7 +213,7 @@ exports.resetPassword = async (req, res) => {
       user: formatUserDates(user),
     });
   } catch (err) {
-    console.error("❌ Reset password error:", err.message);
+    console.error("Reset password error:", err);
     res.status(500).json({ message: "Internal server error" });
   }
 };
