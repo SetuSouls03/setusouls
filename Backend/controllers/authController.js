@@ -105,8 +105,8 @@ exports.register = async (req, res) => {
     res.status(200).json({ message: "OTP sent to email", email });
   } catch (err) {
     console.error("Registration error:", err);
-    res.status(500).json({ message: "Internal server error" });
-  }
+    res.status(500).json({ message: "Internal server error", error: err.message });
+}
 };
 
 // --- VERIFY OTP ---
