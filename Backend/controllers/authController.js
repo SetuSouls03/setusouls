@@ -1,25 +1,12 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const nodemailer = require("nodemailer");
 const axios = require("axios");
 const { formatUserDates } = require("../utils/dateFormatter");
 
 const otpStore = {}; // in-memory OTP store (consider Redis for prod)
 const OTP_EXPIRY = 10 * 60 * 1000; // 10 minutes
 const OTP_RESEND_DELAY = 2 * 60 * 1000; // 2 minutes between OTP requests
-
-// Nodemailer config
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false, // STARTTLS
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
-
 
 // Helper: get client IP
 function getClientIp(req) {
@@ -93,18 +80,14 @@ exports.register = async (req, res) => {
       },
     };
 
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: "Verify your account",
-      text: `Your OTP is ${otp}. Valid for 10 minutes.`,
-    });
+    // 🔹 Instead of sending email, just log OTP
+    console.log(`OTP for ${email}: ${otp}`);
 
-    res.status(200).json({ message: "OTP sent to email", email });
+    res.status(200).json({ message: "OTP generated (check server logs)", email });
   } catch (err) {
     console.error("Registration error:", err);
-    res.status(500).json({ message: "Internal server error", error: err.message });
-}
+    res.status(500).json({ message: "Internal server error" });
+  }
 };
 
 // --- VERIFY OTP ---
@@ -177,15 +160,11 @@ exports.forgotPassword = async (req, res) => {
       const otp = generateOtp();
       otpStore[email] = { otp, type: "forgotPassword", expiresAt: Date.now() + OTP_EXPIRY };
 
-      await transporter.sendMail({
-        from: process.env.EMAIL_USER,
-        to: email,
-        subject: "Password Reset OTP",
-        text: `Your OTP is ${otp}. Valid for 10 minutes.`,
-      });
+      // 🔹 Log OTP instead of sending email
+      console.log(`Password reset OTP for ${email}: ${otp}`);
     }
 
-    res.status(200).json({ message: "If email exists, OTP was sent" });
+    res.status(200).json({ message: "If email exists, OTP was generated (check server logs)" });
   } catch (err) {
     console.error("Forgot password error:", err);
     res.status(500).json({ error: "Internal server error" });
