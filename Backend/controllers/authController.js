@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
 const axios = require("axios");
 const { formatUserDates } = require("../utils/dateFormatter");
 
@@ -8,7 +9,27 @@ const otpStore = {}; // in-memory OTP store (consider Redis for prod)
 const OTP_EXPIRY = 10 * 60 * 1000; // 10 minutes
 const OTP_RESEND_DELAY = 2 * 60 * 1000; // 2 minutes between OTP requests
 
-// Helper: get client IP
+// ✅ Nodemailer config (Gmail SMTP)
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false, // STARTTLS
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS, // Google App Password (NOT your normal password)
+  },
+});
+
+// ✅ Verify transporter connection
+transporter.verify((error, success) => {
+  if (error) {
+    console.error("❌ Email server connection failed:", error.message);
+  } else {
+    console.log("✅ Email server is ready to send messages");
+  }
+});
+
+// ✅ Helper: get client IP
 function getClientIp(req) {
   const xff = req.headers["x-forwarded-for"] || req.headers["X-Forwarded-For"];
   let ip = xff ? xff.split(",")[0].trim() : req.socket?.remoteAddress || req.connection?.remoteAddress;
@@ -16,7 +37,7 @@ function getClientIp(req) {
   return ip;
 }
 
-// Helper: resolve geo info
+// ✅ Helper: resolve geo info
 async function resolveGeoForIp(ip) {
   try {
     if (!ip) return {};
@@ -37,7 +58,7 @@ async function resolveGeoForIp(ip) {
   }
 }
 
-// Helper: generate OTP
+// ✅ Helper: generate OTP
 function generateOtp() {
   return Math.floor(100000 + Math.random() * 900000).toString();
 }
@@ -45,7 +66,9 @@ function generateOtp() {
 // --- REGISTER ---
 exports.register = async (req, res) => {
   const { name, email, password, contactNumber, countryCode, address } = req.body;
+
   try {
+    // Check if user exists
     if (await User.findOne({ email })) {
       return res.status(400).json({ message: "User already exists" });
     }
@@ -59,6 +82,7 @@ exports.register = async (req, res) => {
       return res.status(429).json({ message: "OTP already sent. Please wait before requesting again." });
     }
 
+    // Generate OTP
     const otp = generateOtp();
     otpStore[email] = {
       otp,
@@ -80,13 +104,27 @@ exports.register = async (req, res) => {
       },
     };
 
-    // 🔹 Instead of sending email, just log OTP
-    console.log(`OTP for ${email}: ${otp}`);
+    // Send OTP email
+    await transporter.sendMail({
+      from: `"SetuSouls" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: "Verify your SetuSouls Account",
+      html: `
+        <div style="font-family: Arial, sans-serif; padding: 15px;">
+          <h2>Welcome to SetuSouls!</h2>
+          <p>Hi ${name},</p>
+          <p>Your One-Time Password (OTP) for verification is:</p>
+          <h3 style="color:#2b6cb0; font-size: 24px;">${otp}</h3>
+          <p>This OTP is valid for 10 minutes.</p>
+          <p>Warm regards,<br><b>SetuSouls Team</b></p>
+        </div>
+      `,
+    });
 
-    res.status(200).json({ message: "OTP generated (check server logs)", email });
+    res.status(200).json({ message: "OTP sent to your email", email });
   } catch (err) {
     console.error("Registration error:", err);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Internal server error", error: err.message });
   }
 };
 
@@ -99,7 +137,10 @@ exports.verifyOtp = async (req, res) => {
     delete otpStore[email];
     return res.status(400).json({ message: "OTP expired or invalid" });
   }
-  if (record.otp !== otp) return res.status(400).json({ message: "Invalid OTP" });
+
+  if (record.otp !== otp) {
+    return res.status(400).json({ message: "Invalid OTP" });
+  }
 
   try {
     if (record.type === "register") {
@@ -129,7 +170,7 @@ exports.login = async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (!user || !user.isActive) {
-      return res.status(404).json({ message: "User not found or account inactive" });
+      return res.status(404).json({ message: "User not found or inactive" });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
@@ -140,14 +181,14 @@ exports.login = async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-    res.json({
+    res.status(200).json({
       message: "Login successful",
       token,
       user: formatUserDates(user),
     });
   } catch (err) {
     console.error("Login error:", err);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
@@ -160,14 +201,25 @@ exports.forgotPassword = async (req, res) => {
       const otp = generateOtp();
       otpStore[email] = { otp, type: "forgotPassword", expiresAt: Date.now() + OTP_EXPIRY };
 
-      // 🔹 Log OTP instead of sending email
-      console.log(`Password reset OTP for ${email}: ${otp}`);
+      await transporter.sendMail({
+        from: `"SetuSouls" <${process.env.EMAIL_USER}>`,
+        to: email,
+        subject: "Password Reset OTP",
+        html: `
+          <div style="font-family: Arial, sans-serif; padding: 15px;">
+            <h2>Password Reset Request</h2>
+            <p>Your OTP for resetting your password is:</p>
+            <h3 style="color:#d93025;">${otp}</h3>
+            <p>This OTP is valid for 10 minutes.</p>
+          </div>
+        `,
+      });
     }
 
-    res.status(200).json({ message: "If email exists, OTP was generated (check server logs)" });
+    res.status(200).json({ message: "If email exists, OTP was sent" });
   } catch (err) {
     console.error("Forgot password error:", err);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
