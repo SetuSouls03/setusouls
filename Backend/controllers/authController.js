@@ -12,16 +12,14 @@ const OTP_RESEND_DELAY = 2 * 60 * 1000; // 2 minutes between OTP requests
 // Nodemailer config
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
+  port: 587,
+  secure: false, // STARTTLS
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-  tls: {
-    rejectUnauthorized: false, // safer for production
-  },
 });
+
 
 // Helper: get client IP
 function getClientIp(req) {
