@@ -1,22 +1,16 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const nodemailer = require("nodemailer");
 const axios = require("axios");
-const { formatUserDates } = require('../utils/dateFormatter');
+const { Resend } = require("resend");
+const { formatUserDates } = require("../utils/dateFormatter");
 
-const otpStore = {}; // in-memory OTP store
+// Initialize Resend once
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Nodemailer config
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
+const otpStore = {}; // Temporary in-memory OTP store
+const OTP_EXPIRY = 10 * 60 * 1000; // 10 minutes
+const OTP_RESEND_DELAY = 2 * 60 * 1000; // 2 minutes between OTP requests
 
 // Helper: get client IP
 function getClientIp(req) {
@@ -47,23 +41,35 @@ async function resolveGeoForIp(ip) {
   }
 }
 
+// Helper: generate OTP
+function generateOtp() {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
 // --- REGISTER ---
 exports.register = async (req, res) => {
   const { name, email, password, contactNumber, countryCode, address } = req.body;
+
   try {
     if (await User.findOne({ email })) {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const now = new Date();
     const clientIp = getClientIp(req) || "8.8.8.8";
     const geo = await resolveGeoForIp(clientIp);
 
+    // Rate-limit OTP resend
+    if (otpStore[email] && Date.now() < otpStore[email].nextAllowedResend) {
+      return res.status(429).json({ message: "OTP already sent. Please wait before requesting again." });
+    }
+
+    const otp = generateOtp();
     otpStore[email] = {
       otp,
       type: "register",
-      expiresAt: Date.now() + 600000, // 10 min
+      expiresAt: Date.now() + OTP_EXPIRY,
+      nextAllowedResend: Date.now() + OTP_RESEND_DELAY,
       userData: {
         name,
         email,
@@ -79,11 +85,14 @@ exports.register = async (req, res) => {
       },
     };
 
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+    // ✅ Send OTP email via Resend
+    await resend.emails.send({
+      from: "SetuSouls <onboarding@resend.dev>",
       to: email,
-      subject: "Verify your account",
-      text: `Your OTP is ${otp}. Valid for 10 minutes.`,
+      subject: "Verify your SetuSouls account",
+      html: `<h2>Hello ${name},</h2>
+             <p>Your OTP is <b>${otp}</b>. It’s valid for 10 minutes.</p>
+             <p>Thank you for registering with SetuSouls!</p>`,
     });
 
     res.status(200).json({ message: "OTP sent to email", email });
@@ -102,20 +111,25 @@ exports.verifyOtp = async (req, res) => {
     delete otpStore[email];
     return res.status(400).json({ message: "OTP expired or invalid" });
   }
+
   if (record.otp !== otp) return res.status(400).json({ message: "Invalid OTP" });
 
   try {
     if (record.type === "register") {
       const newUser = await User.create(record.userData);
       delete otpStore[email];
-      return res.status(201).json({ 
+      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+
+      return res.status(201).json({
         message: "User registered successfully",
-        user: formatUserDates(newUser)
+        token,
+        user: formatUserDates(newUser),
       });
     } else if (record.type === "forgotPassword") {
       delete otpStore[email];
       return res.status(200).json({ message: "OTP verified. Reset password now." });
     }
+
     return res.status(400).json({ message: "Invalid OTP type" });
   } catch (err) {
     console.error("OTP verification error:", err);
@@ -126,14 +140,15 @@ exports.verifyOtp = async (req, res) => {
 // --- LOGIN ---
 exports.login = async (req, res) => {
   const { email, password } = req.body;
+
   try {
     const user = await User.findOne({ email });
     if (!user || !user.isActive) {
       return res.status(404).json({ message: "User not found or account inactive" });
     }
-    if (!(await bcrypt.compare(password, user.password))) {
-      return res.status(401).json({ message: "Invalid credentials" });
-    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(401).json({ message: "Invalid credentials" });
 
     user.lastSeen = new Date();
     await user.save();
@@ -143,53 +158,60 @@ exports.login = async (req, res) => {
     res.json({
       message: "Login successful",
       token,
-      ...formatUserDates(user)
+      user: formatUserDates(user),
     });
   } catch (err) {
     console.error("Login error:", err);
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: "Internal server error" });
   }
 };
 
 // --- FORGOT PASSWORD ---
 exports.forgotPassword = async (req, res) => {
   const { email } = req.body;
-  try {
-    if (await User.findOne({ email })) {
-      const otp = Math.floor(100000 + Math.random() * 900000).toString();
-      otpStore[email] = { otp, type: "forgotPassword", expiresAt: Date.now() + 600000 };
 
-      await transporter.sendMail({
-        from: process.env.EMAIL_USER,
+  try {
+    const user = await User.findOne({ email });
+    if (user) {
+      const otp = generateOtp();
+      otpStore[email] = { otp, type: "forgotPassword", expiresAt: Date.now() + OTP_EXPIRY };
+
+      // ✅ Send via Resend
+      await resend.emails.send({
+        from: "SetuSouls <onboarding@resend.dev>",
         to: email,
         subject: "Password Reset OTP",
-        text: `Your OTP is ${otp}. Valid for 10 minutes.`,
+        html: `<h3>Your OTP is <b>${otp}</b>. It’s valid for 10 minutes.</h3>`,
       });
     }
+
     res.status(200).json({ message: "If email exists, OTP was sent" });
   } catch (err) {
     console.error("Forgot password error:", err);
-    res.status(500).json({ error: "Something went wrong" });
+    res.status(500).json({ error: "Internal server error" });
   }
 };
 
 // --- RESET PASSWORD ---
 exports.resetPassword = async (req, res) => {
+  const { email, newPassword } = req.body;
+
   try {
-    const { email, newPassword } = req.body;
     const user = await User.findOne({ email });
-    if (!user || !user.isActive) return res.status(404).json({ message: "User not found or inactive" });
-    if (await bcrypt.compare(newPassword, user.password)) {
+    if (!user || !user.isActive)
+      return res.status(404).json({ message: "User not found or inactive" });
+
+    const isSamePassword = await bcrypt.compare(newPassword, user.password);
+    if (isSamePassword)
       return res.status(400).json({ message: "New password must be different" });
-    }
 
     user.password = await bcrypt.hash(newPassword, 10);
     user.updatedAt = new Date();
     await user.save();
 
-    res.status(200).json({ 
+    res.status(200).json({
       message: "Password updated successfully",
-      user: formatUserDates(user)
+      user: formatUserDates(user),
     });
   } catch (err) {
     console.error("Reset password error:", err);
