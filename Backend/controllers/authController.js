@@ -5,34 +5,38 @@ const axios = require("axios");
 const nodemailer = require("nodemailer");
 const { formatUserDates } = require("../utils/dateFormatter");
 
-// ✅ Nodemailer configuration (Use your own email + App Password)
+// ✅ Gmail SMTP configuration (App Password required)
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com", // for Gmail
-  port: 465,
-  secure: true, // true for port 465
+  service: "gmail",
   auth: {
-    user: process.env.EMAIL_USER, // e.g., "yourname@gmail.com"
-    pass: process.env.EMAIL_PASS, // App password, not your Gmail password
+    user: process.env.GMAIL_USER, // e.g. yourname@gmail.com
+    pass: process.env.GMAIL_APP_PASS, // Google App Password (NOT normal password)
   },
 });
 
+// --- OTP store ---
 const otpStore = {}; // Temporary in-memory OTP store
 const OTP_EXPIRY = 10 * 60 * 1000; // 10 minutes
 const OTP_RESEND_DELAY = 2 * 60 * 1000; // 2 minutes between OTP requests
 
-// Helper: get client IP
+// --- Helper: get client IP ---
 function getClientIp(req) {
   const xff = req.headers["x-forwarded-for"] || req.headers["X-Forwarded-For"];
-  let ip = xff ? xff.split(",")[0].trim() : req.socket?.remoteAddress || req.connection?.remoteAddress;
-  if (ip && ip.startsWith("::ffff:")) ip = ip.replace("::ffff:", "");
+  let ip =
+    xff?.split(",")[0].trim() ||
+    req.socket?.remoteAddress ||
+    req.connection?.remoteAddress;
+  if (ip?.startsWith("::ffff:")) ip = ip.replace("::ffff:", "");
   return ip;
 }
 
-// Helper: resolve geo info
+// --- Helper: resolve geo info ---
 async function resolveGeoForIp(ip) {
   try {
     if (!ip) return {};
-    const { data } = await axios.get(`http://ip-api.com/json/${ip}`, { timeout: 5000 });
+    const { data } = await axios.get(`http://ip-api.com/json/${ip}`, {
+      timeout: 5000,
+    });
     if (data.status !== "success") return {};
     return {
       ipId: data.as || null,
@@ -49,9 +53,20 @@ async function resolveGeoForIp(ip) {
   }
 }
 
-// Helper: generate OTP
+// --- Helper: generate OTP ---
 function generateOtp() {
   return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
+// --- Helper: send email ---
+async function sendEmail(to, subject, html) {
+  const mailOptions = {
+    from: `"SetuSouls" <${process.env.GMAIL_USER}>`,
+    to,
+    subject,
+    html,
+  };
+  await transporter.sendMail(mailOptions);
 }
 
 // --- REGISTER ---
@@ -69,7 +84,9 @@ exports.register = async (req, res) => {
 
     // Rate-limit OTP resend
     if (otpStore[email] && Date.now() < otpStore[email].nextAllowedResend) {
-      return res.status(429).json({ message: "OTP already sent. Please wait before requesting again." });
+      return res.status(429).json({
+        message: "OTP already sent. Please wait before requesting again.",
+      });
     }
 
     const otp = generateOtp();
@@ -93,19 +110,15 @@ exports.register = async (req, res) => {
       },
     };
 
-    // ✅ Send OTP email via Nodemailer
-    const mailOptions = {
-      from: `"SetuSouls" <${process.env.EMAIL_USER}>`,
-      to: email,
-      subject: "Verify your SetuSouls account",
-      html: `
+    await sendEmail(
+      email,
+      "Verify your SetuSouls account",
+      `
         <h2>Hello ${name},</h2>
         <p>Your OTP is <b>${otp}</b>. It’s valid for 10 minutes.</p>
         <p>Thank you for registering with SetuSouls!</p>
-      `,
-    };
-
-    await transporter.sendMail(mailOptions);
+      `
+    );
     console.log(`✅ OTP email sent to ${email}`);
 
     res.status(200).json({ message: "OTP sent to email", email });
@@ -131,7 +144,9 @@ exports.verifyOtp = async (req, res) => {
     if (record.type === "register") {
       const newUser = await User.create(record.userData);
       delete otpStore[email];
-      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
+        expiresIn: "1h",
+      });
 
       return res.status(201).json({
         message: "User registered successfully",
@@ -166,7 +181,9 @@ exports.login = async (req, res) => {
     user.lastSeen = new Date();
     await user.save();
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
 
     res.json({
       message: "Login successful",
@@ -187,17 +204,18 @@ exports.forgotPassword = async (req, res) => {
     const user = await User.findOne({ email });
     if (user) {
       const otp = generateOtp();
-      otpStore[email] = { otp, type: "forgotPassword", expiresAt: Date.now() + OTP_EXPIRY };
-
-      // ✅ Send OTP email via Nodemailer
-      const mailOptions = {
-        from: `"SetuSouls" <${process.env.EMAIL_USER}>`,
-        to: email,
-        subject: "Password Reset OTP",
-        html: `<h3>Your OTP is <b>${otp}</b>. It’s valid for 10 minutes.</h3>`,
+      otpStore[email] = {
+        otp,
+        type: "forgotPassword",
+        expiresAt: Date.now() + OTP_EXPIRY,
       };
 
-      await transporter.sendMail(mailOptions);
+      await sendEmail(
+        email,
+        "Password Reset OTP",
+        `<h3>Your OTP is <b>${otp}</b>. It’s valid for 10 minutes.</h3>`
+      );
+
       console.log(`✅ Password reset OTP sent to ${email}`);
     }
 
