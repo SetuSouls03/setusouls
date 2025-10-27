@@ -2,28 +2,13 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 const { formatUserDates } = require("../utils/dateFormatter");
 
-// ✅ Gmail SMTP configuration (App Password required)
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true, // SSL/TLS
-  auth: {
-    user: process.env.EMAIL_USER, // your Gmail address
-    pass: process.env.EMAIL_PASS, // 16-char App Password
-  },
-  tls: {
-    rejectUnauthorized: false, // 👈 Prevents SSL rejection on hosted env
-  },
-});
-
-
-
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // --- OTP store ---
-const otpStore = {}; // Temporary in-memory OTP store
+const otpStore = {};
 const OTP_EXPIRY = 10 * 60 * 1000; // 10 minutes
 const OTP_RESEND_DELAY = 2 * 60 * 1000; // 2 minutes between OTP requests
 
@@ -66,15 +51,20 @@ function generateOtp() {
   return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
-// --- Helper: send email ---
+// --- Helper: send email using Resend ---
 async function sendEmail(to, subject, html) {
-  const mailOptions = {
-    from: `"SetuSouls" <${process.env.EMAIL_USER}>`,
-    to,
-    subject,
-    html,
-  };
-  await transporter.sendMail(mailOptions);
+  try {
+    const data = await resend.emails.send({
+      from: `Setu Souls <souls@setuasia.info>`, // ✅ your verified domain email
+      to,
+      subject,
+      html,
+    });
+    console.log("✅ Email sent:", data);
+  } catch (err) {
+    console.error("❌ Email sending failed:", err);
+    throw err;
+  }
 }
 
 // --- REGISTER ---
@@ -120,11 +110,16 @@ exports.register = async (req, res) => {
 
     await sendEmail(
       email,
-      "Verify your SetuSouls account",
+      "Verify your Souls by Setu Account",
       `
-        <h2>Hello ${name},</h2>
-        <p>Your OTP is <b>${otp}</b>. It’s valid for 10 minutes.</p>
-        <p>Thank you for registering with SetuSouls!</p>
+        <div style="font-family: Arial, sans-serif; text-align:center; padding:10px;">
+          <h2>Welcome to Setu Souls, ${name}!</h2>
+          <p>Your One-Time Password (OTP) is:</p>
+          <h1 style="letter-spacing:4px;">${otp}</h1>
+          <p>This OTP is valid for <b>10 minutes</b>.</p>
+          <br />
+          <p>Thank you for joining us 💫</p>
+        </div>
       `
     );
     console.log(`✅ OTP email sent to ${email}`);
@@ -220,8 +215,15 @@ exports.forgotPassword = async (req, res) => {
 
       await sendEmail(
         email,
-        "Password Reset OTP",
-        `<h3>Your OTP is <b>${otp}</b>. It’s valid for 10 minutes.</h3>`
+        "Reset your Souls by Setu Password",
+        `
+          <div style="font-family: Arial, sans-serif; text-align:center; padding:10px;">
+            <h2>Password Reset Request</h2>
+            <p>Your OTP is:</p>
+            <h1 style="letter-spacing:4px;">${otp}</h1>
+            <p>This OTP is valid for <b>10 minutes</b>.</p>
+          </div>
+        `
       );
 
       console.log(`✅ Password reset OTP sent to ${email}`);
