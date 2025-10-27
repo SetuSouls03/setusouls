@@ -9,8 +9,8 @@ const { formatUserDates } = require("../utils/dateFormatter");
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.GMAIL_USER, // e.g. yourname@gmail.com
-    pass: process.env.GMAIL_APP_PASS, // Google App Password (NOT normal password)
+    user: process.env.EMAIL_USER, // e.g. yourname@gmail.com
+    pass: process.env.EMAIL_PASS, // Google App Password (NOT normal password)
   },
 });
 
