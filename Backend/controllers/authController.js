@@ -2,11 +2,19 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
-const { Resend } = require("resend");
+const nodemailer = require("nodemailer");
 const { formatUserDates } = require("../utils/dateFormatter");
 
-// Initialize Resend once
-const resend = new Resend(process.env.RESEND_API_KEY);
+// ✅ Nodemailer configuration (Use your own email + App Password)
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com", // for Gmail
+  port: 465,
+  secure: true, // true for port 465
+  auth: {
+    user: process.env.EMAIL_USER, // e.g., "yourname@gmail.com"
+    pass: process.env.EMAIL_PASS, // App password, not your Gmail password
+  },
+});
 
 const otpStore = {}; // Temporary in-memory OTP store
 const OTP_EXPIRY = 10 * 60 * 1000; // 10 minutes
@@ -85,15 +93,20 @@ exports.register = async (req, res) => {
       },
     };
 
-    // ✅ Send OTP email via Resend
-    await resend.emails.send({
-      from: "SetuSouls <onboarding@resend.dev>",
+    // ✅ Send OTP email via Nodemailer
+    const mailOptions = {
+      from: `"SetuSouls" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: "Verify your SetuSouls account",
-      html: `<h2>Hello ${name},</h2>
-             <p>Your OTP is <b>${otp}</b>. It’s valid for 10 minutes.</p>
-             <p>Thank you for registering with SetuSouls!</p>`,
-    });
+      html: `
+        <h2>Hello ${name},</h2>
+        <p>Your OTP is <b>${otp}</b>. It’s valid for 10 minutes.</p>
+        <p>Thank you for registering with SetuSouls!</p>
+      `,
+    };
+
+    await transporter.sendMail(mailOptions);
+    console.log(`✅ OTP email sent to ${email}`);
 
     res.status(200).json({ message: "OTP sent to email", email });
   } catch (err) {
@@ -176,13 +189,16 @@ exports.forgotPassword = async (req, res) => {
       const otp = generateOtp();
       otpStore[email] = { otp, type: "forgotPassword", expiresAt: Date.now() + OTP_EXPIRY };
 
-      // ✅ Send via Resend
-      await resend.emails.send({
-        from: "SetuSouls <onboarding@resend.dev>",
+      // ✅ Send OTP email via Nodemailer
+      const mailOptions = {
+        from: `"SetuSouls" <${process.env.EMAIL_USER}>`,
         to: email,
         subject: "Password Reset OTP",
         html: `<h3>Your OTP is <b>${otp}</b>. It’s valid for 10 minutes.</h3>`,
-      });
+      };
+
+      await transporter.sendMail(mailOptions);
+      console.log(`✅ Password reset OTP sent to ${email}`);
     }
 
     res.status(200).json({ message: "If email exists, OTP was sent" });
