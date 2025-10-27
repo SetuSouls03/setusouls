@@ -9,13 +9,16 @@ const { formatUserDates } = require("../utils/dateFormatter");
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
-  secure: true,
+  secure: true, // SSL/TLS
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: process.env.EMAIL_USER, // your Gmail address
+    pass: process.env.EMAIL_PASS, // 16-char App Password
   },
-  tls: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : {},
+  tls: {
+    rejectUnauthorized: false, // 👈 Prevents SSL rejection on hosted env
+  },
 });
+
 
 
 
