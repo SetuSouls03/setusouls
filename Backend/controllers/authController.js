@@ -24,27 +24,30 @@ function getClientIp(req) {
 }
 
 // --- Helper: resolve geo info ---
+// --- Helper: resolve geo info (using ipdata.co for high accuracy) ---
 async function resolveGeoForIp(ip) {
   try {
     if (!ip) return {};
-    const { data } = await axios.get(`http://ip-api.com/json/${ip}`, {
-      timeout: 5000,
-    });
-    if (data.status !== "success") return {};
+    const apiKey = process.env.IPDATA_API_KEY;
+    const url = `https://api.ipdata.co/${ip}?api-key=${apiKey}`;
+    const { data } = await axios.get(url, { timeout: 5000 });
+
     return {
-      ipId: data.as || null,
-      ipAddress: data.query || ip,
-      iplatitude: data.lat || null,
-      iplongitude: data.lon || null,
+      ipId: data.asn?.name || null,
+      ipAddress: data.ip || ip,
+      iplatitude: data.latitude || null,
+      iplongitude: data.longitude || null,
       ipcity: data.city || null,
-      ipstate: data.regionName || null,
-      ipCountry: data.country || null,
+      ipstate: data.region || null,
+      ipCountry: data.country_name || null,
+      isp: data.asn?.domain || null,
     };
   } catch (err) {
     console.warn("Geo lookup failed:", err.message);
     return {};
   }
 }
+
 
 // --- Helper: generate OTP ---
 function generateOtp() {
