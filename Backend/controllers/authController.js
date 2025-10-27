@@ -61,7 +61,7 @@ function generateOtp() {
 // --- Helper: send email ---
 async function sendEmail(to, subject, html) {
   const mailOptions = {
-    from: `"SetuSouls" <${process.env.GMAIL_USER}>`,
+    from: `"SetuSouls" <${process.env.EMAIL_USER}>`,
     to,
     subject,
     html,
