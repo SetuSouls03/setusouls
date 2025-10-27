@@ -7,15 +7,16 @@ const { formatUserDates } = require("../utils/dateFormatter");
 
 // ✅ Gmail SMTP configuration (App Password required)
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-  tls: {
-    rejectUnauthorized: false, // 👈 this tells Node to accept self-signed certs
-  },
+  tls: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : {},
 });
+
 
 
 // --- OTP store ---
