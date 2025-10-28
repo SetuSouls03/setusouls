@@ -29,6 +29,8 @@ import ScrollToTop from './components/ScrollToTop';
 import Quotes from './Pages/Quotes';
 import SetuChapters from './Pages/SetuChapters/setuChapters';
 import ChapterDetail from './components/ChapterDetail';
+import SetuNotes from './Pages/SetuNotes/SetuNotes';
+import Notes from './components/Notes';
 function App() {
   return (
     <Router>
@@ -57,7 +59,9 @@ function App() {
             <Route path='/about' element={<About />} />
             <Route path='/quotes' element={<ProtectedRoute><Quotes /></ProtectedRoute>} />
             <Route path='/setu-chapters' element={<ProtectedRoute><SetuChapters /></ProtectedRoute>} />
+            <Route path='/setu-notes' element={<ProtectedRoute><SetuNotes /></ProtectedRoute>} />
             <Route path='/chapters/:slug' element={<ProtectedRoute><ChapterDetail /></ProtectedRoute>} />
+            <Route path='/notes/:slug' element={<ProtectedRoute><Notes /></ProtectedRoute>} />
           </Routes>
         </div>
 

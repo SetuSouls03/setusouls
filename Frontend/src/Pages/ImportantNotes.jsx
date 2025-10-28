@@ -380,7 +380,7 @@ const notesPara2En=(<>These spiritual revelations guide your journey in Kaliyug 
               Setu Chapters
             </a>
             <a
-              href="https://drive.google.com/drive/folders/13ixlzGWq39FB1hRhSq472vl1G8btFHyq"
+              href="/setu-notes"
               className="notes-button"
               rel="noopener noreferrer"
             >

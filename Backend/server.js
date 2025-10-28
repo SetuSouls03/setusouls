@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./db");
 const authRoutes = require("./routes/auth");
 const chapterRoutes = require("./routes/chapterRoutes");
+const noteRoutes = require("./routes/noteRoutes");
 
 dotenv.config();
 connectDB();
@@ -50,6 +51,8 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 // Use Chapter Routes only
 app.use("/api/chapters", chapterRoutes);
+// Use Note Routes only
+app.use("/api/notes", noteRoutes);
 // ✅ Global error handler
 app.use((err, req, res, next) => {
   console.error("🔥 Global Error Handler:", err.message);
