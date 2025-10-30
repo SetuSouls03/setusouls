@@ -1,8 +1,9 @@
+// models/Notes.js
 const mongoose = require("mongoose");
 
 const notesSchema = new mongoose.Schema(
   {
-    slug: { type: String, required: true, unique: true },
+    slug: { type: String, required: true, unique: true }, // ✅ keep only this, no extra .index()
 
     title: {
       en: { type: String, required: true },
@@ -22,7 +23,6 @@ const notesSchema = new mongoose.Schema(
       hi: { type: String },
     },
 
-    // ✅ Add image field
     image: {
       type: String, // URL or filename
       required: false,
@@ -35,7 +35,9 @@ const notesSchema = new mongoose.Schema(
   }
 );
 
+// ✅ Keep only non-duplicate indexes
 notesSchema.index({ "title.en": 1 });
 notesSchema.index({ "title.hi": 1 });
 
-module.exports = mongoose.model("note", notesSchema);
+const Note = mongoose.model("Note", notesSchema);
+module.exports = Note;

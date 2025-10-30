@@ -1,7 +1,12 @@
+// server.js
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const compression = require("compression");
+const helmet = require("helmet");
 const connectDB = require("./db");
+
+// Routes
 const authRoutes = require("./routes/auth");
 const chapterRoutes = require("./routes/chapterRoutes");
 const noteRoutes = require("./routes/noteRoutes");
@@ -11,7 +16,11 @@ connectDB();
 
 const app = express();
 
-// ✅ Define your allowed origins
+/* ✅ 1️⃣ Security & Performance */
+app.use(helmet());
+app.use(compression());
+
+/* ✅ 2️⃣ Define Allowed Origins (CORS) */
 const allowedOrigins = [
   "https://setusouls.netlify.app",
   "https://setusouls-1.onrender.com",
@@ -22,16 +31,12 @@ const allowedOrigins = [
   "http://localhost:5173",
 ];
 
-// ✅ CORS config with preflight support
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        console.warn("❌ Blocked by CORS:", origin);
-        callback(new Error("Not allowed by CORS"));
-      }
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+      console.warn("❌ Blocked by CORS:", origin);
+      return callback(new Error("Not allowed by CORS"));
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -39,21 +44,20 @@ app.use(
   })
 );
 
-// ✅ Parse incoming JSON
-app.use(express.json());
+/* ✅ 3️⃣ JSON Parser */
+app.use(express.json({ limit: "2mb" }));
 
-// ✅ Health check route
+/* ✅ 4️⃣ Health Check */
 app.get("/", (req, res) => {
-  res.send("✅ SetuSouls Backend is Live");
+  res.send("✅ SetuSouls Backend is Live and Optimized!");
 });
 
-// ✅ Auth routes
+/* ✅ 5️⃣ API Routes */
 app.use("/api/auth", authRoutes);
-// Use Chapter Routes only
 app.use("/api/chapters", chapterRoutes);
-// Use Note Routes only
 app.use("/api/notes", noteRoutes);
-// ✅ Global error handler
+
+/* ✅ 6️⃣ Global Error Handler */
 app.use((err, req, res, next) => {
   console.error("🔥 Global Error Handler:", err.message);
   if (err.message === "Not allowed by CORS") {
@@ -62,8 +66,6 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: "Something went wrong." });
 });
 
-// ✅ Start the server
+/* ✅ 7️⃣ Start Server */
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

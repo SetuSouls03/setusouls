@@ -1,8 +1,9 @@
+// models/Chapter.js
 const mongoose = require("mongoose");
 
 const chapterSchema = new mongoose.Schema(
   {
-    slug: { type: String, required: true, unique: true }, // ✅ keep only this, no extra index
+    slug: { type: String, required: true, unique: true }, // ✅ only this handles the index
 
     title: {
       en: { type: String, required: true },
@@ -29,7 +30,7 @@ const chapterSchema = new mongoose.Schema(
   }
 );
 
-// ✅ Only keep extra indexes that are not duplicates
+// ✅ Keep only non-duplicate indexes
 chapterSchema.index({ "title.en": 1 });
 chapterSchema.index({ "title.hi": 1 });
 
