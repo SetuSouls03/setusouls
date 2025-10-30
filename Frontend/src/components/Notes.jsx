@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
-
+import './Notes.css';
 const Notes = () => {
   const { slug } = useParams();
   const location = useLocation();
@@ -171,6 +171,18 @@ const Notes = () => {
             <p>{note.additionalSection[language]}</p>
           </div>
         )}
+
+        {/* ✅ Note Image (from public/images/) */}
+{note.image && (
+  <div className="chapter-image-container">
+    <img
+      src={`/${note.image}`}
+      alt={note.title[language]}
+      className="chapter-image"
+    />
+  </div>
+)}
+
 
         <div className="chapter-content" style={{ textAlign: "left" }}>
           {(note?.content?.[language]?.split("\n") || []).map((line, index) => (

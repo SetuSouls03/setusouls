@@ -4,7 +4,7 @@ const Note = require("../models/Notes");
 // ✅ POST /api/notes
 exports.createNote = async (req, res) => {
   try {
-    const { slug, title, content, linkEnglish, linkHindi, additionalSection, date } = req.body;
+    const { slug, title, content, linkEnglish, linkHindi, additionalSection, date, image } = req.body;
 
     // Check if note already exists
     const existing = await Note.findOne({ slug }).lean();
@@ -20,6 +20,7 @@ exports.createNote = async (req, res) => {
       linkHindi,
       additionalSection,
       date,
+      image,
     });
 
     await newNote.save();

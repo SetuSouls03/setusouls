@@ -1,0 +1,125 @@
+/* ================================
+   📘 Notes Page Styles
+================================ */
+
+/* ✅ Note Image Wrapper (legacy support for older components) */
+.note-image-wrapper {
+  text-align: center;
+  margin: 2rem 0;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+}
+
+.note-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 500px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: block;
+  margin: 0 auto;
+}
+
+/* ================================
+   ✅ New Chapter Image Styling
+================================ */
+.chapter-image-container {
+  text-align: center;
+  margin: 3rem auto;
+  background: #ffffff;
+  padding: 1rem 0;
+  border-radius: 12px;
+}
+
+.chapter-image {
+  width: 80%;
+  height: 25rem;
+  object-fit: fill;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+  display: block;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+/* Subtle hover zoom effect */
+.chapter-image:hover {
+  transform: scale(1.02);
+}
+
+/* ✨ Smooth fade-in animation */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ================================
+   🔄 Loading Spinner
+================================ */
+.spinner-container-chap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.spinner-chap {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ================================
+   ⚠️ Error Message
+================================ */
+.chapter-error {
+  text-align: center;
+  color: #e74c3c;
+  font-size: 1.2rem;
+  margin: 2rem;
+  padding: 1rem;
+  background: #ffeaea;
+  border-radius: 8px;
+  border: 1px solid #e74c3c;
+}
+
+/* ================================
+   📱 Responsive Design
+================================ */
+@media (max-width: 768px) {
+  .note-image {
+    max-height: 300px;
+  }
+
+  .note-image-wrapper {
+    margin: 1rem 0;
+    padding: 0.5rem;
+  }
+
+  .chapter-image {
+    width: 90%;
+    height: 15rem; /* 📱 Mobile height */
+  }
+
+  .chapter-image-container {
+    margin: 1.5rem auto;
+    padding: 0.5rem 0;
+  }
+}
