@@ -186,6 +186,16 @@ const Navbar = () => {
                         Important Notes
                       </NavLink>
                       <NavLink
+                        to="/summary"
+                        className="dropdown-item"
+                        onClick={() => {
+                          closeMobileMenu();
+                          setImportantDropdownOpen(false);
+                        }}
+                      >
+                       Summary
+                      </NavLink>
+                      <NavLink
                         to="/other"
                         className="dropdown-item"
                         onClick={() => {
@@ -274,6 +284,16 @@ const Navbar = () => {
                         }}
                       >
                         Important Quotes
+                      </NavLink>
+                      <NavLink
+                        to="/my-experiences"
+                        className="dropdown-item"
+                        onClick={() => {
+                          closeMobileMenu();
+                          setAdditionalDropdownOpen(false);
+                        }}
+                      >
+                        My Experiences
                       </NavLink>
                       <NavLink
                         to="/about"

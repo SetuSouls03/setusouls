@@ -182,8 +182,7 @@ const Other = () => {
             )}
           </h3>
         </div>
-      </ScrollFadeIn>
-      <div style={{display:'flex', justifyContent:'center'}}>
+              <div style={{display:'flex', justifyContent:'center'}}>
             <button
         className="translate-button"
         onClick={toggleLanguage}
@@ -192,6 +191,46 @@ const Other = () => {
         {isHindi ? "Translate to English" : "हिंदी में अनुवाद करें"}
       </button>
       </div>
+        <div className="summary-highlight">
+  {isHindi ? (
+    <>
+      <ul>
+        <li>
+          नोट: मातंगों और उनके साथी जानवरों की अपनी अलग दुनिया की समझ होती है। 
+          उदाहरण के लिए, हम मुख्यधारा के समाज के लोग एक-दूसरे को चेहरे और नाम से पहचानते हैं। 
+          उसी तरह, उन्हें भी एक-दूसरे को पहचानने का अपना तरीका होता है। 
+          सरलता के लिए, हमने इन अनुवादों में उन्हें अपने नाम और शब्द दिए हैं। 
+          इस प्रकार, हमने न केवल उनके शब्दों का अनुवाद किया है, बल्कि उन शब्दों की उनकी समझ का भी अनुवाद किया है।
+        </li>
+        <li>
+          मातंग लोग किसी भी अंकों के क्रम में "शून्य" को अंत में गिनते हैं। 
+          इसलिए, अध्याय संख्या "शून्य" भगवान हनुमान की यात्रा का अंतिम अध्याय होगा 
+          और यह सभी अध्यायों के प्रकाशित होने के बाद पोस्ट किया जाएगा।
+        </li>
+      </ul>
+    </>
+  ) : (
+    <>
+      <ul>
+        <li>
+          Note: Mathangs and their companion animals have their own understanding of the world. 
+          For example, we human beings of mainstream society identify each other with faces and names. 
+          Similarly, they have their own mechanism to identify each other. 
+          For the sake of simplicity, we have given them our own names and terms in these translations. 
+          So, we have not only translated their words but also their understanding of the words.
+        </li>
+        <li>
+          Mathangs count "Zero" at the end of any sequence of numbers. 
+          Therefore, chapter number "Zero" would be the last chapter of Lord Hanuman's visit 
+          and it will be posted after all the chapters.
+        </li>
+      </ul>
+    </>
+  )}
+</div>
+
+      </ScrollFadeIn>
+
     </>
   );
 };

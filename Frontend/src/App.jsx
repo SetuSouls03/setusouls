@@ -31,6 +31,8 @@ import SetuChapters from './Pages/SetuChapters/setuChapters';
 import ChapterDetail from './components/ChapterDetail';
 import SetuNotes from './Pages/SetuNotes/SetuNotes';
 import Notes from './components/Notes';
+import Summary from './Pages/Summary';
+import MyExperiences from './Pages/MyExperiences';
 function App() {
   return (
     <Router>
@@ -62,6 +64,8 @@ function App() {
             <Route path='/setu-notes' element={<ProtectedRoute><SetuNotes /></ProtectedRoute>} />
             <Route path='/chapters/:slug' element={<ProtectedRoute><ChapterDetail /></ProtectedRoute>} />
             <Route path='/notes/:slug' element={<ProtectedRoute><Notes /></ProtectedRoute>} />
+            <Route path='/summary' element={<ProtectedRoute><Summary /></ProtectedRoute>} />
+            <Route path='/my-experiences' element={<ProtectedRoute><MyExperiences /></ProtectedRoute>} />
           </Routes>
         </div>
 
