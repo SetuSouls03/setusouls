@@ -1723,6 +1723,588 @@ const MyExperiences = () => {
   question: 
     "From yesterday i have started my readings on setuu..This life having a monetary issues every day..Yesterday didn't have enough money to purchase some medicine for parents which they also refuse because they might be knowing my status..Today morning by the grace of Hanuman Ji , onces i get up & when to the shop for that medicine and found that the medicine is made available to me with only the Coins in the purse and then i started to read the next two chapters also from this Setuu..How life & problems are managed....Namaskar & Pranam ."
   },
+  {
+  id: 156,
+  header: "Blessings for my Father",
+  question: 
+    "Jai Shree Ram\n"+
+    "Jai Maa Jaanki\n"+
+    "Jai Bajrangbali\n\n"+
+    "Hanumanji, you know very well how simple my father is. Everyone in the family and outside tries to take advantage of his simplicity. As far as I know, in recent past many people have taken advantage of his simplicity.\n\n"+
+    "Prabhu you know the scenario at our house. Nothing is hidden from you. Everyone is pressurizing my father to sell the house. He is left alone. No one is from his side. Everyone takes the other side. He is not able to face all these alone. Even I live outside and I am looking for a good job. So, he has become weak as I am also not earning. He has to look after me also. He has got retired and there is no pension too. He always lives in anxiety. He has so many tensions regarding my job and house. He is not healthy too. He has so many health issues like diabetes, blood pressure etc. Also, he takes tensions more than required. He is very emotional too. He wants to live with peace with all family members i.e. uncles, aunt etc. But it doesn't seem possible now because nowadays no one wants to live united. Everyone wants to live separately.\n\n"+
+    "I think my father is very much attached to me because he doesn't want me to go far away from him for job or anything. Many a times he has told me not to look for jobs outside country or very far away from home. He cares for me lot and also keep on thinking about me.\n\n"+
+    "So, Hanumanji, bless my father with good health, strength, patience and confidence so that he face everything and do well in life. He is very much involved in worship and all that. Bless his soul so that he move towards Moksha after settling all his Karma.\n\n"+
+    "Astrologers also tell that he is suffering from \"Pitradosh\" and some other planetary problems of Rahu, Ketu etc. Hanumanji, take care of these too. Bless my father so that no dosh or anything like that even dare to come near to my father. Save him from evil powers too. Some days ago, he saw something in his dream and got very much frightened. My mother told me this had never happened before i.e. the way he got scared. He was sweating very much.\n\n"+
+    "Hanumanji, keep you blessings on my father always and forgive him if he has done anything wrong either in this birth or previous births.\n\n"+
+    "Thanks and regards.",
+  },
+  {
+  id: 157,
+  header: "Blessings for my Mother",
+  question: 
+    "Jai Shree Ram\n"+
+    "Jai Hanuman\n"+
+    "Hanumanji, aap sabkuchh jaante hain. Meri mummy theek nahi rahti. Hamesha usko koi n koi problem rehta hai. Kabhi sharirik to kabhi maanshik.\n\n"+
+    "Ungliyon ke dard aur pair ke dard se to wo hamesha pateshan rehti hai. Kabhi kabhi sir me bhi usko kaafi dard hota hai. Aur uska wo skin wala problem jo ki ab theek ho rha hai, wo puri tarah se theek ho jaaye. Aur to aur ab to usko diabetes bhi ho gaya hai. Prabhu uske aankh me koi problem n ho. Sab theek rahe.\n\n"+
+    "Wo chinta bhi bahut krti hai. Har samay sochti rehti hai. Uski chinta ka main kaaran meri job aur ghar ka problem hai. Sochte sochte uska aur jyaada tabiyat kharab ho jaata hai.\n\n"+
+    "Hey Hanumanji, main apni mummy ka dukh aur taklif nhi dekh sakta. Ya to meri mummy ka dukh aur takleef door kar dijiye ya mujhe itni shakti dijiye ki main ye sab dekh saku. Hanumanji, mummy ko har takleef se door rakhiyega aur kisi bhi prakar ki buri shakti se raksha kijiyega. Mummy pe hamesha apni kripa banaye rakhiyega prabhu. Usse ek swasth aur sukhi jeevan ka aashirwaad de prabhu.\n\n"+
+    "Thank you Setuu\n"+
+    "Thank you Mathangs\n"+
+    "Regards"
+  },
+  {
+  id: 158,
+  header: "Blessings for my Parents",
+  question: 
+    "This is for my parents Prabhu. Hanumanji, you know everything.\n\n"+
+    "My mother always suffers from pain in legs, hands and other body parts and that skin problem too. Also, she has many tensions and worries in life. One of her major worries is regarding my job and future. Also, she has tensions regarding our house. Please make my mother healthy and make her free from all kinds of worries and tensions. Also, protect her from all kinds of evils or troubles or sufferings or anything like that. Please Hanumanji, keep your blessings on my mother always.\n\n"+
+    "My father also has many sufferings and tensions. One of the most important sufferings of my father is that of diabetes. He has some other sufferings too. His main tension is that of our house and how to spend life after retirement without pension. Also, he has tensions regarding my job and future. Please Hanumanji, remove all tensions and sufferings from my father's life. Give him a very good health and sound mind so that he may enjoy his life. Bless my father Prabhu.\n\n"+
+    "I request the Mathangs to pray for my mother and father in their daily Shakshat Hanuman Puja. I hope all the worries and tensions of my parents will vanish very soon with the blessings of almighty Hanumanji.\n\n"+
+    "Thank you Mathangs. Thank you Setuu.\n\n"+
+    "Jai Bajrangbali. Jai Shree Ram."
+  },
+  {
+  id: 159,
+  header: "Blessings needed",
+  question: 
+    "Hello Setu Master,\n\n"+
+    "While I am still waiting for the answers to my questions on many of the queries I shared on Setuu websitre, but particularly today, I seek blessings for my mother from Lord Hanuman. My mother is going for a medical operation for the removal of stones from her gall bladder. I seek blessing for her from Lord Hanuman for the successful operation and for her good health. Lord Hanuman please be with her and bless her!\n\n"+
+    "Please convey this to Lord, asap.",
+  answer:
+    "Dine Soul,\n"+
+    "Your prayer has been included.\n\n"+
+    "Queries may take time because there is a limit to how many queries we can discuss in Sakshat Hanuman Pooja everyday. Number of queries submitted by devotees are rising exponentially. We will try to include all queries. Please have patience.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 160,
+  header: "Blessings needed - 2",
+  question: 
+    "Continued from #520522\n\n"+
+    "Thank you so much!\n\n"+
+    "I request Hanuman ji to please be with my Mother.\n\n"+
+    "I am out- of- city and could not be with her in person. Today morning, I got to know that doctor did a minor operation yesterday. But it got a bit of complications.\n\n"+
+    "They will do the next operation in a week or so.\n\n"+
+    "Please Setuu, communicate this message to Lord. My family needs His blessings!\n\n"+
+    "We pray for full recovery of my mother!\n\n"+
+    "Jai Shri Ram"
+  },
+  {
+  id: 161,
+  header: "Blessings for new venture",
+  question: 
+    "Dear Lord\n"+
+    "Have joined a business till date run solely by my husband . Seek your Blessings for the same and to protect my family ! Jai Hanuman"
+  },
+  {
+  id: 162,
+  header: "Blessings required for fighting in kaliyuga",
+  question: 
+    "Please accept pronam lord hanuman ji from a humble soul of kaliyuga. My lord You know me my past, present and my future --You know me best more than I do. There is a vast change in me since I am reading your leelas. I am feeling blessed by this opportunity that my destiny rather YOU have bestowed upon me. I have a little daughter named her Radharani . In this kaliyuga I as a mother seek Your Blessings on her for a long and good life . I beg your blessings for her entire life when the world is witnessing such a war and pralay. I love my husband as he has been my sole support in my life. I fear for him as well. Thirdly I am trapped in my desire as your leela 11 th chapter has mentioned. kuruksetra has begun in 2015. I need your blessings to ride through this time along with my family. Please protect us from adharma and evil of war. I do not want to loose any of them. LORD please help us.",
+  answer:
+    "Blessings.\n\n"+
+    "||Ram||"
+  },
+  {
+  id: 163,
+  header: "Blessings of Shri Ram ji",
+  question: 
+    "jai siya ram\n"+
+    "after reading 10th chapter i got admired that my gurudev Hanumanji can change all the bad /worst happening of thier bhakts into good happenins by good luck.lord Hanuman ji is always with me and my family by the blessings of supreme lord shri Ram ji.\n"+
+    "Dinesh Gupta\n"+
+    "sewak pawan putra Hanuman ji"
+  },
+  {
+  id: 164,
+  header: "braham gyan kaise prapt ho sakta hai",
+  question: 
+    "Namaskar ...jay bajrang bali\n"+
+    "Sir mera question ye hai ki brahm gyan kaise prapt kare.brahm gyan k liye kya kya sarte hoti hai.or ha hamare hindu dharm me 33karod devi devta hai ham kinka poojan kare or kinka chhode.parampita parmeshwar ka sawroop kya hai .koi kahta hai we nirgun,nirankar hai.koi kahta hai we sagun rup hai.koi shiv baba ko to koi bhagwan vishnu ko bada batata hai .ab aap bataiye ki ham is bharam se kaise nikle.parampita parmeshwar kon hai or brahma vishnu or shiv ki utpati kaise huaa.is pure brahmand ka nirman kisne kiya.kya koi maa durga ki bhakti karke moksha prapt nahi kr sakta hai.kripya samadhan kare or sahi margdarshan de\n"+
+    "Jay mata di\n"+
+    "Jay bajrang bali\n"+
+    "Rupesh pandey",
+  answer:
+    "दिव्य आत्मस्वरूप ,\n\n"+
+    "अगर आप शांति और गंभीरता से हनुमान जी की लीलाओं के यहाँ पर प्रकाशित किये गए अध्याय पढेंगे तो आपके सभी संशय एक एक करके दूर हो जायेंगे | आपके शब्दों से लगता है कि आपने एक भी अध्याय नहीं पढ़ा है |\n\n"+
+    "|| राम ||"
+  },
+  {
+  id: 165,
+  header: "Brahma ji Sansar ke Srijan kyun karte hain?",
+  question: 
+    "Agar Atma Muktisagar mein Purna (complete/no desire) hai toh sagar ke sataha (surface) pe kyun aati hai? Aur yadi Brahma ji usse Apne attraction se bahar extract kar lete hain toh Atma kis Ichcha-vishesh (particular-wish) ke saath bahar aati hai (as it was having no desire in its previous state)?",
+  answer:
+    "इस बारे में आप आगे की लीलाओं में पढेंगे लेकिन अभी आप यह जान लीजिये कि इश्वर एक है | जब हम उस एक इश्वर के दृष्टिकोण से देखते हैं तो न तो कोई सृजन हो रहा है न ही विनाश | सब कुछ शांत है | लेकिन आप उस दृष्टिकोण से नीचे आकर त्रिदेव यानी ब्रह्मा , विष्णु , महेश को देखते हैं तब आपको सृजन , पालन और विनाश दिखाई देता है | उस दृष्टिकोण में ब्रह्मा जी आत्मा में उसी तरह इच्छाएं पैदा करते हैं जैसे चंद्रमा समुद्र में लहरे पैदा करता है | सभी आत्माए भिन्न भिन्न इच्छाओं के साथ मुक्तिसागर से उठती है |\n\n"+
+    "|| राम ||"
+  },
+  {
+  id: 166,
+  header: "Bram Ki Duniya",
+  question: 
+    "JAY SHRI RAM JAY HANUMAN\n\n"+
+    "Aj Date 14 jun 2015 Time 11.23PM\n\n"+
+    "Aj Mene Lesson 1 (Chiranjivi Hanuman Ka Agman) pada. Muje is bare me What’s Up Mobile App ke duwra pata chala. Is lesson me Hnuman ji ki lila ke bare me bataya gya he. Is lesson me Hanuman ji ne badi saralta ke sath ek balak ki matao ki samsya ka samadhan kiya. Aj muje Is bat Ka Pata chala ki jo kuch bhi hamare aas-pas he yah sab bram he, Agar koi vyakti apne jiwan ko bhagwan ki sewa me laga de to uska jivan dhany ho jayega.\n\n"+
+    "JAY SHRI RAM JAY HANUMAN\n\n"+
+    "EK CHOTA SA BHAKTA\n\n"+
+    "RAJIV GUPTA"
+  },
+  {
+  id: 167,
+  header: "bramgyan",
+  question: 
+    "Meri life pahle bhut aachi to nahi thi per meri bachpan se hi satsang Mai man lagta tha .bhut se kitabe read kiya per ko santi nahi mili jab satgur meri life Mai mile tab bramgyan Hua tab Jo kitabe and satsang sunta tha tab samaj Mai aane laga aur nirankar ang sang dikai dene kaga tab pata chala Ki god hamare kitana karib per ab ja samj paya .shri hanuman ji Ki ye bate read kar ke mujhe lag rah hai Ki Jo much Mai bhati karke nahi sik paya tha Vo yaha per read kar ke kar liya.papa ji ghar per her Sal satsang karate hai ak Sal mujako sapne Mai hunman ji apni sena ke sath satsang Mai mere ghar per aaye the tab Mai hanuman ji ko Darshan kar paya tha .aue satsang sun kar chale Gaye sab Puri but ye samag Mai nahi aaya Ki kaha se aaye aur kaha sab chale Gaye."
+  },
+  {
+  id: 168,
+  header: "bramhagyan ki jigyasa",
+  question: 
+    "Baba ek jigyasa tha ki kya tridevo ke upar koi aur dev hain! Hum india main sabhi radha Krishna ko sabse upar jante hai aur woh golok dham main rahte hai.aur Vishnu dev unhi ke ansa hai aur yeh bhi batate hai ki Vishnu ke avtar hai! Kya sach main koi golok dham hai yah Vishnu lok hi sesh hai! Baba purna bramha koun hai aur sabhi kahte hai bramha to nirakar note hai! Phir sakar kaisa? ( baba kripya meri is jigyasa ko sant kare mujh mera marg darsan kijiye( prabhu ka sebak ( Sukanto Mukherjee) from- india",
+  answer:
+    "नाम, रूप और पहचान के जाल में मत फंसिए | परम सत्य किसी नाम या रूप का मोहताज नहीं है | परम सत्य का वर्णन करने की आवश्यकता नहीं होती | परम सत्य स्वयं अनुभव किया जाता है, किसी और के वर्णन की आवश्यकता नहीं होती | जो ज्ञान आपके मस्तिष्क में बैठना चाहता है वह ज्ञान भ्रमज्ञान है , ब्रह्म ज्ञान नहीं | जो ज्ञान आपको मस्तिष्क और तमाम पहचानों से ऊपर उठाकर परम सत्य का अनुभव करा दे वह ब्रह्म ज्ञान है | उसकी खोज कीजिये |\n\n"+
+    "||राम||"
+  },
+  {
+  id: 169,
+  header: "bramhagyan ki khoj",
+  question: 
+    "Baba mera naam Sukanto Mukherjee hai.aur mujhe yesi hi gyan ki talash thi Jo prabhu ne diya.isse Maine Jana ki atma gyan kiya hoti hai.Sab kuch samanya sa hone laga hai.baba prabhu jab Vishnu lok ki yatra ke liye ja rahe the sath main 2aswini Kumar bhi the.baba mera karo jab hanuman ji mukti sagar ke bare main bata rahe the mujhe lag raha tha ki main unhi ke bich main khara hun aur unki batyen sun raha hun! Baba Maine Jana hai ki apne indriyo ko kaise bas main karna hai! Baba main ek Krishna bhakt hun aur main mukti nahi balki Krishna ko cahta hun! Unki lilao ko saksat dekhna cahta hun! Baba ap bajrang Bali ko mere bare main batayenge na? Kripya daya! Ap ko mera pranam!!",
+  answer:
+    "इन्द्रियों को बस में करने के लिए पहले यह जानना आवश्यक है कि आप आत्मा हैं , देह नहीं | जब आप यह जान जायेंगे , इन्द्रियं स्वत बस में हो जायेंगी |\n\n"+
+    "||राम||"
+  },
+  {
+  id: 170,
+  header: "Brownys health request",
+  question: 
+    "Lord Hanuman I humbly request you to cure Browny of her disease. Help her gain weight and muscle mass. Protect her from all side effects of medications. And please activate her pancreas and protect her intestines from all infection and inflammation . Please help me to know and give the right treatment for her. Help her lead a healthy and happy long life. This I ask as the deepest favour from you. I place my request at your golden feet dearest Hanuman . Please grant me this favour"
+  },
+  {
+  id: 171,
+  header: "Bus ek chota sa swal",
+  question: 
+    "उर्वा ने कुछ पल सोचा और उत्तर दिया – \“हे प्रभु, मेरे मस्तिष्क में एक ज्ञान है | वह ज्ञान मुझे बताता है कि यह चीज सेब है | अगर मैं उस ज्ञान को अपने मस्तिष्क से निकाल फेंकू , तो मैं इसे सेब की तरह नहीं देखूंगा , मैं इसे ...\"\n\n"+
+    "\“... एक अनजानी चीज की तरह देखूंगा |\” हनुमान जी ने वाक्य पूरा किया और बोले – \“ठीक | तुमने सेब को गायब कर दिया लेकिन उसके स्थान पर एक चीज रह गई | क्योंकि तुम इसे एक अनजानी चीज की तरह देखोगे | क्या तुम इसे पूर्णतः गायब कर सकते हो?\”\n\n"+
+    "Jab hanuman mandal me etny log baithy hai or sb us seb ko dekh rahy hai to sirf urva ke astitav se jab apple ka gyan nikal jata hai to apple gyab kaisy ho jata hai jabki baki log bhe to apple dekh rahy thy.",
+  answer:
+    "दिव्य आत्मस्वरूप ,\n\n"+
+    "कृपा ध्यान से पढ़ें , सेब केवल उर्वा के लिए गायब होता है , किसी अन्य के लिए नहीं | यही तो रहस्य है यहाँ | ऐसा करके उर्वा ने काल देव को अपना ऋणी बनाया है किसी अन्य ने नहीं | इसलिए काल देव उर्वा को हर्जाना देने के लिए बाध्य हैं किसी अन्य को नहीं | इस बात पर आप गहराई से विचार करेंगे तो आप पायेंगे कि जो चीजे आपके सामने उपस्थित हैं , वो चीजे इसलिए उपस्थित हैं क्योंकि आप उपस्थित हैं और आपके मन में वो भ्रामक ज्ञान उपस्थित हैं जिससे आप चीजों को पहचानते हैं | योग साधना आँखे बंद करके बाहरी संसार से ध्यान हटाना नहीं है बल्कि खुली आँखें होते हुए भी बाहरी संसार को न देखना योग साधना है |\n\n"+
+    "||राम||"
+  },
+  {
+  id: 172,
+  header: "Business not moving forward",
+  question: 
+    "Dear Hanumanji\n\n"+
+    "I am facing lots of obstacles for my business, could not move further steps everything is getting blocked while going forward towards my business. Now I am facing lots of financial burdens commitments are not in my favour.\n\n"+
+    "Plenty of projects in hand but nothing is getting forward due to finance block, please pray for me to come out of this situation.\n\n"+
+    "Regards\n"+
+    "Jerusson Devassy"
+  },
+  {
+  id: 173,
+  header: "buy new house",
+  question: 
+    "Jai SRI RAM\n"+
+    "JAI SRI HANUMANJI\n\n"+
+    "WE need a own beautifull house,\n"+
+    "we need knowledge about GOD"
+  },
+  {
+  id: 174,
+  header: "BVR Murthy",
+  question: 
+    "Jai Sri Ram\n"+
+    "Swamy I am disturbed about my surrounds, what will be the future of our little ones. Kindly help them in finding the meaning of their life and save the world. It is going from bad to worse. Please same the future of the human beings.",
+  answer:
+    "Divine Soul,\n"+
+    "Your children are not your children alone. Their souls are on the journey from one birth to another since a long time and Lord is watching the path of their journey. Do not worry, they are under protection of Lord. He knows what is best for them and their souls. You should just pay your duties towards them and leave the worry for the Lord.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 175,
+  header: "Call for help and guidance",
+  question: 
+    "Jai Sri Ram.\n\n"+
+    "I have been thro' a lot of challenges at work from last June and was forced to exit the organization in Jan this year. I am looking for jobs but in vain. I have always believed that prayers move mountains and continue to pray to Lord Hanuman by reciting Hanuman Chalisa 11 times everyday. My belief is still strong and wait for the day when my prayers will be answered. However, I am worried about my wife as she is bearing all the financial pain of the family and working hard to make ends meet. There is also a possibility of leaving the family to look for jobs elsewhere. Is there a special prayer that I can do to please the lord and get a job soon? It would be also good if you can do some prayer for me so that I get the job in the country where I currently stay (Singapore).\n\n"+
+    "Thanks & Regards\n"+
+    "Prabhu",
+  answer:
+    "Divine Soul,\n\n"+
+    "Your prayer has been conveyed to the Lord.\n"+
+    "Take care of these 4 things-\n"+
+    "(1) Make sure you have a deep desire to reach goals.\n"+
+    "(2) Make sufficient efforts required to fulfill that desire otherwise your soul will just go to Swapan Lok and fulfill those deep desires. It will never become reality here in this world.\n"+
+    "(3) In order to get help of Lord Hanuman in removing obstacles, never allow demons of \"fear\", \"worry\", \“doubt\”, \“victimhood\” etc make room in your heart and mind. If these demons remain there, you will not get help of Lord Hanuman. Because that would indicate that you prefer demons over Lord Hanuman.\n"+
+    "(4) Keep your prayer simple. Just ask, \"O Lord, fulfill my wishes.\" Do not bring your family, society and world into your wish. Otherwise their Karma will also affect you. Just keep it between you and Lord. Nobody else. Everyone related to you will automatically get fruits when your wish gets fulfilled.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 176,
+  header: "calling lord hanuman",
+  question: 
+    "Jai shree Ram\n"+
+    "I have met 2 peoples in my life who arw either devotee or tapaswaii of lord hanuman.\n"+
+    "And I have seen that, lord hanuman comes to there body on particular day and time and help in resolving all problems which we humans have!\n"+
+    "So is there a way through which I can also call him and other people get benefit in there life, through the grace of lord hanuman!\n"+
+    "please guide me!\n\n"+
+    "Jai shree Ram",
+  answer:
+    "Divine soul,\n\n"+
+    "Yes, Lord Hanuman can control anyone's body in order to accomplish something with that body. If you want Lord Hanuman to control your body, then you must create a reason around you as to why Lord Hanuman should control your body. In other words, you must surround yourself with true devotees of Lord Hanuman who are in need. In order to help them, Lord Hanuman may \"come in your body\". You can start by organizing a small Satsang at your place where you can invite Lord Hanuman'd devotees. Sing Bhajans together and spend time together in Bhakti of Lord Hanuman. Secondly, you must be pure at the time when devotees are assembled. No ill thought should enter in your mind. If you fully involve yourself into Bhajans and Bhakti, no ill thought will enter your mind and you will become pure. Then Lord Hanuman can \"enter\" your body.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 177,
+  header: "Can Hanumandal Prayer be conducted at our homes",
+  question: 
+    "Jai Shree Ram,\n\n"+
+    "The 7th Chapter is having a wonderful experience of how the Puja is conducted inside the hanumandal. How each past karma is peeled off one-by-one by devoting flowers/fruits to the Lord Hanuman.\n"+
+    "Can we normal human beings living in this world perform the same puja/prayer at our home for other peoples, or our family members.\n"+
+    "What is required in order to perform the same prayer.\n"+
+    "And will lord hanuman can come to us in physical form in order to attend the prayer.\n\n"+
+    "Please guide me.",
+  answer:
+    "Divine Soul,\n\n"+
+    "First of all Asurrahs must be kept away. You do not have secret oil but you may try to put a red thread around the circle. Secondly the Yajmaan and Brahmana cannot be same. You can perform Pooja for someone else who brings fruits or flowers as a Yajmaan. You should be pure enough to judge whether a flower or fruit belongs to a Surrah or Asurrah. You will get a vision when you touch the fruit or flower on your forehead. If you get negative vision mostly, put that in red basket. If you get positive vision largely, put that in a white basket. If you draw a blank, offer that to Lord.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 178,
+  header: "Can I come back to outer world after completing after one year of Sadhana",
+  question: 
+    "1)Pranam Setuu masters& Mathangs\n"+
+    "I have read in your website that if you have strong yearning to see higher truth and meet God you can come to setuu Hanuman bodhi & have penance\n\n"+
+    "I have read one sadhaka experience in Setuu Hanuman bodhi that He know Setuu Hanuman by the program which was conducted by aaj tak channel and he sent an application to you for Sadhana\n"+
+    "You asked some questions and selected him\n"+
+    "And after completing one year of Sadhana\n"+
+    "We are left with 3 options\n"+
+    "1) you can still go to outer world\n"+
+    "2) if you want to continue Sadhana you can continue your Sadhana in Setuu Hanuman bodhi\n"+
+    "3) you can go to outer world and spread Hanuman Leela's as Hanuman devotees\n\n"+
+    "In this Sadhana you are given only two pair of white clothes And only milk and fruits to eat\n\n"+
+    "My question is when I came to setuu Hanuman bodhi And after completing 1 year of Sadhana\n"+
+    "Can I still come to the outer world? And have a normal life?\n"+
+    "Or if I come to setuu Hanuman bodhi there is no chance of returning to outer world and having a normal life?",
+  answer:
+    "Divine Soul,\n\n"+
+    "We place no restrictions. But once you complete Sadhana, it is highly unlikely that you would want to lead an ordinary life in mainstream society. Sadhana takes away your limited identity and gives you infinite identity.\n\n"+
+    "However, if during the course of Sadhana, your soul gets Moksha, your body shall be occupied by a pure soul from Vishnuloka which we call as \"visitor soul\". That soul may decide to go back to mainstream society of Lord Vishnu assigns any task which mandates the soul to go to mainstream society.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 179,
+  header: "Can a woman visit temple or chant Lord's name during her menstruation(periods)?",
+  question: 
+    "Aapko Saadar Pranam,\n"+
+    "I was taught not to worship and to stay away from all idols. Please tell me.",
+  answer:
+    "Divine Soul,\n\n"+
+    "Prayer is done with soul, not body. Your soul communicates with Lord, not body. If you are able to rise above body; If you are able to rise to level of soul; then you can pray. Functions of body sometimes create hindrance and don't let us rise to level of soul. For example, if someone is drunk he can never rise to level of soul, hence he/she cannot pray. Whether it is menstruation or any other body condition. you have to decide whether you are able to rise above your body or not. If you are, you can pray.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 180,
+  header: "can you help me",
+  question: 
+    "Please if anyone available who can judge what hanuman ji realy want from me.\n"+
+    "I Can not survive with thses dilemmas.\n"+
+    "If they want my future to get worsed, i surely help them to do so.\n"+
+    "I only want to know what they want from me. I dont need anything from them.\n"+
+    "Please clear these dilemmas and tell what one want from me.",
+  answer:
+    "Divine Soul,\n\n"+
+    "There are only two questions-\n\n"+
+    "(1) What do you want?\n\n"+
+    "(2) What do the circumstances want you to do?\n\n"+
+    "There is no third question.\n\n"+
+    "\"What Lord Hanuman wants you to do.\" This is third question created by your own mind. As soon as you create this question, dilemmas will start. If Lord Hanuman wants you to direct you, He will create circumstances in your life to direct you. Therefore always ask yourself- \"What do the circumstances want me to do?\""+
+    "Now, opposite circumstances can be there because of two reasons-\n\n"+
+    "(1) Because of you\n\n"+
+    "(2) Because of Lord Hanuman\n\n"+
+    "How to know that which type of circumstance are you facing? Always assume that the circumstance is of first type i.e. created by you. NEVER ASSUME THAT CIRCUMSTANCE IS CREATED BY LORD HANUMAN. YOU DO NOT HAVE THE AUTHORITY TO ASSUME ON BEHALF OF LORD HANUMAN. You can only assume for yourself not Lord Hanuman.\n\n"+
+    "Therefore always think that the circumstance is created by me not Lord Hanuman. Act according to that assumption. If the assumption is wrong, you will find an alternative way suggested by Lord Hanuman which you can follow.\n\n"+
+    "Never abandon a path because of circumstances until Lord Hanuman shows an alternative path.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 181,
+  header: "Cancer treatment",
+  question: 
+    "My friends relative is fighting with 4th stage cervical cancer.She wants blessing so that she cud get cured.Any form of help will be highly considered.We're seeking Devine intervention. Kindly Reply."
+  },
+  {
+  id: 182,
+  header: "Chandra Prakash",
+  question: 
+    "H baba me to bas ye chahta hu ki mujhe jab bhi is sansharik jiwan se mukati mile to me apke charno me rhu apka sewak banke. h baba mujhe shakti do or sad bubbi bhi taki me is jiwan me kuch kr saku. He baba agr mujhe koi galti hui ho to mujhe maaf kar dena me to apka bccha hu h malik rahem kro apke daas pe h baba mere jiwan me apki karpa karna jay jay siya ram jay jay hanuman h mere parm pita is jiwan me sabhi ko ektha pureak rakhna sabhi ko sd buddi dena"
+  },
+  {
+  id: 183,
+  header: "The change and the present turmoil",
+  question: 
+    "O lord Hanuman,\n"+
+    "I have been seeing lots of positiveness since i started praying u and reciting the hanuman chalisa,i find calm when i visit ur temple every morning,and i have got strong hopes that i will shine in my future professionally also and i hope u to stand by me when we are gonna start our new business shortly,sometimes i face a bit of health issues but its not a matter of concern as they are not major,but the only thing which is killing me now from inside is about my love life,as you know that i have been in love with a girl who also loved or still loves me,o lord i dream of making her my life partner but due to family restrictions i cannot marry her as she is from our family itself and we dont marry blood relatives,and over this her marriage has been fixed due to this i lose my calm most of the time and even think of doing wrong things to her which i dont want to,and even my relationship with her is getting spoilt due to my aggressiveness, i want her to love me as she used to earlier , o lord as u know i hav never been in any kind of relationships earlier and this was my first one, being a human i too like to be loved and love , if this was supposed to be happen then y did she come into my life first of all and made my life beautifull for few days?iam totally going mad about her ,please hanuman ji bless me with her for my entire life,ur blessings can do wonder this is a small thing for u,i want her love by any means, i cant tolerate her to be with some other person ,and coincidentally we both started praying you for our present problem,please babaji bless me for this, i dont want a alternate of her,i want her to be my wife,with ur blessing everything is possible , please dont let me down in this matter,i have experienced lots of negative thing in my life like in studies and financial matters and i have tolerated them,but i cant take this lightly ,please bless me baba ,i dont want her to go away from me ,i have not got anything in my life which i desired since my childhood i have only compromised for everything but please dont make me compromise on this,i cant take it,the thoughts are killing me day by day, please bless me o lord, ur the only hope for me as i cant share this with anyone else,please get her back in my life and i accept that i too have been taking a lot of advantage of her kindness but it was bcoz of my love towards her,please lord i beg u to bless me on this,,, and my request to the sethu group to advise me on how to pray lord hanuman if any particular method, though iam having a positive vibes when i pray the lord,this thing is killing me,, appreciate a quick and positive reply.....jai shriram,jai shriram, jai shiram",
+  answer:
+    "--- conveyed to Lord ---"
+  },
+  {
+  id: 184,
+  header: "changes",
+  question: 
+    "I have been noticing changes in myself. Sometimes I feel it is good. But sometimes I don't know. Yesterday I went to a Devi temple and then to an ashram. I was at peace but felt that my heart had become like a stone, unfeeling towards anybody. I meditated for a while and came off. Most of the work I do, I do without any feeling. At the same time I am unable to forget the disturbing experiences in my life. Occasionally they come back to me. I also feel depressed then.I also experience some kind of fear and feel I am a misfit.I am unable to progress spiritually. Om namah shivaya. jai sri hanuman Jai Siyaram. Sri Gurubhyo namah. Pranams to all there."
+  },
+  {
+  id: 185,
+  header: "Changing my perspective about this World",
+  question: 
+    "While reading the first chapter, I was crying all through the way until the last line. I was so deeply connected with Hanuman where I have felt his presence is inside my soul and standing besides me while reading the chapter. Few points from chapter 1 has already started changing my thought process and looking at this World. I feel the time has come for me to look the World and Worldly things with a different perspective from today and I believe Hanuman is inside me helping me every minute to get a good feel and peacefulness.\n\n"+
+    "I think he has reminded me again about one of the pending projects to take up, which I forgot or parked temporarily due to everyday worldy things. I wish to donate to construct a brass covering to one of the Hanuman temples near my residence. Though I was doing follow-up with the temple authorities, they said Ok, we will look into it but somehow kept on getting delayed. I will once again do a close follow up with temple authorities and wish Hanuman gives me enough courage and strength to finish this project with the estimated amount.\n\n"+
+    "Eagerly looking forward to read the second chapter. First chapter, due to many things came up on my head, I couldn't donate on time.\n\n"+
+    "Jai Bajarang Bali! Jai Sri Ram! Jai Hanuman."
+  },
+  {
+  id: 186,
+  header: "Chanting ram nam",
+  question: 
+    "I chant Aum Shri Ram Jai Ram Jai Jai ram.I consider it as a supreme mantra,but i don't know whether it is supreme. But still Ram nam in any form is supreme to me.I want to know what mantra or Form of ram nam will bring me closer to lord Hanuman.",
+  answer:
+    "Divine Soul,\n\n"+
+    "The Mantra is perfect. However, to know whether you are chanting it rightly, do this test.\n\n"+
+    "When a Vimaanaa ( Aeroplane ) takes off, it leaves the ground behind. It doesn't take the ground with it. When it takes off, the pilot is able to see the earth from where the Vimaana has taken off.\n\n"+
+    "When you chant Mantra, your soul should be able to take off a little from your body. You should be able to see the body chanting the Mantra. You should be able to feel that you are not the body which is chanting the Mantra. You are something higher which is watching the body.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 187,
+  header: "Chapter 1",
+  question: 
+    "HE is everywhere & in everything. HE is the greatest illusion & I am just a part of it. I have to try to get over this illusion to achieve moksh."
+  },
+  {
+  id: 188,
+  header: "Chapter #1 reading / My Experience",
+  question: 
+    "I was reading this chapter towards the end of this chapter I went into deep sleep & again woke up that I realized that I went to sleep for some time & got up.\n\n"+
+    "Anil"
+  },
+  {
+  id: 189,
+  header: "chapter-11",
+  question: 
+    "This chapter and removed a layer of desires which has negative and positive both side by side.Oh Lord , bless me so that I can get rid of my unwanted desires."
+  },
+  {
+  id: 190,
+  header: "Chapter -11 The secert of Desire fulfillment",
+  question: 
+    "First of all thank you for your wonderful chapter which explains very clearly about desire Fulfillment's.\n"+
+    "\"If you see a bad dream, thank god for dumping your bad desire in swapnaloka.If you see a good dream, renew that desire an work on your karma so that good desire can be fulfilled in Manvaloka next time\".\n\n"+
+    "I have an query on this :\n\n"+
+    "Usually elder people said they if we get dream come at early morning timings it will definitely\n"+
+    "happen to us and same time if you get bad dream then they ask us to read hanuman chalisa\n"+
+    "and kept hanuman photo beside the bed.\n\n"+
+    "In so many epic stories when we heard, god appear in their dreams and told that they appear here in particular place and anything bad happening they will tell before and altering his devotees.\n\n"+
+    "In vishnu shasranama , one line we can say\n"+
+    "In vishnu shasranama , one line we can say\n"+
+    "veeraha rakshana santo jeevanaa parya vasthitah...!!!\n\n"+
+    "The line means he will destroy the bad dreams coming to us.As per your note the bad dreams is good for us , becoz those are happening in the swapnaloka.\n\n"+
+    "Please help me on this query , Lord Hanuma will give us more divine knowledge.\n\n"+
+    "and we are eagerly waiting for the next part.\n\n"+
+    "Thanks for your reply but can you please give some examples and explain it more clearly",
+  answer:
+    "Update : Divine Soul,\n"+
+    "If you see a dream early in the morning, there are high chances that you will remember them because your soul is preparing to depart from SwapanLoka at that time. Your soul brings memories of early morning dreams in MaanavLoka.\n\n"+
+    "Suppose you went to a relative's house and you found out that their cow gives 30 litres milk in a day. You decide to buy that cow and bring it in your home. In you home, that cow gave only 2 litres of milk! Therefore \"cow in your relative's house\" and \"cow in your house\" are not the same thing. Similarly a \"dream lived in SwapanLoka\" and \"memory of that dream brought to MaanavLoka\" are not the same thing. They are two different thing. If you bring memory of bad dream in Maanavloka, that bad dream may become reality. If you bring memory of good dream in MaanavLoka, that too can become a reality. Because memory leads to a desire and desires bring fruits.\n\n"+
+    "If you have seen a bad dream but you have forgotten it as soon as you woke up, that is good. That means a bad desire has been dumped. But if you keep on thinking about that bad dream after waking up, it may become a reality in MaanavLoka. Same is the case with Good dreams.\n\n"+
+    "for further queries, please post a new experience. Please do not edit an existing experience. >>\n"+
+    "---------------\n"+
+    "Divine Soul,\n\n"+
+    "There are two things : (1) Dreams (2) Memory of Dreams in SwapnLoka\n\n"+
+    "We do not remember even 0.1% memory of our dreams. If you are retaining memory of bad dreams, it can turn your Karma bad way and harm you. Sometimes memories of some dreams become signboards in MaanavLoka. \"Memory of dreams\" is a thing of MaanavLoka. It behaves like all other things of MaanavLoka. However \"dreams\" are a thing of SwapanLoka. They happen there in order to dump unwanted desires.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 191,
+  header: "Chapter 18",
+  question: 
+    "As I hav observed so far... this time the permission for publishing seems to be delayed? Am I correct?! And the experiences are processed in hanuman pooja only after arpanam is offered right? other wise those experiences r not replied to? And Cld u plz explain wat exactly sakshat hanuman pooja means? is it done exactly like how mathangs performed it in presence of hanuman around the hanumandal?!",
+  answer:
+    "Divine Soul,\n\n"+
+    "Yes, permission is taking longer than usual for chapter 18.\n\n"+
+    "Yes, experiences are processed before and after Arpanam. But Arpanam sent by a devotee has no relation to whether his experience will get replied to or not. If experience is sincere, we process it in Sakshat Hanuman Pooja. The screening team has no way to know whether the devotee who has submitted an experience sent Arpanam or not. They only have access to data of time spent by devotee on each chapter. Screening of experiences is done based on that data and the sincerity of content of experience. If a devotee has sent Arpanam, it gets clubbed together with experience after screening so that his/her Arpanam and experience are processed together if possible.\n\n"+
+    "Sakshat Hanuman Pooja is similar to Charan Pooja but unlike Charan Pooja, Lord Hanuman's physical presence is not there in Sakshat Hanuman Pooja. Only His angelic presence is there.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 192,
+  header: "Chapter 21",
+  question: 
+    "O Setuu..\n\n"+
+    "Thank You so much for your service. And convey my Regards and Thanks to Lord Hanuma for his Leela's sharing with us. Thank you Hanuma for enlightening me by saying about Mother Sitha's sacrifices.\n\n"+
+    "|| Ram ||"
+  },
+  {
+  id: 193,
+  header: "chapter 4 Se ek question hai",
+  question: 
+    "Es chapter me ye likha hua hai Ki universe k Bahar ek white samundra(sea) hai jha sari moksh ko prapt soul rahti hai or unki koi wish Ho to Wo kinare pr aati hai or brahma ji Ki wajah Se Wo bhagwan vishnu Se request krke wapas yha mritulok me aati hai\n\n"+
+    "Mera sawal ye hai Ki jb hmari sb wishes puri Ho jati hai tb humare Mann me moksh Ki lalsa utpann hoti hai or jb moksh mil gya tb kaise koi wish Fir aa sakti hai. Ese to hum us parmatma Se Fir alag Ho jate hai..... May darr gya Hu esa soch kr Ki moksh k baad bhi aatma ko parmatma Se alag hona padta hai. Kripya mera darr dur kre or Mujhe esa rasta dikhye Ki mere me or lalsa Ho prabhu dash na Ki.\n\n"+
+    "Saath hi ma bhagwan shivji Ki puja krta Hu unke Li Aap log jo puja kr rhe ha Wo Mujhe bhi de taki mai unke darshan kr saku",
+  answer:
+    "आपके प्रश्न का उत्तर चौथे अध्याय के आखिरी गद्यांश में निहित है जिसमे समुद्र से एक बाल्टी पानी डालने और फिर एक बाल्टी पानी निकालने का उदाहरण दिया गया है |"
+  },
+  {
+  id: 194,
+  header: "Chapter 6",
+  question: 
+    "Today I felt something different , as in the middle of the chapter I felt my head is getting heavy and something is on my head . There was heaviness feeling , but after completing the chapter I feel little relief .\n\n"+
+    "Can I know what is this heaviness as I am still feeling the pressure on my head. Need your suggestions and blessings.",
+  answer:
+    "Divine Soul,\n\n"+
+    "That is a good sign. You are realizing your soul and getting to differentiate between your own soul and Surrahs-Asurrahs.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 195,
+  header: "chapter-8 (Makradwaja was not the son of Hanuman)",
+  question: 
+    "Sir i had a doubt please i reques u to clear my doubt in chapter - 8 that hanuman ji had said that when he went in to deep meditation he found the way to patal and listen the word \" father\" and said that he was not surprised by listening the word father and also said that makaradwaja is the son of agnikush. what i cant understand was y makardwaja called hanuman ji as father and y hanuman ji wsa not angry in this issue pls tell me sir here in this point some thing is missing sir",
+  answer:
+    "Lord Hanuman's soul was inside the body of Agnikush. That is why he felt that Makardhwaja was his son."
+  },
+  {
+  id: 196,
+  header: "chapter seven query",
+  question: 
+    "Ram\n\n"+
+    "In Chapter seven para one\n\n"+
+    "Maathang baba is saying that \" when you came 30 years ago basant was a kid \"\n\n"+
+    "How 30 years it has to be 41 years?\n\n"+
+    "Please clarify.\n\n"+
+    "I read the chapter in Hindi.",
+  answer:
+    "Divine Soul,\n\n"+
+    "We have been notified by our technical team that it was not a technical or typing error. Instead only you saw it 30 instead of 41. The best part is that you have seen it in the chapter in which Lord Hanuman tells about \"different forms of reality\". So whatever is \"reality\" for you, may not exist at all for someone else. Reality is dependent on what body your soul wears. You are a truly blessed soul that you have got live example from Lord Hanuman.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 197,
+  header: "Chapter Six",
+  question: 
+    "After reading through the 6th chapter there was a feel of some vibrations which I could not understand , but the vibrations were very positive. I feel previledge to be part in reading these chapter and making my soul pure and positive.\n\n"+
+    "Kindly let me know any mantra that I can recite every day which can my life nearer to Mahavir Hanuman ji.",
+  answer:
+    "Divine Soul,\n"+
+    "Until all the 36 lines of secret Mantra are revealed, devotees can chant || Raam || mantra.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 198,
+  header: "Charan Chirtram Brought change in life",
+  question: 
+    "I got to know about Charan Chitram of Shree Hanuman Ji, last year while surfing on Facebook, clicked on the articles shred on FB got very exited to learn about charan chitram and its Pooja. Booked the pooja on the Names of Myself, My Wife and My Elder sister. As the booking was full till jan 2014 the message shows that if somebody will quit the Pooja I may have chance, Now I under stand its not chance its the will of Shree Hanuman ji, The pooja dates got fixed for my Wife and For my Siseter the pooja took place on 14th Jan 2014 and I received the Charanchitram by the last week of Jan itself. I handed over one to my wife and sent my sister's to her place. Nothing happened miraculously neither I have expected.\n"+
+    "Then after a month I got the news from my sisters house that they have started construction there house which was like pending project from last 10 years, we have never thought that the In laws of my sisters will ever make there own house it was such a great news for us. Later when my sister gave all the credit to charan chitram I also started to thing of it, then I was talking to my wife when Shree Hanuman ji give his blessing to our family (We were trying for a baby from last two years met all the best doctors possible never got any negative report neither my side nor her side still nothing was happening and My wife was very upset and doctors keep on testing with medicines for her and for me too) One day I just asked my wife to stop taking any medicine and think about Shree Hanuman ji, if it helps My Sister to get what was her a long pending wish, We will also be blessed, And after the news from my sister house within next ten days My wife was tested positive she is expecting now her date is expected to be in Nov 2014, And I have full faith in Shree hanuman whose blessings every thing will be fine.\n"+
+    "The desire of man never ends but I have found every thing is going smooth in our life since Jan this year and now I dont akf for anything I know Shree Hanuman is watching our family and he will do what is best for us.\n\n"+
+    "Jai Shree Ram bhakt Hanuman."
+  },
+  {
+  id: 199,
+  header: "Charan Pooja",
+  question: 
+    "Jai Hanuman\n"+
+    "Jai Shree Ram\n"+
+    "Ever since childhood I have been a devotee of Hanumanji. I am very much devoted to Hanumanji ever since childhood. I did Charan Pooja of Hanumanji through Setuu and also participated in Sakshat Hanuman Pooja. I really consider myself fortunate that I got to know about Setuu. I have the blessings of Hanumanji. This is only because of the blessings of Hanumanji that of millions and millions of devotees of Hanumanji I got the chance to become a part of Charan Pooja.\n\n"+
+    "Now, some questions came to my mind. Am I really fortunate that of millions and millions of devotees of Hanumanji I got a chance to become a part of Charan Pooja? Am I really special? Am I close to Hanumanji?\n\n"+
+    "What doest it signify that I participated in Charan Pooja? Will it help me in getting materialistic goals or non-materialistic goals or both? Will it help me in getting close to Hanumanji and get his sakshat darshan? Will it be helpful for me in getting Moksh in this birth of mine only? I am just asking. Please forgive me if I asked anything wrong.\n\n"+
+    "Hanumanji, please forgive me for my misdeeds of this birth and of previous births. Please keep your blessings on me always Hanumanji. I need you at every step of my life. Please purify my soul so that I can have your sakshat darshan before I die.\n\n"+
+    "My sincere pranam to Setuu Masters and Mathangs.\n"+
+    "Thanks and Regards.\n\n"+
+    "Jai Hanuman\n"+
+    "Jai Shree Ram",
+  answer:
+    "Divine Soul,\n\n"+
+    "You will read about Charan Pooja and its significance in detail in upcoming chapters.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 200,
+  header: "Charan Pooja",
+  question: 
+    "dear setuu masters,\n\n"+
+    "i have a query that can you do charan pooja in name of mine of lord hanuman ji? as you all know hanuman ji is the best of all and knows when to create urge in devotee's mind to ask a question. so similarly i have a urge know whether the charan pooja in name of mine is possible or not and if possible then please i request you to do charan pooja of lord hanuman.\n\n",
+  answer:
+    "Divine Soul,\n\n"+
+    "Charan Pooja is performed every 41 years. It is closed now. Only Sakshat Hanuman Pooja is being performed now.\n\n"+
+    "Blessings"    
+  },
+  {
+  id: 201,
+  header: "Charan Pooja performed for me",
+  question: 
+    "Jai Shree Ram\n"+
+    "Jai Sita Maiya\n"+
+    "Jai Bajrangbali\n\n"+
+    "I had participated in Charan Pooja of Lord Hanuman and the Charan Pooja was performed by Mathangs for me. I also got a Pooja Log Number. When I checked my status after the Pooja was done on the link which is not available now, the message used to come \"Pooja has been done and Pooja Log Number has been included in the Logbook\". So, can I expect my Charan Pooja of Lord Hanuman also in any chapter in future? I didn't get any specific or rare message after the Pooja was performed. If my Pooja Log Number is there in the Logbook of Mathangs, then, it should come in any chapter in future. How will it feature? Will it include any message or anything related to me? Will I also be a part of any chapter? Will I be able to know my connection with Lord Hanuman in coming chapters?\n\n"+
+    "Please tell me more about Charan Pooja.\n\n"+
+    "Pranam to Mathangs and Setuu.",
+  answer:
+    "Divine Soul,\n\n"+
+    "Yes, all the devotees who have got their Charan Pooja performed can expect their stories in upcoming chapters. It depends on Lord Hanuman what knowledge He gives in Prasadam to Yajmaan. For example, Charita in chapter 10 got knowledge of existence of story of 60000 sons of queen Sumati. Similarly all devotees will get specific knowledge from Lord Hanuman. First Mathangs performed Charan Pooja for their community members, after that only devotees of mainstream society got chance. Therefore, first stories of Mathangs will come and then that of other devotees.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 202,
+  header: "chqpter 16",
+  question: 
+    "Jai Ganeshaya NaMaH\n\n"+
+    "Sometimes I feel like I forgotten all the meaning of the words am, reading, I am able to recite it, but cannot able to understand it for sometime like a trance, I felt in many times while reading Hanuman leelas, published here, same now I was reading chapter 16 I again experienced that, i can spell words perfectly , i also found some spelling mistakes in some words, but this trance was different and something large, big I can't explain that,, I realized that my answers where in chapter 16, but am still confused, In normal life I spend my time in confusion and questioning myself, which I get answers through you or from outer world."
+  },
+  {
+  id: 203,
+  header: "circumstances",
+  question: 
+    "i feel i have been controlled by certain situations and circumstances with little choice to avoid them. my nature also was another thing that made me think and do everything the way i did. very often i felt closest to god, especially when i was sick. i don't think i'll understand the ultimate reason. i only want to remain connected to god till i die. that way i may also help my family and others. i feel i have lived a life full of imagination where people and everything were seen by me according to what i imagined. i've been under illusion. but i also need help to overcome this. i don't know anything. i just want the company of god and my guru whom i don't know at all though he is helping me. he is kind and full of pure divine love. i need to direct myself well and not fall prey to distractions.something is preventing me still. i'm unable to offer anything, except mentally.i do experience certain changes, but still not sure.i think i have to withdraw from everything around me. i always thought i must do whatever i can and then wait for god's blessings as the result. but now i don't know. everything is guided by him including my thoughts and actions. i'm so ignorant. i have been a fool all my life. sometimes i also feel i 'm on the verge of reaching what i lost over the years. i want to clean the mirror, my mind.i want to forgive all and be forgiven. i sense that. all i can do and want to is surrender as always. i surrender again and again. i bow to hanumanji again and again. all my prayers, at the feet of sri hanuman, sriram jaya ram jaya ram. sri anjaneyaya namah. sri gurubhyo namah! i thank all of you and the mathangs for everything.now what should i do if i'm unable to send money via the net? can there be an alternative? i really want to be part of the pooja. i went to a hanuman temple without really planning. i felt it was hanuman's way of calling me. i was able to put rs100 in the hundi. i felt touched. am i right in my feelings? do guide me and help me.",
+  answer:
+    "Divine Soul,\n\n"+
+    "You can go to any nearby Hanuman Temple where there are monkeys. You can offer your fruit offerings there.\n\n"+
+    "When you post your words here, then also you become part of Pooja. Your words were included in yesterday's Sakshat Hanuman Pooja and message which came out for you was- \"Do not dwell in past.\"\n\n"+
+    "Blessings"
+  },
+  {
+  id: 203,
+  header: "Clarifications for Chapter 4",
+  question: 
+    "Jai Shree Ram,\n\n"+
+    "I have my clarifications for Chapter 4 to understand it better.\n\n"+
+    "Chapter 4: When a soul comes out of MuktiSagar (due to the waves created by Lord Brahma)\n"+
+    "and then goes to Lord Vishnu and then it asks for a wish to be fulfilled to Lord Vishnu.\n"+
+    "Lord Vishnu then grants the wish and sends the soul to any of the Mortal worlds(like Maanavloka ).\n\n"+
+    "My doubt is when all the wishes are being fulfilled in MuktiSagar (the Milky White Ocean) then why each soul does not wish to go back to Muktisagar but instead ,it asks or wishes to go to a Mortal world and then Lord Vishnu directs the soul to the Mortal World. It could have simply asked Lord Vishnu , to allow it to go back to MuktiSagar.\n\n"+
+    "In that way millions of souls do not have to switch over different bodies in different births and then finally land up in MuktiSagar.\n\n"+
+    "Kindly clarify..\n\n"+
+    "I am yet to read Chapter 6 and 7.\n\n"+
+    "Jai Shree Ram",
+  answer:
+    "Divine Soul,\n\n"+
+    "When a child is in mother's womb, child gets food from inside mother's body. When the child comes out in the world, s/he cannot go inside the womb again; s/he has to get outside food only.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 204,
+  header: "",
+  question: 
+    "",
+  answer:
+    ""
+  },
+  {
+  id: 205,
+  header: "",
+  question: 
+    "",
+  answer:
+    ""
+  },
   ];
 
   // Calculate total pages
