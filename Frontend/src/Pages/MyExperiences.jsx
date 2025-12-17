@@ -2955,6 +2955,651 @@ const MyExperiences = () => {
     "Our greatest thanks to Hanumanji who came in my dream after reading first chapter... Lots of thanks special Setuu who gave great opportunity join this community.. I also like to reciprocate my thanks to My father & Mother who is great devotee who brings my heart for God.\n"+
     "Now a days, I pray lord hanumana that my life will be go well, but my mind is not setup towards my work and my lord Hanuman. Jai Shriram..."
   },
+  {
+  id: 253,
+  header: "Darshan of Lord Hanumaan in dream",
+  question: 
+    "In 1974 my father passed away and left a will of his house to me and my brother on a condition that we can enjoy the property after conducting the marriages of my two sisters one younger and other much older than my elder brother.\n"+
+    "It so happened that I lost the original will on my way to residence in Bangalore. Being the only copy I lost all peace of mind and was afraid to tell this to my other sisters and brother.\n"+
+    "I used to attend regularly poojas conducted to Sri Ragavendra swamy and Goddess Gayathri those days. And I revealed only to those people who were doing pooja.\n"+
+    "After about a fortnight I had a strange dream in the early hours of the morning. I used to get up around 5 am daily.\n\n"+
+    "I WAS WANDERING AROUND IN THE STREET SEARCHING FOR SOMETHING WHEN I HEARD A LOUD NOISE LIKE A DEMON ROARING. BUT I COULD NOT SEE THE DEMON. SUDDENLY FROM BEHIND I HEARD ANOTHER VOICE. AND I COULD NOT BELEIVE MY EYES. IT WAS LORD HANUMAAN IN A GIGANTIC FORM [ LIKE A SKYSCRAPPER ] AND TALKING IN A MILD VOICE CALLING ME TO ACCOMPANY HIM IN SEARCH OF SITAMATA AND LIFTING ME IN HIS GIGANTIC HAND AND READY TO FLY.\n\n"+
+    "I woke up suddenly and saw the time was 4.30 am.I could not decipher the dream but when I told the lady who was doing Guru pooja she explained the sequences. The demon was Raavana and search for Sita mata was wealth [ here it is the will ] and Hanumaan helps me in searching the same. Exactly after a week I got a msg by post from a person named Venktraman that the will is with him and he requested me to collect from his residence with the proof of the post card.\n\n"+
+    "This chilling experience of HIS DARSHAN and many more incidences in my last 40 years has been the cause for my living even today."
+  },
+  {
+  id: 254,
+  header: "Darshan of Mata vaishno Devi",
+  question: 
+    "Jai siya Ram\n"+
+    "Jai Radhe shyam\n\n"+
+    "Pyare settu, mein himachal state me rahta hun.wahan mere baapu ji aur mummy mata vaishno devi ki pooja krte hein.wahan mene mata ke bhaqti wale chamatkaar dekhen he in.me abi andhra Pradesh state me GOVERMENT vizag steel plant me kaam kr RHA hun.yahan es month December mein ek 40 se 50 age ki woman ko red colour clothes me plant me ghumtae hue first time dekha..aur yahan abhi mata ki pooja fast days b chal rhe he in.aap kirpa krke ye bta dijiye ke WO woman ,aam hamari tarah hi h ya prabhu mata vaishno devi\n\n"+
+    "Jai siya ram",
+  answer:
+    "वे एक सामान्य औरत है लेकिन उनको देखकर आपको माता की याद आई तो आप अवश्य भाग्यशाली आत्मा हैं |\n\n"+
+    "||राम||"
+  },
+  {
+  id: 255,
+  header: "Dear blessed souls",
+  question: 
+    "The community Mathangs are they normal human beings or Monkey community? Where are they living in India?? Is it possible to meet them and discuss?? I would like to know more about them and their existence.... Thank you... Ravikumar.",
+  answer:
+    "Divine Soul,\n"+
+    "They are human being and they are living in Sri Lanka, not India. You can know about their lifestyle by reading the chapters of their log books. 2 Chapters have been posted. More will follow.\n\n"+
+    "Blessings."
+  },
+  {
+  id: 256,
+  header: "dear hanuman",
+  question: 
+    "you know what i have done to my family and what they have done to me.You saved from death, by coming to home on that day. I am not angry with the my family and other people. Give me strengh to help people releive their sorrows and make the world to live in peace."
+  },
+  {
+  id: 257,
+  header: "Dear Hanuman -Please help me in my Job Monthly Sales Target",
+  question: 
+    "Dear Lord Hanuman ,\n"+
+    "I have monthly sales target ,which has to be crossed under the same month ,\n"+
+    "in the job where I am working currently .\n\n"+
+    "I am kindly requesting Lord Hanuman to help me cross this monthly sales target\n"+
+    "before the end of 2nd week of every month .\n\n"+
+    "This will reduce my personal stress to a big extent .\n\n"+
+    "For the current month ,please help me to cross the target under next 3 days .\n\n"+
+    "Thanks"
+  },
+  {
+  id: 258,
+  header: "Dear Lord Hanuman ---Pls fulfill my wish",
+  question: 
+    "Dear Hanuman ,\n"+
+    "Kindly bless me with divine child at the earliest .\n\n"+
+    "Thanks"
+  },
+  {
+  id: 259,
+  header: "DEATH",
+  question: 
+    "In previous Chapter when any have not 7 kal then he have in danger . Any one give his kal to save their life.\n"+
+    "In 5 chapter why did hanuman ji not do this process to save urmi life.",
+  answer:
+    "Divine Soul,\n\n"+
+    "It was necessary to fulfill Ramnarayan's wish through Urmi's body.\n\n"+
+    "Ram."
+  },
+  {
+  id: 260,
+  header: "Deja wu",
+  question: 
+    "There are some events which when happen, I feel that I knew that situation of the event before hand. This feeling I had from child hood. Pls help me know why does that happen?\n"+
+    "For example : 4 relatives of mine including me are sitting over a cup of tea and discussing something. When the event is happening, I feel that I knew this situation. I asked my Maa in childhood and she also had that feeling.....but reason remains unknown.",
+  answer:
+    "Mathangs have this knowledge that when Lord Vishnu looks in eyes of Devi Lakshami in Vaikuntham, some souls in mortal worlds experience a state in which grip of Maya (illusion) on their soul gets weakened. That is why they see a loophole in this illusion of external world. This loophole is the feeling that you have seen an event before. Mathangs say that Lord Hanuman has elaborated on this phenomenon. If it is in one of the chapters, you will get to read it when we decipher it."
+  },
+  {
+  id: 261,
+  header: "Depressed soul",
+  question: 
+    "Dear hanuman\n"+
+    "After the demise of my parents I've been very lost and depressed. No doubt I'm married for 19 years and have 4 kids but unable to be happy as I've so many questions asking why my mother had to commit suicide and the demise of my father was to sudden as I wasn't mentally prepared.\n"+
+    "Now I faced lots of financial challenges and difficulties with little success.\n"+
+    "My father was a hanuman devotee yet he had a painful death with lots of sufferings.\n"+
+    "Till today although it's been years of my parents demise I've not been able to be happy and it's affecting me and my family\n"+
+    "And what can or must I do to be financially stable and secured as I've 4kids to raise, educate and look after\n"+
+    "I'm also in so much distress and unable to share my pain sorrows nor my feelings to anyone. My health too is not good at all.\n"+
+    "Please help me Hanuman and relieve me of all my bad luck and bless me with health, happiness, protection, prosperity,wealth for me and my family"
+  },
+  {
+  id: 262,
+  header: "From the depths of my heart",
+  question: 
+    "How can I even put into words the feelings that surge everytime I read a chapter. I am overflowing with gratitude to Lord Anjaneya for giving me this experience to be connected to His grace through the Mathangs.\n\n"+
+    "I have always had within me this deep longing to experience the Divine and be free from all the negativity that I see around me. Sometimes I feel very restless and sad, sometimes I feel I am mechanically going through the motions of living, while my soul yearns for something else . There are days when I feel a strong desire to get liberated, and then the feeling that I am pulling myself inescapably into the world of illusion by generating more and more karma each day makes me feel afraid. I know that I must work towards my liberation , yet when I become angry or act selfishly at times, I feel disappointed that I am taking one step backwards. I despair whether I will ever be fit for moksha. But certain circumstances which seem to make me behave that way I am unable to overcome. I am always aware of my connection to the Supreme, all the time. Still at times I get upset by the negativity in people I see around me, because I feel helpless.What should I do to live a more fulfilling spiritual life and work towards salvation ?\n\n"+
+    "My heartfelt love and gratitude to Lord Brahma,Vishnu, Shiva and the Divine Mothers Maa Lakshmi, Maa Saraswati , Maa Shakti and Lord Anjaneya.",
+  answer:
+    "Divine Soul,\n\n"+
+    "This is identification problem. You are calm and still but there is a gross form of \"I\" which is unsettled. You have a choice as to with which form you want to identify yourself. If you identify yourself with the latter, you will feel unsettled.\n\n"+
+    "You will understand more about this phenomenon in 5th chapter which will be posted soon.\n\n"+
+    "|| Ram ||"
+  },
+  {
+  id: 263,
+  header: "desire",
+  question: 
+    "From past several days I was having a desire to know the purpose of my life , why I came to this planet . what are my duties to do here . purpose of this body . but could not got .but at the same instance of my desire I was mysteriously guided or getting one by one hints or getting books automatically to read the wise knowledge as if some one is directing me to go step by step to know your destiny . In same sequence of incidents I got randomly this site after I chant Hanuman chalissa again as if Hanuman ji showed the way to read . I am heartly thankful and extreemly obliged to Great lord Hanuman ji that now they had started talking to their child still want to experiance my soul connection with them which one day will be known by this soul which riding my body by grace of almighty lord Hanuman . I bow to him , I invoke my soul to welcome their kind blessings . My sole purpose of human life will be revealed by blessing of Lord hanuman . One day My soul connection with them will be revealed by them .\n\n"+
+    "Manojdeva Marutulyavegam jitendriyam buddhivarithayam ,vatatjam vanaryuthmukhyan sri ram dutham sharanam prapadheye . shri ram jai ram jai jai ram ."
+  },
+  {
+  id: 264,
+  header: "DESIRE",
+  question: 
+    "Pranam Lord Hanuman\n"+
+    "Pranam setuu masters\n\n"+
+    "After reading the 11th chapter of lord hanuman leelas, i certainly know the fact of desire fulfillment which requires the adequate karmas.\n"+
+    "I want to ask wheather any desire which is being spread to the universe could ever be cancelled? or that desire would fulfill itself once narrated to the universe.\n"+
+    "Can a desire be transferred to another person ?\n"+
+    "Pranam lord hanuman\n"+
+    "Pranam setuu masters.\n\n"+
+    "yours devotee\n"+
+    "Puneet Bhargava",
+  answer:
+    "Divine Soul,\n\n"+
+    "A desire cannot be cancelled once expressed. You can express an opposite desire so that both can cancel each other.\n\n"+
+    "Similarly you cannot transfer your desire but you can create a more powerful desire saying -\"Let this be fulfilled for XYZ person, not me.\""+
+    "Blessings"
+  },
+  {
+  id: 265,
+  header: "Desire",
+  question: 
+    "Respected Teacher,\n\n"+
+    "I have read chapter, I have notice one point “Desire” who on creating give us “SUKH” & “DUKH”.\n\n"+
+    "And hanuman ji says that don’t create desire it will give u both.\n\n"+
+    "Sir if I will not create any desire then how it is possible to gain anything.\n\n"+
+    "Please solve this puzzle.",
+  answer:
+    "Divine Soul,\n\n"+
+    "You already have millions of desires pending from previous births. If you want Moksha, you need to dump those desires and stop creating new ones.\n\n"+
+    "If you want to gain materialistic things, you may desire whatever you want.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 266,
+  header: "Is Desire ever ending?",
+  question: 
+    "Hey Prabhu,\n"+
+    "I would like to know, are desire ever ending? From the Chapter 6 , i got to know that even suras, asuras and soul have desires , there is no relation with the body , even the soul in Vaikhunta have desires which makes them to come to this material world and then infinite cycle of problem and misery starts.\n\n"+
+    "if a soul once gets Moksha then why again he desires, being in Vaikhunta does soul still has separate entity, is he not merged completely with Lord Vishnu ?\n\n"+
+    "When Lord Vishnu knows that desire will make soul to fall , why he does not desire to have other souls no more desire/wishes ,so no more misery will ever occur.\n\n"+
+    "Also as in chapter 6, cycle of kalpa is infinite , will in each kalpa, Ram, krishna will incarnate? if yes then How bajarangbali will be reborn?\n\n"+
+    "Ram,\n"+
+    "Neeraj",
+  answer:
+    "Divine Soul,\n\n"+
+    "Your queries reflect that you have read the chapters very sincerely. We do not want to ruin such a wonderful query by replying to it with a standard answer. You should wait for Lord Hanuman Himself to answer you. Actually, The three Lokas (BrahmLoka, VishnuLoka and MaranLokas) are not three. They are One and the movement happening between these Lokas (i.e. BrahmLoka causing desires in souls of Vishnuloka thereby descending the souls to MaranLoka) , these movements cease to exist when one realizes that they are not Three Lokas but One. Please wait till Lord Hanuman solves this mystery in His Leelas in upcoming chapters.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 267,
+  header: "desire of soul",
+  question: 
+    "Sir,\n\n"+
+    "I have a question after reading this chapter, it has been written that if strong desire created then powers started to work for its fulfillment, but what if anyone have a strong desire now a days in kalyuga and they dont have sources to fulfill it,\n\n"+
+    "Then how powers can help to fulfill it.\n\n"+
+    "Thanks.\n"+
+    "Sanjeev.",
+  answer:
+    "Divine Soul,\n\n"+
+    "First of all you must recognize whether it is desire of your own soul or a desire induced in you by Surrahs and Asurrahs. Go to the origin of that desire. How was it triggered? How shall it help you in your soul's purpose of liberation.\n\n"+
+    "Once you are sure that the desire is indeed yours, then only you should proceed further. You have taken many births before this birth. In the course of your journey, you have expressed a large number of desires to the universe. Some desires have been fulfilled but those which are not fulfilled, the universe is working to fulfill them. To reduce influence of those past desires, you need to make another desire -\"That, O Universe, I do not want those desires to be fulfilled which have been expressed by me in previous births.\" You need to make this desire so powerful that it overpowers those past desires. To do that, you need to realize the unity in this universe. When you realize that unity, you will feel that everything is happening around you just for me. You are the center of the universe. At this stage, you will most likely drop all your desires. The sages who reach this stage give up all desire because they seem futile.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 268,
+  header: "Desire a thought?",
+  question: 
+    "Pranam Lord Hanuman\n"+
+    "Pranam mathangs\n\n"+
+    "Reading chapter 11 is a fantastic learning of lord Indra working and karmas.\n"+
+    "I want to ask when we do anything ,we thought , and most of the time it happens automatically can it be constituted as a desire?\n"+
+    "If yes how can this could b controlled ?\n"+
+    "Thank you for answering my last experience.\n"+
+    "pranam lord hanuman\n"+
+    "Jai shri Ram\n"+
+    "Pranam setuu masters",
+  answer:
+    "Divine Soul,\n\n"+
+    "Yes, it constitutes as desire. There is no harm in merely desiring. When Karma match desires, then only desires get fulfilled in MaanavLoka.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 269,
+  header: "desires and undesired",
+  question: 
+    "I have suffered my whole life in seek of some love ( sneha ) from my friends, but the moment I think they love me, I find profound evidence of them perpetuating me in one way or another. Why is that desire of me to be loved never gets fulfilled.",
+  answer:
+    "Divine Soul,\n\n"+
+    "When you reach to the conclusion that the outer world is merely an illusion, start your journey to the inner world. You will get to experience the true divine love and bliss.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 270,
+  header: "destroy the desire",
+  question: 
+    "Respected master,\n"+
+    "Happy hanuman jayanthi. I am vyshak,17 yrs old,a devotee of Lord hanuman.I have read 12 chapters and waiting for upcoming chapters. Can I know the way for burning all our desires pending like for example haribodhi ekadasi by complete fasting burns all our karmas accumulated. Plz kindly tell me the way which I could follow. Master I am waiting for your answer. Please let me know. And also thank you for replying me the question I asked in last week.\n"+
+    "Thanking you,",
+  answer:
+    "Divine Soul, There are many ways to erase bad Karmas. Some of them have been explained in the chapters posted so far, more will be explained in upcoming chapters. Blessings"
+  },
+  {
+  id: 271,
+  header: "Destruction & Illness",
+  question: 
+    "1) Destruction -\n"+
+    "If everything is lord's design & everything the books say is true, then the end of Kaliyuga is near and large-scale destruction is inevitable. After which we'll again go back to zero and start again. So my question is, why? Why create something to destroy it later? Why can it there just be singularity? Since that's the real truth and the only thing/non-thing, why this circus of life and death? If we're a part of lord, then why separate us and put us here there everywhere. Just let there be nothing.\n\n"+
+    "2) illness -\n"+
+    "How would you explain mental illnesses like depression, anxiety and the like. I understand that it's all 'Maya' and nothing's really happening, but why would someone be thrown into the depths of despair?",
+  answer:
+    "Divine Soul,\n\n"+
+    "It depends from where you are looking. If you look from Shunya tunnel, everything has already happened. There is nothing to be created, nothing to be destroyed. There is no depression, no happiness. You are null. You are shunya. You can choose experiences. You can choose to live depressing scenes as well as happy scenes.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 272,
+  header: "Developed fear of losing loved ones after losing my Mother",
+  question: 
+    "Reading this beautiful knowledge has really calmed me down in past few months and I thank you for that.\n\n"+
+    "After losing my mother, I have these unintentional bad thoughts of losing my family. As soon as I have such a bad thought, I try to shun it and tell myself to not think like that and really hope in some way that Universe understands its not a desire and does not ever act upon it. How do I get rid of this fear and unwanted desire. I feel we have no control over our mind and even if heart knows we do not want it, thoughts keep coming to the mind which we have no control over. Does Lord Indra note every smallest of thought that erupts in your mind and hold on to it? How do control our thoughts and desires then?\n\n"+
+    "Please shed some more light on it.\n\n"+
+    "Thank you",
+  answer:
+    "Divine Soul,\n\n"+
+    "Witness the mind and separate yourself from whatever the mind is thinking. When your soul is in the illusion that the mind is \"I\", then only your soul owns up the activity of mind. When you are aware that you are a soul and the mind is not you, let the mind think anything, it won't affect you at all.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 273,
+  header: "A DEVELOPED KNOWLEDGE",
+  question: 
+    "Jai HANUMAN JI\n"+
+    "Today is birthday of shri HANUMAN JI.Hey BAJARANG BALI KEEP BLESSED ME.TODAY I HAVE finished all eleven chapter.Chapter eleven gave me a developed knowledge.It is just eye opening for me.\n"+
+    "HEY BAJRANG BALI please fulfil my desire in this real world and give me strength so that I can be able to find happiness in my real life .\n"+
+    "Hey MAHAVEER I need only your ASHIRVAD. Forgive me for my wrong doing and decision.\n"+
+    "Please Accept my CHARAN VANDANA jai Ho MAHAVEER BAJRANG BALI."
+  },
+  {
+  id: 274,
+  header: "Devotee Query to Setuu",
+  question: 
+    "Shat Shat Naman\n\n"+
+    "I'm of age 30 years & I have some queries in my mind. Till now I have read all the chapters published in setuu.org.\n\n"+
+    "I have been born and bought up in a environment where studies were given utter importance, so in accordance to that my parents have dreams that they see in their child, but a child I failed to deliver.\n"+
+    "As the time passed by, so do I kept performing karma. I believed in lord Sai Ram & devoted myself, but I keep asking for wishes from the lord, but they were never fulfilled. Then I thought may be I'm not good enough that Lord Sai Ram will ever fulfill my wishes & even got angered from lord & assumed that lord will never pay any heed to my voice.\n\n"+
+    "I turn to lord Hanuman ji & started devoting myself. But sometimes I promise lord Hanuman that I'll not do few things & I broke the promise and does those things, which I believe makes lord Hanuman ji take his eyes from me .\n"+
+    "Now since we are trapped in Maya, but in this Maya world as a mortal human being I have some duties to perform. One of the duties are to make my parents proud by my achievements (which I failed to deliver).\n\n"+
+    "I prayed to lord Hanuman ji to fulfill my wishes, which I think wont be fulfilled since I failed as a soul to devote myself fully to him.\n"+
+    "So whatever I do whether its studies or pray or devotion, I actually failed. As a soul I'm unable to connect to Lord Hanuman ji. I'm completely blank now to as what I want to do, what I want to achieve in my life.\n\n"+
+    "I do recite Lord Hanuman ji name everyday but not whole heatedly. I also know whatever I do I cant win the heart of Lord Hanuman ji & can never be his devotee although I wanted to be.\n\n"+
+    "Also If my wishes are not fulfilled I ll keep asking for them to be fulfilled & remain trapped in maya world forever\n\n"+
+    "Setuu please guide me since I'm highly confused to what I want to do in my life. I read teh chapters once or twice , they leave their impression on my mind for a day or two, then I go back regular course of life & obeying to Maya world rules",
+  answer:
+    "Divine Soul,\n\n"+
+    "First of all detach yourself from your body-mind. You are a soul. Not body-mind. Let the soul witness activities of body-mind. Even if body-mind does something wrong, don't let that leave any impression on your soul. This way, you can keep your soul pure even when body-mind is not pure. Slowly, you will see that your body-mind will also start falling on right track.\n\n"+
+    "When your soul is pure, you can connect with Lord Hanuman, no matter what your body-mind are up to.\n\n"+
+    "Another thing, keep everything between your soul and Lord Hanuman. Don't bring your family or society in between. There are millions of people around you. When you start living as per their criteria, you in effect put burden of millions of suffering souls onto your soul. Figure out what you want to do in your life. You means your soul. What is your higher purpose? Don't let 'making parents proud' become your purpose. It should only be a side product of whatever you do. Don't bring your parents' Karma onto your soul. Free yourself from attachment. It will benefit you as well as your parents. Remember, attachment is not same as love. Attachment complicates things. It adds up others' Karma onto your soul while love frees you.\n\n"+
+    "Figure out what you like to do and do that irrespective of what your family or society expects. When you follow your own goal without bringing others into picture, Lord Hanuman will certainly help you. You will achieve your goals and happiness of people around you will be a side product.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 275,
+  header: "Devotion and Expectation",
+  question: 
+    "Jai Shree Ram\n"+
+    "Jai Bajrangbali\n\n"+
+    "We all worship God (except few who don't believe in God). We all have different reasons to worship God. Some worship God to get materialistic goals while others for non-materialistic goals. There are some people who worship God for both i.e. materialistic as well as non-materialistic goals.\n\n"+
+    "I have heard that there should not be expectations in devotion. There should be only devotion from true heart. If there are expectations, the devotion is not from true heart. I have heard like this. Is it really so? Can't devotion and expectations go parallel?\n\n"+
+    "Suppose I worship God with full devotion from true heart and expect some materialistic or non-materialistic goals or both from God. Is it wrong? Is is wrong to have some expectations either materialistic or non-materialistic or both from God? If I expect something from God, my devotion towards God is not true? Is it so?\n\n"+
+    "Thanks and regards",
+  answer:
+    "Divine Soul,\n\n"+
+    "There are many parts of your being viz. Body, Mind, Intellect, Chitt and .... soul. You connect to God at the level of soul. You connect to God when you rise above your body, mind etc. Expectations happen at the level of body and mind. If you are able to rise above your body and mind to do prayer, it does not matter what you do at level of body and mind.\n\n"+
+    "But this world is such that, once mind and body get stuck into materialistic desires, it becomes impossible to rise above them. The connection to God fails in that case. No matter how many times you go in temple, how many times you chant a Mantra, the connection fails as you are not able to rise above body and mind. To avoid that problem , body and mind should be kept in control.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 276,
+  header: "Devotion and Expectation-2",
+  question: 
+    "\"Continued from #366929\"\n"+
+    "Thank you Setuu for the reply. To meet God, we need to rise above mind and body. If body and mind are stuck to materialistic desires, it becomes impossible to rise above them.\n\n"+
+    "But to live in this world, we need three basic necessities of life i.e. food, cloth and shelter. To get these things, we need job i.e. money. Does this come within materialistic desires? If we dream of a good living standard, are our mind and body stuck to materialistic desires? If we pray to God for a good life in the world, can't we rise above mind and body?\n\n"+
+    "Jai Hanuman\n"+
+    "Jai Shree Ram",
+  answer:
+    "Divine Soul,\n\n"+
+    "Rising above body and mind does not mean leaving them. Let body and mind do their job. You are not a body-mind. You are a soul. You have to just be in the awareness of soul while body-mind do their worldly job.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 277,
+  header: "dharm",
+  question: 
+    "mujhe apka lekh padhkar bhut acha mahsus ho rah hai me to bs ye jannna chahta hu ki me apne dharm ka palan kese karu or sachai ke marg par kese chlu",
+  answer:
+    "दिव्य आत्मा ,\n\n"+
+    "पहले तो ये जानो कि धर्म क्या है , सत्य क्या है और आप जिसे 'मैं' कहते हैं वो क्या है | उसके बाद पालन करने की बात आएगी | हनुमान जी को गुरु मानकर उनकी लीलाएं पढेंगे तो सत्य का ज्ञान होगा |\n\n"+
+    "||राम||"
+  },
+  {
+  id: 278,
+  header: "Dharma Of Human Beings",
+  question: 
+    "Jai Shree Hanuman ...\n\n"+
+    "My deep­most gratitude to My guru shree Hanuman Ji,All Mathangs and Setuu Masters.\n\n"+
+    "Today ...Don't know why But I got a question hitting my mind that I wanna ask Shree Hanuman Ji.\n\n"+
+    "Hanuman ji....Shree Ram is known as the person who always followed his Dharma throughout their life and whatever he had done was in accordance with his Dharma.If I am not wrong. Hanuman Ji ....I request you from bottom of my soul please Liberate your disciple hanuman ji,Please tell me what are the Various Dharma that a Human Being must follow throughout his life? I have already surrendered the mortal body in which my soul is living in this life and my soul in your feet My Lord hanuman Ji .... Everything I have is because of you ..The reason that I am secure is You .....I am all yours Hanuman Ji....Please accept my gratitude....My Lord,My Guru hanuman Ji please accept me as Your Disciple.\n\n"+
+    "I have asked this question because I really want to be there with you My Lord in Sakshat Hanuman Pooja and I want to get rid of my Ego,My Ignorance.....I want to seek supreme knowledge Hanuman Ji and I just want to always be with you...My Lord Hanuman Ji ..I Love You so much Hanuman Ji ...And you Know everything MY lord ....\n\n"+
+    "Please forgive me If I have said anything wrong Hanuman ji ...and liberate my soul ...My Lord Hanuman ji !\n\n"+
+    "Jai Shree Ram ...Jai Shree Hanuman...\n\n"+
+    "kaaltantu karecharanti enar marishnu nirmukter kaletwam amarishnu karma vineeyataham karan aaruddha Anant Vahnetwam Sarwaruddha Nemeetme naimitikecha bhooloka Puchetwam Vistarasti Vyahriti Patalecha... Jai Shree Hanuman...",
+  answer:
+    "Divine Soul,\n\n"+
+    "Dharma is not something you get as instructions from outside. It has to come from inside your soul.\n\n"+
+    "Therefore, seek knowledge, not Dharma. When you get supreme knowledge, your soul will direct your body-mind. Those directions will be your Dharma.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 279,
+  header: "Dharshan",
+  question: 
+    "I used to go outside on weekend along with my friend S.Jaipal in his car. Both used to sit in open air in natural atmosphere and used to share our plans and problems. My friend is a devotee of Hanuman. Once in every year he used to perform (41) days Mandala Darshan to Hanuman Temple at Karmanghat Temple, Hyderabad. He used to do (41) Pradakshanas daily for (41) days without any gap. My friend has experienced number of miracles. When he is surrounded in a web of troubles and problems, his problems vanished one by one in wonderful manner. One or the other way, the solutions used to come up to put an end to the problem. He used to share the miracles with me and I have strong faith in Hanuman, as I used to chant (11) times Hanuman Chalisa in my child hood. At the age of my school time, One day in my dream, I noticed that I fell in water accidentally and I am struggling for breath in the water. But at the same time, I found lord hanuman sitting at the base of the water. And to my surprise, when I saw the God, I got free from breathing frustration and my existence in water has become natural. In his eyes I have seen an assurance that \" You don`t get panic, I am with you\". I never forget this dream in my life.\n\n"+
+    "As usual on one sunday we both left in car towards Outskirts and while we turning towards a corner from road, we noticed a Big Monkey with long tail ( tail was erected straight towards sky), came from our right side bushes, stood a while before our car, and seen us in pleasant manner and went away into bushes of the left side in a way of lion walking. I and my friend both surprised to see at that spot, where there is no possibility of existence of monkeys. For a while we both became speech less at that movement. We prayed Hanuman for giving Darshan. I think Hanumanji was pleased with the Mandala Pooja of my friend and gave a darshan to him. But to my luck, I too got the darshan. By this incident , it is revealed that Hanumanji will shower Karuna over the friends of his devotees too."
+  },
+  {
+  id: 280,
+  header: "Difference Between Charan Puja & Sakshat puja",
+  question: 
+    "Jai Shri Ram\n\n"+
+    "What is major difference in charan puja and sakshat puja\n\n"+
+    "You are requested to please clarify\n\n"+
+    "With Best Regards",
+  answer:
+    "|| Ram ||\n\n"+
+    "Divine Soul,\n\n"+
+    "When a person is in front of you and you interact with him is a different experience.\n\n"+
+    "When a person is not near you in terms of space coordinates but you speak to that person through video conferencing or any such media, that experience is different.\n\n"+
+    "Now you can understand the difference between Charan Pooja and Sakshat Hanuman Pooja.\n\n"+
+    "Charan Pooja is performed once in 41 years when Lord Hanuman visits Mathangs. When He left them He directed them to perform Sakshat Hanuman Pooja until revelation of Kalki comes out. In Sakshat Hanuman Pooja, the seers see Lord Hanuman through divine vision. He is not with them in terms of space coordinates but they can see and talk to Him through divine vision.\n\n"+
+    "You will read more about CharanPooja in upcoming chapters. In chapter 6 you will read what happened on first day of Charan Pooja.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 281,
+  header: "Difference between vegetarian and non-vegetarian.",
+  question: 
+    "A question came to my mind that plants are also living beings and animals are also living beings. But some people say that eating non vegetarian (animals) is a sin. There are many religions, many communities, some says that it is sin but others say that it is not a sin. This thing is not clear. Why for some people it is sin and for others it is not? Is it really a sin? There are many uncleared doubts regarding this. Please clear this, as it has been always a question of debate.\n\n"+
+    "Thank you very much.",
+  answer:
+    "Divine Soul,\n\n"+
+    "If you are eating non-vegetarian from early childhood, there is no problem with it. If your body was born in such circumstances where eating non-veg was a norm, then your soul has made no choice in that. Your soul has no role in that. If you have started eating non-veg after you are grown enough to make choices, then remember the first day when you ate non-veg. On that day actually an Asurrah entered in your body and you could not resist eating the non-veg. Once an Asurrah gets the taste of fulfilling its desires through a particular body, that Asurrah wants to enter that body again and again. It starts manipulating that body and that mind to fulfill its desires. That is why those who eat non-veg once, those who drink liquor once etc, tend to get addicted to it. That is where the problem lies. Then your all Karma gets influenced by Asurrahs.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 282,
+  header: "Differentiate between voice of soul and mann",
+  question: 
+    "Thanks for the previous reply.\n\n"+
+    "How to find out or what is right that, the voice come to us by our soul or by mann( from Ashurah or indri). Always I am facing difficulty to differentiate between voice of soul and mann.",
+  answer:
+    "Divine Soul,\n\n"+
+    "Follow the \"One Step Up\" rule. If a voice is coming from somewhere, just go one step up and try to witness the voice. For example, suppose a voice is coming which says, \"Enjoy, life is short\", then go one step up and try to witness the source of this voice. Ask the question, \"Who is saying this?\" If you are able to watch the entity which is saying this, it is not the highest point i.e. it is not soul. It is just one point between the outer mind and the soul. You may not be able to name it but you can feel that it is not the highest point of observation.\n\n"+
+    "If a voice is coming and you are not able to witness that voice from a higher point, then it may the the voice of your soul.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 283,
+  header: "Difficult to get rid of MAYA",
+  question: 
+    "Dear Master\n\n"+
+    "It is incredibly difficult to get rid of maya or the concept of everything being me and an extension of my body, and it all being real and everlasting.\n\n"+
+    "Just before writing this post and reading devotee questions, I had a terrible thought experience, surreal, yet something I would never like to experience first hand. The incredible pain of losing a child.\n\n"+
+    "While going through this surrogate experience, I was also recollecting Chapter 24 and its messages, but saw how hopeless was the case. I realized that I have an ever so strong clinging for the body and its relations, and would never consciously want to experience that pain.\n\n"+
+    "Changing the scene, however sounds good, but the pre-requisite is less attachment to surroundings, desires, etc.\n\n"+
+    "Its a CATCH 22 sort of a situation.\n\n"+
+    "The best part is that I dont even know what to ask here, and am relating my thought process.\n\n"+
+    "Meditation does give some respite, but for a small amount of time, rest of the waking and sleeping time are passed in this infinite play of scenes.\n\n"+
+    "I am very grateful for you in bringing this message online to thousands, and potentially millions.\n\n"+
+    "Pranams"
+  },
+  {
+  id: 284,
+  header: "Difficulties in job, promotion and get little salary",
+  question: 
+    "I, Arvind, is currently working with a company for last 6 years now. During these six years I have not received any good increment or promotion. The management has been telling me that I would promoted soon, but I am yet to get any promotion and good increment. When do you think I would be getting an increment and promotion? Besides, I also want to change the company and join a new company now. When early do I expect a new job?\n"+
+    "I want a job along with which I could pray/chant god's name all in equal measure during the morning, evening and even during the day.\n"+
+    "Recently, I bought a house in Mohali and I am not sure as to how I have managed to buy it because I did not had enough money.\n"+
+    "God somehow ensured that I could buy a house. Its a miracle to me."
+  },
+  {
+  id: 285,
+  header: "difficulty",
+  question: 
+    "I don't know why I'm going through depressive moods now and then. It is painful, making me cry. It is a horrible phase. At this rate I doubt if I'll ever get moksha. It seems far away. May be I am not fit for anything.I am unable to stop medicines.What shall I do. I don't seem to have enough strength to overcome the barriers. Not feeling well.Kindly guide me and help me hanumane. Jai sriram. Pranams to all there- setu masters and Mathangs.\n\n"+
+    "If I don't take medicines, others in the family get disturbed, as they do not and cannot understand me. so I take. There is peace. But I will be harming myself. It seems so important that they don't hurt me, which they don't even realize. Why am I like this? Wavering?\n\n"+
+    "Both of us expect from each other to change. My children think I am very emotional and sentimental, and, I feel they don't respect feelings.\n\n"+
+    "Whenever I get that liberated feeling, it stays for a very short while. Then I am back on the ground. I have to learn to balance. However, all my effort fail because I get pulled down. I get affected by harsh insensitive words. I am unable to ignore that.I am so different in nature.\n\n"+
+    "Hanumane, pull me out of this. Give me bhakti. jai hanuman, jai sriram. anjaneya saranam."
+  },
+  {
+  id: 286,
+  header: "dilemma",
+  question: 
+    "Pranam,\n\n"+
+    "sometimes if feel like having a peaceful govt job,sometimes feel like do some business and get richer,sometime feel like marrying ,sometimes feel like be alone for ever.\n\n"+
+    "sometimes i search for the meaning why i am living here on earth.\n\n"+
+    "hey hanuman please help me get a meaning for my life.\n\n"+
+    "jai sriram.\n\n"+
+    "hope i get a chance for sakshat hanuman pooja.\n\n"+
+    "Dear Setu masters,\n\n"+
+    "I am greatful that i received reply on hanuman jayanthi.\n"+
+    "jai sriram.Hope i will attain moksha.\n"+
+    "my wishes to lord hanuman on his janmadin",
+  answer:
+    "Divine Soul,\n\n"+
+    "Along with the day-to-day work, find a higher purpose in life like getting Moksha or supreme knowledge. Then only you will discover peace in life.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 287,
+  header: "dilemma",
+  question: 
+    "Continued from #516671\n\n"+
+    "Dear Setu masters,\n\n"+
+    "I am greatful that i received reply on hanuman jayanthi.\n"+
+    "jai sriram.Hope i will attain moksha.\n"+
+    "My wishes to lord hanuman on his janmadin.Jai srirama."
+  },
+  {
+  id: 288,
+  header: "Dipawali wishes and Birthday wishes",
+  question: 
+    "Namaskarm sir,\n\n"+
+    "We wish you Happy Deepawali to entire and each individual of Setuu.org Team....\n\n"+
+    "We wish to Hanumanji also Deepwali wishes..\n\n"+
+    "In some part of North India, ayodya,uttarpardesh..\n"+
+    "Celebrating Shri Hanumanji Birthday..\n\n"+
+    "Sir, we want to know when Shri Hanumanji Birthday,\n\n"+
+    "With Regards..",
+  answer:
+    "Divine Soul,\n\n"+
+    "We cannot speculate. The correct answer about birth of Lord Hanuman is known to Him only. In one of the upcoming chapters, He will reveal this. Meanwhile, read story of birth of Lord Ram in chapter 16 and purify your soul.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 289,
+  header: "Discrepancy in My marriage",
+  question: 
+    "I consider Lord Hanuman as my elder brother. I am only child of my parents and at a very young age one of my cousins who was closest to me refused to get the Rakhi tied on his wrist. I felt very bad and was very sad of that fact that I have no brother. I came back to my home. My father noticed my despair and asked me what has happened. I told him the facts, later that day my Dad motivated me and asked to tie Rakhi on wrist of Lord Hanuman as he was an ardent follower of Lord and considered Him as his Guru. Since then every Raksha Bandahan I have been tying knot of rakhi on His wrist and god has also helped me through thick and thin. Certain instances to quote are one day I was going to my college and a boy came and started teasing me. As it was a hot summer day and my college was in a lonely place I was very scared. An old Baba wearing a white turban appeared from back of a nearby construction site and asked me to stay there till this notorious fellow leaves the place. After that boy left the site that old Baba asked me to go the college, but after going ahead a few steps that old man could not be seen anywhere. Still whenever I feel lonely or could not find any solution to my problem I pray Lord Hanuman whom I consider as my elder brother and somehow that problem gets resolves. But from sometime I have been facing a problem related to my Husband. He is in influence of his Bhabhi (Sister In Law) and gives all his earnings to him, when I opposed I was beaten severally. My marriage is there for last 4 and half years and I have a 3 years old daughter and my Husband has not returned to home since past two years. He is living with his Bhabhi and spending all his earning there. I am only earning member for my daughter and my old mother and I dont have father. Just wanted to know when could probably he return. I know Lord Hanuman is very helpful to me but since now my daughter is also growing up and miss her father I want him back with me. If anyone could find an answer to my question please reply.",
+  answer:
+    "Divine Soul,\n\n"+
+    "The Karma situation is such that more you hate that woman, more the bond between her and your husband will grow. Therefore forgive that woman. Forgiveness is the key. More you forgive her and your husband, weaker their bond will get. You won't be able to forgive her if you keep blaming her for the mess in your life. Remember this, no outsider is responsible for problems. It is all a game of Karma. Therefore get closer to your soul. Realize that you are complete in yourself and you do not need anyone for happy life. Once you do that, you will see that your husband will slowly drift towards you.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 290,
+  header: "Divine experience",
+  question: 
+    "O Lord,this life is difficult without you. You are the ocean of knowledge, one cannot weigh the Krupa you had given to us. You are merciful, powerful & divine, such an experience is divine & writing it down is divine. My heart cannot speak, i want to be with you without any notion, motion, thinking, & want to observe the divinity. O protector of this world, bestow your presence in my heart, so that i feel your presence ever after. In your feets."
+  },
+  {
+  id: 291,
+  header: "divya aatma abhishek ka apna bhram dur karne ke liye prashn",
+  question: 
+    "JAI SHREE RAM\n"+
+    "setuu ke santo ko mera pranaam,yaha par diye gaye adhyayo ko padh kabhi kabhi man hota hai ki sab kuch choddkar apke paas tapasya ke liye aa jau....lekin mere pas to itne paise bhi nahi ki waha aa pau....fir waha aakar tap karne ki bat to bahot dur hai....\n"+
+    "mera anurodha hai ap sabhi se ki mujhe kuch baatein hanuman ji ke madhyam se batane ki kripa kare.....\n"+
+    "mujhe mere pandit ji ne bataya tha ki mai apne hi parivar ka purvaj hu aur kisi uddeshya se vapas aya hu....iss kathan mein kitni sacchai hai ye janna chahta hu....hanuman ji se kyuki wo antaryami hai....aur ye bhi ap log keht hai ki apko jo bhi maangna hai apne liye maangiye,apsab ko lekar sath chalenge to unke karma bhi sammilit ho jaenge apki cheshta mein....lekin jab aisa sochta hu to log mujhe swarthi kehte hai....wo kehte apke mata pitaah sabse pehle hai unki seva kariye....mai bhot sari cheeze aisa karna chahta tha is jeevan mei jisse sabko lambh mile....aur khud ki bhi aisi pehchaan banana chahta tha ki mujhe puri duniya jane...aur ek manuysha hone ke naate apni icchapurti bhi chahta tha....to bas apse ye anorodh hai....ki mai apne sapno ko pura karne ke liye prayaas karu....agar meri vo icchaen puri ho sakti hai....agar mere pichle janmo ke karma mere avrodh na bane ya mera satkarm meri madad kare aage badhne mei to mai bharsak prayaas karu unhe pura karne mei ya apni mata pitaah ki bat maankar ek sadi zindagi jeeyu jaisi wo cheshta rakhte hai...kripa karke mujhe rasta dikhaye mere aradhya....kyuki mai bhot soch mein pad gaya hu ki mai kya karu....apse bhot bhot vinti hai mere bhagwaan hanuman aur bhi bhot sandeh vo bhi puchunga lekin iske baad....",
+  answer:
+    "दिव्य आत्मस्वरूप ,\n\n"+
+    "सबसे पहले तो अपनी आत्मा को पहचानिए | आपकी आत्मा सत्य है | बाकी जिन भी लोगो की आप बात कर रहे हैं वे काल और अस्तित्व में पड़ रही एक परछाई मात्र हैं | हनुमान जी अपनी लीलाओं से जो ज्ञान आप तक पहुँचा रहे हैं उस ज्ञान को आत्मसात कीजिये | जब आपको आत्मज्ञान होगा तो आपको अपने आप पता चल जाएगा कि आप कौन है , आपको किसी अन्य से अपने बारे में पूछने की आवश्यकता नहीं पड़ेगी |\n\n"+
+    "||राम||"
+  },
+  {
+  id: 292,
+  header: "Do God take care of everyone?",
+  question: 
+    "Dear LORD HANUMAN, I want the answer of a simple question.\n"+
+    "LORD HANUMAN, I am getting married on 15th to a girl whom I love very much. Her father passed away yesterday and this pain is emotionally very deep. She is depressed, she is hurt, she is broken emotionally.\n"+
+    "Dear LORD HANUMAN, her father made all the arrangements, he was very excited that his daughter is getting married. Each father has this dream that he sees his daughter gets married. Each father has this dream that he does \"KANYADAAN\". He was very very happy.\n"+
+    "Dear LORD HANUMAN, my question is this that if it was definite to happen then why could not GOD waited for 10 days so that he could saw the marriage of his daughter. I have heard that GOD IS GREAT, but Dear LORD what type of justice is this? I have heard that GOD takes care of His children, but LORD what type of care is this? Why God did not wait for few days?",
+  answer:
+    "Divine Soul,\n\n"+
+    "There are laws of Karma and desire on which this universe runs. God helps souls in fulfilling their desires within the framework of the laws of this universe.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 293,
+  header: "Do I have the right to pray?",
+  question: 
+    "Jai Sriram,\n"+
+    "I am a person who carries a lot of guilt and pain in my heart. I realised after reading the first chapter that everything is an illusion. Though, it relieved my heart and gave me slight courage to worship God, the sins I have done and the guilt I carry make me afraid to worship and pray to God. I feel as i f I have the lost the right to worship God. What shall I do?\n\n"+
+    "Please help me.\n\n"+
+    "Poornima jaiganesh.",
+  answer:
+    "Divine Soul,\n\n"+
+    "Read chapter 9 in which Baba Mathang doubts his own purity. Then Lord Hanuman appears and says, \"You keep yourself under constant observation. It is a sign that you are completely pure.\"\n\n"+
+    "You have also brought yourself under observation, finally. So you are purer than many other souls who feel that they are pure but they are not.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 294,
+  header: "Do Prayers help in achieving materialistic desires?",
+  question: 
+    "Jai Shree Ram\n"+
+    "Jai Sita Maiya\n"+
+    "Jai Bajrangbali\n\n"+
+    "Everyone who believes in God prays to God. Different people have different prayers. Everyone has a reason to pray. Some people pray to God for peace of mind while some for getting Moksha while others for getting their desires fulfilled.\n\n"+
+    "Now, my question is \"Do Prayers really help in getting materialistic desires fulfilled?\" Do Prayers also have an important role in getting the desires fulfilled or it is only the Karma of a person which is responsible for fulfillment of a desire?\n\n"+
+    "Please answer.\n\n"+
+    "Thanks and regards.",
+  answer:
+    "Divine Soul,\n\n"+
+    "Yes, prayers help in fulfilling desires. Chapter 11 is entirely dedicated to the secret of fulfilling desires. Please wait till we get permission to publish this chapter.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 295,
+  header: "Does God judge me?",
+  question: 
+    "Many times in my personal and professional life I feel people around do not accept me easily and I wonder why it is so. Is it because I am too honest or because even a slight injustice agitates me or is it because people think I am insecure? Yes I am honest person, I cannot take it if injustice happens to me, I openly share my concerns. I'm a person who doesn't look aggressive but I generally put my views strongly which is many times misplaced as misbehaviour.\n"+
+    "I always judge myself and am honest about my mistakes. I just wonder whether My Lord Hanuman also judges me? If I'm right why I am so anxious all the time? I seek peace. I seek the knowledge and purpose of my existence. I want to get rid of the mundane pursuits of life. Please guide. Jai Hanuman",
+  answer:
+    "Divine Soul,\n\n"+
+    "We hope chapters being posted here are helping you to know the purpose of your existence.\n\n"+
+    "About Judging. There is a thing called Dharma. To lead a peaceful human life one must define his/her Dharma. Dharma does not mean religion. It means what rules and beliefs you set to live your life. Do contemplate what are your beliefs and principles. Those beliefs and principles may be rigid or they may be flexible and change according to new experiences and circumstances. Choose your principles and beliefs. Choose your Dharma. Once you choose it, take the responsibility of your choice. Whatever comes with your choice, abuses or praises, you have to accept it with responsibility. Then you will lead a peaceful life.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 296,
+  header: "Does Hanumanji accept the bouquet of dedication and love of His female bhakt???",
+  question: 
+    "Since childhood I am an admirer of Lord Hanumanji. I grew up by thinking that He is my biggest supporter and my guide.I was connected to Him mentally and emotionally.But last year a jyotish told me that women should not say Hanuman Chalisa and should not even do His bhakti as Hanumanji do not really like women and stay away from them.Is this true??? Since then , I gave up reading chalisa and following Him because I really do not want to hurt or bother Him in anyway.",
+  answer:
+    "Divine Soul,\n"+
+    "This is not true. Read third chapter carefully, Lord Hanuman Himself says that it is a misconception. When we do prayer, we do not remain a man or woman. We rise above our bodies. Body can be a man or woman but not the soul. Hence women can very much pray to Lord Hanuman.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 297,
+  header: "Does Lord Love me ?",
+  question: 
+    "AS EXPRESSED IN MY EARLIER COMMUNICATION, I AM DEVOTEE OF LORD HANUMAN SINCE MY CHILDHOOD. I WANT TO KNOW THAT WHETHER HIS BLESSINGS ARE ON ME AND MY FAMILY.",
+  answer:
+    "Divine Soul,\n\n"+
+    "You have done some mistakes in life but Lord Hanuman understands the circumstances which led to those mistakes. Hence He has forgiven you. Yes, His blessings are on you and your family."
+  },
+  {
+  id: 298,
+  header: "Does the soul have any responsibilities?",
+  question: 
+    "Jai Hanuman,\n\n"+
+    "Greetings MahaYogi Anjaneya,\n\n"+
+    "Why is MAYA cast as evil in one of the replies to devotees? She is as she is. Should we not thank her for allowing the veil to slip off?\n\n"+
+    "Of what use is pursuit of Moksha when other souls remain trapped? Can wholesale change be brought for all? It does not matter if there is only one soul in my illusion, or billions, how can one seek moksha when the answer to that is also a one way ticket out of dodge?\n\n"+
+    "The pain of this illusion is experienced as real as are its pleasures, to punish surrah and asurrah for an entire kalpa is not right. Has the punishment ever cured the cycle?\n\n"+
+    "If Shukracharya is taken out, existence will run out of fuel? Why does it look like he is winning, how can we help in the battle?\n\n"+
+    "Jai Hanuman",
+  answer:
+    "Divine Soul,\n\n"+
+    "If a soul wants to get Moksha, it has to be free from claws of Maya. If you label something within Maya-- a person or a thing-- as evil, you are serving the cause of Maya. But if you label the entire Maya as evil, it helps you in the realization of supreme truth.\n\n"+
+    "What are 'others' here? The external world is not something 'well-defined' as Maya wants you to believe. When you change, the external world too changes and you never notice it because 'absolute change' takes place. When you become enlightened and desire to be in an external world where everyone is enlightened, your desire shall be fulfilled.\n\n"+
+    "Reflect more on the concept of Surrahs- Asurrahs. Everything is necessary for the cycle.\n\n"+
+    "You are already in the battle. On which side is the question.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 299,
+  header: "Donating years from my own age",
+  question: 
+    "Dear god,\n\n"+
+    "Out of my own sixth sense,I came to know that my parents might have a shorter age span then I expected. I prayed with semi conscious state to give equal share of few years from my age to them.I am most attached to them and consider them gods.Therefore, any act that I do against their will makes me feel worse.I am currently seeking my purpose in life.Also I feel I am not able to find a fine direction and guidance in my life.I know I have extremel potential and energy to do something worthwhile in this life.Please guide me towards the best.\n"+
+    "Thank you",
+  answer:
+    "Divine Soul,\n\n"+
+    "If you want to wish good for them, wish for their Moksha. Wish that they get out of the cycle of birth and death. By wishing them long life in this life, you are being selfish.\n\n"+
+    "Blessings for finding right path in life.\n\n"+
+    "Ram"
+  },
+  {
+  id: 300,
+  header: "Don't know why",
+  question: 
+    "For past few months, after I got in contact with you, I had started changing. In the sense, I w as very positive and generally satisfied, strong etc.In spite of many difficult situations, I was able to manage surprisingly well.\n"+
+    "Suddenly, I am experiencing severe depression and am unable to control.\n"+
+    "Though my poojas are going on okay, there's some kind of uneasiness that is troubling me and I feel like crying all the time. Today I went to my doctor who gave me new medicines.I was under the impression that I had come out of a difficult health problem. But now I realize I am going back. I am depending on Anjaneya more. Am I being tested? Am I going wrong somewhere.Mind seems to pose as the biggest challenge I have to overcome. What do I do.? If there is one step a little forward, there seems to be a hundred backwards. Sriram jayaram jayajaya Ram! Sri Anjaneyaya namah. om namah shivaya. Sri gurubhyo namah. Pranams to all at setu and the mathangs. Forgive me and help me.",
+  answer:
+    "Divine Soul,\n\n"+
+    "\"The opposite two\" are always temporary.\n\n"+
+    "Opposite two means:\n\n"+
+    "Good - Bad,\n"+
+    "Happiness- Sorrow,\n"+
+    "Hot- old,\n"+
+    "Healthy- Sick,\n"+
+    "Positive- Negative,\n\n"+
+    "You have to come out of these opposite two and experience the real bliss which lies beyond positive or negative.\n\n"+
+    "You are not doing anything wrong. You have considered Lord Hanuman as your Guru. And a Guru tries to create situations to make their disciples learn the truth. The truth is neither in POSITIVE nor in NEGATIVE.\n\n"+
+    "The truth is beyond Positive and Negative. Try to come out of the \"opposite two\". If you have any confusion or doubt, post it here. You may not be able to hear Lord Hanuman directly because of worldly chaos but you can hear Him via Setuu. Post your confusions here with detail. Some of your confusions will fly away while you write them. And some will fly away when you hear a word or two from the Guru--- Lord Hanuman.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 301,
+  header: "doubt",
+  question: 
+    "If Hindu gods are the only spiritual power in the universe then why are there are so many religions...like Hindu, Muslim, Christianity....I sometimes get confused to whom should I worship....n there is one hanuman chalisa Yantra should girls wear that...It contains some type of spiritual power or not...thnx:)",
+  answer:
+    "Divine Soul,\n\n"+
+    "You should only seek truth, not religion. By truth, we mean supreme truth. You are unique, hence your path to truth shall also be unique. No two paths are same. But we can classify those paths in many ways. If you are walking on the path of supreme truth and somebody tells you, \"Hey, the path you are traveling on is classified as Hindu path.\" That classification should not bother you.\n\n"+
+    "What power you see and experience depends on where exactly you are. At the top, you will see only one single power. If you decline a bit, you will see two things (duality) - God and the universe. If you decline further, you will see 3 powers- Brahma, Vishnu and Shiva. If you decline further, you will see Indra and Kaaldeva. If you decline further, you will see the complicated world. In that complicated world, there are infinite powers. Out of them, we worship only those powers which help us to ascend further towards unity. If Christ is helping you to ascend, worship Him. If Lord Hanuman is helping you to ascend, worship Him. It depends who you are and which power you are connected with.\n\n"+
+    "We do not know about the Yantra you are talking about but if there is anything spiritual about it, then there shouldn't be any restriction based on gender. Because spiritual means related to soul. Soul doesn't have a gender.\n\n"+
+    "Blessings"
+  },
+  {
+  id: 302,
+  header: "Doubt",
+  question: 
+    "Om namah shivaya. jai Hanuman.\n\n"+
+    "At one point in the chapter, it is said that the souls in the Mukthisagara are fools and that.....\n\n"+
+    "It is also said that this explains why souls come out of the Mukthisagara.\n\n"+
+    "I still haven't understood that part. Please make me understand.\n\n"+
+    "Thank you. Jai sriram. Pranams to Setu Masters and Mathangs.",
+  answer:
+    "Divine Soul,\n\n"+
+    "You read it incorrectly.\n\n"+
+    "It is said that the souls who are stuck in BrahmaLoka think that the souls of Muktisagara are fools.\n\n"+
+    "If a wise man goes into group of fools, the fools will manage to make the wise man fool. Similarly the souls of BrahmaLoka who themselves are fools, call souls of MuktiSagara as fools and they even manage to convince them that they should come out of MuktiSagara.\n\n"+
+    "Blessings"
+  },
   ];
 
   // Calculate total pages
