@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './About.css';
+import { useNavigate } from 'react-router-dom';
 
 const About = () => {
   const [language, setLanguage] = useState('hi'); // 'hi' for Hindi, 'en' for English
-
+  const navigate = useNavigate();
   // Hindi content (original)
   const contentHi = (
     <>
@@ -63,13 +64,7 @@ const About = () => {
         </div>
           <button
   className="attractive-button"
-  onClick={() =>
-    window.open(
-      'https://drive.google.com/file/d/1OpwCXkB_AuKP3wl9Xfl4MlmCMTgClJn3/view',
-      '_blank',
-      'noopener noreferrer'
-    )
-  }
+  onClick={() => navigate("/mantra-page")}
   type="button"
 >
   <span>{language === 'hi' ? linkTextHi : linkTextEn}</span>

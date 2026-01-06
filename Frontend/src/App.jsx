@@ -33,6 +33,7 @@ import SetuNotes from './Pages/SetuNotes/SetuNotes';
 import Notes from './components/Notes';
 import Summary from './Pages/Summary';
 import MyExperiences from './Pages/MyExperiences';
+import MantraPage from './Pages/MantraPage';
 function App() {
   return (
     <Router>
@@ -46,6 +47,7 @@ function App() {
             <Route path='/charanpooja' element={<CharanPooja />} />
             <Route path='/contact' element={<Contact />} />
             <Route path='/history' element={<History />} />
+            <Route path='/mantra-page' element={<MantraPage />} />
             <Route path='/important-notes' element={<ProtectedRoute><ImportantNotes /></ProtectedRoute>} />
             <Route path='/other' element={<ProtectedRoute><Other /></ProtectedRoute>} />  
             <Route path='/login' element={<Login />} />

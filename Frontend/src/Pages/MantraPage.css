@@ -1,0 +1,84 @@
+.mantra-page {
+  background: linear-gradient(to bottom, #fefcea, #e8ebff);
+  padding: 4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.mantra-card {
+  background: white;
+  max-width: 900px;
+  width: 100%;
+  padding: 2.5rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 8px 20px rgba(120, 80, 200, 0.25);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.mantra-card.update {
+  border-left: 6px solid #0702bc;
+}
+
+.mantra-card h2,
+.mantra-card h3 {
+  color: #110c92;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: bolder;
+}
+
+.mantra-card p {
+  font-size: 1.2rem;
+  line-height: 2.4rem;
+  color: #000;
+}
+
+.mantra-text {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: rgba(17, 12, 146, 0.05);
+  border-radius: 0.8rem;
+}
+
+.mantra-text p {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  color: #0702bc;
+  line-height: 2rem;
+}
+
+.mantra-meaning {
+  margin-top: 1.5rem;
+  font-style: italic;
+  color: #333;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .mantra-card {
+    padding: 1.5rem;
+  }
+
+  .mantra-card p {
+    font-size: 1.05rem;
+    line-height: 2.1rem;
+  }
+
+  .mantra-text p {
+    font-size: 1.15rem;
+  }
+}
