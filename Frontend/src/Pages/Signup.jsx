@@ -137,7 +137,6 @@ function Signup() {
     <div className="auth-container">
       <form className="auth-form" onSubmit={handleSubmit}>
         <h2>Create an Account</h2>
-
         <input
           type="text"
           name="name"
@@ -276,6 +275,7 @@ function Signup() {
           Already have an account?{" "}
           <span onClick={() => navigate("/login")}>Login</span>
         </p>
+        <p style={{fontStyle:'italic'}}>“In this age of fast lifestyle, this Sign in may seem unnecessary to some devotees but we have set up this website according to rules and rituals of Mathangs. Lord Hanuman's words for Kaliyuga souls could not be kept on open web, hence a sign up gate was necessary to publish these words. But we have made the sign in process as quick as possible.”</p>
       </form>
     </div>
   );
