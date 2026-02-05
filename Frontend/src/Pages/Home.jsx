@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 
-const API_BASE ="https://setusouls-1.onrender.com/";
-
 const Home = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
     axios
-      .get(`${API_BASE}/api/home`)
+      .get(`https://setusouls-1.onrender.com/api/home`)
       .then(res => setData(res.data))
       .catch(console.error);
   }, []);
