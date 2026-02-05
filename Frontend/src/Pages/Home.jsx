@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 
-const API_BASE =
-  import.meta.env.VITE_API_BASE_URL || "https://setusouls-1.onrender.com/";
+const API_BASE ="https://setusouls-1.onrender.com/";
 
 const Home = () => {
   const [data, setData] = useState(null);
