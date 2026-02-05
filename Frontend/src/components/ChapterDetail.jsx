@@ -179,7 +179,7 @@ const ChapterDetail = () => {
           </div>
         )}
 
-        <div className="chapter-content" style={{ textAlign: "left" }}>
+        <div className="chapter-content" style={{ textAlign: "left", fontWeight: 'bold' }}>
           {(chapter?.content?.[language]?.split("\n") || []).map((line, index) => {
             const underlines = underlinedLines[language] || [];
             let updatedLine = line;
@@ -199,7 +199,7 @@ const ChapterDetail = () => {
           })}
         </div>
 
-        <p className="chapter-last-line">
+        <p className="chapter-last-line" style={{fontWeight:'bold'}}>
           {language === "hi" ? sectionLastLine.hilastline : sectionLastLine.enlastline}
         </p>
 

@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap');
+
+/* Optional: global reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /* Make html, body, root full height */
 html, body, #root {
   height: 100%;
@@ -9,7 +18,7 @@ html, body, #root {
 .app-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* full viewport height */
+  min-height: 100vh;
 }
 
 /* Main content grows */
@@ -17,9 +26,13 @@ html, body, #root {
   flex: 1;
 }
 
-/* Optional: global reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Animation classes */
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 2s ease-out forwards;
+}
+
+.animate-zoom-in {
+  opacity: 0;
+  animation: zoomIn 2s ease-in-out forwards;
 }

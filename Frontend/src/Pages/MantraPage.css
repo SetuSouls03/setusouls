@@ -16,6 +16,7 @@
   border-radius: 1.2rem;
   box-shadow: 0 8px 20px rgba(120, 80, 200, 0.25);
   animation: fadeInUp 0.8s ease forwards;
+  border-left: 6px solid #0702bc;
 }
 
 .mantra-card.update {
@@ -53,7 +54,7 @@
 
 .mantra-meaning {
   margin-top: 1.5rem;
-  font-style: italic;
+  font-style: normal;
   color: #333;
 }
 

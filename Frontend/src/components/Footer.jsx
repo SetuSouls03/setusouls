@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="footer-links">
         <NavLink to="/">Home</NavLink>
         <NavLink to="/history">History</NavLink>
-        <NavLink to="/about">About</NavLink>
+        <NavLink to="/about-setu">About</NavLink>
         <NavLink to="/contact">Contact</NavLink>
         <NavLink to="/privacy-policy">Privacy Policy</NavLink>
       </div>

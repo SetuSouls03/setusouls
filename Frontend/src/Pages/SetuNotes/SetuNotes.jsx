@@ -1,93 +1,82 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import "./SetuNotes.css";
 
-// Static backup Notes
-const staticNotes = [
-  {
-    "slug": "goddess-saraswati-darshan",
-    "title": {
-      "en": "Darshan of Goddess Saraswati at Setuu Hanuman Bodhi",
-      "hi": "सेतु हनुमान बोधि में देवी सरस्वती जी के दर्शन"
-    }
-  },
-  {
-    "slug": "Hanuman-ji-with-chain",
-    "title": {
-      "en": "Lord Hanuman Himself tells why He was tied with chains in Tirupathi and Puri",
-      "hi": "स्वयं भगवान हनुमान जी बताते हैं कि उन्हें तिरुपति और पुरी में बेड़ियों से क्यों बाँधा गया था"
-    }
-  },
-  {
-    "slug": "lord-Hanuman-ji-declarations-on-Radha-Saptami",
-    "title": {
-      "en": "Notice: Lord Hanuman has made two major declarations on Radha Saptami",
-      "hi": "सूचना: भगवान हनुमान ने राधा सप्तमी के दिन दो महत्वपूर्ण घोषणाएँ की हैं"
-    }
-  },
-  {
-    "slug": "9-forms-of-Devi-Durga-by-Lord-Krishna",
-    "title": {
-      "en": "Rare description of 9 Forms of Devi Durga by Lord Krishna",
-      "hi": "भगवान श्रीकृष्ण द्वारा देवी दुर्गा के नौ स्वरूपों का दुर्लभ वर्णन"
-    }
-  },
-  {
-    "slug": "father-of-Lord-Shiva,-Vishnu-and-Bhrama",
-    "title": {
-      "en": "Who is the father of Lord Shiva, Vishnu and Bhrama?",
-      "hi": "भगवान शिव, विष्णु और ब्रह्मा के पिता कौन हैं?"
-    }
-  }
-]
-
 const SetuNotes = () => {
   const [language, setLanguage] = useState("english");
+  const [notes, setNotes] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const langKey = language === "english" ? "en" : "hi";
 
   const toggleLanguage = () => {
     setLanguage(prev => (prev === "english" ? "hindi" : "english"));
   };
 
-  // Sort Notes by chapter number extracted from title
-  const sortedNotes = [...staticNotes].sort((a, b) => {
+  useEffect(() => {
+  const fetchNotes = async () => {
+    try {
+      const res = await fetch("https://setusouls-1.onrender.com/api/notes");
+      const data = await res.json();
+
+      if (Array.isArray(data)) {
+        setNotes(data);
+      } else if (data.notes && Array.isArray(data.notes)) {
+        // In case backend sends { notes: [...] }
+        setNotes(data.notes);
+      } else {
+        console.error("❌ Unexpected response format:", data);
+        setNotes([]);
+      }
+    } catch (err) {
+      console.error("❌ Error fetching notes:", err);
+      setNotes([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+  fetchNotes();
+}, []);
+
+
+  // Sort Notes (numbers in title first, then alphabetically)
+  const sortedNotes = [...notes].sort((a, b) => {
     const getNum = (title) => {
-      const match = title?.match(/\d+/);
-      return match ? parseInt(match[0], 10) : null;
+      if (!title?.[langKey]) return Infinity; // notes without numbers go to the end
+      const match = title[langKey].match(/\d+/);
+      return match ? parseInt(match[0], 10) : Infinity;
     };
 
-    const aNum = getNum(a.title?.[langKey] || "");
-    const bNum = getNum(b.title?.[langKey] || "");
+    const aNum = getNum(a.title);
+    const bNum = getNum(b.title);
 
-    if (aNum !== null && bNum === null) return -1;
-    if (aNum === null && bNum !== null) return 1;
-    if (aNum !== null && bNum !== null) return aNum - bNum;
-
-    return (a.title?.[langKey] || "").localeCompare(b.title?.[langKey] || "");
+    return aNum - bNum;
   });
 
   const heading = language === "english" ? "Setu Notes" : "सेतु के टिप्पणियाँ";
+
+  if (loading) return <p style={{ textAlign: "center" }}>Loading...</p>;
 
   return (
     <>
       <div className="novel-index-wrapper">
         <h1 className="novel-index-title">{heading}</h1>
         <div className="chapter-list">
-          {sortedNotes.map((notes, index) => (
+          {sortedNotes.map((note, index) => (
             <motion.div
               className="chapter-item"
-              key={notes._id || index}
+              key={note._id || index}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.02 }}
             >
               <Link
-                to={`/notes/${notes.slug}`}
+                to={`/notes/${note.slug}`}
                 state={{ language }}
                 className="chapter-titles"
               >
-                {notes.title?.[langKey] || (language === "english" ? "Untitled" : "शीर्षक नहीं")}
+                {note.title?.[langKey] || (language === "english" ? "Untitled" : "शीर्षक नहीं")}
               </Link>
             </motion.div>
           ))}

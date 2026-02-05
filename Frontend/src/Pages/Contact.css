@@ -239,3 +239,9 @@ body {
   background-color: #25D366;
   color: white;
 }
+.seerbooks-logo{
+      height: 20px;
+    width: 32px;
+    box-shadow: none;
+    margin: 0 0;
+}

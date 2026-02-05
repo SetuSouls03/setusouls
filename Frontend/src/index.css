@@ -1,15 +1,87 @@
+/* src/index.css - CORRECT ORDER */
+
+/* Add this AFTER your Tailwind directives but BEFORE your custom styles */
+@layer components {
+  /* Override Bootstrap navbar styles */
+  .navbar-custom {
+    all: unset !important;
+  }
+  
+  .navbar-custom * {
+    all: unset !important;
+  }
+  
+  /* Ensure your Tailwind classes win */
+  .fixed {
+    position: fixed !important;
+  }
+  
+  .flex {
+    display: flex !important;
+  }
+  
+  .hidden {
+    display: none !important;
+  }
+  
+  /* Add more as needed */
+}
+
+/* 2. Tailwind CSS directives AFTER imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 3. Your custom styles LAST */
 /* Disable text selection */
 body {
-  -webkit-user-select: none;  /* Safari */
-  -moz-user-select: none;     /* Firefox */
-  -ms-user-select: none;      /* IE10+/Edge */
-  user-select: none;          /* Standard */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
-/* Optional: disable context menu (right-click) */
-body {
-  -webkit-touch-callout: none; /* iOS Safari */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-/* Disable copying via keyboard shortcuts: You'll need JS for this */
+/* Divine glow effect */
+.divine-glow {
+  box-shadow: 
+    0 0 40px rgba(245, 158, 11, 0.1),
+    0 0 80px rgba(251, 191, 36, 0.05),
+    0 0 120px rgba(252, 211, 77, 0.025);
+}
 
+/* Smooth transitions */
+* {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fbbf24;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f59e0b;
+}
+
+/* Beautiful focus styles */
+:focus-visible {
+  outline: 2px solid #f59e0b;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1);
+}

@@ -1,79 +1,78 @@
-import React, { useState } from 'react';
-import './History.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { motion } from "framer-motion";
 
 const History = () => {
-  const [language, setLanguage] = useState('hi'); // 'hi' = Hindi, 'en' = English
+  const [language, setLanguage] = useState("hi");
+  const [data, setData] = useState(null);
+  const [error, setError] = useState("");
 
-  const toggleLanguage = () => {
-    setLanguage(prevLang => (prevLang === 'hi' ? 'en' : 'hi'));
-  };
+  useEffect(() => {
+    axios
+      .get("https://setusouls-1.onrender.com/api/history")
+      .then((res) => setData(res.data))
+      .catch(() => setError("Failed to load history content"));
+  }, []);
 
-  const sections = [
-    {
-      heading: {
-        hi: "रामायण काल",
-        en: "Ramayana Era",
-      },
-      subheading: {
-        hi: "सीता एलिया श्री लंका में स्थित वह स्थान है जहाँ रावण ने माता सीता को बंदी बना कर रखा था। माता सीता को सीता एलिया में एक वाटिका में रखा गया था जिसे अशोक वाटिका कहते हैं।  जब हनुमान जी सीता माता को ढूंढते हुए सीता एलिया की पहाड़ी पर पहुंचे तब उनकी तलाश पूरी हुई। यहाँ पर उनके पैरों के निशान आज तक मौजूद हैं जो कुछ बहुत बड़े हैं और कुछ बहुत छोटे। सदियाँ बीतने के बाद भी यहाँ हनुमान जी के चरणों के चिन्ह आज तक ज्यों के त्यों पथ्थरो पर क्यों हैं? क्योंकि यह वह स्थान है जहाँ श्री राम जी की भक्ति में लीन श्री हनुमान को आठवी सिध्धि प्राप्त हुई थी जिसे इष्टवम कहते हैं। जब उन्होंने माता सीता की खोज की तो वे इस आनंद में झूम रहे थे कि उन्होंने प्रभु श्री राम द्वारा दिया कार्य पूरा कर लिया है। उन्होंने इस पहाड़ी पर खड़े होकर श्री राम जी के चरण कमलों का ध्यान किया तो उन्हें एक अद्भुत अनुभव हुआ। यह वो अनुभव है जिसे शब्दों में व्यक्त करना असंभव है। भक्त का भगवान से एक हो जाने का यह अनुभव शब्दों की सीमा से परे है। इष्टवम वो सिद्धि है जिससे कि एक योगी खुद को परम शक्ति के साथ एक हुआ पाता है। सीता एलिया वह स्थान है जहाँ हनुमान ने अपने भगवान् के साथ एकात्मकता का अनुभव किया। इसीलिए रामायण में सीता की खोज वाले अध्याय (जिसे वाल्मीकि की रामायण में सुन्दर काण्ड कहा गया है ) को सबसे श्रेष्ट माना गया है। वेद वेदांतो का सार और पुराणों का निचोड़ सब उस एक अनुभव की और इशारा करता है जो वर्णन से परे है। वही अनुभव जो हनुमान जी को इस स्थान पर हुआ था। हनुमान जी का समुद्र पार करना और माता सीता को ढूँढना।  समुद्र के एक तरफ श्री राम हैं और दूसरी तरफ माता सीता। जब वे सीता एलिया की पहाड़ी पर खड़े होकर यह ध्यान कर रहे थे तब उन्हें अहसास हुआ कि राम और सीता दोनों उनके मन में ही हैं। और समुन्दर भी उनके मन में ही है। हम इस वर्णन को यही तक छोड़ते हैं क्योंकि यह वो अनुभव है जिसके ऊपर दर्शन शास्त्र की हजारों किताबे लिखी गयी है, भक्ति कवियों ने महाकाव्यों की रचना की है। सीता एलिया के परिचय के लिए इतना बताना काफी है कि यहाँ पर हनुमान जी ने अपनी सभी 8 सिध्धियों को प्रदर्शित किया है। उदाहरण के तौर पर एनिमा नामक सिध्धि से वे परमाणु से छोटा आकार भी धारण कर लेते थे।  इसीलिए यहाँ कुछ पैरों के निशान अति सूक्षम हैं और कुछ बहुत बड़े। हनुमान जी को अमर होने का वरदान प्राप्त हुआ था। श्री राम ने अपने जीवन काल के अंत में हनुमान जी को उनके भक्तों की रक्षा का दायित्व सौंपा था। हनुमान जी हर जगह हैं लेकिन उन्होंने स्थायी तौर पर सीता एलिया को रहने के लिए चुना क्योंकि यही वह स्थान है जहाँ उन्हें राम जी के साथ एकाकित्व का अनुभव हुआ था और यही वह स्थान है जहाँ वे श्री राम जी की भक्ति में हमेशा लीन रह सकते हैं। सीता एलिया में वानरों के अलावा कुछ इंसान भी हैं जो हनुमान जी की सेवा और भक्ति में लीन हैं। कुछ प्राचीन ग्रंथो में इन्हें मातंग कहा गया है। ये बहुत ही कम संख्या में है। श्री लंका की मुख्य वन जाति जिन्हें वेद्दा कहा जाता है, यह मातंग लोग उनके जैसे ही है लेकिन यह लोग भविष्य जान सकते हैं। इनके पास एक अनूठी विद्या होती है जिसके तहत उन्हें इस धरती के कण कण का भूतकाल और भविष्य काल मालुम होता है। लेकिन ये लोग भविष्य कुछ विशेष परिस्तिथियों में ही बताते हैं।",
-        en: "Sita Eliya is a place located in Sri Lanka where Ravana had kept Mother Sita captive. Mother Sita was kept in a garden in Sita Eliya called Ashoka Vatika. When Lord Hanuman reached the hills of Sita Eliya while searching for Mother Sita, his search was complete. Even today, the footprints of Hanuman Ji are present there—some very large and some very small.Even after centuries, these footprints remain etched on the stones exactly as they were. Why? Because this is the place where Hanuman, immersed in devotion to Lord Shri Ram, attained the eighth Siddhi (spiritual perfection), known as Ishtavam. When he found Mother Sita, he was overwhelmed with joy, realizing he had accomplished the task given to him by Lord Shri Ram.Standing on this hill, Hanuman meditated on the lotus feet of Shri Ram and had an extraordinary experience—an experience that words cannot express. This is the experience of a devotee becoming one with God, beyond the limits of language. Ishtavam is the Siddhi by which a yogi finds himself united with the supreme power.Sita Eliya is the place where Hanuman experienced this unity with his Lord. This is why the chapter in the Ramayana about searching for Sita (known as Sundara Kanda in Valmiki’s Ramayana) is considered the greatest. The essence of the Vedas, Vedanta, and Puranas all point towards this one experience that cannot be fully described—the same experience Hanuman had at this place.Hanuman crossing the ocean and searching for Mother Sita — on one side of the ocean was Shri Ram, and on the other side was Mother Sita. When Hanuman stood on the hills of Sita Eliya meditating, he realized that both Ram and Sita reside in his mind, and so does the ocean.We stop this description here because this experience has inspired thousands of books on philosophy and countless devotional epics. To introduce Sita Eliya, it is enough to say that Hanuman demonstrated all his eight Siddhis here. For example, by the Siddhi called Anima, he could reduce his size to smaller than an atom. That is why some of the footprints are very tiny while others are very large.Hanuman Ji was granted the boon of immortality. At the end of his earthly life, Shri Ram entrusted Hanuman with the duty to protect his devotees. Hanuman Ji is everywhere, but he chose to reside permanently in Sita Eliya because it is the place where he experienced unity with Shri Ram and where he can always remain absorbed in devotion to Shri Ram.In Sita Eliya, besides the vanaras (monkey army), some humans are also present who are devoted servants of Hanuman Ji. Some ancient texts call them Matang. They are very few in number. The main forest tribe of Sri Lanka, called Vedda, is similar to the Matang people, but the Matang can foresee the future.They possess a unique knowledge by which they can know the entire past and future of every particle on earth. However, they only reveal the future under special circumstances.",
-      },
-    },
-    {
-      heading: {
-        hi: "कलियुग में",
-        en: "In Kaliyuga",
-      },
-      subheading: {
-        hi: "कलियुग के रिकार्डेड इतिहास में भी कुछ ऐसी घटनाएँ जो सीता एलिया के सम्बन्ध में बहुत महत्वपूर्ण हैं। करीब 2600 साल पहले सिंहपुरा (जहाँ आज का गुजरात है ,भारत में ) का एक राजा था जिसका नाम था सिन्हाबाहू। उसके सबसे बड़े बेटे का नाम विजय था जो बहुत बिगडैल था। जब वह 18 साल का था तब उसने राज्य की प्रजा का जीना दूभर कर दिया। वह अपने साथियो के साथ एक दल में रहता था और जनता को परेशान करता रहता था। प्रजा ने राजा सिन्हाबहू से शिकायत की। विजय के न मानने के चलते राजा ने विजय और उनके साथियों को राज्य से निष्कासित करने का आदेश दिया। विजय और उसके 700 साथियों को बिना पतवार के जहाज में बैठाकर समुद्र में भटकने के लिए छोड़ दिया गया। वह जहाज अंत में श्री लंका पहुंचा। वहां पर विभीषण के वंशज राज कर रहे थे। वहां कुवेनी नाम की बुद्धिमान नारी ने अपने पिता से हेलिदापा (लंका) के राज्य की कमान संभाली ही थी। जब वह आर्यावृत से आये हुए युवराज विजय से मिली तो उसे विजय से प्रेम हो गया। विजय ने इस मौके का लाभ उठाकर उससे शादी कर ली और हेलादिपा (लंका) का राजा बन बैठा। यह 544 BC की बात है। विजय ने कुवेनी के साथ तब तक प्रेम करने का ड्रामा किया जब तक कि राज्य का पूरा नियंत्रण उसके हाथ में नहीं हो गया। इस 5 साल के दौरान कुवेनी को दो संतान हुई -एक लड़का और एक लड़की। उसके बाद विजय ने उसको छोड़ दिया और दक्षिण भारत के मधुरदेश  नामक राज्य की राजकुमारी के साथ विवाह कर लिया। उसने कुवेनी ही नहीं उसके बच्चो को भी छोड़ दिया। कुवेनी बाद में मर गयी और उसके बच्चे वनवासी हो गए। इस तरह विजय ने विभीषण की वंशज कुवेनी के साथ छल किया। नया विवाह करने के बाद विजय सीता एलिया में मातंग लोगो से हनुमान पूजा करवाने गया। मातंग रहते तो जंगलों में हैं लेकिन उन्हें अपने हनुमंडल में देखने से हर घटना का पता रहता है। जब विजय पूजा करवाने गया तो एक मातंग ने उसको आगाह किया कि कुवेनी को धोखा देने के परिणाम उसे भुगतने पड़ेंगे। उसके कुल में कुवेनी एक लड़की के रूप में जन्म लेगी जो एक ऐसा बेटा पैदा करेगी जो पूरे कुल का नाश करेगा। मातंग लोग त्रिकालदर्शी होते हैं। वे जानते सब कुछ हैं लेकिन भविष्यवाणी तभी करते हैं जब उसकी जरुरत होती है। और उनकी भविष्य वाणी कभी असत्य साबित नहीं होती। विजय को यह मालुम था। इसलिए उसको नई शादी के बाद जो पुत्रियाँ हुयी उन सबको जन्म लेते ही मरवा दिया। उसको भय था कि वो कन्या कुवेनी का पुनर्जन्म हो सकती है। विधि का ऐसा ही विधान हुआ कि उसको सभी लड़कियां होती गयी और वो उन्हें मरवाता गया। अंत में वह अपनी मृत्यु शैया पर लेटा था और उसका कोई उतराधिकारी नहीं था। उसने सिंहपुरा से अपने भाई के बेटे को बुलावा भेजा ताकि वो लंका राज्य की कमान उसके हाथो में दे सके। उसके भाई के बेटे का नाम पांडू वासुदेव था जो उसके बाद राजा बना। पांडू वासुदेव को भी मातंग की भविष्य वाणी से अवगत कराया गया कि कुवेनी उसकी कन्या के रूप में जन्म ले सकती है। पांडू वासुदेव ने तर्क दिया कि अगर वह उसकी कन्या के रूप में जन्म ले भी लेगी तो क्या करेगी?पांडू वासुदेव को बताया गया कि मातंग की भविष्यवाणी के अनुसार वह खुद तो कुछ नहीं करेगी परन्तु एक ऐसे पुत्र को जन्म देगी जो पूरे कुल का वध करेगा। पांडू वासुदेब को 10 लड़के और एक लड़की हुई। सलाहकारों की तमाम सलाहों के बावजूद उसने अपनी पुत्री का वध करना उचित नहीं समझा। उसने अपने सलाहकारों को विश्वास दिलाया की उसकी पुत्री का पालन पोषण पूरी देख रेख में किया जाएगा। उसने अपने कक्ष के बगल में अपनी पुत्री का कक्ष बनवाया और उसकी हर समय निगरानी रखने का आदेश दिया गया। लड़की का नाम सिथ्था रखा गया। एक समय ऐसा आया जब सिथ्था माँ बनने वाली थी। राजा के शुभ चिंतकों में हडकंप मच गया कि मातंग की भविष्य वाणी सिद्ध होने वाली है। सिथ्था के बड़े भाइयों ने भी अपने पिता राजा पांडू वासुदेव को इस समस्या के समाधान के लिए सिथ्था के बच्चे को जन्म लेते ही मार देने का सुझाव दिया। राजा ने मान लिया कि अगर लड़का पैदा होता है तो वे उसे मरवा देंगे। लेकिन सिथ्था के दस भाइयों में से सबसे बड़े भाई राजकुमार अभय को यह उचित नहीं लगा। उसने अपनी बहन को अपने पिता और भाइयो की योजना बता दी जिससे कि सिथ्था सतर्क हो गयी। उसने अपनी दासी को ऐसी औरते ढूंढने के लिए कहा जो लगभग उसी समय जन्म देने वाली हो। उसने निर्देश दिया कि अगर उसको लड़का हो तो उसे किसी अन्य औरत को हुयी लड़की के साथ बदल दिया जाये। ऐसा ही हुआ। सिथ्था ने एक लड़के को जन्म दिया जिसे तुरंत महल से बाहर पहुंचा दिया गया और उसके स्थान पर लड़की रख दी गई। इस लड़के का पालन पोषण सीता एलिया के पास ही रूहाना नगर में हुआ। पान्दुला नाम के ब्राह्मण ने उसकी सिक्षा दीक्षा की और उसका नाम पन्दुकाभय रखा। ब्राह्मण पान्दुला जानता था कि यह बच्चा मातंग की भविष्यवाणी के अनुसार पैदा हुआ है। जब यह लड़का यानी पंदुकाभय रूहाना नगर में पल बढ़ रहा था तभी सिथ्था के भाइयों को पता चल गया क्योंकि सिथ्था उसके पालन पोषण के लिए महल से मुद्राएँ भेजती थी। तब तक सिथ्था के पिता का निधन हो चूका था और उसका सबसे बड़ा भाई अभय राजा बन गया था। अभय इसके बारे में जानता था। जब उसके अन्य भाइयों को पता चला कि अभय की जानकारी में ही सिथ्था के लड़के को महल में लड़की से बदला गया ,तो सभी भाइयों ने मिलकर अभय को राजा पद से हटा दिया और रहाना नगर में पल रहे इस बच्चे की जान के दुश्मन बन गए। उन्हें इस बच्चे का सही हुलिया नहीं मालुम था इसलिए उन्हें जहाँ भी इस बच्चे के होने की संभावना नजर आई वहां के सभी बच्चों को मरवा दिया। लेकिन यह बच्चा यानि पंदुकाभय हर बार बच गया। जब पंदुकाभय बड़ा हो गया तो उसने अपने मामा यानी सिथ्था के भाइयों के साथ जबरदस्त युध्ध किया। उनकी सेना के खिलाफ उसने सेना बनाई और एक एक करके सभी को मार गिराया। उसने अभय को छोड़ दिया क्योंकि अभय ने उसकी रक्षा की थी। इस तरह मातंग की भविष्य वाणी सच हुयी और कुवेनी के पुनर्जन्म के बेटे पंदुकभय ने लंका की सता हासिल की। विजयी होने के बाद वह सीता एलिया आया और वहां पर एक भव्य मंदिर बनवाने का प्रस्ताव रखा। मातंग यह प्रस्ताव सुनकर मुस्कुराये। उन्होंने पंदुकाभय को कुछ पल के लिए दिव्य दृष्टि दी। जब उसने इस दिव्य दृष्टि से सीता एलिया की पहाड़ी को देखा तो हनुमान जी अपने विशाल रूप में खड़े थे। उनके चरण पहाड़ी पर थे लेकिन मस्तक आसमान छु रहा था। पंदुकाभय समझ गया कि इतना बड़ा मंदिर बनाना उसके बस की बात नहीं है। वह समझ गया कि सीता एलिया स्वयं में ही एक मंदिर है जिसका गुम्बद आसमान है और धरती आधार। पंदुकाभय के बाद भी जितने राजा आए,किसी ने सीता एलिया में न कोई महल बनाने की कोशिश की ना कुछ और क्योंकि यह हनुमान जी का स्थान समझा जाता था। ",
-        en: "Even in the recorded history of the Kali Yuga, there are some events related to Sita Eliya that are very significant. About 2600 years ago, there was a king of Singhapura (which is present-day Gujarat, India) named Sinhabahu. His eldest son was named Vijay, who was very rebellious. When he was 18 years old, he made life very difficult for the people of the kingdom. He lived with his companions in a gang and troubled the public. The people complained to King Sinhabahu. Since Vijay did not listen, the king ordered Vijay and his companions to be exiled from the kingdom. Vijay and his 700 companions were set adrift in a boat without oars in the ocean. Eventually, that boat reached Sri Lanka, where the descendants of Vibhishana were ruling.At that time, a wise woman named Kuweni had just taken over the rule of Helidapa (Lanka) from her father. When she met the prince Vijay, who had come from Aryavarta (India), she fell in love with him. Vijay took advantage of the opportunity and married her, becoming the king of Helidapa (Lanka). This was around 544 BC. Vijay pretended to love Kuweni until he had gained complete control of the kingdom. During these five years, Kuweni gave birth to two children—a boy and a girl. Later, Vijay abandoned her and married a princess from the kingdom of Madhuradesha in South India. He left not only Kuweni but also her children. Kuweni died later, and her children became forest dwellers. In this way, Vijay deceived Kuweni, the descendant of Vibhishana.After his new marriage, Vijay went to Sita Eliya to have Hanuman worship performed by the Matang people. Although the Matangs live in forests, they have awareness of every event occurring in their surroundings. When Vijay went there for the worship, a Matang warned him that the consequences of deceiving Kuweni would have to be borne by him. The Matang said that Kuweni would be reborn as a girl in his lineage and that she would give birth to a son who would destroy the entire lineage. The Matangs are clairvoyant; they know everything but make prophecies only when necessary. Their predictions never prove false.Vijay was aware of this. Therefore, after his new marriage, whenever he had daughters, he had them killed immediately after birth, fearing that one might be the reincarnation of Kuweni. Fate followed this decree—he kept having daughters, and he kept killing them. Eventually, as he lay on his deathbed with no heir, he summoned his nephew from Singhapura to hand over the rule of Lanka to him. His nephew’s name was Pandu Vasudev, who then became the king.Pandu Vasudev was also warned by the Matang about the prophecy that Kuweni might be reborn as his daughter. Pandu Vasudev argued that even if she was reborn as his daughter, what harm could she do? He was told that according to the Matang prophecy, she would not do anything herself but would give birth to a son who would kill the entire lineage. Pandu Vasudev had ten sons and one daughter. Despite all advice from his counselors, he did not consider killing his daughter appropriate. He assured his advisors that his daughter would be raised with utmost care and supervision. He built a chamber beside his own for his daughter and ordered constant watch over her. The girl was named Siththa.Once, when Siththa was about to become a mother, panic spread among the king’s well-wishers because it seemed the Matang prophecy was coming true. Siththa’s elder brothers even suggested to King Pandu Vasudev that the baby should be killed immediately after birth to solve the problem. The king agreed that if it was a boy, he would be killed. However, among Siththa’s ten brothers, the eldest prince, Abhaya, did not agree. He told his sister about the plan of their father and brothers, so Siththa became alert. She asked her maid to find a woman who was about to deliver around the same time. She instructed that if she gave birth to a boy, the baby should be swapped with the girl born to the other woman. This was done.Siththa gave birth to a boy who was immediately sent out of the palace and replaced by a girl. This boy was raised near Sita Eliya, in Ruhuna city. A Brahmin named Pandula educated and trained him, and the boy was named Pandukabhaya. Brahmin Pandula knew that this child was born as per the Matang prophecy.While Pandukabhaya was growing up in Ruhuna city, Siththa’s brothers found out because Siththa was sending money from the palace for his upbringing. By that time, Siththa’s father had died, and her eldest brother Abhaya had become king. Abhaya was aware of the situation. When the other brothers learned that the boy was swapped with the girl in the palace with Abhaya’s knowledge, they deposed Abhaya from the throne and became enemies of the boy living in Ruhuna city. They did not know the true appearance of the boy and killed all children wherever they suspected he might be. But the boy, Pandukabhaya, survived every time.When Pandukabhaya grew up, he fought a fierce war against his uncles, Siththa’s brothers. He built an army and killed them one by one. He spared Abhaya because Abhaya had protected him. Thus, the Matang prophecy came true, and Kuweni’s reincarnated son Pandukabhaya gained power over Lanka.After his victory, he came to Sita Eliya and proposed to build a grand temple there. The Matangs smiled hearing this proposal. They gave Pandukabhaya divine vision for a moment. When he looked at the hill of Sita Eliya through this divine vision, he saw Hanuman in his gigantic form standing there. His feet were on the hill, but his head was touching the sky. Pandukabhaya understood that building such a large temple was beyond his capability. He realized that Sita Eliya itself is a temple with the sky as its dome and the earth as its base.After Pandukabhaya, no king tried to build a palace or anything else at Sita Eliya because it was considered the abode of Hanuman Ji.",
-      },
-    },
-    {
-      heading: {
-        hi: "ब्रिटिश काल",
-        en: "In British Period",
-      },
-      subheading: {
-        hi: "ब्रिटिश लोगो ने 1814 में इस स्थान की खोज तब की जब उनके कुछ सिपाही यहाँ के जंगलों में भटक गए। उनके पास न तो खाने के लिए कुछ था न पीने के लिए पानी। उन्होंने सोचा कि इन जंगलों में भटकते भटकते वे मर जायेंगे। लेकिन ऐसा नहीं हुआ। यहाँ की हवा में ही वो चमत्कार था कि उन्हें न भूख लगी न प्यास। जब वे जंगल से बाहर निकले तो उन्होंने अपने गवर्नर को इस चमत्कारिक स्थान के बारे में जानकारी दी। उस वक़्त वहां के गवर्नर एडवर्ड बार्नेद थे। 1846 में गवर्नर के दोस्त शमूएल बेकर भी लंका में थे (उस वक़्त लंका का नाम सीलोन था ) शमूएल बेकर एक प्रसिध्ध अन्वेषक भी था। वह यहाँ की खूबसूरती को देखकर मंत्रमुग्ध हो गया और उसने वहां पर अपने रहने के लिए महल और फार्म बनाने का फैसला किया। उसे यह कति भी अंदाजा नहीं था कि यह स्वयं हनुमान का स्थान है। वह ब्रिटेन गया और दो साल बाद पर्ल ऑफ़ हार्ड वीक नाम के जहाज में अपना महल आदि बनाने के लिए मलबा भरकर लाया। इस बार वह अपने भाइयों को भी साथ लाया था। वह कोलोंबो तक तो इस मलबे को सुरक्षित ले आया लेकिन जब वह इसको गाड़ियों में भरकर सीता एलिया की तरफ ला रहा था तो रस्ते में राम्बोदा की पहाड़ी से वे गाडिया फिसल गयी। उस दुर्घटना में उसके भाइयों की भी मौत हो गयी। इस तरह भगवान के घर को इंसान का घर बनाने का एक और प्रयास असफल हो गया। जब भी यहाँ ऐसी कोई बड़ी कोशिश होती है तो या तो बाढ़ आ जाती है या सुनामी जैसी विपदा।",
-        en: "The British discovered this place in 1814 when some of their soldiers got lost in the forests here. They had neither food to eat nor water to drink. They thought they would die wandering in these woods. But that did not happen. There was a miracle in the very air of this place—neither hunger nor thirst troubled them. When they came out of the forest, they informed their governor about this miraculous location. At that time, the governor was Edward Barnard.In 1846, the governor’s friend, Samuel Baker, was also in Lanka (at that time Lanka was called Ceylon). Samuel Baker was a famous explorer. He was enchanted by the beauty of this place and decided to build a palace and a farm there for his residence. He had no idea that this was the very abode of Lord Hanuman.He went to Britain and two years later brought debris on a ship named Pearl of Hardwick to build his palace and other structures. This time, he brought his brothers along as well. They safely brought the debris to Colombo, but while transporting it in carts toward Sita Eliya, the carts slipped on the Ramboda hill. In that accident, his brothers also died.Thus, another attempt to make the house of God into a human home failed. Whenever such a big attempt is made here, either floods come or a tsunami-like disaster occurs.",
-      },
-    },
-    {
-      heading: {
-        hi: "वर्तमान समय",
-        en: "In Present Time",
-      },
-      subheading: {
-        hi: "हनुमान आज भी यहाँ रहते है लेकिन इंसान भौतिकता में इतना उलझ गया है कि वह अपने आस पास के अज्ञान के बादलों को हटाने की बजाये सूरज को धरती पर लाने में तुला हुआ है। या फिर सूरज पर घर बनाना चाहता है। उसको वास्तव में जरुरत है तो सूरज और उसके बीच आये बादलों को हटाकर फिर से प्रकाश के साथ सम्बन्ध बनाने की। सेतु का यह प्रयास है कि मातंग लोगो द्वारा पूजा करवाकर अधिक  से अधिक लोगो के जीवन में प्रकाश लाने की। हम मॉडर्न लोगो की परिभाषा के अनुसार मातंग आदिवासी लोग है। सेतु एक प्रयास है मॉडर्न लोगों और मातंग के बीच सेतु बनाने का ताकि मॉडर्न लोग भी मातंग लोगों से हनुमान पूजा करवा सके और अपना सम्बन्ध हनुमान जी की शक्तियों से जोड़ सकें। ",
-        en: "Hanuman still resides here even today, but humans have become so entangled in materialism that instead of removing the clouds of ignorance around them, they are busy trying to bring the sun down to earth—or even trying to build a house on the sun. What they truly need is to remove the clouds that come between themselves and the sun, and reconnect with the light. The effort of Setu is to bring light into the lives of as many people as possible by having the Matang people perform worship. According to modern definitions, the Matang are tribal people. Setu is an effort to build a bridge between modern people and the Matang community so that modern people can also participate in the worship of Hanuman by the Matang people and connect themselves with the powers of Hanuman.",
-      },
-    },
-    // You can add more sections here as needed
-  ];
+  if (error) return <p>{error}</p>;
+  if (!data) return <p>Loading...</p>;
 
   return (
-    <>
-    <div className="history-page">
+    <div className="min-h-screen bg-gradient-to-b from-[#fefcea] to-[#e8ebff] px-4 sm:px-6 lg:px-10 py-16 flex flex-col items-center gap-16 font-sans">
 
-      {sections.map((section, index) => (
-        <div className="history-section" key={index}>
-          <h2 className="section-heading">{section.heading[language]}</h2>
-          <p className="section-subheading">{section.subheading[language]}</p>
-        </div>
+      {/* SECTIONS */}
+      {data.sections?.map((section, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: index * 0.2 }}
+          className="
+  w-full
+  max-w-[clamp(320px,85vw,1700px)]
+  text-center
+  bg-white rounded-2xl
+  p-6 sm:p-8 lg:p-10
+  shadow-[0_8px_20px_rgba(160,120,255,0.2)]
+  transition-all duration-300 ease-in-out
+  hover:-translate-y-2
+  hover:shadow-[0_16px_30px_rgba(120,80,200,0.3)]
+  hover:bg-[rgba(255,255,255,0.85)]
+"
+
+        >
+          <h2 className="mb-8 font-bold text-[#110c92] text-[clamp(2rem,4vw,3.5rem)] font-devanagari">
+            {section.heading?.[language]}
+          </h2>
+
+          <p className="font-bold text-black leading-relaxed text-[clamp(1.1rem,2.5vw,1.5rem)] font-devanagari">
+            {section.subheading?.[language]}
+          </p>
+        </motion.div>
       ))}
-      <div className="translate-button-container">
-        <button className="translate-button" onClick={toggleLanguage}>
-          {language === 'hi' ? 'Translate to English' : 'हिंदी में अनुवाद करें'}
+
+      {/* TRANSLATE BUTTON */}
+      <div className="mt-6">
+        <button
+          onClick={() => setLanguage(language === "hi" ? "en" : "hi")}
+          className="
+            bg-[#0702bc] text-white font-bold
+            px-6 py-3 rounded-lg
+            text-[clamp(1rem,2vw,1.2rem)]
+            shadow-[0_4px_12px_rgba(106,76,175,0.3)]
+            transition-all duration-300
+            hover:bg-[#5351c4]
+            hover:shadow-[0_6px_16px_rgba(87,81,196,0.5)]
+            border-none
+          "
+        >
+          {language === "hi"
+            ? "Translate to English"
+            : "हिंदी में अनुवाद करें"}
         </button>
       </div>
     </div>
-    </>
   );
 };
 
 export default History;
-
-
-
-

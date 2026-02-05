@@ -63,19 +63,13 @@ exports.getChapterBySlug = async (req, res) => {
 // ✅ GET /api/chapters — Paginated + cached list
 exports.getAllChapters = async (req, res) => {
   try {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 20;
-    const skip = (page - 1) * limit;
-
-    const cacheKey = `chapters_${page}_${limit}`;
+    const cacheKey = `chapters_all`;
     const cached = cache.get(cacheKey);
     if (cached) return res.json(cached);
 
     const chapters = await Chapter.find()
       .select("title slug date")
-      .skip(skip)
-      .limit(limit)
-      .sort({ date: -1, _id: 1 })
+      .sort({ _id: 1 }) // sort by insertion order or adjust as needed
       .lean();
 
     cache.set(cacheKey, chapters);

@@ -10,6 +10,20 @@ const connectDB = require("./db");
 const authRoutes = require("./routes/auth");
 const chapterRoutes = require("./routes/chapterRoutes");
 const noteRoutes = require("./routes/noteRoutes");
+const homeRoutes = require("./routes/homeRoutes");
+const historyRoutes = require("./routes/historyRoutes");
+const charanPoojaRoutes = require("./routes/charanPoojaRoutes");
+const prayerRoutes = require("./routes/prayerRoutes");
+const importantNotesRoutes = require("./routes/importantNotes.routes");
+const summaryRoutes = require("./routes/summaryRoutes");
+const qnaRoutes = require("./routes/qnaRoutes");
+const pageRoutes = require("./routes/pageRoutes");
+const getExperiences = require("./routes/experienceRoutes");
+const ExperienceMetaRoutes = require("./routes/ExperienceMetaRoutes");
+const MantraRoutes = require("./routes/mantraRoutes");
+const getAboutHanudas = require("./routes/aboutHanudasRoutes");
+const privacyPolicyRoutes = require("./routes/privacyPolicyRoutes");
+const contactRoutes = require("./routes/contactRoutes");
 
 dotenv.config();
 connectDB();
@@ -56,6 +70,20 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/chapters", chapterRoutes);
 app.use("/api/notes", noteRoutes);
+app.use("/api/home", homeRoutes);
+app.use("/api/history", historyRoutes);
+app.use("/api/charan-pooja", charanPoojaRoutes);
+app.use("/api/prayer", prayerRoutes);
+app.use("/api/important-notes", importantNotesRoutes);
+app.use("/api/summary", summaryRoutes);
+app.use("/api/qna", qnaRoutes);
+app.use("/api/page", pageRoutes);
+app.use("/api/experiences", getExperiences);
+app.use("/api/experience-meta", ExperienceMetaRoutes);
+app.use("/api/mantra", MantraRoutes);
+app.use("/api/about-Hanudas", getAboutHanudas);
+app.use("/api/privacy-policy", privacyPolicyRoutes);
+app.use("/api/contact", contactRoutes);
 
 /* ✅ 6️⃣ Global Error Handler */
 app.use((err, req, res, next) => {
