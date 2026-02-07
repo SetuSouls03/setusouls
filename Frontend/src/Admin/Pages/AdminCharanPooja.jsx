@@ -55,57 +55,64 @@ const AdminCharanPooja = () => {
   }, []);
 
   const fetchData = async () => {
-    try {
-      setIsLoading(true);
-      const res = await axios.get(`${API_BASE}/api/charan-pooja`);
-      const fetchedData = res.data;
-      
-      console.log("Fetched Charan Pooja data:", fetchedData);
-      console.log("Type of data:", typeof fetchedData);
-      console.log("Data keys:", Object.keys(fetchedData));
-      
-      // Check what structure the API returns
-      let sectionsArray = [];
-      
-      if (fetchedData.sectionsGrouped && Array.isArray(fetchedData.sectionsGrouped)) {
-        // API returns sectionsGrouped
-        console.log("Using sectionsGrouped from API");
-        sectionsArray = fetchedData.sectionsGrouped;
-      } else if (fetchedData.sections && Array.isArray(fetchedData.sections)) {
-        // API returns sections
-        console.log("Using sections from API");
-        sectionsArray = fetchedData.sections;
-      }
-      
-      console.log("Sections array length:", sectionsArray.length);
-      
-      // Validate and ensure proper structure
-      const validatedData = {
-        sections: validateAndNormalizeSections(sectionsArray)
-      };
-
-      console.log("Validated data:", validatedData);
-      
-      setData(validatedData);
-      setEditingData(JSON.parse(JSON.stringify(validatedData)));
-      setHistory([{ 
-        timestamp: new Date(), 
-        data: validatedData,
-        id: Date.now()
-      }]);
-    } catch (err) {
-      console.error("Fetch error:", err);
-      console.error("Error details:", err.response?.data);
-      toast.error("Failed to load Charan Pooja content");
-      
-      // Show empty state if fetch fails
-      const emptyData = { sections: [] };
-      setData(emptyData);
-      setEditingData(emptyData);
-    } finally {
-      setIsLoading(false);
+  try {
+    setIsLoading(true);
+    const res = await axios.get(`${API_BASE}/api/charan-pooja`);
+    const fetchedData = res.data;
+    
+    console.log("Fetched Charan Pooja data from API:", fetchedData);
+    console.log("Data structure keys:", Object.keys(fetchedData));
+    
+    // Handle different response structures
+    let sectionsArray = [];
+    
+    // First, check if data is nested inside a data property
+    const actualData = fetchedData.data || fetchedData;
+    
+    if (actualData.sectionsGrouped && Array.isArray(actualData.sectionsGrouped)) {
+      // API returns sectionsGrouped
+      console.log("Using sectionsGrouped from API response");
+      sectionsArray = actualData.sectionsGrouped;
+    } else if (actualData.sections && Array.isArray(actualData.sections)) {
+      // API returns sections
+      console.log("Using sections from API response");
+      sectionsArray = actualData.sections;
+    } else if (Array.isArray(actualData)) {
+      // API returns array directly
+      console.log("API returned array directly");
+      sectionsArray = actualData;
     }
-  };
+    
+    console.log("Final sections array:", sectionsArray);
+    console.log("Sections array length:", sectionsArray.length);
+    
+    // Validate and ensure proper structure
+    const validatedData = {
+      sections: validateAndNormalizeSections(sectionsArray)
+    };
+
+    console.log("Validated data for state:", validatedData);
+    
+    setData(validatedData);
+    setEditingData(JSON.parse(JSON.stringify(validatedData)));
+    setHistory([{ 
+      timestamp: new Date(), 
+      data: validatedData,
+      id: Date.now()
+    }]);
+  } catch (err) {
+    console.error("Fetch error:", err);
+    console.error("Error details:", err.response?.data);
+    toast.error("Failed to load Charan Pooja content");
+    
+    // Show empty state if fetch fails
+    const emptyData = { sections: [] };
+    setData(emptyData);
+    setEditingData(emptyData);
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   // Separate function to validate sections
   const validateAndNormalizeSections = (sectionsArray) => {
@@ -381,45 +388,66 @@ const AdminCharanPooja = () => {
   };
 
   const saveChanges = async () => {
-    setLoading(true);
-    try {
-      // Validate the data before sending
-      const validatedData = validateAndNormalizeData(editingData);
-      
-      console.log("Sending validated data to backend:", validatedData);
-      
-      // Send to backend
-      const res = await axios.put(`${API_BASE}/api/charan-pooja`, validatedData);
-      
-      console.log("Save response:", res.data);
-      
-      // Update local state
-      setData(validatedData);
-      setIsEditing(false);
-      setUnsavedChanges(false);
-      
-      // Add to history
-      setHistory(prev => [
-        ...prev.slice(-9),
-        { 
-          timestamp: new Date(), 
-          data: validatedData,
-          id: Date.now()
-        }
-      ]);
-      
-      toast.success("✅ Charan Pooja content saved successfully!");
-    } catch (err) {
-      console.error("Save error details:", {
-        error: err.message,
-        response: err.response?.data,
-        status: err.response?.status
-      });
-      toast.error("❌ Failed to save changes");
-    } finally {
-      setLoading(false);
+  setLoading(true);
+  try {
+    // Validate the data before sending
+    const validatedData = validateAndNormalizeData(editingData);
+    
+    console.log("Sending validated data to backend:", validatedData);
+    
+    // Send to backend - ensure you're sending the full data object
+    const res = await axios.put(`${API_BASE}/api/charan-pooja`, validatedData);
+    
+    console.log("Save response from backend:", res.data);
+    
+    // CRITICAL FIX: Update BOTH data and editingData with the EXACT response from backend
+    const updatedData = res.data.data || res.data;
+    
+    console.log("Updated data from backend:", updatedData);
+    
+    // Check what structure the backend returned
+    if (updatedData.sectionsGrouped && !updatedData.sections) {
+      // If backend returns sectionsGrouped, convert it to sections for consistency
+      const convertedData = {
+        sections: updatedData.sectionsGrouped
+      };
+      setData(convertedData);
+      setEditingData(JSON.parse(JSON.stringify(convertedData)));
+    } else {
+      // Use whatever structure the backend returns
+      setData(updatedData);
+      setEditingData(JSON.parse(JSON.stringify(updatedData)));
     }
-  };
+    
+    setIsEditing(false);
+    setUnsavedChanges(false);
+    
+    // Add to history
+    setHistory(prev => [
+      ...prev.slice(-9),
+      { 
+        timestamp: new Date(), 
+        data: updatedData,
+        id: Date.now()
+      }
+    ]);
+    
+    // Force refresh preview
+    setPreviewMode(prev => !prev);
+    setTimeout(() => setPreviewMode(prev => !prev), 50);
+    
+    toast.success("✅ Charan Pooja content saved successfully!");
+  } catch (err) {
+    console.error("Save error details:", {
+      error: err.message,
+      response: err.response?.data,
+      status: err.response?.status
+    });
+    toast.error("❌ Failed to save changes");
+  } finally {
+    setLoading(false);
+  }
+};
 
   const revertChanges = () => {
     if (data) {
@@ -1088,164 +1116,164 @@ const AdminCharanPooja = () => {
 
         {/* Preview Panel */}
         <div className={`flex-1 ${previewMode ? 'w-full' : ''}`}>
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-            <div className="p-4 border-b">
-              <div className="flex justify-between items-center">
-                <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
-                  <FaEye className="text-purple-500" /> Live Preview
-                  <span className="ml-2 px-2 py-1 text-xs font-medium bg-purple-100 text-purple-800 rounded">
-                    {previewMode ? "Preview Mode" : "Live Edit"}
-                  </span>
-                </h3>
-                
-                <div className="flex items-center gap-2">
-                  <FaLanguage className="text-gray-500" />
-                  <select
-                    value={language}
-                    onChange={(e) => setLanguage(e.target.value)}
-                    className="border rounded-lg px-3 py-1 text-sm"
+  <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+    <div className="p-4 border-b">
+      <div className="flex justify-between items-center">
+        <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+          <FaEye className="text-purple-500" /> Live Preview
+          <span className="ml-2 px-2 py-1 text-xs font-medium bg-purple-100 text-purple-800 rounded">
+            {previewMode ? "Preview Mode" : "Live Edit"}
+          </span>
+        </h3>
+        
+        <div className="flex items-center gap-2">
+          <FaLanguage className="text-gray-500" />
+          <select
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+            className="border rounded-lg px-3 py-1 text-sm"
+          >
+            <option value="hi">हिंदी</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    
+    <div className="p-4 md:p-6">
+      <div className={`transition-all duration-300 ${previewMode ? 'scale-100' : 'scale-95'}`}>
+        {/* Preview Container */}
+        <div 
+          className="min-h-[500px] p-6 md:p-8 rounded-xl relative overflow-hidden"
+          style={{
+            background: `linear-gradient(to bottom, #fefcea, #e8ebff)`
+          }}
+        >
+          {/* Preview Content */}
+          <div className="space-y-12">
+            {safeGroups.map((group, index) => (
+              <React.Fragment key={index}>
+                {/* Group 1: Title, Paragraph, Summary */}
+                {group.title && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: index * 0.1 }}
+                    className="
+                      w-full
+                      max-w-[clamp(320px,85vw,1700px)]
+                      mx-auto
+                      bg-white rounded-2xl p-6 sm:p-8 lg:p-10
+                      shadow-[0_8px_30px_rgba(0,0,0,0.1)]
+                      text-center
+                    "
+                    style={{ fontSize: `${fontSize}px` }}
                   >
-                    <option value="hi">हिंदी</option>
-                    <option value="en">English</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            
-            <div className="p-4 md:p-6">
-              <div className={`transition-all duration-300 ${previewMode ? 'scale-100' : 'scale-95'}`}>
-                {/* Preview Container */}
-                <div 
-                  className="min-h-[500px] p-6 md:p-8 rounded-xl relative overflow-hidden"
-                  style={{
-                    background: `linear-gradient(to bottom, #fefcea, #e8ebff)`
-                  }}
-                >
-                  {/* Preview Content */}
-                  <div className="space-y-12">
-                    {safeGroups.map((group, index) => (
-                      <React.Fragment key={index}>
-                        {/* Group 1: Title, Paragraph, Summary */}
-                        {group.title && (
-                          <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: index * 0.1 }}
-                            className="
-                              w-full
-                              max-w-[clamp(320px,85vw,1700px)]
-                              mx-auto
-                              bg-white rounded-2xl p-6 sm:p-8 lg:p-10
-                              shadow-[0_8px_30px_rgba(0,0,0,0.1)]
-                              text-center
-                            "
-                            style={{ fontSize: `${fontSize}px` }}
-                          >
-                            <h1 className="mb-10 font-bold text-[#0904b8] text-[clamp(2.2rem,4vw,3.5rem)] font-devanagari">
-                              {group.title?.[language] || ""}
-                            </h1>
+                    <h1 className="mb-10 font-bold text-[#0904b8] text-[clamp(2.2rem,4vw,3.5rem)] font-devanagari">
+                      {group.title?.[language] || ""}
+                    </h1>
 
-                            {group.paragraph && (
-                              <p className="font-bold leading-relaxed text-black text-[clamp(1.2rem,2.5vw,1.5rem)] font-devanagari">
-                                {group.paragraph?.[language] || ""}
-                              </p>
-                            )}
+                    {group.paragraph && (
+                      <p className="font-bold leading-relaxed text-black text-[clamp(1.2rem,2.5vw,1.5rem)] font-devanagari">
+                        {group.paragraph?.[language] || ""}
+                      </p>
+                    )}
 
-                            {/* Summary */}
-                            {group.summary && (
-                              <div
-                                className="
-                                  mt-10 bg-[#fff8db]
-                                  border-l-[5px] border-[#f1c40f]
-                                  rounded-lg p-6
-                                  text-left font-bold
-                                  transition-transform duration-300
-                                  hover:scale-[1.01]
-                                "
-                                style={{borderLeft:'5px solid #f1c40f'}}
-                              >
-                                <h2 className="mb-4 font-bold text-[#b9770e] text-[clamp(1.6rem,3vw,2.25rem)] font-devanagari">
-                                  {group.summary.title?.[language] || ""}
-                                </h2>
+                    {/* Summary */}
+                    {group.summary && (
+                      <div
+                        className="
+                          mt-10 bg-[#fff8db]
+                          border-l-[5px] border-[#f1c40f]
+                          rounded-lg p-6
+                          text-left font-bold
+                          transition-transform duration-300
+                          hover:scale-[1.01]
+                        "
+                        style={{borderLeft:'5px solid #f1c40f'}}
+                      >
+                        <h2 className="mb-4 font-bold text-[#b9770e] text-[clamp(1.6rem,3vw,2.25rem)] font-devanagari">
+                          {group.summary?.title?.[language] || ""}
+                        </h2>
 
-                                <ul className="list-disc pl-6 space-y-2 text-black text-[clamp(1.1rem,2.5vw,1.5rem)] font-devanagari">
-                                  {group.summary.points?.[language]?.map((point, idx) => (
-                                    <li key={idx}>{point}</li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-                          </motion.div>
-                        )}
+                        <ul className="list-disc pl-6 space-y-2 text-black text-[clamp(1.1rem,2.5vw,1.5rem)] font-devanagari">
+                          {group.summary?.points?.[language]?.map((point, idx) => (
+                            <li key={idx}>{point}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </motion.div>
+                )}
 
-                        {/* Group 2: Subheading, Detailed Paragraph */}
-                        {group.subheading && (
-                          <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.7 }}
-                            className="
-                              w-full max-w-[clamp(320px,85vw,1700px)]
-                              bg-white rounded-2xl p-6 sm:p-8 lg:p-10
-                              shadow-[0_4px_20px_rgba(0,0,0,0.05)]
-                              text-center
-                            "
-                            style={{ fontSize: `${fontSize}px` }}
-                          >
-                            <h2 className="mb-8 font-semibold text-[#0904b8] text-[clamp(2rem,4vw,3.5rem)] font-devanagari">
-                              {group.subheading?.[language] || ""}
-                            </h2>
+                {/* Group 2: Subheading, Detailed Paragraph */}
+                {group.subheading && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7 }}
+                    className="
+                      w-full max-w-[clamp(320px,85vw,1700px)]
+                      bg-white rounded-2xl p-6 sm:p-8 lg:p-10
+                      shadow-[0_4px_20px_rgba(0,0,0,0.05)]
+                      text-center
+                    "
+                    style={{ fontSize: `${fontSize}px` }}
+                  >
+                    <h2 className="mb-8 font-semibold text-[#0904b8] text-[clamp(2rem,4vw,3.5rem)] font-devanagari">
+                      {group.subheading?.[language] || ""}
+                    </h2>
 
-                            <p className="font-bold leading-relaxed text-black text-[clamp(1.2rem,2.5vw,1.7rem)] font-devanagari">
-                              {group.detailedParagraph?.[language] || ""}
-                            </p>
-                          </motion.div>
-                        )}
+                    <p className="font-bold leading-relaxed text-black text-[clamp(1.2rem,2.5vw,1.7rem)] font-devanagari">
+                      {group.detailedParagraph?.[language] || ""}
+                    </p>
+                  </motion.div>
+                )}
 
-                        {/* Quote Section */}
-                        {group.quote && (
-                          <blockquote
-                            className="
-                              w-full max-w-[clamp(320px,85vw,1700px)]
-                              bg-white rounded-xl p-6 text-center
-                              shadow-inner
-                            "
-                            style={{ fontSize: `${fontSize}px` }}
-                          >
-                            <span className="inline-block font-bold text-[#1500d2] text-[clamp(1.2rem,3vw,2rem)] font-devanagari">
-                              {group.quote?.[language] || ""}
-                            </span>
-                          </blockquote>
-                        )}
-                      </React.Fragment>
-                    ))}
-                  </div>
+                {/* Quote Section */}
+                {group.quote && (
+                  <blockquote
+                    className="
+                      w-full max-w-[clamp(320px,85vw,1700px)]
+                      bg-white rounded-xl p-6 text-center
+                      shadow-inner
+                    "
+                    style={{ fontSize: `${fontSize}px` }}
+                  >
+                    <span className="inline-block font-bold text-[#1500d2] text-[clamp(1.2rem,3vw,2rem)] font-devanagari">
+                      {group.quote?.[language] || ""}
+                    </span>
+                  </blockquote>
+                )}
+              </React.Fragment>
+            ))}
+          </div>
 
-                  {/* Language Toggle Button */}
-                  <div className="mt-12 text-center">
-                    <button
-                      onClick={() => setLanguage(language === "hi" ? "en" : "hi")}
-                      className="
-                        bg-[#0702bc] text-white font-bold
-                        px-8 py-3 rounded-lg
-                        shadow-[0_4px_12px_rgba(106,76,175,0.3)]
-                        transition-all duration-300
-                        hover:bg-[#5351c4]
-                        hover:shadow-[0_6px_16px_rgba(87,81,196,0.5)]
-                        hover:scale-105
-                      "
-                      style={{ fontSize: `calc(${fontSize}px * 0.9)` }}
-                    >
-                      {language === "hi"
-                        ? "Translate to English"
-                        : "हिंदी में अनुवाद करें"}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* Language Toggle Button */}
+          <div className="mt-12 text-center">
+            <button
+              onClick={() => setLanguage(language === "hi" ? "en" : "hi")}
+              className="
+                bg-[#0702bc] text-white font-bold
+                px-8 py-3 rounded-lg
+                shadow-[0_4px_12px_rgba(106,76,175,0.3)]
+                transition-all duration-300
+                hover:bg-[#5351c4]
+                hover:shadow-[0_6px_16px_rgba(87,81,196,0.5)]
+                hover:scale-105
+              "
+              style={{ fontSize: `calc(${fontSize}px * 0.9)` }}
+            >
+              {language === "hi"
+                ? "Translate to English"
+                : "हिंदी में अनुवाद करें"}
+            </button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
       </div>
 
       {/* Stats Bar */}
