@@ -88,60 +88,78 @@ const AdminCharanPooja = () => {
   const validateAndNormalizeData = (data) => {
     if (!data) return { sections: [] };
     
-    // Ensure sectionsGrouped exists and is an array
-    if (!data.sections || !Array.isArray(data.sections)) {
-    return { ...data, sections: [] };
-  }
+    // Check if data has sections or sectionsGrouped
+    const sectionsArray = data.sections || data.sectionsGrouped || [];
     
-    // Validate each group in sectionsGrouped
-    const validatedGroups = data.sectionsGrouped.map((group, index) => {
-      // Handle group structure based on index
-      if (index === 0) {
-        // First group: title, paragraph, summary
-        return {
+    // If it's not an array, return empty
+    if (!Array.isArray(sectionsArray)) {
+      return { sections: [] };
+    }
+    
+    // Validate each group
+    const validatedGroups = sectionsArray.map((group, index) => {
+      // Handle group structure based on what fields exist
+      const cleanGroup = {};
+      
+      // Copy all existing fields with proper structure
+      if (group.title) {
+        cleanGroup.title = {
+          hi: group.title.hi || "",
+          en: group.title.en || ""
+        };
+      }
+      
+      if (group.paragraph) {
+        cleanGroup.paragraph = {
+          hi: group.paragraph.hi || "",
+          en: group.paragraph.en || ""
+        };
+      }
+      
+      if (group.summary) {
+        cleanGroup.summary = {
           title: {
-            hi: group.title?.hi || "",
-            en: group.title?.en || ""
+            hi: group.summary.title?.hi || "",
+            en: group.summary.title?.en || ""
           },
-          paragraph: {
-            hi: group.paragraph?.hi || "",
-            en: group.paragraph?.en || ""
-          },
-          summary: {
-            title: {
-              hi: group.summary?.title?.hi || "",
-              en: group.summary?.title?.en || ""
-            },
-            points: {
-              hi: Array.isArray(group.summary?.points?.hi) ? group.summary.points.hi : [],
-              en: Array.isArray(group.summary?.points?.en) ? group.summary.points.en : []
-            }
-          }
-        };
-      } else if (index === 1) {
-        // Second group: subheading, detailedParagraph
-        return {
-          subheading: {
-            hi: group.subheading?.hi || "",
-            en: group.subheading?.en || ""
-          },
-          detailedParagraph: {
-            hi: group.detailedParagraph?.hi || "",
-            en: group.detailedParagraph?.en || ""
-          }
-        };
-      } else {
-        // Quote section or additional groups
-        return {
-          quote: {
-            hi: group.quote?.hi || "",
-            en: group.quote?.en || ""
+          points: {
+            hi: Array.isArray(group.summary.points?.hi) ? group.summary.points.hi : 
+                 (Array.isArray(group.summary.points) ? group.summary.points : []),
+            en: Array.isArray(group.summary.points?.en) ? group.summary.points.en : []
           }
         };
       }
+      
+      if (group.subheading) {
+        cleanGroup.subheading = {
+          hi: group.subheading.hi || "",
+          en: group.subheading.en || ""
+        };
+      }
+      
+      if (group.detailedParagraph) {
+        cleanGroup.detailedParagraph = {
+          hi: group.detailedParagraph.hi || "",
+          en: group.detailedParagraph.en || ""
+        };
+      }
+      
+      if (group.quote) {
+        cleanGroup.quote = {
+          hi: group.quote.hi || "",
+          en: group.quote.en || ""
+        };
+      }
+      
+      // Preserve _id if it exists
+      if (group._id) {
+        cleanGroup._id = group._id;
+      }
+      
+      return cleanGroup;
     });
     
-    return { ...data, sectionsGrouped: validatedGroups };
+    return { sections: validatedGroups };
   };
 
   const handleInputChange = (path, value, groupIndex, pointIndex = null) => {
@@ -151,14 +169,16 @@ const AdminCharanPooja = () => {
       try {
         const keys = path.split('.');
         
-        // Handle nested updates for sectionsGrouped
+        // Handle nested updates for sections
         if (keys[0] === 'sections' && groupIndex !== null) {
-          if (!newData.sectionsGrouped[groupIndex]) {
+          // Ensure sections array exists
+          if (!newData.sections) newData.sections = [];
+          if (!newData.sections[groupIndex]) {
             // Initialize group if it doesn't exist
-            newData.sectionsGrouped[groupIndex] = {};
+            newData.sections[groupIndex] = {};
           }
           
-          let current = newData.sectionsGrouped[groupIndex];
+          let current = newData.sections[groupIndex];
           
           // Navigate through the path
           for (let i = 1; i < keys.length - 1; i++) {
@@ -203,17 +223,18 @@ const AdminCharanPooja = () => {
     setEditingData(prev => {
       const newData = JSON.parse(JSON.stringify(prev));
       
-      if (!newData.sections[groupIndex]?.summary?.points) {
-        if (!newData.sectionsGrouped[groupIndex]) newData.sectionsGrouped[groupIndex] = {};
-        if (!newData.sectionsGrouped[groupIndex].summary) newData.sectionsGrouped[groupIndex].summary = {};
-        newData.sectionsGrouped[groupIndex].summary.points = { hi: [], en: [] };
+      // Ensure the structure exists
+      if (!newData.sections[groupIndex]) newData.sections[groupIndex] = {};
+      if (!newData.sections[groupIndex].summary) newData.sections[groupIndex].summary = {};
+      if (!newData.sections[groupIndex].summary.points) {
+        newData.sections[groupIndex].summary.points = { hi: [], en: [] };
       }
       
-      if (!newData.sectionsGrouped[groupIndex].summary.points[lang]) {
-        newData.sectionsGrouped[groupIndex].summary.points[lang] = [];
+      if (!newData.sections[groupIndex].summary.points[lang]) {
+        newData.sections[groupIndex].summary.points[lang] = [];
       }
       
-      newData.sectionsGrouped[groupIndex].summary.points[lang].push("");
+      newData.sections[groupIndex].summary.points[lang].push("");
       setUnsavedChanges(true);
       return newData;
     });
@@ -225,8 +246,8 @@ const AdminCharanPooja = () => {
     setEditingData(prev => {
       const newData = JSON.parse(JSON.stringify(prev));
       
-      if (newData.sectionsGrouped[groupIndex]?.summary?.points?.[lang]) {
-        newData.sectionsGrouped[groupIndex].summary.points[lang].splice(pointIndex, 1);
+      if (newData.sections[groupIndex]?.summary?.points?.[lang]) {
+        newData.sections[groupIndex].summary.points[lang].splice(pointIndex, 1);
       }
       
       setUnsavedChanges(true);
@@ -240,8 +261,8 @@ const AdminCharanPooja = () => {
     setEditingData(prev => {
       const newData = JSON.parse(JSON.stringify(prev));
       
-      if (newData.sectionsGrouped[groupIndex]?.summary?.points?.[lang]) {
-        const points = newData.sectionsGrouped[groupIndex].summary.points[lang];
+      if (newData.sections[groupIndex]?.summary?.points?.[lang]) {
+        const points = newData.sections[groupIndex].summary.points[lang];
         const newIndex = currentIndex + direction;
         
         if (newIndex >= 0 && newIndex < points.length) {
@@ -257,12 +278,13 @@ const AdminCharanPooja = () => {
 
   const addGroup = () => {
     setEditingData(prev => {
-      const newGroups = [...(prev.sectionsGrouped || [])];
+      const newSections = [...(prev.sections || [])];
+      const currentLength = newSections.length;
       
       // Add appropriate group type based on current number of groups
-      if (newGroups.length === 0) {
+      if (currentLength === 0) {
         // First group: title, paragraph, summary
-        newGroups.push({
+        newSections.push({
           title: { hi: "", en: "" },
           paragraph: { hi: "", en: "" },
           summary: {
@@ -270,20 +292,20 @@ const AdminCharanPooja = () => {
             points: { hi: [], en: [] }
           }
         });
-      } else if (newGroups.length === 1) {
+      } else if (currentLength === 1) {
         // Second group: subheading, detailedParagraph
-        newGroups.push({
+        newSections.push({
           subheading: { hi: "", en: "" },
           detailedParagraph: { hi: "", en: "" }
         });
       } else {
         // Additional groups: quote
-        newGroups.push({
+        newSections.push({
           quote: { hi: "", en: "" }
         });
       }
       
-      return { ...prev, sectionsGrouped: newGroups };
+      return { ...prev, sections: newSections };
     });
     
     toast.success("New group added");
@@ -291,14 +313,14 @@ const AdminCharanPooja = () => {
   };
 
   const removeGroup = (index) => {
-    if (!editingData.sectionsGrouped || editingData.sectionsGrouped.length <= 1) {
+    if (!editingData.sections || editingData.sections.length <= 1) {
       toast.error("Cannot remove the last group");
       return;
     }
     
     setEditingData(prev => ({
       ...prev,
-      sectionsGrouped: prev.sectionsGrouped.filter((_, i) => i !== index)
+      sections: prev.sections.filter((_, i) => i !== index)
     }));
     
     toast.success("Group removed");
@@ -312,7 +334,8 @@ const AdminCharanPooja = () => {
       
       console.log("Sending Charan Pooja data to backend:", validatedData);
       
-      const res = await axios.put(`${API_BASE}/api/charan-pooja`, { sections: validatedGroups });
+      const res = await axios.put(`${API_BASE}/api/charan-pooja`, validatedData);
+      
       setData(validatedData);
       setIsEditing(false);
       setUnsavedChanges(false);
@@ -328,7 +351,11 @@ const AdminCharanPooja = () => {
       
       toast.success("✅ Charan Pooja content saved successfully!");
     } catch (err) {
-      console.error("Save error:", err);
+      console.error("Save error details:", {
+        error: err.message,
+        response: err.response?.data,
+        status: err.response?.status
+      });
       toast.error("❌ Failed to save changes");
     } finally {
       setLoading(false);
@@ -339,7 +366,7 @@ const AdminCharanPooja = () => {
     if (data) {
       setEditingData(JSON.parse(JSON.stringify(data)));
     } else {
-      setEditingData({ sectionsGrouped: [] });
+      setEditingData({ sections: [] });
     }
     setIsEditing(false);
     setUnsavedChanges(false);
@@ -401,8 +428,8 @@ const AdminCharanPooja = () => {
     );
   }
 
-  const safeEditingData = editingData || { sectionsGrouped: [] };
-  const safeGroups = safeEditingData.sectionsGrouped || [];
+  const safeEditingData = editingData || { sections: [] };
+  const safeGroups = safeEditingData.sections || [];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-100 p-4 md:p-6">
@@ -604,7 +631,7 @@ const AdminCharanPooja = () => {
                           {expandedSection === groupIndex && (
                             <div className="p-4 space-y-4">
                               {/* Group 1: Title, Paragraph, Summary */}
-                              {groupIndex === 0 && (
+                              {group.title && (
                                 <>
                                   <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -613,7 +640,7 @@ const AdminCharanPooja = () => {
                                     <input
                                       type="text"
                                       value={group.title?.hi || ""}
-                                      onChange={(e) => handleInputChange('sectionsGrouped.title.hi', e.target.value, groupIndex)}
+                                      onChange={(e) => handleInputChange('sections.title.hi', e.target.value, groupIndex)}
                                       disabled={!isEditing}
                                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:bg-gray-100 font-devanagari"
                                     />
@@ -625,172 +652,178 @@ const AdminCharanPooja = () => {
                                     <input
                                       type="text"
                                       value={group.title?.en || ""}
-                                      onChange={(e) => handleInputChange('sectionsGrouped.title.en', e.target.value, groupIndex)}
+                                      onChange={(e) => handleInputChange('sections.title.en', e.target.value, groupIndex)}
                                       disabled={!isEditing}
                                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:bg-gray-100"
                                     />
                                   </div>
 
-                                  <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                                      Paragraph (Hindi)
-                                    </label>
-                                    <textarea
-                                      value={group.paragraph?.hi || ""}
-                                      onChange={(e) => handleInputChange('sectionsGrouped.paragraph.hi', e.target.value, groupIndex)}
-                                      disabled={!isEditing}
-                                      rows="3"
-                                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:bg-gray-100 font-devanagari"
-                                    />
-                                  </div>
-                                  <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                                      Paragraph (English)
-                                    </label>
-                                    <textarea
-                                      value={group.paragraph?.en || ""}
-                                      onChange={(e) => handleInputChange('sectionsGrouped.paragraph.en', e.target.value, groupIndex)}
-                                      disabled={!isEditing}
-                                      rows="3"
-                                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:bg-gray-100"
-                                    />
-                                  </div>
+                                  {group.paragraph && (
+                                    <>
+                                      <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                          Paragraph (Hindi)
+                                        </label>
+                                        <textarea
+                                          value={group.paragraph?.hi || ""}
+                                          onChange={(e) => handleInputChange('sections.paragraph.hi', e.target.value, groupIndex)}
+                                          disabled={!isEditing}
+                                          rows="3"
+                                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:bg-gray-100 font-devanagari"
+                                        />
+                                      </div>
+                                      <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                          Paragraph (English)
+                                        </label>
+                                        <textarea
+                                          value={group.paragraph?.en || ""}
+                                          onChange={(e) => handleInputChange('sections.paragraph.en', e.target.value, groupIndex)}
+                                          disabled={!isEditing}
+                                          rows="3"
+                                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:bg-gray-100"
+                                        />
+                                      </div>
+                                    </>
+                                  )}
 
                                   {/* Summary */}
-                                  <div className="border-t pt-4">
-                                    <h4 className="text-md font-semibold text-gray-800 mb-3">Summary</h4>
-                                    
-                                    <div>
-                                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                                        Summary Title (Hindi)
-                                      </label>
-                                      <input
-                                        type="text"
-                                        value={group.summary?.title?.hi || ""}
-                                        onChange={(e) => handleInputChange('sectionsGrouped.summary.title.hi', e.target.value, groupIndex)}
-                                        disabled={!isEditing}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:bg-gray-100 font-devanagari"
-                                      />
-                                    </div>
-                                    <div>
-                                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                                        Summary Title (English)
-                                      </label>
-                                      <input
-                                        type="text"
-                                        value={group.summary?.title?.en || ""}
-                                        onChange={(e) => handleInputChange('sectionsGrouped.summary.title.en', e.target.value, groupIndex)}
-                                        disabled={!isEditing}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:bg-gray-100"
-                                      />
-                                    </div>
-
-                                    {/* Points */}
-                                    <div className="mt-4">
-                                      <div className="flex justify-between items-center mb-2">
-                                        <h5 className="text-sm font-medium text-gray-700">Points (Hindi)</h5>
-                                        {isEditing && (
-                                          <button
-                                            onClick={() => addPoint(groupIndex, 'hi')}
-                                            className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded"
-                                          >
-                                            + Add Point
-                                          </button>
-                                        )}
+                                  {group.summary && (
+                                    <div className="border-t pt-4">
+                                      <h4 className="text-md font-semibold text-gray-800 mb-3">Summary</h4>
+                                      
+                                      <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                          Summary Title (Hindi)
+                                        </label>
+                                        <input
+                                          type="text"
+                                          value={group.summary?.title?.hi || ""}
+                                          onChange={(e) => handleInputChange('sections.summary.title.hi', e.target.value, groupIndex)}
+                                          disabled={!isEditing}
+                                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:bg-gray-100 font-devanagari"
+                                        />
                                       </div>
-                                      {group.summary?.points?.hi?.map((point, pointIndex) => (
-                                        <div key={pointIndex} className="flex items-center gap-2 mb-2">
-                                          <span className="text-gray-500 text-sm">{pointIndex + 1}.</span>
-                                          <input
-                                            type="text"
-                                            value={point}
-                                            onChange={(e) => handleInputChange('sectionsGrouped.summary.points.hi', e.target.value, groupIndex, pointIndex)}
-                                            disabled={!isEditing}
-                                            className="flex-1 px-3 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:bg-gray-100 font-devanagari"
-                                          />
+                                      <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                          Summary Title (English)
+                                        </label>
+                                        <input
+                                          type="text"
+                                          value={group.summary?.title?.en || ""}
+                                          onChange={(e) => handleInputChange('sections.summary.title.en', e.target.value, groupIndex)}
+                                          disabled={!isEditing}
+                                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:bg-gray-100"
+                                        />
+                                      </div>
+
+                                      {/* Points */}
+                                      <div className="mt-4">
+                                        <div className="flex justify-between items-center mb-2">
+                                          <h5 className="text-sm font-medium text-gray-700">Points (Hindi)</h5>
                                           {isEditing && (
-                                            <div className="flex gap-1">
-                                              <button
-                                                onClick={() => movePoint(groupIndex, 'hi', pointIndex, -1)}
-                                                disabled={pointIndex === 0}
-                                                className="p-1 text-gray-400 hover:text-purple-600 disabled:opacity-30"
-                                              >
-                                                <FaArrowUp />
-                                              </button>
-                                              <button
-                                                onClick={() => movePoint(groupIndex, 'hi', pointIndex, 1)}
-                                                disabled={pointIndex === group.summary.points.hi.length - 1}
-                                                className="p-1 text-gray-400 hover:text-purple-600 disabled:opacity-30"
-                                              >
-                                                <FaArrowDown />
-                                              </button>
-                                              <button
-                                                onClick={() => removePoint(groupIndex, 'hi', pointIndex)}
-                                                className="p-1 text-gray-400 hover:text-red-600"
-                                              >
-                                                <FaTrash />
-                                              </button>
-                                            </div>
+                                            <button
+                                              onClick={() => addPoint(groupIndex, 'hi')}
+                                              className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded"
+                                            >
+                                              + Add Point
+                                            </button>
                                           )}
                                         </div>
-                                      ))}
-                                    </div>
-
-                                    <div className="mt-4">
-                                      <div className="flex justify-between items-center mb-2">
-                                        <h5 className="text-sm font-medium text-gray-700">Points (English)</h5>
-                                        {isEditing && (
-                                          <button
-                                            onClick={() => addPoint(groupIndex, 'en')}
-                                            className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded"
-                                          >
-                                            + Add Point
-                                          </button>
-                                        )}
+                                        {group.summary?.points?.hi?.map((point, pointIndex) => (
+                                          <div key={pointIndex} className="flex items-center gap-2 mb-2">
+                                            <span className="text-gray-500 text-sm">{pointIndex + 1}.</span>
+                                            <input
+                                              type="text"
+                                              value={point}
+                                              onChange={(e) => handleInputChange('sections.summary.points.hi', e.target.value, groupIndex, pointIndex)}
+                                              disabled={!isEditing}
+                                              className="flex-1 px-3 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:bg-gray-100 font-devanagari"
+                                            />
+                                            {isEditing && (
+                                              <div className="flex gap-1">
+                                                <button
+                                                  onClick={() => movePoint(groupIndex, 'hi', pointIndex, -1)}
+                                                  disabled={pointIndex === 0}
+                                                  className="p-1 text-gray-400 hover:text-purple-600 disabled:opacity-30"
+                                                >
+                                                  <FaArrowUp />
+                                                </button>
+                                                <button
+                                                  onClick={() => movePoint(groupIndex, 'hi', pointIndex, 1)}
+                                                  disabled={pointIndex === group.summary.points.hi.length - 1}
+                                                  className="p-1 text-gray-400 hover:text-purple-600 disabled:opacity-30"
+                                                >
+                                                  <FaArrowDown />
+                                                </button>
+                                                <button
+                                                  onClick={() => removePoint(groupIndex, 'hi', pointIndex)}
+                                                  className="p-1 text-gray-400 hover:text-red-600"
+                                                >
+                                                  <FaTrash />
+                                                </button>
+                                              </div>
+                                            )}
+                                          </div>
+                                        ))}
                                       </div>
-                                      {group.summary?.points?.en?.map((point, pointIndex) => (
-                                        <div key={pointIndex} className="flex items-center gap-2 mb-2">
-                                          <span className="text-gray-500 text-sm">{pointIndex + 1}.</span>
-                                          <input
-                                            type="text"
-                                            value={point}
-                                            onChange={(e) => handleInputChange('sectionsGrouped.summary.points.en', e.target.value, groupIndex, pointIndex)}
-                                            disabled={!isEditing}
-                                            className="flex-1 px-3 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:bg-gray-100"
-                                          />
+
+                                      <div className="mt-4">
+                                        <div className="flex justify-between items-center mb-2">
+                                          <h5 className="text-sm font-medium text-gray-700">Points (English)</h5>
                                           {isEditing && (
-                                            <div className="flex gap-1">
-                                              <button
-                                                onClick={() => movePoint(groupIndex, 'en', pointIndex, -1)}
-                                                disabled={pointIndex === 0}
-                                                className="p-1 text-gray-400 hover:text-purple-600 disabled:opacity-30"
-                                              >
-                                                <FaArrowUp />
-                                              </button>
-                                              <button
-                                                onClick={() => movePoint(groupIndex, 'en', pointIndex, 1)}
-                                                disabled={pointIndex === group.summary.points.en.length - 1}
-                                                className="p-1 text-gray-400 hover:text-purple-600 disabled:opacity-30"
-                                              >
-                                                <FaArrowDown />
-                                              </button>
-                                              <button
-                                                onClick={() => removePoint(groupIndex, 'en', pointIndex)}
-                                                className="p-1 text-gray-400 hover:text-red-600"
-                                              >
-                                                <FaTrash />
-                                              </button>
-                                            </div>
+                                            <button
+                                              onClick={() => addPoint(groupIndex, 'en')}
+                                              className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded"
+                                            >
+                                              + Add Point
+                                            </button>
                                           )}
                                         </div>
-                                      ))}
+                                        {group.summary?.points?.en?.map((point, pointIndex) => (
+                                          <div key={pointIndex} className="flex items-center gap-2 mb-2">
+                                            <span className="text-gray-500 text-sm">{pointIndex + 1}.</span>
+                                            <input
+                                              type="text"
+                                              value={point}
+                                              onChange={(e) => handleInputChange('sections.summary.points.en', e.target.value, groupIndex, pointIndex)}
+                                              disabled={!isEditing}
+                                              className="flex-1 px-3 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:bg-gray-100"
+                                            />
+                                            {isEditing && (
+                                              <div className="flex gap-1">
+                                                <button
+                                                  onClick={() => movePoint(groupIndex, 'en', pointIndex, -1)}
+                                                  disabled={pointIndex === 0}
+                                                  className="p-1 text-gray-400 hover:text-purple-600 disabled:opacity-30"
+                                                >
+                                                  <FaArrowUp />
+                                                </button>
+                                                <button
+                                                  onClick={() => movePoint(groupIndex, 'en', pointIndex, 1)}
+                                                  disabled={pointIndex === group.summary.points.en.length - 1}
+                                                  className="p-1 text-gray-400 hover:text-purple-600 disabled:opacity-30"
+                                                >
+                                                  <FaArrowDown />
+                                                </button>
+                                                <button
+                                                  onClick={() => removePoint(groupIndex, 'en', pointIndex)}
+                                                  className="p-1 text-gray-400 hover:text-red-600"
+                                                >
+                                                  <FaTrash />
+                                                </button>
+                                              </div>
+                                            )}
+                                          </div>
+                                        ))}
+                                      </div>
                                     </div>
-                                  </div>
+                                  )}
                                 </>
                               )}
 
                               {/* Group 2: Subheading & Detailed Paragraph */}
-                              {groupIndex === 1 && (
+                              {group.subheading && (
                                 <>
                                   <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -799,7 +832,7 @@ const AdminCharanPooja = () => {
                                     <input
                                       type="text"
                                       value={group.subheading?.hi || ""}
-                                      onChange={(e) => handleInputChange('sectionsGrouped.subheading.hi', e.target.value, groupIndex)}
+                                      onChange={(e) => handleInputChange('sections.subheading.hi', e.target.value, groupIndex)}
                                       disabled={!isEditing}
                                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:bg-gray-100 font-devanagari"
                                     />
@@ -811,7 +844,7 @@ const AdminCharanPooja = () => {
                                     <input
                                       type="text"
                                       value={group.subheading?.en || ""}
-                                      onChange={(e) => handleInputChange('sectionsGrouped.subheading.en', e.target.value, groupIndex)}
+                                      onChange={(e) => handleInputChange('sections.subheading.en', e.target.value, groupIndex)}
                                       disabled={!isEditing}
                                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:bg-gray-100"
                                     />
@@ -823,7 +856,7 @@ const AdminCharanPooja = () => {
                                     </label>
                                     <textarea
                                       value={group.detailedParagraph?.hi || ""}
-                                      onChange={(e) => handleInputChange('sectionsGrouped.detailedParagraph.hi', e.target.value, groupIndex)}
+                                      onChange={(e) => handleInputChange('sections.detailedParagraph.hi', e.target.value, groupIndex)}
                                       disabled={!isEditing}
                                       rows="4"
                                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:bg-gray-100 font-devanagari"
@@ -835,7 +868,7 @@ const AdminCharanPooja = () => {
                                     </label>
                                     <textarea
                                       value={group.detailedParagraph?.en || ""}
-                                      onChange={(e) => handleInputChange('sectionsGrouped.detailedParagraph.en', e.target.value, groupIndex)}
+                                      onChange={(e) => handleInputChange('sections.detailedParagraph.en', e.target.value, groupIndex)}
                                       disabled={!isEditing}
                                       rows="4"
                                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:bg-gray-100"
@@ -845,14 +878,14 @@ const AdminCharanPooja = () => {
                               )}
 
                               {/* Quote Section */}
-                              {groupIndex >= 2 && (
+                              {group.quote && (
                                 <div>
                                   <label className="block text-sm font-medium text-gray-700 mb-1">
                                     Quote (Hindi)
                                   </label>
                                   <textarea
                                     value={group.quote?.hi || ""}
-                                    onChange={(e) => handleInputChange('sectionsGrouped.quote.hi', e.target.value, groupIndex)}
+                                    onChange={(e) => handleInputChange('sections.quote.hi', e.target.value, groupIndex)}
                                     disabled={!isEditing}
                                     rows="2"
                                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:bg-gray-100 font-devanagari"
@@ -863,7 +896,7 @@ const AdminCharanPooja = () => {
                                     </label>
                                     <textarea
                                       value={group.quote?.en || ""}
-                                      onChange={(e) => handleInputChange('sectionsGrouped.quote.en', e.target.value, groupIndex)}
+                                      onChange={(e) => handleInputChange('sections.quote.en', e.target.value, groupIndex)}
                                       disabled={!isEditing}
                                       rows="2"
                                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:bg-gray-100"
@@ -1020,12 +1053,11 @@ const AdminCharanPooja = () => {
                 >
                   {/* Preview Content */}
                   <div className="space-y-12">
-                    {safeGroups.map((group, index) => {
-                      if (index === 0) {
-                        // Group 1: Title, Paragraph, Summary
-                        return (
+                    {safeGroups.map((group, index) => (
+                      <React.Fragment key={index}>
+                        {/* Group 1: Title, Paragraph, Summary */}
+                        {group.title && (
                           <motion.div
-                            key={index}
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: index * 0.1 }}
@@ -1043,9 +1075,11 @@ const AdminCharanPooja = () => {
                               {group.title?.[language] || ""}
                             </h1>
 
-                            <p className="font-bold leading-relaxed text-black text-[clamp(1.2rem,2.5vw,1.5rem)] font-devanagari">
-                              {group.paragraph?.[language] || ""}
-                            </p>
+                            {group.paragraph && (
+                              <p className="font-bold leading-relaxed text-black text-[clamp(1.2rem,2.5vw,1.5rem)] font-devanagari">
+                                {group.paragraph?.[language] || ""}
+                              </p>
+                            )}
 
                             {/* Summary */}
                             {group.summary && (
@@ -1072,12 +1106,11 @@ const AdminCharanPooja = () => {
                               </div>
                             )}
                           </motion.div>
-                        );
-                      } else if (index === 1) {
-                        // Group 2: Subheading, Detailed Paragraph
-                        return (
+                        )}
+
+                        {/* Group 2: Subheading, Detailed Paragraph */}
+                        {group.subheading && (
                           <motion.div
-                            key={index}
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7 }}
@@ -1097,12 +1130,11 @@ const AdminCharanPooja = () => {
                               {group.detailedParagraph?.[language] || ""}
                             </p>
                           </motion.div>
-                        );
-                      } else {
-                        // Quote Section
-                        return (
+                        )}
+
+                        {/* Quote Section */}
+                        {group.quote && (
                           <blockquote
-                            key={index}
                             className="
                               w-full max-w-[clamp(320px,85vw,1700px)]
                               bg-white rounded-xl p-6 text-center
@@ -1114,9 +1146,9 @@ const AdminCharanPooja = () => {
                               {group.quote?.[language] || ""}
                             </span>
                           </blockquote>
-                        );
-                      }
-                    })}
+                        )}
+                      </React.Fragment>
+                    ))}
                   </div>
 
                   {/* Language Toggle Button */}
