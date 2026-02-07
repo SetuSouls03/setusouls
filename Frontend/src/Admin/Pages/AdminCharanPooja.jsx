@@ -64,7 +64,7 @@ const AdminCharanPooja = () => {
       
       // Validate and ensure proper structure
       const validatedData = validateAndNormalizeData(fetchedData);
-      
+
       setData(validatedData);
       setEditingData(JSON.parse(JSON.stringify(validatedData)));
       setHistory([{ 
@@ -77,8 +77,8 @@ const AdminCharanPooja = () => {
       toast.error("Failed to load Charan Pooja content");
       
       // Show empty state if fetch fails
-      setData({ sectionsGrouped: [] });
-      setEditingData({ sectionsGrouped: [] });
+      setData({ sections: [] });
+      setEditingData({ sections: [] });
     } finally {
       setIsLoading(false);
     }
@@ -86,12 +86,12 @@ const AdminCharanPooja = () => {
 
   // Validate and normalize data structure
   const validateAndNormalizeData = (data) => {
-    if (!data) return { sectionsGrouped: [] };
+    if (!data) return { sections: [] };
     
     // Ensure sectionsGrouped exists and is an array
-    if (!data.sectionsGrouped || !Array.isArray(data.sectionsGrouped)) {
-      return { ...data, sectionsGrouped: [] };
-    }
+    if (!data.sections || !Array.isArray(data.sections)) {
+    return { ...data, sections: [] };
+  }
     
     // Validate each group in sectionsGrouped
     const validatedGroups = data.sectionsGrouped.map((group, index) => {
@@ -152,7 +152,7 @@ const AdminCharanPooja = () => {
         const keys = path.split('.');
         
         // Handle nested updates for sectionsGrouped
-        if (keys[0] === 'sectionsGrouped' && groupIndex !== null) {
+        if (keys[0] === 'sections' && groupIndex !== null) {
           if (!newData.sectionsGrouped[groupIndex]) {
             // Initialize group if it doesn't exist
             newData.sectionsGrouped[groupIndex] = {};
@@ -203,7 +203,7 @@ const AdminCharanPooja = () => {
     setEditingData(prev => {
       const newData = JSON.parse(JSON.stringify(prev));
       
-      if (!newData.sectionsGrouped[groupIndex]?.summary?.points) {
+      if (!newData.sections[groupIndex]?.summary?.points) {
         if (!newData.sectionsGrouped[groupIndex]) newData.sectionsGrouped[groupIndex] = {};
         if (!newData.sectionsGrouped[groupIndex].summary) newData.sectionsGrouped[groupIndex].summary = {};
         newData.sectionsGrouped[groupIndex].summary.points = { hi: [], en: [] };
@@ -312,7 +312,7 @@ const AdminCharanPooja = () => {
       
       console.log("Sending Charan Pooja data to backend:", validatedData);
       
-      const res = await axios.put(`${API_BASE}/api/charan-pooja`, validatedData);
+      const res = await axios.put(`${API_BASE}/api/charan-pooja`, { sections: validatedGroups });
       setData(validatedData);
       setIsEditing(false);
       setUnsavedChanges(false);
