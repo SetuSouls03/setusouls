@@ -38,10 +38,10 @@ exports.updateCharanPoojaContent = async (req, res) => {
     
     console.log("📥 Received Charan Pooja update:", updatedData);
     
-    // Validate required structure
-    if (!updatedData.sectionsGrouped || !Array.isArray(updatedData.sectionsGrouped)) {
+    // CHANGE THIS: Check for "sections" instead of "sectionsGrouped"
+    if (!updatedData.sections || !Array.isArray(updatedData.sections)) {
       return res.status(400).json({ 
-        message: "Invalid data: 'sectionsGrouped' array is required" 
+        message: "Invalid data: 'sections' array is required" 
       });
     }
 
@@ -51,11 +51,11 @@ exports.updateCharanPoojaContent = async (req, res) => {
     if (!data) {
       // Create new document if doesn't exist
       data = new CharanPoojaContent({
-        sectionsGrouped: updatedData.sectionsGrouped
+        sections: updatedData.sections  // <-- CHANGE THIS
       });
     } else {
-      // Update existing document - preserve structure
-      data.sectionsGrouped = updatedData.sectionsGrouped;
+      // Update existing document
+      data.sections = updatedData.sections;  // <-- CHANGE THIS
     }
     
     // Save to database
