@@ -9,7 +9,7 @@ exports.getCharanPoojaContent = async (req, res) => {
     // If no data exists, return empty structure
     if (!data) {
       return res.json({
-        sectionsGrouped: []
+        sections: []
       });
     }
     
@@ -143,7 +143,7 @@ exports.addGroup = async (req, res) => {
     const data = await CharanPoojaContent.findOneAndUpdate(
       {},
       { 
-        $push: { sectionsGrouped: groupToAdd }
+        $push: { sections: groupToAdd }
       },
       { 
         new: true,
@@ -187,7 +187,7 @@ exports.deleteGroup = async (req, res) => {
     const data = await CharanPoojaContent.findOneAndUpdate(
       {},
       { 
-        $pull: { sectionsGrouped: { _id: groupId } }
+        $pull: { sections: { _id: groupId } }
       },
       { new: true }
     );

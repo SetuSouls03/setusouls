@@ -61,10 +61,31 @@ const AdminCharanPooja = () => {
       const fetchedData = res.data;
       
       console.log("Fetched Charan Pooja data:", fetchedData);
+      console.log("Type of data:", typeof fetchedData);
+      console.log("Data keys:", Object.keys(fetchedData));
+      
+      // Check what structure the API returns
+      let sectionsArray = [];
+      
+      if (fetchedData.sectionsGrouped && Array.isArray(fetchedData.sectionsGrouped)) {
+        // API returns sectionsGrouped
+        console.log("Using sectionsGrouped from API");
+        sectionsArray = fetchedData.sectionsGrouped;
+      } else if (fetchedData.sections && Array.isArray(fetchedData.sections)) {
+        // API returns sections
+        console.log("Using sections from API");
+        sectionsArray = fetchedData.sections;
+      }
+      
+      console.log("Sections array length:", sectionsArray.length);
       
       // Validate and ensure proper structure
-      const validatedData = validateAndNormalizeData(fetchedData);
+      const validatedData = {
+        sections: validateAndNormalizeSections(sectionsArray)
+      };
 
+      console.log("Validated data:", validatedData);
+      
       setData(validatedData);
       setEditingData(JSON.parse(JSON.stringify(validatedData)));
       setHistory([{ 
@@ -74,92 +95,124 @@ const AdminCharanPooja = () => {
       }]);
     } catch (err) {
       console.error("Fetch error:", err);
+      console.error("Error details:", err.response?.data);
       toast.error("Failed to load Charan Pooja content");
       
       // Show empty state if fetch fails
-      setData({ sections: [] });
-      setEditingData({ sections: [] });
+      const emptyData = { sections: [] };
+      setData(emptyData);
+      setEditingData(emptyData);
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Validate and normalize data structure
-  const validateAndNormalizeData = (data) => {
-    if (!data) return { sections: [] };
-    
-    // Check if data has sections or sectionsGrouped
-    const sectionsArray = data.sections || data.sectionsGrouped || [];
-    
-    // If it's not an array, return empty
+  // Separate function to validate sections
+  const validateAndNormalizeSections = (sectionsArray) => {
     if (!Array.isArray(sectionsArray)) {
-      return { sections: [] };
+      return [];
     }
     
-    // Validate each group
-    const validatedGroups = sectionsArray.map((group, index) => {
-      // Handle group structure based on what fields exist
-      const cleanGroup = {};
+    return sectionsArray.map((section, index) => {
+      const cleanSection = {};
       
-      // Copy all existing fields with proper structure
-      if (group.title) {
-        cleanGroup.title = {
-          hi: group.title.hi || "",
-          en: group.title.en || ""
+      // Handle title
+      if (section.title) {
+        cleanSection.title = {
+          hi: typeof section.title === 'object' ? (section.title.hi || "") : 
+              (typeof section.title === 'string' && index === 0 ? section.title : ""),
+          en: typeof section.title === 'object' ? (section.title.en || "") : ""
         };
+      } else {
+        cleanSection.title = { hi: "", en: "" };
       }
       
-      if (group.paragraph) {
-        cleanGroup.paragraph = {
-          hi: group.paragraph.hi || "",
-          en: group.paragraph.en || ""
+      // Handle paragraph
+      if (section.paragraph) {
+        cleanSection.paragraph = {
+          hi: typeof section.paragraph === 'object' ? (section.paragraph.hi || "") : 
+              (typeof section.paragraph === 'string' && index === 0 ? section.paragraph : ""),
+          en: typeof section.paragraph === 'object' ? (section.paragraph.en || "") : ""
         };
+      } else if (index === 0) {
+        cleanSection.paragraph = { hi: "", en: "" };
       }
       
-      if (group.summary) {
-        cleanGroup.summary = {
+      // Handle summary
+      if (section.summary) {
+        cleanSection.summary = {
           title: {
-            hi: group.summary.title?.hi || "",
-            en: group.summary.title?.en || ""
+            hi: typeof section.summary.title === 'object' ? (section.summary.title.hi || "") : 
+                 (typeof section.summary.title === 'string' ? section.summary.title : ""),
+            en: typeof section.summary.title === 'object' ? (section.summary.title.en || "") : ""
           },
           points: {
-            hi: Array.isArray(group.summary.points?.hi) ? group.summary.points.hi : 
-                 (Array.isArray(group.summary.points) ? group.summary.points : []),
-            en: Array.isArray(group.summary.points?.en) ? group.summary.points.en : []
+            hi: Array.isArray(section.summary.points?.hi) ? section.summary.points.hi : 
+                 (Array.isArray(section.summary.points) ? section.summary.points : []),
+            en: Array.isArray(section.summary.points?.en) ? section.summary.points.en : []
           }
         };
-      }
-      
-      if (group.subheading) {
-        cleanGroup.subheading = {
-          hi: group.subheading.hi || "",
-          en: group.subheading.en || ""
+      } else if (index === 0) {
+        cleanSection.summary = {
+          title: { hi: "", en: "" },
+          points: { hi: [], en: [] }
         };
       }
       
-      if (group.detailedParagraph) {
-        cleanGroup.detailedParagraph = {
-          hi: group.detailedParagraph.hi || "",
-          en: group.detailedParagraph.en || ""
+      // Handle subheading
+      if (section.subheading) {
+        cleanSection.subheading = {
+          hi: typeof section.subheading === 'object' ? (section.subheading.hi || "") : 
+              (typeof section.subheading === 'string' && index === 1 ? section.subheading : ""),
+          en: typeof section.subheading === 'object' ? (section.subheading.en || "") : ""
         };
+      } else if (index === 1) {
+        cleanSection.subheading = { hi: "", en: "" };
       }
       
-      if (group.quote) {
-        cleanGroup.quote = {
-          hi: group.quote.hi || "",
-          en: group.quote.en || ""
+      // Handle detailedParagraph
+      if (section.detailedParagraph) {
+        cleanSection.detailedParagraph = {
+          hi: typeof section.detailedParagraph === 'object' ? (section.detailedParagraph.hi || "") : 
+              (typeof section.detailedParagraph === 'string' && index === 1 ? section.detailedParagraph : ""),
+          en: typeof section.detailedParagraph === 'object' ? (section.detailedParagraph.en || "") : ""
         };
+      } else if (index === 1) {
+        cleanSection.detailedParagraph = { hi: "", en: "" };
+      }
+      
+      // Handle quote
+      if (section.quote) {
+        cleanSection.quote = {
+          hi: typeof section.quote === 'object' ? (section.quote.hi || "") : 
+              (typeof section.quote === 'string' && index === 2 ? section.quote : ""),
+          en: typeof section.quote === 'object' ? (section.quote.en || "") : ""
+        };
+      } else if (index === 2) {
+        cleanSection.quote = { hi: "", en: "" };
       }
       
       // Preserve _id if it exists
-      if (group._id) {
-        cleanGroup._id = group._id;
+      if (section._id) {
+        cleanSection._id = section._id;
       }
       
-      return cleanGroup;
+      return cleanSection;
     });
+  };
+
+  // Main validation function for full data structure
+  const validateAndNormalizeData = (data) => {
+    if (!data) return { sections: [] };
     
-    return { sections: validatedGroups };
+    console.log("Validating full data structure:", data);
+    
+    // Check if data has sections
+    const sectionsArray = data.sections || [];
+    
+    return {
+      sections: validateAndNormalizeSections(sectionsArray)
+    };
   };
 
   const handleInputChange = (path, value, groupIndex, pointIndex = null) => {
@@ -330,16 +383,22 @@ const AdminCharanPooja = () => {
   const saveChanges = async () => {
     setLoading(true);
     try {
+      // Validate the data before sending
       const validatedData = validateAndNormalizeData(editingData);
       
-      console.log("Sending Charan Pooja data to backend:", validatedData);
+      console.log("Sending validated data to backend:", validatedData);
       
+      // Send to backend
       const res = await axios.put(`${API_BASE}/api/charan-pooja`, validatedData);
       
+      console.log("Save response:", res.data);
+      
+      // Update local state
       setData(validatedData);
       setIsEditing(false);
       setUnsavedChanges(false);
       
+      // Add to history
       setHistory(prev => [
         ...prev.slice(-9),
         { 
@@ -533,6 +592,17 @@ const AdminCharanPooja = () => {
             >
               {isEditing ? <FaTimes /> : <FaEdit />}
               {isEditing ? "Cancel Edit" : "Start Editing"}
+            </button>
+            
+            {/* Debug Button - Optional, remove after testing */}
+            <button
+              onClick={() => {
+                console.log("Current editingData:", editingData);
+                console.log("Validated data:", validateAndNormalizeData(editingData));
+              }}
+              className="px-3 py-2 bg-yellow-100 text-yellow-700 rounded-lg hover:bg-yellow-200 transition-colors text-sm"
+            >
+              Debug
             </button>
           </div>
         </div>
