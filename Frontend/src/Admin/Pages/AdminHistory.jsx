@@ -31,7 +31,7 @@ import {
 } from "react-icons/fa";
 import { toast, Toaster } from "react-hot-toast";
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+const API_BASE = "https://setusouls-1.onrender.com";
 
 // Default data structure that matches YOUR model
 const DEFAULT_HISTORY_DATA = {

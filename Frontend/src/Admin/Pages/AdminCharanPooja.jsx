@@ -32,7 +32,7 @@ import {
 } from "react-icons/fa";
 import { toast, Toaster } from "react-hot-toast";
 
-const API_BASE = "https://setusouls-1.onrender.com/";
+const API_BASE = "https://setusouls-1.onrender.com";
 
 const AdminCharanPooja = () => {
   const [data, setData] = useState(null);
