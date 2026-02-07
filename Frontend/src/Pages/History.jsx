@@ -10,12 +10,15 @@ const History = () => {
   useEffect(() => {
     axios
       .get("https://setusouls-1.onrender.com/api/history")
-      .then((res) => setData(res.data))
+      .then((res) => {
+        console.log("History data received:", res.data); // Debug
+        setData(res.data);
+      })
       .catch(() => setError("Failed to load history content"));
   }, []);
 
-  if (error) return <p>{error}</p>;
-  if (!data) return <p>Loading...</p>;
+  if (error) return <p className="text-red-500 text-center p-8">{error}</p>;
+  if (!data) return <p className="text-center p-8">Loading...</p>;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#fefcea] to-[#e8ebff] px-4 sm:px-6 lg:px-10 py-16 flex flex-col items-center gap-16 font-sans">
@@ -23,31 +26,34 @@ const History = () => {
       {/* SECTIONS */}
       {data.sections?.map((section, index) => (
         <motion.div
-          key={index}
+          key={section._id || index}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: index * 0.2 }}
           className="
-  w-full
-  max-w-[clamp(320px,85vw,1700px)]
-  text-center
-  bg-white rounded-2xl
-  p-6 sm:p-8 lg:p-10
-  shadow-[0_8px_20px_rgba(160,120,255,0.2)]
-  transition-all duration-300 ease-in-out
-  hover:-translate-y-2
-  hover:shadow-[0_16px_30px_rgba(120,80,200,0.3)]
-  hover:bg-[rgba(255,255,255,0.85)]
-"
-
+            w-full
+            max-w-[clamp(320px,85vw,1700px)]
+            text-center
+            bg-white rounded-2xl
+            p-6 sm:p-8 lg:p-10
+            shadow-[0_8px_20px_rgba(160,120,255,0.2)]
+            transition-all duration-300 ease-in-out
+            hover:-translate-y-2
+            hover:shadow-[0_16px_30px_rgba(120,80,200,0.3)]
+            hover:bg-[rgba(255,255,255,0.85)]
+          "
         >
-          <h2 className="mb-8 font-bold text-[#110c92] text-[clamp(2rem,4vw,3.5rem)] font-devanagari">
+          {/* HEADING */}
+          <h2 className="mb-6 font-bold text-[#110c92] text-[clamp(2rem,4vw,3.7rem)] font-devanagari">
             {section.heading?.[language]}
           </h2>
 
-          <p className="font-bold text-black leading-relaxed text-[clamp(1.1rem,2.5vw,1.5rem)] font-devanagari">
-            {section.subheading?.[language]}
-          </p>
+          {/* CONTENT - This is the paragraph below header */}
+          <div className="mt-6">
+            <p className="text-black leading-relaxed text-[clamp(1.1rem,2.5vw,1.7rem)] font-devanagari whitespace-pre-line font-bold">
+              {section.content?.[language]}
+            </p>
+          </div>
         </motion.div>
       ))}
 
