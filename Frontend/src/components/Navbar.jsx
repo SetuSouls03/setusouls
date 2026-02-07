@@ -366,7 +366,7 @@ const Navbar = () => {
               </NavLink>
 
               {/* Mobile - Important Section Dropdown */}
-              <div className="mt-4 border-t border-white/20">
+              <div className="border-t border-white/20">
                 <button
                   onClick={toggleMobileImportantDropdown}
                   disabled={!isAuthenticated}
@@ -417,7 +417,7 @@ const Navbar = () => {
               </div>
 
               {/* Mobile - Additional Section Dropdown */}
-              <div className="mt-4 border-t border-white/20">
+              <div className="border-t border-white/20">
                 <button
                   onClick={toggleMobileAdditionalDropdown}
                   disabled={!isAuthenticated}
