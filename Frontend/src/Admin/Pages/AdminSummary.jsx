@@ -108,31 +108,34 @@ const AdminSummary = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${API_BASE}/api/summary`);
-      const fetchedData = res.data;
+      console.log("Fetching data from:", `${API_BASE}/api/summary`);
       
-      // Ensure data structure
+      const res = await axios.get(`${API_BASE}/api/summary`);
+      console.log("API Response:", res.data);
+      
+      let fetchedData = res.data;
+      
+      // Handle different response formats
+      if (res.data && res.data.data) {
+        // If response has { success: true, data: {...} } format
+        fetchedData = res.data.data;
+      } else if (res.data && res.data._id) {
+        // If response is direct MongoDB document
+        fetchedData = res.data;
+      }
+      
+      console.log("Processed data:", fetchedData);
+      
+      // Ensure data structure is correct
       const formattedData = {
         sections: fetchedData.sections || [],
         highlight: fetchedData.highlight || { english: "", hindi: "" }
       };
       
-      setData(formattedData);
-      setEditingData(JSON.parse(JSON.stringify(formattedData)));
-      
-      setHistory([{ 
-        timestamp: new Date(), 
-        data: formattedData,
-        id: Date.now()
-      }]);
-      
-    } catch (err) {
-      console.error("Failed to fetch summary data:", err);
-      toast.error("Failed to load summary data");
-      
-      // Initialize with empty structure if fetch fails
-      const emptyData = {
-        sections: [
+      // Ensure sections have required structure
+      if (formattedData.sections.length === 0) {
+        console.warn("No sections found, initializing with default structure");
+        formattedData.sections = [
           {
             className: "first-section",
             heading: { english: "", hindi: "" },
@@ -151,14 +154,90 @@ const AdminSummary = () => {
             paragraphs: [{ english: "", hindi: "" }],
             list: []
           }
+        ];
+      }
+      
+      // Ensure each section has proper structure
+      formattedData.sections = formattedData.sections.map((section, index) => ({
+        className: section.className || `${["first", "second", "third"][index]}-section`,
+        heading: section.heading || { english: "", hindi: "" },
+        paragraphs: section.paragraphs && Array.isArray(section.paragraphs) 
+          ? section.paragraphs 
+          : [{ english: "", hindi: "" }],
+        list: section.list && Array.isArray(section.list) ? section.list : []
+      }));
+      
+      console.log("Final formatted data:", formattedData);
+      
+      setData(formattedData);
+      setEditingData(JSON.parse(JSON.stringify(formattedData)));
+      
+      setHistory([{ 
+        timestamp: new Date(), 
+        data: formattedData,
+        id: Date.now()
+      }]);
+      
+      toast.success("✅ Summary data loaded successfully!");
+      
+    } catch (err) {
+      console.error("Failed to fetch summary data:", err);
+      console.error("Error details:", err.response?.data || err.message);
+      
+      // Initialize with default structure
+      const defaultData = {
+        sections: [
+          {
+            className: "first-section",
+            heading: { english: "First Section Heading", hindi: "पहला अनुभाग शीर्षक" },
+            paragraphs: [{ english: "First paragraph content", hindi: "पहला अनुच्छेद विषय" }],
+            list: []
+          },
+          {
+            className: "second-section",
+            heading: { english: "Second Section Heading", hindi: "दूसरा अनुभाग शीर्षक" },
+            paragraphs: [{ english: "Second paragraph content", hindi: "दूसरा अनुच्छेद विषय" }],
+            list: [
+              { english: "First list item", hindi: "पहली सूची आइटम" },
+              { english: "Second list item", hindi: "दूसरी सूची आइटम" }
+            ]
+          },
+          {
+            className: "third-section",
+            heading: { english: "Third Section Heading", hindi: "तीसरा अनुभाग शीर्षक" },
+            paragraphs: [{ english: "Third paragraph content", hindi: "तीसरा अनुच्छेद विषय" }],
+            list: []
+          }
         ],
-        highlight: { english: "", hindi: "" }
+        highlight: { 
+          english: "Important highlight text goes here", 
+          hindi: "महत्वपूर्ण हाइलाइट पाठ यहाँ आता है" 
+        }
       };
       
-      setData(emptyData);
-      setEditingData(JSON.parse(JSON.stringify(emptyData)));
+      setData(defaultData);
+      setEditingData(JSON.parse(JSON.stringify(defaultData)));
+      
+      if (err.response?.status === 404) {
+        toast.error("❌ API endpoint not found. Check backend deployment.");
+      } else {
+        toast.error("❌ Failed to load summary data. Using default data.");
+      }
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Test API connection
+  const testAPI = async () => {
+    try {
+      console.log("Testing API connection...");
+      const res = await axios.get(`${API_BASE}/api/summary`);
+      console.log("API Test Response:", res.data);
+      toast.success(`✅ API is working! Status: ${res.status}`);
+    } catch (err) {
+      console.error("API Test Error:", err);
+      toast.error(`❌ API Error: ${err.message}`);
     }
   };
 
@@ -196,6 +275,9 @@ const AdminSummary = () => {
   const handleParagraphChange = (sectionIndex, paraIndex, value, lang = activeLanguage) => {
     setEditingData(prev => {
       const newData = JSON.parse(JSON.stringify(prev));
+      if (!newData.sections[sectionIndex]) {
+        newData.sections[sectionIndex] = { paragraphs: [] };
+      }
       if (!newData.sections[sectionIndex].paragraphs[paraIndex]) {
         newData.sections[sectionIndex].paragraphs[paraIndex] = {};
       }
@@ -209,6 +291,9 @@ const AdminSummary = () => {
   const handleListItemChange = (sectionIndex, itemIndex, value, lang = activeLanguage) => {
     setEditingData(prev => {
       const newData = JSON.parse(JSON.stringify(prev));
+      if (!newData.sections[sectionIndex]) {
+        newData.sections[sectionIndex] = { list: [] };
+      }
       if (!newData.sections[sectionIndex].list[itemIndex]) {
         newData.sections[sectionIndex].list[itemIndex] = {};
       }
@@ -222,6 +307,12 @@ const AdminSummary = () => {
   const addParagraph = (sectionIndex) => {
     setEditingData(prev => {
       const newData = JSON.parse(JSON.stringify(prev));
+      if (!newData.sections[sectionIndex]) {
+        newData.sections[sectionIndex] = { paragraphs: [] };
+      }
+      if (!newData.sections[sectionIndex].paragraphs) {
+        newData.sections[sectionIndex].paragraphs = [];
+      }
       newData.sections[sectionIndex].paragraphs.push({
         english: "",
         hindi: ""
@@ -234,7 +325,8 @@ const AdminSummary = () => {
 
   // Remove paragraph from section
   const removeParagraph = (sectionIndex, paraIndex) => {
-    if (editingData.sections[sectionIndex].paragraphs.length <= 1) {
+    if (!editingData?.sections[sectionIndex]?.paragraphs || 
+        editingData.sections[sectionIndex].paragraphs.length <= 1) {
       toast.error("Cannot remove the last paragraph");
       return;
     }
@@ -253,6 +345,9 @@ const AdminSummary = () => {
   const addListItem = (sectionIndex) => {
     setEditingData(prev => {
       const newData = JSON.parse(JSON.stringify(prev));
+      if (!newData.sections[sectionIndex]) {
+        newData.sections[sectionIndex] = { list: [] };
+      }
       if (!newData.sections[sectionIndex].list) {
         newData.sections[sectionIndex].list = [];
       }
@@ -270,7 +365,7 @@ const AdminSummary = () => {
   const removeListItem = (sectionIndex, itemIndex) => {
     setEditingData(prev => {
       const newData = JSON.parse(JSON.stringify(prev));
-      if (newData.sections[sectionIndex].list) {
+      if (newData.sections[sectionIndex]?.list) {
         newData.sections[sectionIndex].list = 
           newData.sections[sectionIndex].list.filter((_, i) => i !== itemIndex);
         setUnsavedChanges(true);
@@ -282,20 +377,34 @@ const AdminSummary = () => {
 
   // Save changes
   const saveChanges = async () => {
-  setLoading(true);
-  try {
-    // Using the bulk update endpoint
-    const res = await axios.put(`${API_BASE}/api/summary`, editingData, {
-      headers: {
-        'Content-Type': 'application/json'
+    setLoading(true);
+    try {
+      // Prepare data for saving
+      const dataToSave = {
+        sections: editingData.sections || [],
+        highlight: editingData.highlight || { english: "", hindi: "" }
+      };
+
+      console.log("Saving data:", dataToSave);
+
+      // Try PUT endpoint first
+      let res;
+      try {
+        res = await axios.put(`${API_BASE}/api/summary`, dataToSave);
+        console.log("PUT Response:", res.data);
+      } catch (putError) {
+        console.log("PUT failed, trying POST:", putError.message);
+        // Try POST as fallback
+        res = await axios.post(`${API_BASE}/api/summary`, dataToSave);
+        console.log("POST Response:", res.data);
       }
-    });
-    
-    if (res.data.success) {
+
+      // Update local state
       setData(editingData);
       setIsEditing(false);
       setUnsavedChanges(false);
       
+      // Add to history
       setHistory(prev => [
         ...prev.slice(-9),
         { 
@@ -306,30 +415,36 @@ const AdminSummary = () => {
       ]);
       
       toast.success("✅ Summary saved successfully!");
-    } else {
-      toast.error("❌ Failed to save summary: " + (res.data.message || "Unknown error"));
+      
+      // Refresh data from server
+      fetchData();
+      
+    } catch (err) {
+      console.error("Save error:", err);
+      console.error("Error details:", err.response?.data || err.message);
+      
+      if (err.response?.status === 404) {
+        toast.error("❌ Save endpoint not found. Please deploy PUT/POST endpoint.");
+      } else if (err.response?.data?.message) {
+        toast.error("❌ " + err.response.data.message);
+      } else {
+        toast.error("❌ Failed to save summary. Check console for details.");
+      }
+    } finally {
+      setLoading(false);
     }
-  } catch (err) {
-    console.error("Save error:", err);
-    
-    if (err.response?.status === 404) {
-      toast.error("❌ API endpoint not found. Please deploy updated routes.");
-    } else if (err.response?.data?.message) {
-      toast.error("❌ " + err.response.data.message);
-    } else {
-      toast.error("❌ Failed to save summary");
-    }
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   // Revert changes
   const revertChanges = () => {
-    setEditingData(JSON.parse(JSON.stringify(data)));
-    setIsEditing(false);
-    setUnsavedChanges(false);
-    toast.success("↩️ Changes reverted");
+    if (data) {
+      setEditingData(JSON.parse(JSON.stringify(data)));
+      setIsEditing(false);
+      setUnsavedChanges(false);
+      toast.success("↩️ Changes reverted");
+    } else {
+      toast.error("No original data to revert to");
+    }
   };
 
   // Export data
@@ -423,12 +538,52 @@ const AdminSummary = () => {
     );
   };
 
+  // Debug function to check data structure
+  const debugData = () => {
+    console.log("=== DEBUG DATA ===");
+    console.log("Original Data:", data);
+    console.log("Editing Data:", editingData);
+    console.log("Sections Count:", editingData?.sections?.length);
+    console.log("First Section:", editingData?.sections?.[0]);
+    console.log("Active Language:", activeLanguage);
+    console.log("==================");
+    toast.success("📊 Data structure logged to console");
+  };
+
   if (loading && !editingData) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-100 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-amber-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading Summary CMS...</p>
+          <button 
+            onClick={testAPI}
+            className="mt-4 px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200"
+          >
+            Test API Connection
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!editingData) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-100 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-red-600 font-bold text-xl mb-4">Failed to load summary data</p>
+          <button 
+            onClick={fetchData}
+            className="px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700"
+          >
+            Retry Loading Data
+          </button>
+          <button 
+            onClick={testAPI}
+            className="ml-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            Test API
+          </button>
         </div>
       </div>
     );
@@ -447,26 +602,51 @@ const AdminSummary = () => {
         }}
       />
 
+      {/* Debug Button */}
+      <button 
+        onClick={debugData}
+        className="fixed bottom-4 right-4 z-50 px-3 py-2 bg-gray-800 text-white text-xs rounded-lg opacity-70 hover:opacity-100"
+      >
+        Debug Data
+      </button>
+
       {/* Language Selector */}
       <div className="mb-6 bg-white rounded-xl shadow-lg p-4">
         <div className="flex flex-wrap justify-between items-center gap-4">
-          <div className="flex items-center gap-2">
-            <FaLanguage className="text-amber-600 text-xl" />
-            <span className="font-medium text-gray-700">Editing Language:</span>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <FaLanguage className="text-amber-600 text-xl" />
+              <span className="font-medium text-gray-700">Editing Language:</span>
+            </div>
+            <div className="flex gap-2">
+              {["english", "hindi"].map(lang => (
+                <button
+                  key={lang}
+                  onClick={() => setActiveLanguage(lang)}
+                  className={`px-4 py-2 rounded-lg transition-all ${activeLanguage === lang
+                    ? 'bg-amber-600 text-white shadow-md'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  }`}
+                >
+                  {lang === 'hindi' ? 'Hindi' : 'English'}
+                </button>
+              ))}
+            </div>
           </div>
+          
           <div className="flex gap-2">
-            {["english", "hindi"].map(lang => (
-              <button
-                key={lang}
-                onClick={() => setActiveLanguage(lang)}
-                className={`px-4 py-2 rounded-lg transition-all ${activeLanguage === lang
-                  ? 'bg-amber-600 text-white shadow-md'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                {lang === 'hindi' ? 'Hindi' : 'English'}
-              </button>
-            ))}
+            <button 
+              onClick={testAPI}
+              className="px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors flex items-center gap-2"
+            >
+              Test API
+            </button>
+            <button 
+              onClick={fetchData}
+              className="px-4 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors flex items-center gap-2"
+            >
+              Refresh Data
+            </button>
           </div>
         </div>
       </div>
